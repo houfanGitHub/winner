@@ -285,8 +285,8 @@
             
             <p style="margin-top:20px; line-height:50px; font-size:20px; text-align:center; color:#fff;"><span style="color:#917739;">欢迎</span>盈主到来</p>
             <p style="margin-bottom:15px; line-height:50px; font-size:20px; text-align:center; color:#fff;">现在开始<span style="color:#917739;">您的财富</span> 之旅吧</p>
-            <a style="float:none; margin:0 auto; margin-left:15px;    display: inline-block;margin-bottom: 10px;" href="http://pro.ying158.com/web/login"><img src="./files/ying_index_login_btn.png"></a>
-            <a style="float:none; margin:0 auto; margin-left:15px; margin-top:10px;" href="http://pro.ying158.com/web/regis"><img src="./files/ying_index_reg_btn.png"></a>
+            <a style="float:none; margin:0 auto; margin-left:15px;    display: inline-block;margin-bottom: 10px;" href="itemweb/login"><img src="./files/ying_index_login_btn.png"></a>
+            <a style="float:none; margin:0 auto; margin-left:15px; margin-top:10px;" href="itemweb/registration"><img src="./files/ying_index_reg_btn.png"></a>
             
         </div>
     </div>
