@@ -4,12 +4,8 @@
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
-	<meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width,maximum-scale=1.0,user-scalable=yes">
-	<meta name="Keywords" content="盈+，盈，社区金融，O2O社区金融，社区金融O2O，O2O，互联网+社区金融，O2O连锁，社区门店，首家社区金融，社区金融服务，综合金融，互联网金融，体验中心，普惠金融，金融创新，社区化，普惠化，全渠道化，互联网线上平台，O2O交易，全国首家，盈十，金融衍生品，固收类理财，私募基金，股权基金，股指期货，玩转股指，商品期货，国际期货，外盘，A50，沪深300，中证500，上证50">
-	<meta name="description" content="盈+——全国首家互联网金融交流体验中心，与您共盈，给财富做加法。">
 	<title>盈+理财-首页 - 盈+</title>
-	<link href="http://www.ying158.com/Content/images/jw/icon.ico" type="image/x-icon" rel="shortcut icon">
+<!-- 	<link href="http://www.ying158.com/Content/images/jw/icon.ico" type="image/x-icon" rel="shortcut icon"> -->
 	<script src="./files/hm.js"></script><script src="./files/hm(1).js"></script><script>
 
 		
@@ -164,35 +160,16 @@
 
 </head>
 <body>
-	<div id="floatTools" class="rides-cs" style="height:408px;">
-		<div class="floatL">
-			<a id="aFloatTools_Show" class="btnOpen" title="查看在线客服" style="top:90px;display:block" href="javascript:void(0);">展开</a>
-			<a id="aFloatTools_Hide" class="btnCtn" title="关闭在线客服" style="top:90px;display:none" href="javascript:void(0);">收缩</a>
-		</div>
-		<div id="divFloatToolsView" class="floatR" style="display: none;height:408px;width: 140px;">
-			<div class="cn">
-				<img src="./files/kefun.png" style="  width: 100px;display: block; margin: 0 auto; padding-top: 10px;">
-				<h3 class="titZx">盈+金融在线客服</h3>
-				<ul>
-					<li><span>客服1</span> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=508886246&site=qq&menu=yes"><img border="0" src="./files/littleQQ.png" alt="点击这里给我发消息" title="点击这里给我发消息"></a> </li>
-					<li><span>客服2</span> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3276064217&site=qq&menu=yes"><img border="0" src="./files/littleQQ.png" alt="点击这里给我发消息" title="点击这里给我发消息"></a> </li>
-					<li><span>客服3</span> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2717994963&site=qq&menu=yes"><img border="0" src="./files/littleQQ.png" alt="点击这里给我发消息" title="点击这里给我发消息"></a> </li>
-                    <li><span>技术A</span> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2088636909&site=qq&menu=yes"><img border="0" src="./files/littleQQ.png" alt="点击这里给我发消息" title="点击这里给我发消息"></a> </li>
-					<li style="border:none;"><span>电话：4000-999-158</span> </li>
-				</ul>
-			</div>
-		</div>
-	</div>
 	
     <div style=" width:1002px; height:94px; margin:0 auto;">
-        <iframe src="./files/iframetop.html" scrolling="no" frameborder="0" width="1002" height="94"></iframe>
+        <iframe src="./files/iframetop.jsp" scrolling="no" frameborder="0" width="1002" height="94"></iframe>
     </div>
 	<div class="jwNav">
 		<div class="container">
 			<div class="row">
 				<ul class="topNav">
 					<li class="active">
-						<a class="item first" href="./files/+.html">
+						<a class="item first" href="./files/盈+理财-首页 - 盈+.html">
 							首页
 						</a>
 					</li>
@@ -285,8 +262,8 @@
             
             <p style="margin-top:20px; line-height:50px; font-size:20px; text-align:center; color:#fff;"><span style="color:#917739;">欢迎</span>盈主到来</p>
             <p style="margin-bottom:15px; line-height:50px; font-size:20px; text-align:center; color:#fff;">现在开始<span style="color:#917739;">您的财富</span> 之旅吧</p>
-            <a style="float:none; margin:0 auto; margin-left:15px;    display: inline-block;margin-bottom: 10px;" href="itemweb/login"><img src="./files/ying_index_login_btn.png"></a>
-            <a style="float:none; margin:0 auto; margin-left:15px; margin-top:10px;" href="itemweb/registration"><img src="./files/ying_index_reg_btn.png"></a>
+            <a style="float:none; margin:0 auto; margin-left:15px;    display: inline-block;margin-bottom: 10px;" href="itemweb/toLogin"><img src="./files/ying_index_login_btn.png"></a>
+            <a style="float:none; margin:0 auto; margin-left:15px; margin-top:10px;" href="itemweb/toRegistration"><img src="./files/ying_index_reg_btn.png"></a>
             
         </div>
     </div>
@@ -317,7 +294,7 @@
                 查看更多&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;
             </a>
         </div>
-        <iframe width="972" height="500" scrolling="no" frameborder="0" src="./files/iframeindex.html"></iframe>
+        <iframe width="972" height="500" scrolling="no" frameborder="0" src="./files/iframeindex.jsp"></iframe>
         <div class=" download apply">
             <div class="title">
                 <img src="./files/applyLeft.png">合作商风采<img src="./files/applyRight.png">
@@ -1031,6 +1008,8 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
     </script>
+
+
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -19,9 +20,12 @@
 <link href="../files/common.css" rel="stylesheet">
 <link href="../files/jw.css" rel="stylesheet">
 
-<script src="../files/hm.js"></script><script src="../files/jquery.js"></script>
-<script type="text/javascript" src="../files/layer.js"></script><link rel="stylesheet" href="../files/layer.css" id="layui_layer_skinlayercss">
-<script src="../files/echarts.js"></script></head>
+<!-- <script src="../files/hm.js"></script> -->
+<script src="../files/jquery.js"></script>
+<!-- <script type="text/javascript" src="../files/layer.js"></script> -->
+<link rel="stylesheet" href="../files/layer.css" id="layui_layer_skinlayercss">
+<!-- <script src="../files/echarts.js"></script> -->
+</head>
 <body>
 
 <div class="logo container">
@@ -114,12 +118,13 @@
 				<hr>
 			</div>
 		</div>
+        <form:form action="userRegistration" method="post" modelAttribute="User">
         <div class="item">
             <div class="rLabel">
                 用户名
             </div>
             <div class="rInput">
-                <input type="text" placeholder="请输入用户名" id="userName" name="youname" class="form-control textInput youname">（需用实名注册）<span class="errorInfo">用户名不能为空</span>
+                <input type="text" placeholder="请输入用户名" id="userName" name="userName" class="form-control textInput youname">（需用实名注册）<span class="errorInfo">用户名不能为空</span>
             </div>
         </div>
 		<div class="item">
@@ -127,7 +132,7 @@
 				手机号
 			</div>
 			<div class="rInput">
-				<input type="text" placeholder="请输入手机号" id="phone" name="phone" class="form-control textInput phone"><span class="errorInfo">手机号码不能为空</span>
+				<input type="text" placeholder="请输入手机号" id="phone" name="mobile_Phone" class="form-control textInput phone"><span class="errorInfo">手机号码不能为空</span>
 			</div>
 		</div>
 		 <div class="item">
@@ -174,22 +179,6 @@
         </div>
 		<div class="item">
 			<div class="rLabel">
-				QQ号码
-			</div>
-			<div class="rInput">
-				<input type="text" placeholder="选填" id="qq" name="qq" class="form-control textInput qqAccount">
-			</div>
-		</div>
-		<div class="item extro">
-			<div class="rLabel">
-				&nbsp;
-			</div>
-			<div class="rInput">
-				<span class="extroInfo">请用户提供QQ号码，方便客服联系</span>
-			</div>
-		</div>
-		<div class="item">
-			<div class="rLabel">
 				&nbsp;
 			</div>
 			<div class="rInput">
@@ -204,9 +193,10 @@
 				&nbsp;
 			</div>
 			<div class="rInput">
-				<button class="btn registBtn submit">立即注册</button>
+				<input type="submit" value="立即注册" class="btn registBtn submit">
 			</div>
 		</div>
+        </form:form>
 		<div class="item">
 			<div class="rLabel">
 				&nbsp;
