@@ -1,29 +1,19 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
+import java.math.BigInteger;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the subject_order_record database table.
- * 标的订单表
+ * 
  */
 @Entity
 @Table(name="subject_order_record")
-@NamedQuery(name="SubjectOrderRecord.findAll", query="SELECT s FROM SubjectOrderRecord s")
 public class SubjectOrderRecord  {
-
 	private String id;
 	private BigDecimal amount;
 	private Date createDate;
@@ -40,7 +30,7 @@ public class SubjectOrderRecord  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -50,6 +40,7 @@ public class SubjectOrderRecord  {
 	}
 
 
+	@Column(precision=10, scale=4)
 	public BigDecimal getAmount() {
 		return this.amount;
 	}
@@ -60,7 +51,7 @@ public class SubjectOrderRecord  {
 
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="create_date")
+	@Column(name="create_date", nullable=false)
 	public Date getCreateDate() {
 		return this.createDate;
 	}
@@ -89,7 +80,7 @@ public class SubjectOrderRecord  {
 	}
 
 
-	@Column(name="serial_number")
+	@Column(name="serial_number", length=50)
 	public String getSerialNumber() {
 		return this.serialNumber;
 	}
@@ -109,7 +100,7 @@ public class SubjectOrderRecord  {
 
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="update_date")
+	@Column(name="update_date", nullable=false)
 	public Date getUpdateDate() {
 		return this.updateDate;
 	}
@@ -121,6 +112,7 @@ public class SubjectOrderRecord  {
 
 	//bi-directional many-to-one association to Member
 	@ManyToOne
+	@JoinColumn(name="member_id")
 	public Member getMember() {
 		return this.member;
 	}
@@ -132,6 +124,7 @@ public class SubjectOrderRecord  {
 
 	//bi-directional many-to-one association to Subject
 	@ManyToOne
+	@JoinColumn(name="subject_id")
 	public Subject getSubject() {
 		return this.subject;
 	}

@@ -1,32 +1,25 @@
 package com.item.finance.bean;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Date;
-import java.util.Set;
+import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
+
+import java.math.BigInteger;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
  * The persistent class for the subject database table.
- * 主题表
+ * 
  */
 @Entity
+@Table(name="subject")
 @NamedQuery(name="Subject.findAll", query="SELECT s FROM Subject s")
 public class Subject  {
-
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private BigDecimal amount;
 	private BigInteger borrowerid;
@@ -57,17 +50,16 @@ public class Subject  {
 	private Date updateDate;
 	private BigDecimal yearRate;
 	private SubjectFolder subjectFolder;
-	private Set<SubjectBbinPurchaseRecord> subjectBbinPurchaseRecords;
-	private Set<SubjectFieldRecord> subjectFieldRecords;
-	private Set<SubjectOrderRecord> subjectOrderRecords;
-	private Set<SubjectPurchaseRecord> subjectPurchaseRecords;
+	private Set<SubjectBbinPurchaseRecord> subjectBbinPurchaseRecords = new HashSet<>();
+	private Set<SubjectFieldRecord> subjectFieldRecords = new HashSet<>();
+	private Set<SubjectOrderRecord> subjectOrderRecords = new HashSet<>();
 
 	public Subject() {
 	}
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -77,6 +69,7 @@ public class Subject  {
 	}
 
 
+	@Column(precision=10, scale=2)
 	public BigDecimal getAmount() {
 		return this.amount;
 	}
@@ -95,6 +88,7 @@ public class Subject  {
 	}
 
 
+	@Column(length=100)
 	public String getBorrowername() {
 		return this.borrowername;
 	}
@@ -124,7 +118,7 @@ public class Subject  {
 
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="create_date")
+	@Column(name="create_date", nullable=false)
 	public Date getCreateDate() {
 		return this.createDate;
 	}
@@ -174,7 +168,7 @@ public class Subject  {
 	}
 
 
-	@Column(name="floor_amount")
+	@Column(name="floor_amount", precision=10, scale=4)
 	public BigDecimal getFloorAmount() {
 		return this.floorAmount;
 	}
@@ -184,6 +178,7 @@ public class Subject  {
 	}
 
 
+	@Column(length=500)
 	public String getName() {
 		return this.name;
 	}
@@ -222,6 +217,7 @@ public class Subject  {
 	}
 
 
+	@Column(length=500)
 	public String getPurpose() {
 		return this.purpose;
 	}
@@ -282,7 +278,7 @@ public class Subject  {
 	}
 
 
-	@Column(name="serial_no")
+	@Column(name="serial_no", length=50)
 	public String getSerialNo() {
 		return this.serialNo;
 	}
@@ -292,7 +288,7 @@ public class Subject  {
 	}
 
 
-	@Column(name="serial_number")
+	@Column(name="serial_number", length=50)
 	public String getSerialNumber() {
 		return this.serialNumber;
 	}
@@ -332,7 +328,7 @@ public class Subject  {
 
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="update_date")
+	@Column(name="update_date", nullable=false)
 	public Date getUpdateDate() {
 		return this.updateDate;
 	}
@@ -342,7 +338,7 @@ public class Subject  {
 	}
 
 
-	@Column(name="year_rate")
+	@Column(name="year_rate", precision=10, scale=4)
 	public BigDecimal getYearRate() {
 		return this.yearRate;
 	}
@@ -436,31 +432,6 @@ public class Subject  {
 		subjectOrderRecord.setSubject(null);
 
 		return subjectOrderRecord;
-	}
-
-
-	//bi-directional many-to-one association to SubjectPurchaseRecord
-	@OneToMany(mappedBy="subject")
-	public Set<SubjectPurchaseRecord> getSubjectPurchaseRecords() {
-		return this.subjectPurchaseRecords;
-	}
-
-	public void setSubjectPurchaseRecords(Set<SubjectPurchaseRecord> subjectPurchaseRecords) {
-		this.subjectPurchaseRecords = subjectPurchaseRecords;
-	}
-
-	public SubjectPurchaseRecord addSubjectPurchaseRecord(SubjectPurchaseRecord subjectPurchaseRecord) {
-		getSubjectPurchaseRecords().add(subjectPurchaseRecord);
-		subjectPurchaseRecord.setSubject(this);
-
-		return subjectPurchaseRecord;
-	}
-
-	public SubjectPurchaseRecord removeSubjectPurchaseRecord(SubjectPurchaseRecord subjectPurchaseRecord) {
-		getSubjectPurchaseRecords().remove(subjectPurchaseRecord);
-		subjectPurchaseRecord.setSubject(null);
-
-		return subjectPurchaseRecord;
 	}
 
 }

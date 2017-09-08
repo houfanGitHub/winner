@@ -1,43 +1,33 @@
 package com.item.finance.bean;
 
-import java.math.BigDecimal;
+import java.io.Serializable;
+import javax.persistence.*;
 import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the member_tally database table.
- * 记账表
+ * 
  */
 @Entity
 @Table(name="member_tally")
-@NamedQuery(name="MemberTally.findAll", query="SELECT m FROM MemberTally m")
 public class MemberTally  {
-
 	private int id;
 	private BigDecimal amount;
 	private Date createDate;
-	private BigInteger memberId;
 	private Date payDate;
 	private int typeId;
 	private String typeName;
+	private Member member;
 
 	public MemberTally() {
 	}
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public int getId() {
 		return this.id;
 	}
@@ -47,6 +37,7 @@ public class MemberTally  {
 	}
 
 
+	@Column(nullable=false, precision=10, scale=2)
 	public BigDecimal getAmount() {
 		return this.amount;
 	}
@@ -67,16 +58,6 @@ public class MemberTally  {
 	}
 
 
-	@Column(name="member_id")
-	public BigInteger getMemberId() {
-		return this.memberId;
-	}
-
-	public void setMemberId(BigInteger memberId) {
-		this.memberId = memberId;
-	}
-
-
 	@Temporal(TemporalType.DATE)
 	@Column(name="pay_date")
 	public Date getPayDate() {
@@ -88,7 +69,7 @@ public class MemberTally  {
 	}
 
 
-	@Column(name="type_id")
+	@Column(name="type_id", nullable=false)
 	public int getTypeId() {
 		return this.typeId;
 	}
@@ -98,13 +79,25 @@ public class MemberTally  {
 	}
 
 
-	@Column(name="type_name")
+	@Column(name="type_name", nullable=false, length=32)
 	public String getTypeName() {
 		return this.typeName;
 	}
 
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
+	}
+
+
+	//bi-directional many-to-one association to Member
+	@ManyToOne
+	@JoinColumn(name="member_id", nullable=false)
+	public Member getMember() {
+		return this.member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 }

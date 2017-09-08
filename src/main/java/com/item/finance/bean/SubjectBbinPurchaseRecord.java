@@ -1,29 +1,20 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
+import java.math.BigInteger;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import java.util.Set;
 
 
 /**
  * The persistent class for the subject_bbin_purchase_record database table.
- * 体验金购买标的表
+ * 
  */
 @Entity
 @Table(name="subject_bbin_purchase_record")
-@NamedQuery(name="SubjectBbinPurchaseRecord.findAll", query="SELECT s FROM SubjectBbinPurchaseRecord s")
 public class SubjectBbinPurchaseRecord  {
-
 	private String id;
 	private BigDecimal amount;
 	private Date createDate;
@@ -35,6 +26,7 @@ public class SubjectBbinPurchaseRecord  {
 	private int payInterestTimes;
 	private String serialNumber;
 	private Date updateDate;
+	private Set<MemberProfitRecord> memberProfitRecords;
 	private Member member;
 	private Subject subject;
 
@@ -43,7 +35,7 @@ public class SubjectBbinPurchaseRecord  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -53,6 +45,7 @@ public class SubjectBbinPurchaseRecord  {
 	}
 
 
+	@Column(precision=10, scale=4)
 	public BigDecimal getAmount() {
 		return this.amount;
 	}
@@ -63,7 +56,7 @@ public class SubjectBbinPurchaseRecord  {
 
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="create_date")
+	@Column(name="create_date", nullable=false)
 	public Date getCreateDate() {
 		return this.createDate;
 	}
@@ -73,7 +66,7 @@ public class SubjectBbinPurchaseRecord  {
 	}
 
 
-	@Column(name="deal_ip")
+	@Column(name="deal_ip", length=25)
 	public String getDealIp() {
 		return this.dealIp;
 	}
@@ -92,6 +85,7 @@ public class SubjectBbinPurchaseRecord  {
 	}
 
 
+	@Column(precision=10, scale=4)
 	public BigDecimal getInterest() {
 		return this.interest;
 	}
@@ -110,7 +104,7 @@ public class SubjectBbinPurchaseRecord  {
 	}
 
 
-	@Column(name="last_profit_day")
+	@Column(name="last_profit_day", nullable=false)
 	public int getLastProfitDay() {
 		return this.lastProfitDay;
 	}
@@ -130,7 +124,7 @@ public class SubjectBbinPurchaseRecord  {
 	}
 
 
-	@Column(name="serial_number")
+	@Column(name="serial_number", length=50)
 	public String getSerialNumber() {
 		return this.serialNumber;
 	}
@@ -141,7 +135,7 @@ public class SubjectBbinPurchaseRecord  {
 
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="update_date")
+	@Column(name="update_date", nullable=false)
 	public Date getUpdateDate() {
 		return this.updateDate;
 	}
@@ -151,8 +145,34 @@ public class SubjectBbinPurchaseRecord  {
 	}
 
 
+	//bi-directional many-to-one association to MemberProfitRecord
+	@OneToMany(mappedBy="subjectBbinPurchaseRecord")
+	public Set<MemberProfitRecord> getMemberProfitRecords() {
+		return this.memberProfitRecords;
+	}
+
+	public void setMemberProfitRecords(Set<MemberProfitRecord> memberProfitRecords) {
+		this.memberProfitRecords = memberProfitRecords;
+	}
+
+	public MemberProfitRecord addMemberProfitRecord(MemberProfitRecord memberProfitRecord) {
+		getMemberProfitRecords().add(memberProfitRecord);
+		memberProfitRecord.setSubjectBbinPurchaseRecord(this);
+
+		return memberProfitRecord;
+	}
+
+	public MemberProfitRecord removeMemberProfitRecord(MemberProfitRecord memberProfitRecord) {
+		getMemberProfitRecords().remove(memberProfitRecord);
+		memberProfitRecord.setSubjectBbinPurchaseRecord(null);
+
+		return memberProfitRecord;
+	}
+
+
 	//bi-directional many-to-one association to Member
 	@ManyToOne
+	@JoinColumn(name="member_id")
 	public Member getMember() {
 		return this.member;
 	}
@@ -164,6 +184,7 @@ public class SubjectBbinPurchaseRecord  {
 
 	//bi-directional many-to-one association to Subject
 	@ManyToOne
+	@JoinColumn(name="subject_id")
 	public Subject getSubject() {
 		return this.subject;
 	}

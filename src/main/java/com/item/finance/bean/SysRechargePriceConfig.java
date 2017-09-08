@@ -1,28 +1,20 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the sys_recharge_price_config database table.
- * 充值面额管理表
+ * 
  */
 @Entity
 @Table(name="sys_recharge_price_config")
 @NamedQuery(name="SysRechargePriceConfig.findAll", query="SELECT s FROM SysRechargePriceConfig s")
 public class SysRechargePriceConfig  {
-
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private Date createDate;
 	private BigDecimal marketPrice;
@@ -35,7 +27,7 @@ public class SysRechargePriceConfig  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public int getId() {
 		return this.id;
 	}
@@ -56,7 +48,7 @@ public class SysRechargePriceConfig  {
 	}
 
 
-	@Column(name="market_price")
+	@Column(name="market_price", nullable=false, precision=10, scale=2)
 	public BigDecimal getMarketPrice() {
 		return this.marketPrice;
 	}
@@ -66,7 +58,7 @@ public class SysRechargePriceConfig  {
 	}
 
 
-	@Column(name="sell_price")
+	@Column(name="sell_price", nullable=false, precision=10, scale=2)
 	public BigDecimal getSellPrice() {
 		return this.sellPrice;
 	}
@@ -76,6 +68,7 @@ public class SysRechargePriceConfig  {
 	}
 
 
+	@Column(nullable=false, length=32)
 	public String getType() {
 		return this.type;
 	}

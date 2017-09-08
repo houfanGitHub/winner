@@ -2,14 +2,13 @@ package com.item.finance.bean;
 
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -18,13 +17,12 @@ import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the user_role database table.
- * 角色表
+ * 
  */
 @Entity
 @Table(name="user_role")
-@NamedQuery(name="UserRole.findAll", query="SELECT u FROM UserRole u")
 public class UserRole  {
-
+	
 	private String id;
 	private byte available;
 	private String category;
@@ -35,16 +33,15 @@ public class UserRole  {
 	private String remark;
 	private BigInteger sourceId;
 	private byte sourceType;
-	private Date updateDate;
-	private Set<RolePermissionRelation> rolePermissionRelations;
-	private Set<UserRoleRelation> userRoleRelations;
+	private Date updateDate; 
+	private Set<RolePermissionRelation> rolePermissionRelations = new HashSet<>();
 
 	public UserRole() {
 	}
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue
 	public String getId() {
 		return this.id;
 	}
@@ -63,6 +60,7 @@ public class UserRole  {
 	}
 
 
+	@Column(length=32)
 	public String getCategory() {
 		return this.category;
 	}
@@ -72,6 +70,7 @@ public class UserRole  {
 	}
 
 
+	@Column(length=32)
 	public String getCname() {
 		return this.cname;
 	}
@@ -102,6 +101,7 @@ public class UserRole  {
 	}
 
 
+	@Column(length=32)
 	public String getEname() {
 		return this.ename;
 	}
@@ -111,6 +111,7 @@ public class UserRole  {
 	}
 
 
+	@Column(length=256)
 	public String getRemark() {
 		return this.remark;
 	}
@@ -159,45 +160,6 @@ public class UserRole  {
 
 	public void setRolePermissionRelations(Set<RolePermissionRelation> rolePermissionRelations) {
 		this.rolePermissionRelations = rolePermissionRelations;
-	}
-
-	public RolePermissionRelation addRolePermissionRelation(RolePermissionRelation rolePermissionRelation) {
-		getRolePermissionRelations().add(rolePermissionRelation);
-		rolePermissionRelation.setUserRole(this);
-
-		return rolePermissionRelation;
-	}
-
-	public RolePermissionRelation removeRolePermissionRelation(RolePermissionRelation rolePermissionRelation) {
-		getRolePermissionRelations().remove(rolePermissionRelation);
-		rolePermissionRelation.setUserRole(null);
-
-		return rolePermissionRelation;
-	}
-
-
-	//bi-directional many-to-one association to UserRoleRelation
-	@OneToMany(mappedBy="userRole")
-	public Set<UserRoleRelation> getUserRoleRelations() {
-		return this.userRoleRelations;
-	}
-
-	public void setUserRoleRelations(Set<UserRoleRelation> userRoleRelations) {
-		this.userRoleRelations = userRoleRelations;
-	}
-
-	public UserRoleRelation addUserRoleRelation(UserRoleRelation userRoleRelation) {
-		getUserRoleRelations().add(userRoleRelation);
-		userRoleRelation.setUserRole(this);
-
-		return userRoleRelation;
-	}
-
-	public UserRoleRelation removeUserRoleRelation(UserRoleRelation userRoleRelation) {
-		getUserRoleRelations().remove(userRoleRelation);
-		userRoleRelation.setUserRole(null);
-
-		return userRoleRelation;
 	}
 
 }

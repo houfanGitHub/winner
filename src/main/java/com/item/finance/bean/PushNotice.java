@@ -1,16 +1,11 @@
 package com.item.finance.bean;
 
 import java.util.Date;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,27 +13,25 @@ import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the push_notice database table.
- * 公告表
+ * 
  */
 @Entity
 @Table(name="push_notice")
-@NamedQuery(name="PushNotice.findAll", query="SELECT p FROM PushNotice p")
 public class PushNotice  {
-
+	
 	private String id;
 	private String content;
 	private Date createDate;
 	private byte status;
 	private String title;
 	private Date update_Date;
-	private Set<UserMessage> userMessages;
 
 	public PushNotice() {
 	}
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -78,6 +71,7 @@ public class PushNotice  {
 	}
 
 
+	@Column(length=256)
 	public String getTitle() {
 		return this.title;
 	}
@@ -94,31 +88,6 @@ public class PushNotice  {
 
 	public void setUpdate_Date(Date update_Date) {
 		this.update_Date = update_Date;
-	}
-
-
-	//bi-directional many-to-one association to UserMessage
-	@OneToMany(mappedBy="pushNotice")
-	public Set<UserMessage> getUserMessages() {
-		return this.userMessages;
-	}
-
-	public void setUserMessages(Set<UserMessage> userMessages) {
-		this.userMessages = userMessages;
-	}
-
-	public UserMessage addUserMessage(UserMessage userMessage) {
-		getUserMessages().add(userMessage);
-		userMessage.setPushNotice(this);
-
-		return userMessage;
-	}
-
-	public UserMessage removeUserMessage(UserMessage userMessage) {
-		getUserMessages().remove(userMessage);
-		userMessage.setPushNotice(null);
-
-		return userMessage;
 	}
 
 }

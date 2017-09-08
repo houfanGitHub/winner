@@ -1,29 +1,19 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
+import java.math.BigInteger;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the member_account database table.
- * 成员账户表
+ * 
  */
 @Entity
 @Table(name="member_account")
-@NamedQuery(name="MemberAccount.findAll", query="SELECT m FROM MemberAccount m")
 public class MemberAccount  {
-
 	private String id;
 	private BigDecimal bbinAmount;
 	private BigDecimal bonusAmount;
@@ -41,7 +31,7 @@ public class MemberAccount  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -51,7 +41,7 @@ public class MemberAccount  {
 	}
 
 
-	@Column(name="bbin_amount")
+	@Column(name="bbin_amount", precision=10, scale=4)
 	public BigDecimal getBbinAmount() {
 		return this.bbinAmount;
 	}
@@ -61,7 +51,7 @@ public class MemberAccount  {
 	}
 
 
-	@Column(name="bonus_amount")
+	@Column(name="bonus_amount", precision=10, scale=4)
 	public BigDecimal getBonusAmount() {
 		return this.bonusAmount;
 	}
@@ -91,7 +81,7 @@ public class MemberAccount  {
 	}
 
 
-	@Column(name="imuseale_balance")
+	@Column(name="imuseale_balance", precision=10, scale=4)
 	public BigDecimal getImusealeBalance() {
 		return this.imusealeBalance;
 	}
@@ -101,7 +91,7 @@ public class MemberAccount  {
 	}
 
 
-	@Column(name="invest_amount")
+	@Column(name="invest_amount", precision=10, scale=4)
 	public BigDecimal getInvestAmount() {
 		return this.investAmount;
 	}
@@ -111,7 +101,7 @@ public class MemberAccount  {
 	}
 
 
-	@Column(name="total_profit")
+	@Column(name="total_profit", precision=10, scale=4)
 	public BigDecimal getTotalProfit() {
 		return this.totalProfit;
 	}
@@ -132,7 +122,7 @@ public class MemberAccount  {
 	}
 
 
-	@Column(name="useable_balance")
+	@Column(name="useable_balance", precision=10, scale=4)
 	public BigDecimal getUseableBalance() {
 		return this.useableBalance;
 	}
@@ -144,6 +134,7 @@ public class MemberAccount  {
 
 	//bi-directional many-to-one association to Member
 	@ManyToOne
+	@JoinColumn(name="member_id")
 	public Member getMember() {
 		return this.member;
 	}

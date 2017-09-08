@@ -1,28 +1,18 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the associated_account database table.
- * 关联账号表-第三方登陆信息表
+ * 
  */
 @Entity
 @Table(name="associated_account")
-@NamedQuery(name="AssociatedAccount.findAll", query="SELECT a FROM AssociatedAccount a")
 public class AssociatedAccount  {
-	
 	private String id;
 	private Date createDate;
 	private String identifying;
@@ -37,7 +27,7 @@ public class AssociatedAccount  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -58,6 +48,7 @@ public class AssociatedAccount  {
 	}
 
 
+	@Column(length=200)
 	public String getIdentifying() {
 		return this.identifying;
 	}
@@ -67,6 +58,7 @@ public class AssociatedAccount  {
 	}
 
 
+	@Column(length=200)
 	public String getName() {
 		return this.name;
 	}
@@ -85,6 +77,7 @@ public class AssociatedAccount  {
 	}
 
 
+	@Column(length=200)
 	public String getType() {
 		return this.type;
 	}
@@ -107,6 +100,7 @@ public class AssociatedAccount  {
 
 	//bi-directional many-to-one association to Member
 	@ManyToOne
+	@JoinColumn(name="member_id")
 	public Member getMember() {
 		return this.member;
 	}

@@ -2,28 +2,22 @@ package com.item.finance.bean;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the news database table.
- * 新闻列表
+ * 
  */
 @Entity
-@Table(name="news")
-@NamedQuery(name="New.findAll", query="SELECT n FROM New n")
 public class News  {
-	
 	private int id;
 	private int addId;
 	private Date addTime;
@@ -40,7 +34,6 @@ public class News  {
 	private String seoDes;
 	private String seoKey;
 	private String seoTitle;
-	private int sort;
 	private String source;
 	private String subTitle;
 	private String text;
@@ -54,7 +47,7 @@ public class News  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public int getId() {
 		return this.id;
 	}
@@ -92,6 +85,7 @@ public class News  {
 	}
 
 
+	@Column(length=50)
 	public String getAuthor() {
 		return this.author;
 	}
@@ -110,6 +104,7 @@ public class News  {
 	}
 
 
+	@Column(length=100)
 	public String getCPhoto() {
 		return this.cPhoto;
 	}
@@ -119,6 +114,7 @@ public class News  {
 	}
 
 
+	@Column(length=200)
 	public String getFilelink() {
 		return this.filelink;
 	}
@@ -128,6 +124,7 @@ public class News  {
 	}
 
 
+	@Column(length=200)
 	public String getInfo() {
 		return this.info;
 	}
@@ -137,6 +134,7 @@ public class News  {
 	}
 
 
+	@Column(length=200)
 	public String getLabel() {
 		return this.label;
 	}
@@ -146,6 +144,7 @@ public class News  {
 	}
 
 
+	@Column(length=100)
 	public String getLink() {
 		return this.link;
 	}
@@ -173,6 +172,7 @@ public class News  {
 	}
 
 
+	@Column(length=200)
 	public String getSeoDes() {
 		return this.seoDes;
 	}
@@ -182,6 +182,7 @@ public class News  {
 	}
 
 
+	@Column(length=100)
 	public String getSeoKey() {
 		return this.seoKey;
 	}
@@ -191,6 +192,7 @@ public class News  {
 	}
 
 
+	@Column(length=100)
 	public String getSeoTitle() {
 		return this.seoTitle;
 	}
@@ -200,15 +202,7 @@ public class News  {
 	}
 
 
-	public int getSort() {
-		return this.sort;
-	}
-
-	public void setSort(int sort) {
-		this.sort = sort;
-	}
-
-
+	@Column(length=200)
 	public String getSource() {
 		return this.source;
 	}
@@ -218,6 +212,7 @@ public class News  {
 	}
 
 
+	@Column(length=200)
 	public String getSubTitle() {
 		return this.subTitle;
 	}
@@ -237,6 +232,7 @@ public class News  {
 	}
 
 
+	@Column(length=200)
 	public String getTitle() {
 		return this.title;
 	}
@@ -264,13 +260,12 @@ public class News  {
 		this.updTime = updTime;
 	}
 
-
-	//bi-directional many-to-one association to NewsType
 	@ManyToOne
 	@JoinColumn(name="typeId")
 	public NewsType getNewsType() {
-		return this.newsType;
+		return newsType;
 	}
+
 
 	public void setNewsType(NewsType newsType) {
 		this.newsType = newsType;

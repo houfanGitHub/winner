@@ -1,28 +1,18 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the member_puc_charge_home database table.
- * 缴费家庭
+ * 
  */
 @Entity
 @Table(name="member_puc_charge_home")
-@NamedQuery(name="MemberPucChargeHome.findAll", query="SELECT m FROM MemberPucChargeHome m")
 public class MemberPucChargeHome  {
-
 	private String id;
 	private Date createDate;
 	private byte isDefault;
@@ -35,7 +25,7 @@ public class MemberPucChargeHome  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -56,7 +46,7 @@ public class MemberPucChargeHome  {
 	}
 
 
-	@Column(name="is_default")
+	@Column(name="is_default", nullable=false)
 	public byte getIsDefault() {
 		return this.isDefault;
 	}
@@ -66,6 +56,7 @@ public class MemberPucChargeHome  {
 	}
 
 
+	@Column(nullable=false, length=50)
 	public String getName() {
 		return this.name;
 	}
@@ -88,6 +79,7 @@ public class MemberPucChargeHome  {
 
 	//bi-directional many-to-one association to Member
 	@ManyToOne
+	@JoinColumn(name="member_id", nullable=false)
 	public Member getMember() {
 		return this.member;
 	}

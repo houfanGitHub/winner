@@ -1,11 +1,12 @@
 package com.item.finance.bean;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -15,7 +16,7 @@ import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the news_type database table.
- * 新闻类别列表
+ * 
  */
 @Entity
 @Table(name="news_type")
@@ -38,14 +39,13 @@ public class NewsType  {
 	private String text;
 	private int updId;
 	private Date updTime;
-	private Set<News> newss;
+	private Set<News> newss = new HashSet<News>();
 
 	public NewsType() {
 	}
 
-
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue
 	public int getId() {
 		return this.id;
 	}
@@ -74,6 +74,7 @@ public class NewsType  {
 	}
 
 
+	@Column(length=100)
 	public String getCPhoto() {
 		return this.cPhoto;
 	}
@@ -83,6 +84,7 @@ public class NewsType  {
 	}
 
 
+	@Column(length=500)
 	public String getInfo() {
 		return this.info;
 	}
@@ -92,6 +94,7 @@ public class NewsType  {
 	}
 
 
+	@Column(length=100)
 	public String getLink() {
 		return this.link;
 	}
@@ -101,6 +104,7 @@ public class NewsType  {
 	}
 
 
+	@Column(length=50)
 	public String getName() {
 		return this.name;
 	}
@@ -110,6 +114,7 @@ public class NewsType  {
 	}
 
 
+	@Column(length=200)
 	public String getNote() {
 		return this.note;
 	}
@@ -119,6 +124,7 @@ public class NewsType  {
 	}
 
 
+	@Column(length=20)
 	public String getPageType() {
 		return this.pageType;
 	}
@@ -128,6 +134,7 @@ public class NewsType  {
 	}
 
 
+	@Column(length=500)
 	public String getSeoDes() {
 		return this.seoDes;
 	}
@@ -137,6 +144,7 @@ public class NewsType  {
 	}
 
 
+	@Column(length=100)
 	public String getSeoKey() {
 		return this.seoKey;
 	}
@@ -146,6 +154,7 @@ public class NewsType  {
 	}
 
 
+	@Column(length=100)
 	public String getSeoTitle() {
 		return this.seoTitle;
 	}
@@ -173,6 +182,7 @@ public class NewsType  {
 	}
 
 
+	@Column(length=500)
 	public String getText() {
 		return this.text;
 	}
@@ -200,8 +210,6 @@ public class NewsType  {
 		this.updTime = updTime;
 	}
 
-
-	//bi-directional many-to-one association to New
 	@OneToMany(mappedBy="newsType")
 	public Set<News> getNews() {
 		return this.newss;
@@ -209,20 +217,6 @@ public class NewsType  {
 
 	public void setNews(Set<News> newss) {
 		this.newss = newss;
-	}
-
-	public News addNew(News news) {
-		getNews().add(news);
-		news.setNewsType(this);
-
-		return news;
-	}
-
-	public News removeNew(News news) {
-		getNews().remove(news);
-		news.setNewsType(null);
-
-		return news;
 	}
 
 }

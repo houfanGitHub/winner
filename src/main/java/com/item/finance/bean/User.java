@@ -1,14 +1,11 @@
 package com.item.finance.bean;
 
 import java.util.Date;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -21,28 +18,25 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="users")
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User  {
-	
-	private String id;
-	private Date createDate;
-	private byte delFlag;
-	private byte identity;
-	private String mobile_Phone;
-	private String name;
-	private String password;
-	private String salt;
-	private byte status;
-	private Date updateDate;
-	private String userName;
-	private Set<UserLoginToken> userLoginTokens;
+
+	private String id;	//用户id
+	private Date createDate;	//创建时间
+	private byte delFlag;	//删除标志
+	private byte identity;	//身份
+	private String mobile_Phone;	//手机号
+	private String name;	//名称
+	private String password;	//密码
+	private String salt;	//密码盐
+	private byte status;	//账号状态(正常，锁定，删除)
+	private Date updateDate;	//修改时间
+	private String userName;	//用户名
 
 	public User() {
 	}
 
-
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue
 	public String getId() {
 		return this.id;
 	}
@@ -82,6 +76,7 @@ public class User  {
 	}
 
 
+	@Column(length=32)
 	public String getMobile_Phone() {
 		return this.mobile_Phone;
 	}
@@ -91,6 +86,7 @@ public class User  {
 	}
 
 
+	@Column(length=32)
 	public String getName() {
 		return this.name;
 	}
@@ -100,6 +96,7 @@ public class User  {
 	}
 
 
+	@Column(length=256)
 	public String getPassword() {
 		return this.password;
 	}
@@ -109,6 +106,7 @@ public class User  {
 	}
 
 
+	@Column(length=32)
 	public String getSalt() {
 		return this.salt;
 	}
@@ -138,38 +136,13 @@ public class User  {
 	}
 
 
-	@Column(name="user_name")
+	@Column(name="user_name", length=32)
 	public String getUserName() {
 		return this.userName;
 	}
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-
-
-	//bi-directional many-to-one association to UserLoginToken
-	@OneToMany(mappedBy="user")
-	public Set<UserLoginToken> getUserLoginTokens() {
-		return this.userLoginTokens;
-	}
-
-	public void setUserLoginTokens(Set<UserLoginToken> userLoginTokens) {
-		this.userLoginTokens = userLoginTokens;
-	}
-
-	public UserLoginToken addUserLoginToken(UserLoginToken userLoginToken) {
-		getUserLoginTokens().add(userLoginToken);
-		userLoginToken.setUser(this);
-
-		return userLoginToken;
-	}
-
-	public UserLoginToken removeUserLoginToken(UserLoginToken userLoginToken) {
-		getUserLoginTokens().remove(userLoginToken);
-		userLoginToken.setUser(null);
-
-		return userLoginToken;
 	}
 
 }

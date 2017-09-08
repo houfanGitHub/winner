@@ -1,46 +1,36 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the finance_product_subscribe_record database table.
- * 金融产品订阅记录表
+ * 
  */
 @Entity
 @Table(name="finance_product_subscribe_record")
-@NamedQuery(name="FinanceProductSubscribeRecord.findAll", query="SELECT f FROM FinanceProductSubscribeRecord f")
 public class FinanceProductSubscribeRecord  {
-
 	private String id;
 	private Date createDate;
 	private String filed1;
-	private BigInteger memberId;
 	private String newPath;
 	private String orgPath;
 	private int status;
 	private BigInteger subscribeId;
-	private String techUserId;
 	private String techUserSeal;
 	private Date updateDate;
+	private FinanceProductSubscribe financeProductSubscribe;
+	private Member member;
 
 	public FinanceProductSubscribeRecord() {
 	}
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -61,6 +51,7 @@ public class FinanceProductSubscribeRecord  {
 	}
 
 
+	@Column(length=100)
 	public String getFiled1() {
 		return this.filed1;
 	}
@@ -70,17 +61,7 @@ public class FinanceProductSubscribeRecord  {
 	}
 
 
-	@Column(name="member_id")
-	public BigInteger getMemberId() {
-		return this.memberId;
-	}
-
-	public void setMemberId(BigInteger memberId) {
-		this.memberId = memberId;
-	}
-
-
-	@Column(name="new_path")
+	@Column(name="new_path", length=1000)
 	public String getNewPath() {
 		return this.newPath;
 	}
@@ -90,7 +71,7 @@ public class FinanceProductSubscribeRecord  {
 	}
 
 
-	@Column(name="org_path")
+	@Column(name="org_path", length=1000)
 	public String getOrgPath() {
 		return this.orgPath;
 	}
@@ -119,17 +100,7 @@ public class FinanceProductSubscribeRecord  {
 	}
 
 
-	@Column(name="tech_user_id")
-	public String getTechUserId() {
-		return this.techUserId;
-	}
-
-	public void setTechUserId(String techUserId) {
-		this.techUserId = techUserId;
-	}
-
-
-	@Column(name="tech_user_seal")
+	@Column(name="tech_user_seal", length=1000)
 	public String getTechUserSeal() {
 		return this.techUserSeal;
 	}
@@ -147,6 +118,30 @@ public class FinanceProductSubscribeRecord  {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+
+	//bi-directional many-to-one association to FinanceProductSubscribe
+	@ManyToOne
+	@JoinColumn(name="tech_user_id")
+	public FinanceProductSubscribe getFinanceProductSubscribe() {
+		return this.financeProductSubscribe;
+	}
+
+	public void setFinanceProductSubscribe(FinanceProductSubscribe financeProductSubscribe) {
+		this.financeProductSubscribe = financeProductSubscribe;
+	}
+
+
+	//bi-directional many-to-one association to Member
+	@ManyToOne
+	@JoinColumn(name="member_id")
+	public Member getMember() {
+		return this.member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 }

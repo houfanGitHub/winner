@@ -1,29 +1,18 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the finance_product_funds database table.
- * 理财类基金产品表
+ * 
  */
 @Entity
-@Table(name="finance_product_funds")
 @NamedQuery(name="FinanceProductFund.findAll", query="SELECT f FROM FinanceProductFund f")
 public class FinanceProductFund  {
-
 	private int id;
 	private BigDecimal amount;
 	private String bankAccount;
@@ -57,7 +46,7 @@ public class FinanceProductFund  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue
 	public int getId() {
 		return this.id;
 	}
@@ -67,6 +56,7 @@ public class FinanceProductFund  {
 	}
 
 
+	@Column(precision=10, scale=2)
 	public BigDecimal getAmount() {
 		return this.amount;
 	}
@@ -76,7 +66,7 @@ public class FinanceProductFund  {
 	}
 
 
-	@Column(name="bank_account")
+	@Column(name="bank_account", length=1000)
 	public String getBankAccount() {
 		return this.bankAccount;
 	}
@@ -86,7 +76,7 @@ public class FinanceProductFund  {
 	}
 
 
-	@Column(name="buyer_count")
+	@Column(name="buyer_count", nullable=false)
 	public int getBuyerCount() {
 		return this.buyerCount;
 	}
@@ -128,7 +118,7 @@ public class FinanceProductFund  {
 	}
 
 
-	@Column(name="floor_amount")
+	@Column(name="floor_amount", precision=10, scale=2)
 	public BigDecimal getFloorAmount() {
 		return this.floorAmount;
 	}
@@ -138,7 +128,7 @@ public class FinanceProductFund  {
 	}
 
 
-	@Column(name="invest_points")
+	@Column(name="invest_points", nullable=false, length=1000)
 	public String getInvestPoints() {
 		return this.investPoints;
 	}
@@ -148,6 +138,7 @@ public class FinanceProductFund  {
 	}
 
 
+	@Column(length=500)
 	public String getName() {
 		return this.name;
 	}
@@ -188,7 +179,7 @@ public class FinanceProductFund  {
 	}
 
 
-	@Column(name="product_manager_desc")
+	@Column(name="product_manager_desc", nullable=false, length=1000)
 	public String getProductManagerDesc() {
 		return this.productManagerDesc;
 	}
@@ -198,7 +189,7 @@ public class FinanceProductFund  {
 	}
 
 
-	@Column(name="product_manager_name")
+	@Column(name="product_manager_name", nullable=false, length=1000)
 	public String getProductManagerName() {
 		return this.productManagerName;
 	}
@@ -208,7 +199,7 @@ public class FinanceProductFund  {
 	}
 
 
-	@Column(name="product_manager_pic")
+	@Column(name="product_manager_pic", nullable=false, length=1000)
 	public String getProductManagerPic() {
 		return this.productManagerPic;
 	}
@@ -218,7 +209,7 @@ public class FinanceProductFund  {
 	}
 
 
-	@Column(name="product_manager_title")
+	@Column(name="product_manager_title", nullable=false, length=1000)
 	public String getProductManagerTitle() {
 		return this.productManagerTitle;
 	}
@@ -250,6 +241,7 @@ public class FinanceProductFund  {
 	}
 
 
+	@Column(length=200)
 	public String getRatio() {
 		return this.ratio;
 	}
@@ -259,7 +251,7 @@ public class FinanceProductFund  {
 	}
 
 
-	@Column(name="sold_amount")
+	@Column(name="sold_amount", precision=10, scale=2)
 	public BigDecimal getSoldAmount() {
 		return this.soldAmount;
 	}
@@ -289,7 +281,7 @@ public class FinanceProductFund  {
 	}
 
 
-	@Column(name="subscribe_count")
+	@Column(name="subscribe_count", nullable=false)
 	public int getSubscribeCount() {
 		return this.subscribeCount;
 	}
@@ -299,6 +291,7 @@ public class FinanceProductFund  {
 	}
 
 
+	@Column(nullable=false, length=10)
 	public String getType() {
 		return this.type;
 	}
@@ -319,7 +312,7 @@ public class FinanceProductFund  {
 	}
 
 
-	@Column(name="year_rate")
+	@Column(name="year_rate", precision=10, scale=2)
 	public BigDecimal getYearRate() {
 		return this.yearRate;
 	}

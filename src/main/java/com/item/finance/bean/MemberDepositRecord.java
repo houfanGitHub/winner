@@ -1,29 +1,19 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
+import java.math.BigInteger;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the member_deposit_record database table.
- * 充值记录表
+ * 
  */
 @Entity
 @Table(name="member_deposit_record")
-@NamedQuery(name="MemberDepositRecord.findAll", query="SELECT m FROM MemberDepositRecord m")
 public class MemberDepositRecord  {
-
 	private String id;
 	private BigDecimal amount;
 	private Date createDate;
@@ -40,7 +30,7 @@ public class MemberDepositRecord  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -50,6 +40,7 @@ public class MemberDepositRecord  {
 	}
 
 
+	@Column(nullable=false, precision=10, scale=2)
 	public BigDecimal getAmount() {
 		return this.amount;
 	}
@@ -60,7 +51,7 @@ public class MemberDepositRecord  {
 
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="create_date")
+	@Column(name="create_date", nullable=false)
 	public Date getCreateDate() {
 		return this.createDate;
 	}
@@ -79,7 +70,7 @@ public class MemberDepositRecord  {
 	}
 
 
-	@Column(name="pay_channel_name")
+	@Column(name="pay_channel_name", nullable=false, length=20)
 	public String getPayChannelName() {
 		return this.payChannelName;
 	}
@@ -89,7 +80,7 @@ public class MemberDepositRecord  {
 	}
 
 
-	@Column(name="pay_channel_order_no")
+	@Column(name="pay_channel_order_no", nullable=false, length=50)
 	public String getPayChannelOrderNo() {
 		return this.payChannelOrderNo;
 	}
@@ -99,7 +90,7 @@ public class MemberDepositRecord  {
 	}
 
 
-	@Column(name="serial_number")
+	@Column(name="serial_number", length=50)
 	public String getSerialNumber() {
 		return this.serialNumber;
 	}
@@ -109,6 +100,7 @@ public class MemberDepositRecord  {
 	}
 
 
+	@Column(nullable=false)
 	public byte getStatus() {
 		return this.status;
 	}
@@ -119,7 +111,7 @@ public class MemberDepositRecord  {
 
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="update_date")
+	@Column(name="update_date", nullable=false)
 	public Date getUpdateDate() {
 		return this.updateDate;
 	}
@@ -131,6 +123,7 @@ public class MemberDepositRecord  {
 
 	//bi-directional many-to-one association to Member
 	@ManyToOne
+	@JoinColumn(name="member_id", nullable=false)
 	public Member getMember() {
 		return this.member;
 	}

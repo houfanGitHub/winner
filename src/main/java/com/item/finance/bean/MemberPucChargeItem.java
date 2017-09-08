@@ -1,27 +1,17 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
 import java.math.BigInteger;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 
 /**
  * The persistent class for the member_puc_charge_item database table.
- * 缴费项目表
+ * 
  */
 @Entity
 @Table(name="member_puc_charge_item")
-@NamedQuery(name="MemberPucChargeItem.findAll", query="SELECT m FROM MemberPucChargeItem m")
 public class MemberPucChargeItem  {
-
 	private String id;
 	private String chargeInstitutionCode;
 	private String chargeInstitutionName;
@@ -29,7 +19,7 @@ public class MemberPucChargeItem  {
 	private String comment;
 	private String customerCode;
 	private BigInteger homeId;
-	private BigInteger memberId;
+	private Member member;
 	private SysBizInstitution sysBizInstitution;
 
 	public MemberPucChargeItem() {
@@ -37,7 +27,7 @@ public class MemberPucChargeItem  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -47,7 +37,7 @@ public class MemberPucChargeItem  {
 	}
 
 
-	@Column(name="charge_institution_code")
+	@Column(name="charge_institution_code", nullable=false, length=50)
 	public String getChargeInstitutionCode() {
 		return this.chargeInstitutionCode;
 	}
@@ -57,7 +47,7 @@ public class MemberPucChargeItem  {
 	}
 
 
-	@Column(name="charge_institution_name")
+	@Column(name="charge_institution_name", nullable=false, length=50)
 	public String getChargeInstitutionName() {
 		return this.chargeInstitutionName;
 	}
@@ -67,7 +57,7 @@ public class MemberPucChargeItem  {
 	}
 
 
-	@Column(name="charge_type")
+	@Column(name="charge_type", nullable=false, length=20)
 	public String getChargeType() {
 		return this.chargeType;
 	}
@@ -77,6 +67,7 @@ public class MemberPucChargeItem  {
 	}
 
 
+	@Column(nullable=false, length=50)
 	public String getComment() {
 		return this.comment;
 	}
@@ -86,7 +77,7 @@ public class MemberPucChargeItem  {
 	}
 
 
-	@Column(name="customer_code")
+	@Column(name="customer_code", nullable=false, length=50)
 	public String getCustomerCode() {
 		return this.customerCode;
 	}
@@ -96,7 +87,7 @@ public class MemberPucChargeItem  {
 	}
 
 
-	@Column(name="home_id")
+	@Column(name="home_id", nullable=false)
 	public BigInteger getHomeId() {
 		return this.homeId;
 	}
@@ -106,19 +97,21 @@ public class MemberPucChargeItem  {
 	}
 
 
-	@Column(name="member_id")
-	public BigInteger getMemberId() {
-		return this.memberId;
+	//bi-directional many-to-one association to Member
+	@ManyToOne
+	@JoinColumn(name="member_id", nullable=false)
+	public Member getMember() {
+		return this.member;
 	}
 
-	public void setMemberId(BigInteger memberId) {
-		this.memberId = memberId;
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 
 	//bi-directional many-to-one association to SysBizInstitution
 	@ManyToOne
-	@JoinColumn(name="charge_institution_id")
+	@JoinColumn(name="charge_institution_id", nullable=false)
 	public SysBizInstitution getSysBizInstitution() {
 		return this.sysBizInstitution;
 	}

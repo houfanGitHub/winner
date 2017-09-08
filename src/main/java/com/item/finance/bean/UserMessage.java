@@ -1,17 +1,14 @@
 package com.item.finance.bean;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,26 +20,24 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="user_message")
-@NamedQuery(name="UserMessage.findAll", query="SELECT u FROM UserMessage u")
 public class UserMessage  {
 	
-	private String id;
-	private byte businessType;
-	private String content;
-	private Date createDate;
-	private byte delFlag;
-	private byte msgStatus;
-	private String title;
-	private Date updateDate;
-	private BigInteger userId;
-	private PushNotice pushNotice;
+	private String id;	//主键
+	private byte businessType;	//业务类别
+	private String content;	//消息内容
+	private Date createDate;	//创建时间
+	private byte delFlag;	// 删除标志
+	private byte msgStatus;	//状态,(已读未读)
+	private String title;	//消息标题
+	private Date updateDate;	//修改时间
+	private int ownerId;	//业务
+	private User user;	//用户
 
 	public UserMessage() {
 	}
 
-
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue
 	public String getId() {
 		return this.id;
 	}
@@ -50,7 +45,6 @@ public class UserMessage  {
 	public void setId(String id) {
 		this.id = id;
 	}
-
 
 	@Column(name="business_type")
 	public byte getBusinessType() {
@@ -61,8 +55,6 @@ public class UserMessage  {
 		this.businessType = businessType;
 	}
 
-
-	@Lob
 	public String getContent() {
 		return this.content;
 	}
@@ -91,7 +83,15 @@ public class UserMessage  {
 	public void setDelFlag(byte delFlag) {
 		this.delFlag = delFlag;
 	}
+	
+	@JoinColumn(name="owner_id")
+	public int getOwnerId() {
+		return ownerId;
+	}
 
+	public void setOwnerId(int ownerId) {
+		this.ownerId = ownerId;
+	}
 
 	@Column(name="msg_status")
 	public byte getMsgStatus() {
@@ -103,6 +103,7 @@ public class UserMessage  {
 	}
 
 
+	@Column(length=128)
 	public String getTitle() {
 		return this.title;
 	}
@@ -122,26 +123,14 @@ public class UserMessage  {
 		this.updateDate = updateDate;
 	}
 
-
-	@Column(name="user_id")
-	public BigInteger getUserId() {
-		return this.userId;
-	}
-
-	public void setUserId(BigInteger userId) {
-		this.userId = userId;
-	}
-
-
-	//bi-directional many-to-one association to PushNotice
 	@ManyToOne
-	@JoinColumn(name="owner_id")
-	public PushNotice getPushNotice() {
-		return this.pushNotice;
+	@JoinColumn(name="user_id")
+	public User getUser() {
+		return this.user;
 	}
 
-	public void setPushNotice(PushNotice pushNotice) {
-		this.pushNotice = pushNotice;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

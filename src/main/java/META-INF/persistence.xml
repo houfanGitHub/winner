@@ -1,51 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="winner">
-		<class>com.item.finance.bean.AssociatedAccount</class>
-		<class>com.item.finance.bean.AwardRecord</class>
-		<class>com.item.finance.bean.BbinInfo</class>
-		<class>com.item.finance.bean.Feedback</class>
-		<class>com.item.finance.bean.FinanceProductFund</class>
-		<class>com.item.finance.bean.FinanceProductSubscribe</class>
-		<class>com.item.finance.bean.FinanceProductSubscribeRecord</class>
-		<class>com.item.finance.bean.FinancialPlanner</class>
-		<class>com.item.finance.bean.Member</class>
-		<class>com.item.finance.bean.MemberAccount</class>
-		<class>com.item.finance.bean.MemberBankcard</class>
-		<class>com.item.finance.bean.MemberDepositRecord</class>
-		<class>com.item.finance.bean.MemberProfitRecord</class>
-		<class>com.item.finance.bean.MemberPucChargeHome</class>
-		<class>com.item.finance.bean.MemberPucChargeItem</class>
-		<class>com.item.finance.bean.MemberTally</class>
-		<class>com.item.finance.bean.MemberTradeRecord</class>
-		<class>com.item.finance.bean.MemberWithdrawRecord</class>
-		<class>com.item.finance.bean.Moneyrecord</class>
-		<class>com.item.finance.bean.New</class>
-		<class>com.item.finance.bean.NewsType</class>
-		<class>com.item.finance.bean.OverseaConfig</class>
-		<class>com.item.finance.bean.OverseaConfigSubscribe</class>
-		<class>com.item.finance.bean.PushNotice</class>
-		<class>com.item.finance.bean.RolePermissionRelation</class>
-		<class>com.item.finance.bean.RolePermissionRelationPK</class>
-		<class>com.item.finance.bean.SmsInterface</class>
-		<class>com.item.finance.bean.SmsRecord</class>
-		<class>com.item.finance.bean.Subject</class>
-		<class>com.item.finance.bean.SubjectBbinPurchaseRecord</class>
-		<class>com.item.finance.bean.SubjectFieldRecord</class>
-		<class>com.item.finance.bean.SubjectFile</class>
-		<class>com.item.finance.bean.SubjectFolder</class>
-		<class>com.item.finance.bean.SubjectOrderRecord</class>
-		<class>com.item.finance.bean.SubjectPurchaseRecord</class>
-		<class>com.item.finance.bean.SysBizInstitution</class>
-		<class>com.item.finance.bean.SysRechargePriceConfig</class>
-		<class>com.item.finance.bean.SysRegion</class>
-		<class>com.item.finance.bean.UserLog</class>
-		<class>com.item.finance.bean.UserLoginToken</class>
-		<class>com.item.finance.bean.UserMessage</class>
-		<class>com.item.finance.bean.UserRole</class>
-		<class>com.item.finance.bean.UserRoleRelation</class>
-		<class>com.item.finance.bean.UserRoleRelationPK</class>
-		<class>com.item.finance.bean.UserStatistic</class>
-		<class>com.item.finance.bean.User</class>
+		<properties>
+			<property name="hibernate.connection.username" value="root"/>
+			<property name="hibernate.connection.password" value="root"/>
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/winner"/>
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+		</properties>
 	</persistence-unit>
 </persistence>

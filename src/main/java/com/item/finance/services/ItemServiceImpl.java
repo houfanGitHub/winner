@@ -2,6 +2,10 @@ package com.item.finance.services;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
 
 /**
  * 
@@ -9,7 +13,8 @@ import java.util.List;
  *	服务层interface
  */
 
-
+@Service
+@Transactional
 public interface ItemServiceImpl<T> {
 	
 	/**

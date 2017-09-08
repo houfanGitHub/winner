@@ -1,36 +1,28 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the feedback database table.
- * 意见反馈表
+ * 
  */
 @Entity
-@NamedQuery(name="Feedback.findAll", query="SELECT f FROM Feedback f")
+@Table(name="feedback")
 public class Feedback  {
-
 	private int id;
 	private String content;
 	private Date createDate;
-	private int memberId;
+	private Member member;
 
 	public Feedback() {
 	}
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public int getId() {
 		return this.id;
 	}
@@ -40,6 +32,7 @@ public class Feedback  {
 	}
 
 
+	@Column(length=1000)
 	public String getContent() {
 		return this.content;
 	}
@@ -60,13 +53,15 @@ public class Feedback  {
 	}
 
 
-	@Column(name="member_id")
-	public int getMemberId() {
-		return this.memberId;
+	//bi-directional many-to-one association to Member
+	@ManyToOne
+	@JoinColumn(name="member_id")
+	public Member getMember() {
+		return this.member;
 	}
 
-	public void setMemberId(int memberId) {
-		this.memberId = memberId;
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 }

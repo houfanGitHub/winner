@@ -1,29 +1,23 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+
+import javax.persistence.*;
+
+import java.math.BigInteger;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
  * The persistent class for the finance_product_subscribe database table.
- * 理财类基金产品预约记录表
+ * 
  */
 @Entity
 @Table(name="finance_product_subscribe")
-@NamedQuery(name="FinanceProductSubscribe.findAll", query="SELECT f FROM FinanceProductSubscribe f")
 public class FinanceProductSubscribe  {
-
 	private int id;
 	private String addr;
 	private BigDecimal amount;
@@ -40,13 +34,14 @@ public class FinanceProductSubscribe  {
 	private byte status;
 	private Date updateDate;
 	private Member member;
+	private Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords = new HashSet<>();
 
 	public FinanceProductSubscribe() {
 	}
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public int getId() {
 		return this.id;
 	}
@@ -56,6 +51,7 @@ public class FinanceProductSubscribe  {
 	}
 
 
+	@Column(length=50)
 	public String getAddr() {
 		return this.addr;
 	}
@@ -65,6 +61,7 @@ public class FinanceProductSubscribe  {
 	}
 
 
+	@Column(precision=10, scale=4)
 	public BigDecimal getAmount() {
 		return this.amount;
 	}
@@ -74,6 +71,7 @@ public class FinanceProductSubscribe  {
 	}
 
 
+	@Column(length=1000)
 	public String getComment() {
 		return this.comment;
 	}
@@ -105,6 +103,7 @@ public class FinanceProductSubscribe  {
 	}
 
 
+	@Column(precision=10, scale=4)
 	public BigDecimal getInterest() {
 		return this.interest;
 	}
@@ -114,6 +113,7 @@ public class FinanceProductSubscribe  {
 	}
 
 
+	@Column(length=32)
 	public String getName() {
 		return this.name;
 	}
@@ -123,6 +123,7 @@ public class FinanceProductSubscribe  {
 	}
 
 
+	@Column(length=13)
 	public String getPhone() {
 		return this.phone;
 	}
@@ -142,7 +143,7 @@ public class FinanceProductSubscribe  {
 	}
 
 
-	@Column(name="risk_reveal")
+	@Column(name="risk_reveal", length=200)
 	public String getRiskReveal() {
 		return this.riskReveal;
 	}
@@ -152,7 +153,7 @@ public class FinanceProductSubscribe  {
 	}
 
 
-	@Column(name="signed_photos")
+	@Column(name="signed_photos", length=200)
 	public String getSignedPhotos() {
 		return this.signedPhotos;
 	}
@@ -195,12 +196,38 @@ public class FinanceProductSubscribe  {
 
 	//bi-directional many-to-one association to Member
 	@ManyToOne
+	@JoinColumn(name="member_id")
 	public Member getMember() {
 		return this.member;
 	}
 
 	public void setMember(Member member) {
 		this.member = member;
+	}
+
+
+	//bi-directional many-to-one association to FinanceProductSubscribeRecord
+	@OneToMany(mappedBy="financeProductSubscribe")
+	public Set<FinanceProductSubscribeRecord> getFinanceProductSubscribeRecords() {
+		return this.financeProductSubscribeRecords;
+	}
+
+	public void setFinanceProductSubscribeRecords(Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords) {
+		this.financeProductSubscribeRecords = financeProductSubscribeRecords;
+	}
+
+	public FinanceProductSubscribeRecord addFinanceProductSubscribeRecord(FinanceProductSubscribeRecord financeProductSubscribeRecord) {
+		getFinanceProductSubscribeRecords().add(financeProductSubscribeRecord);
+		financeProductSubscribeRecord.setFinanceProductSubscribe(this);
+
+		return financeProductSubscribeRecord;
+	}
+
+	public FinanceProductSubscribeRecord removeFinanceProductSubscribeRecord(FinanceProductSubscribeRecord financeProductSubscribeRecord) {
+		getFinanceProductSubscribeRecords().remove(financeProductSubscribeRecord);
+		financeProductSubscribeRecord.setFinanceProductSubscribe(null);
+
+		return financeProductSubscribeRecord;
 	}
 
 }

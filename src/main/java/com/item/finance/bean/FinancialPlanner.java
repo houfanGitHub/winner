@@ -1,28 +1,18 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the financial_planner database table.
- * 理财师表
+ * 
  */
 @Entity
 @Table(name="financial_planner")
-@NamedQuery(name="FinancialPlanner.findAll", query="SELECT f FROM FinancialPlanner f")
 public class FinancialPlanner  {
-
 	private String id;
 	private String address;
 	private Date createDate;
@@ -38,7 +28,7 @@ public class FinancialPlanner  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -48,6 +38,7 @@ public class FinancialPlanner  {
 	}
 
 
+	@Column(length=200)
 	public String getAddress() {
 		return this.address;
 	}
@@ -68,6 +59,7 @@ public class FinancialPlanner  {
 	}
 
 
+	@Column(length=200)
 	public String getMycard() {
 		return this.mycard;
 	}
@@ -77,6 +69,7 @@ public class FinancialPlanner  {
 	}
 
 
+	@Column(length=100)
 	public String getName() {
 		return this.name;
 	}
@@ -86,6 +79,7 @@ public class FinancialPlanner  {
 	}
 
 
+	@Column(length=200)
 	public String getOrgname() {
 		return this.orgname;
 	}
@@ -117,6 +111,7 @@ public class FinancialPlanner  {
 
 	//bi-directional many-to-one association to Member
 	@ManyToOne
+	@JoinColumn(name="member_id")
 	public Member getMember() {
 		return this.member;
 	}

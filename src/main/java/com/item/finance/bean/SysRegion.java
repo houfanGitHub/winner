@@ -1,28 +1,20 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the sys_region database table.
- * 行政区表
+ * 
  */
 @Entity
 @Table(name="sys_region")
 @NamedQuery(name="SysRegion.findAll", query="SELECT s FROM SysRegion s")
 public class SysRegion  {
-
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private Date createDate;
 	private String diallingCode;
@@ -39,7 +31,7 @@ public class SysRegion  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -60,7 +52,7 @@ public class SysRegion  {
 	}
 
 
-	@Column(name="dialling_code")
+	@Column(name="dialling_code", length=4)
 	public String getDiallingCode() {
 		return this.diallingCode;
 	}
@@ -70,6 +62,7 @@ public class SysRegion  {
 	}
 
 
+	@Column(length=16)
 	public String getGb2260() {
 		return this.gb2260;
 	}
@@ -90,6 +83,7 @@ public class SysRegion  {
 	}
 
 
+	@Column(length=32)
 	public String getName() {
 		return this.name;
 	}
@@ -99,7 +93,7 @@ public class SysRegion  {
 	}
 
 
-	@Column(name="parent_gb2260")
+	@Column(name="parent_gb2260", length=16)
 	public String getParentGb2260() {
 		return this.parentGb2260;
 	}
@@ -119,7 +113,7 @@ public class SysRegion  {
 	}
 
 
-	@Column(name="parent_ids")
+	@Column(name="parent_ids", length=256)
 	public String getParentIds() {
 		return this.parentIds;
 	}

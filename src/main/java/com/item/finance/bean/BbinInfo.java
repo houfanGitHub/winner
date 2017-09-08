@@ -1,30 +1,19 @@
 package com.item.finance.bean;
 
-import java.math.BigDecimal;
+import java.io.Serializable;
+import javax.persistence.*;
 import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the bbin_info database table.
- * 体验金信息表
+ * 
  */
 @Entity
 @Table(name="bbin_info")
-@NamedQuery(name="BbinInfo.findAll", query="SELECT b FROM BbinInfo b")
 public class BbinInfo  {
-
 	private String id;
 	private BigDecimal amont;
 	private Date createDate;
@@ -37,7 +26,7 @@ public class BbinInfo  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -47,6 +36,7 @@ public class BbinInfo  {
 	}
 
 
+	@Column(precision=10, scale=4)
 	public BigDecimal getAmont() {
 		return this.amont;
 	}
@@ -89,6 +79,7 @@ public class BbinInfo  {
 
 	//bi-directional many-to-one association to Member
 	@ManyToOne
+	@JoinColumn(name="member_id")
 	public Member getMember() {
 		return this.member;
 	}

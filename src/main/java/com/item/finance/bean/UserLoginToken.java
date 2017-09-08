@@ -4,11 +4,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,23 +18,22 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="user_login_token")
-@NamedQuery(name="UserLoginToken.findAll", query="SELECT u FROM UserLoginToken u")
 public class UserLoginToken  {
-
-	private String token;
-	private Date createDate;
-	private Date expireTime;
-	private String password;
-	private Date updateDate;
-	private String userName;
-	private User user;
+	
+	private String token;	//令牌号
+	private Date createDate;	//创建时间
+	private Date expireTime;	//有效时间
+	private String password;	//密码
+	private Date updateDate;	//修改时间
+	private String userName;	//登录时的用户名，可以是用户名，手机号等
+	private User user;	//用户
 
 	public UserLoginToken() {
 	}
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false, length=64)
 	public String getToken() {
 		return this.token;
 	}
@@ -58,7 +55,7 @@ public class UserLoginToken  {
 
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="expire_time")
+	@Column(name="expire_time", nullable=false)
 	public Date getExpireTime() {
 		return this.expireTime;
 	}
@@ -68,6 +65,7 @@ public class UserLoginToken  {
 	}
 
 
+	@Column(nullable=false, length=128)
 	public String getPassword() {
 		return this.password;
 	}
@@ -88,7 +86,7 @@ public class UserLoginToken  {
 	}
 
 
-	@Column(name="user_name")
+	@Column(name="user_name", nullable=false, length=128)
 	public String getUserName() {
 		return this.userName;
 	}
@@ -97,9 +95,9 @@ public class UserLoginToken  {
 		this.userName = userName;
 	}
 
-
 	//bi-directional many-to-one association to User
 	@ManyToOne
+	@JoinColumn(name="user_id", nullable=false)
 	public User getUser() {
 		return this.user;
 	}

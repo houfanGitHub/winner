@@ -1,29 +1,21 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
+import java.math.BigInteger;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the subject_purchase_record database table.
- * 标的购买表
+ * 
  */
 @Entity
 @Table(name="subject_purchase_record")
 @NamedQuery(name="SubjectPurchaseRecord.findAll", query="SELECT s FROM SubjectPurchaseRecord s")
 public class SubjectPurchaseRecord  {
-
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private BigDecimal amount;
 	private String bonusInfo;
@@ -33,18 +25,18 @@ public class SubjectPurchaseRecord  {
 	private BigDecimal interest;
 	private byte ispayment;
 	private int lastProfitDay;
+	private BigInteger memberId;
 	private int payInterestTimes;
 	private String serialNumber;
+	private BigInteger subjectId;
 	private Date updateDate;
-	private Member member;
-	private Subject subject;
 
 	public SubjectPurchaseRecord() {
 	}
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -54,6 +46,7 @@ public class SubjectPurchaseRecord  {
 	}
 
 
+	@Column(precision=10, scale=4)
 	public BigDecimal getAmount() {
 		return this.amount;
 	}
@@ -63,7 +56,7 @@ public class SubjectPurchaseRecord  {
 	}
 
 
-	@Column(name="bonus_info")
+	@Column(name="bonus_info", length=200)
 	public String getBonusInfo() {
 		return this.bonusInfo;
 	}
@@ -74,7 +67,7 @@ public class SubjectPurchaseRecord  {
 
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="create_date")
+	@Column(name="create_date", nullable=false)
 	public Date getCreateDate() {
 		return this.createDate;
 	}
@@ -84,7 +77,7 @@ public class SubjectPurchaseRecord  {
 	}
 
 
-	@Column(name="deal_ip")
+	@Column(name="deal_ip", length=25)
 	public String getDealIp() {
 		return this.dealIp;
 	}
@@ -103,6 +96,7 @@ public class SubjectPurchaseRecord  {
 	}
 
 
+	@Column(precision=10, scale=4)
 	public BigDecimal getInterest() {
 		return this.interest;
 	}
@@ -121,13 +115,23 @@ public class SubjectPurchaseRecord  {
 	}
 
 
-	@Column(name="last_profit_day")
+	@Column(name="last_profit_day", nullable=false)
 	public int getLastProfitDay() {
 		return this.lastProfitDay;
 	}
 
 	public void setLastProfitDay(int lastProfitDay) {
 		this.lastProfitDay = lastProfitDay;
+	}
+
+
+	@Column(name="member_id")
+	public BigInteger getMemberId() {
+		return this.memberId;
+	}
+
+	public void setMemberId(BigInteger memberId) {
+		this.memberId = memberId;
 	}
 
 
@@ -141,7 +145,7 @@ public class SubjectPurchaseRecord  {
 	}
 
 
-	@Column(name="serial_number")
+	@Column(name="serial_number", length=50)
 	public String getSerialNumber() {
 		return this.serialNumber;
 	}
@@ -151,36 +155,24 @@ public class SubjectPurchaseRecord  {
 	}
 
 
+	@Column(name="subject_id")
+	public BigInteger getSubjectId() {
+		return this.subjectId;
+	}
+
+	public void setSubjectId(BigInteger subjectId) {
+		this.subjectId = subjectId;
+	}
+
+
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="update_date")
+	@Column(name="update_date", nullable=false)
 	public Date getUpdateDate() {
 		return this.updateDate;
 	}
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
-	}
-
-
-	//bi-directional many-to-one association to Member
-	@ManyToOne
-	public Member getMember() {
-		return this.member;
-	}
-
-	public void setMember(Member member) {
-		this.member = member;
-	}
-
-
-	//bi-directional many-to-one association to Subject
-	@ManyToOne
-	public Subject getSubject() {
-		return this.subject;
-	}
-
-	public void setSubject(Subject subject) {
-		this.subject = subject;
 	}
 
 }

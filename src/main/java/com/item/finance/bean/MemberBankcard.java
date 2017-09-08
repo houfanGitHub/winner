@@ -1,28 +1,18 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the member_bankcards database table.
- * 成员银联表
+ * 
  */
 @Entity
 @Table(name="member_bankcards")
-@NamedQuery(name="MemberBankcard.findAll", query="SELECT m FROM MemberBankcard m")
 public class MemberBankcard  {
-
 	private String id;
 	private String cardNo;
 	private String cardaddress;
@@ -37,7 +27,7 @@ public class MemberBankcard  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -47,7 +37,7 @@ public class MemberBankcard  {
 	}
 
 
-	@Column(name="card_no")
+	@Column(name="card_no", length=20)
 	public String getCardNo() {
 		return this.cardNo;
 	}
@@ -57,6 +47,7 @@ public class MemberBankcard  {
 	}
 
 
+	@Column(length=300)
 	public String getCardaddress() {
 		return this.cardaddress;
 	}
@@ -67,7 +58,7 @@ public class MemberBankcard  {
 
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="create_date")
+	@Column(name="create_date", nullable=false)
 	public Date getCreateDate() {
 		return this.createDate;
 	}
@@ -86,6 +77,7 @@ public class MemberBankcard  {
 	}
 
 
+	@Column(length=50)
 	public String getType() {
 		return this.type;
 	}
@@ -108,6 +100,7 @@ public class MemberBankcard  {
 
 	//bi-directional many-to-one association to Member
 	@ManyToOne
+	@JoinColumn(name="member_id")
 	public Member getMember() {
 		return this.member;
 	}

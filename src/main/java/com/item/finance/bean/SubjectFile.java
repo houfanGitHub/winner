@@ -1,29 +1,18 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the subject_file database table.
- * 附件表
+ * 
  */
 @Entity
 @Table(name="subject_file")
-@NamedQuery(name="SubjectFile.findAll", query="SELECT s FROM SubjectFile s")
 public class SubjectFile  {
-
 	private String id;
 	private Date createDate;
 	private String fileName;
@@ -37,7 +26,7 @@ public class SubjectFile  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -58,7 +47,7 @@ public class SubjectFile  {
 	}
 
 
-	@Column(name="file_name")
+	@Column(name="file_name", length=128)
 	public String getFileName() {
 		return this.fileName;
 	}
@@ -68,7 +57,7 @@ public class SubjectFile  {
 	}
 
 
-	@Column(name="original_name")
+	@Column(name="original_name", length=128)
 	public String getOriginalName() {
 		return this.originalName;
 	}
@@ -78,6 +67,7 @@ public class SubjectFile  {
 	}
 
 
+	@Column(length=4000)
 	public String getPath() {
 		return this.path;
 	}

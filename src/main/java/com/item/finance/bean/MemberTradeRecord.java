@@ -1,29 +1,19 @@
 package com.item.finance.bean;
 
-import java.math.BigDecimal;
+import java.io.Serializable;
+import javax.persistence.*;
 import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the member_trade_record database table.
- * 交易记录表
+ * 
  */
 @Entity
 @Table(name="member_trade_record")
-@NamedQuery(name="MemberTradeRecord.findAll", query="SELECT m FROM MemberTradeRecord m")
 public class MemberTradeRecord  {
-
 	private String id;
 	private BigDecimal amount;
 	private String counterpart;
@@ -32,19 +22,19 @@ public class MemberTradeRecord  {
 	private String extField2;
 	private String extField3;
 	private byte fundFlow;
-	private BigInteger memberId;
 	private String tradeName;
 	private String tradeNo;
 	private byte tradeStatus;
 	private String tradeType;
 	private Date updateDate;
+	private Member member;
 
 	public MemberTradeRecord() {
 	}
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -54,6 +44,7 @@ public class MemberTradeRecord  {
 	}
 
 
+	@Column(nullable=false, precision=10, scale=2)
 	public BigDecimal getAmount() {
 		return this.amount;
 	}
@@ -63,6 +54,7 @@ public class MemberTradeRecord  {
 	}
 
 
+	@Column(nullable=false, length=100)
 	public String getCounterpart() {
 		return this.counterpart;
 	}
@@ -83,7 +75,7 @@ public class MemberTradeRecord  {
 	}
 
 
-	@Column(name="ext_field_1")
+	@Column(name="ext_field_1", nullable=false, length=50)
 	public String getExtField1() {
 		return this.extField1;
 	}
@@ -93,7 +85,7 @@ public class MemberTradeRecord  {
 	}
 
 
-	@Column(name="ext_field_2")
+	@Column(name="ext_field_2", nullable=false, length=50)
 	public String getExtField2() {
 		return this.extField2;
 	}
@@ -103,7 +95,7 @@ public class MemberTradeRecord  {
 	}
 
 
-	@Column(name="ext_field_3")
+	@Column(name="ext_field_3", nullable=false, length=50)
 	public String getExtField3() {
 		return this.extField3;
 	}
@@ -113,7 +105,7 @@ public class MemberTradeRecord  {
 	}
 
 
-	@Column(name="fund_flow")
+	@Column(name="fund_flow", nullable=false)
 	public byte getFundFlow() {
 		return this.fundFlow;
 	}
@@ -123,17 +115,7 @@ public class MemberTradeRecord  {
 	}
 
 
-	@Column(name="member_id")
-	public BigInteger getMemberId() {
-		return this.memberId;
-	}
-
-	public void setMemberId(BigInteger memberId) {
-		this.memberId = memberId;
-	}
-
-
-	@Column(name="trade_name")
+	@Column(name="trade_name", nullable=false, length=100)
 	public String getTradeName() {
 		return this.tradeName;
 	}
@@ -143,7 +125,7 @@ public class MemberTradeRecord  {
 	}
 
 
-	@Column(name="trade_no")
+	@Column(name="trade_no", nullable=false, length=50)
 	public String getTradeNo() {
 		return this.tradeNo;
 	}
@@ -153,7 +135,7 @@ public class MemberTradeRecord  {
 	}
 
 
-	@Column(name="trade_status")
+	@Column(name="trade_status", nullable=false)
 	public byte getTradeStatus() {
 		return this.tradeStatus;
 	}
@@ -163,7 +145,7 @@ public class MemberTradeRecord  {
 	}
 
 
-	@Column(name="trade_type")
+	@Column(name="trade_type", nullable=false, length=20)
 	public String getTradeType() {
 		return this.tradeType;
 	}
@@ -181,6 +163,18 @@ public class MemberTradeRecord  {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+
+	//bi-directional many-to-one association to Member
+	@ManyToOne
+	@JoinColumn(name="member_id", nullable=false)
+	public Member getMember() {
+		return this.member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 }

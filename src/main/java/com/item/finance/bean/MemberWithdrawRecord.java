@@ -1,29 +1,19 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
+import java.math.BigInteger;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the member_withdraw_record database table.
- * 提现记录表
+ * 
  */
 @Entity
 @Table(name="member_withdraw_record")
-@NamedQuery(name="MemberWithdrawRecord.findAll", query="SELECT m FROM MemberWithdrawRecord m")
 public class MemberWithdrawRecord  {
-
 	private String id;
 	private BigDecimal amount;
 	private String bankCard;
@@ -42,7 +32,7 @@ public class MemberWithdrawRecord  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -52,6 +42,7 @@ public class MemberWithdrawRecord  {
 	}
 
 
+	@Column(nullable=false, precision=10, scale=2)
 	public BigDecimal getAmount() {
 		return this.amount;
 	}
@@ -61,7 +52,7 @@ public class MemberWithdrawRecord  {
 	}
 
 
-	@Column(name="bank_card")
+	@Column(name="bank_card", length=50)
 	public String getBankCard() {
 		return this.bankCard;
 	}
@@ -71,7 +62,7 @@ public class MemberWithdrawRecord  {
 	}
 
 
-	@Column(name="bank_name")
+	@Column(name="bank_name", length=20)
 	public String getBankName() {
 		return this.bankName;
 	}
@@ -81,6 +72,7 @@ public class MemberWithdrawRecord  {
 	}
 
 
+	@Column(length=200)
 	public String getCardaddress() {
 		return this.cardaddress;
 	}
@@ -90,7 +82,7 @@ public class MemberWithdrawRecord  {
 	}
 
 
-	@Column(name="channel_name")
+	@Column(name="channel_name", length=200)
 	public String getChannelName() {
 		return this.channelName;
 	}
@@ -120,7 +112,7 @@ public class MemberWithdrawRecord  {
 	}
 
 
-	@Column(name="serial_number")
+	@Column(name="serial_number", length=50)
 	public String getSerialNumber() {
 		return this.serialNumber;
 	}
@@ -130,6 +122,7 @@ public class MemberWithdrawRecord  {
 	}
 
 
+	@Column(nullable=false)
 	public byte getStatus() {
 		return this.status;
 	}
@@ -152,6 +145,7 @@ public class MemberWithdrawRecord  {
 
 	//bi-directional many-to-one association to Member
 	@ManyToOne
+	@JoinColumn(name="member_id", nullable=false)
 	public Member getMember() {
 		return this.member;
 	}

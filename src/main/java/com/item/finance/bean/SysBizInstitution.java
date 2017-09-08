@@ -1,26 +1,20 @@
 package com.item.finance.bean;
 
-import java.util.Set;
+import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
  * The persistent class for the sys_biz_institution database table.
- * 商业机构表
+ * 
  */
 @Entity
 @Table(name="sys_biz_institution")
-@NamedQuery(name="SysBizInstitution.findAll", query="SELECT s FROM SysBizInstitution s")
 public class SysBizInstitution  {
-
 	private int id;
 	private String bizSubType;
 	private String bizType;
@@ -28,14 +22,14 @@ public class SysBizInstitution  {
 	private String institutionCode;
 	private String institutionName;
 	private String province;
-	private Set<MemberPucChargeItem> memberPucChargeItems;
+	private Set<MemberPucChargeItem> memberPucChargeItems = new HashSet<>();
 
 	public SysBizInstitution() {
 	}
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public int getId() {
 		return this.id;
 	}
@@ -45,7 +39,7 @@ public class SysBizInstitution  {
 	}
 
 
-	@Column(name="biz_sub_type")
+	@Column(name="biz_sub_type", nullable=false, length=10)
 	public String getBizSubType() {
 		return this.bizSubType;
 	}
@@ -55,7 +49,7 @@ public class SysBizInstitution  {
 	}
 
 
-	@Column(name="biz_type")
+	@Column(name="biz_type", nullable=false, length=10)
 	public String getBizType() {
 		return this.bizType;
 	}
@@ -65,6 +59,7 @@ public class SysBizInstitution  {
 	}
 
 
+	@Column(nullable=false, length=20)
 	public String getCity() {
 		return this.city;
 	}
@@ -74,7 +69,7 @@ public class SysBizInstitution  {
 	}
 
 
-	@Column(name="institution_code")
+	@Column(name="institution_code", nullable=false, length=50)
 	public String getInstitutionCode() {
 		return this.institutionCode;
 	}
@@ -84,7 +79,7 @@ public class SysBizInstitution  {
 	}
 
 
-	@Column(name="institution_name")
+	@Column(name="institution_name", nullable=false, length=50)
 	public String getInstitutionName() {
 		return this.institutionName;
 	}
@@ -94,6 +89,7 @@ public class SysBizInstitution  {
 	}
 
 
+	@Column(nullable=false, length=20)
 	public String getProvince() {
 		return this.province;
 	}

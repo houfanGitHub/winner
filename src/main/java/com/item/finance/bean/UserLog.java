@@ -1,14 +1,13 @@
 package com.item.finance.bean;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,22 +19,20 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="user_log")
-@NamedQuery(name="UserLog.findAll", query="SELECT u FROM UserLog u")
 public class UserLog  {
-
-	private String id;
-	private byte action;
-	private Date createDate;
-	private String loginIp;
-	private Date updateDate;
-	private BigInteger userId;
+	
+	private String id;	// ID
+	private byte action;	//动作
+	private Date createDate;	//创建时间
+	private String loginIp;	//登陆ip
+	private Date updateDate;	//修改时间
+	private User user;	//用户表
 
 	public UserLog() {
 	}
 
-
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue
 	public String getId() {
 		return this.id;
 	}
@@ -64,8 +61,7 @@ public class UserLog  {
 		this.createDate = createDate;
 	}
 
-
-	@Column(name="login_ip")
+	@Column(name="login_ip", length=32)
 	public String getLoginIp() {
 		return this.loginIp;
 	}
@@ -85,14 +81,15 @@ public class UserLog  {
 		this.updateDate = updateDate;
 	}
 
-
-	@Column(name="user_id")
-	public BigInteger getUserId() {
-		return this.userId;
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	public User getUser() {
+		return this.user;
 	}
 
-	public void setUserId(BigInteger userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

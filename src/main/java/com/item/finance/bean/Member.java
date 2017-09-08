@@ -2,27 +2,26 @@ package com.item.finance.bean;
 
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the member database table.
- * 用户基本表
+ * 
  */
 @Entity
-@NamedQuery(name="Member.findAll", query="SELECT m FROM Member m")
+@Table(name="member")
 public class Member  {
-	
 	private String id;
 	private Date createDate;
 	private byte delFlag;
@@ -42,27 +41,31 @@ public class Member  {
 	private String weiBoAccount;
 	private String weixinAccount;
 	private String withdrawPassword;
-	private Set<AssociatedAccount> associatedAccounts;
-	private Set<BbinInfo> bbinInfos;
-	private Set<FinanceProductSubscribe> financeProductSubscribes;
-	private Set<FinancialPlanner> financialPlanners;
-	private Set<MemberAccount> memberAccounts;
-	private Set<MemberBankcard> memberBankcards;
-	private Set<MemberDepositRecord> memberDepositRecords;
-	private Set<MemberProfitRecord> memberProfitRecords;
-	private Set<MemberPucChargeHome> memberPucChargeHomes;
-	private Set<MemberWithdrawRecord> memberWithdrawRecords;
-	private Set<OverseaConfigSubscribe> overseaConfigSubscribes;
-	private Set<SubjectBbinPurchaseRecord> subjectBbinPurchaseRecords;
-	private Set<SubjectOrderRecord> subjectOrderRecords;
-	private Set<SubjectPurchaseRecord> subjectPurchaseRecords;
+	private Set<AssociatedAccount> associatedAccounts = new HashSet<>();
+	private Set<BbinInfo> bbinInfos = new HashSet<>();
+	private Set<Feedback> feedbacks = new HashSet<>();
+	private Set<FinanceProductSubscribe> financeProductSubscribes = new HashSet<>();
+	private Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords = new HashSet<>();
+	private Set<FinancialPlanner> financialPlanners = new HashSet<>();
+	private Set<MemberAccount> memberAccounts = new HashSet<>();
+	private Set<MemberBankcard> memberBankcards = new HashSet<>();
+	private Set<MemberDepositRecord> memberDepositRecords = new HashSet<>();
+	private Set<MemberProfitRecord> memberProfitRecords = new HashSet<>();
+	private Set<MemberPucChargeHome> memberPucChargeHomes = new HashSet<>();
+	private Set<MemberPucChargeItem> memberPucChargeItems = new HashSet<>();
+	private Set<MemberTally> memberTallies = new HashSet<>();
+	private Set<MemberTradeRecord> memberTradeRecords = new HashSet<>();
+	private Set<MemberWithdrawRecord> memberWithdrawRecords = new HashSet<>();
+	private Set<OverseaConfigSubscribe> overseaConfigSubscribes = new HashSet<>();
+	private Set<SubjectBbinPurchaseRecord> subjectBbinPurchaseRecords = new HashSet<>();
+	private Set<SubjectOrderRecord> subjectOrderRecords = new HashSet<>();
 
 	public Member() {
 	}
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -102,6 +105,7 @@ public class Member  {
 	}
 
 
+	@Column(length=18)
 	public String getIdentity() {
 		return this.identity;
 	}
@@ -111,6 +115,7 @@ public class Member  {
 	}
 
 
+	@Column(length=100)
 	public String getInvitationCode() {
 		return this.invitationCode;
 	}
@@ -120,6 +125,7 @@ public class Member  {
 	}
 
 
+	@Column(length=100)
 	public String getInvitedCode() {
 		return this.invitedCode;
 	}
@@ -129,7 +135,7 @@ public class Member  {
 	}
 
 
-	@Column(name="member_name")
+	@Column(name="member_name", length=32)
 	public String getMemberName() {
 		return this.memberName;
 	}
@@ -139,6 +145,7 @@ public class Member  {
 	}
 
 
+	@Column(length=32)
 	public String getMobile_Phone() {
 		return this.mobile_Phone;
 	}
@@ -148,6 +155,7 @@ public class Member  {
 	}
 
 
+	@Column(length=32)
 	public String getName() {
 		return this.name;
 	}
@@ -157,6 +165,7 @@ public class Member  {
 	}
 
 
+	@Column(length=256)
 	public String getPassword() {
 		return this.password;
 	}
@@ -166,6 +175,7 @@ public class Member  {
 	}
 
 
+	@Column(length=100)
 	public String getQqAccount() {
 		return this.qqAccount;
 	}
@@ -175,6 +185,7 @@ public class Member  {
 	}
 
 
+	@Column(length=100)
 	public String getQqNumber() {
 		return this.qqNumber;
 	}
@@ -184,6 +195,7 @@ public class Member  {
 	}
 
 
+	@Column(length=32)
 	public String getSalt() {
 		return this.salt;
 	}
@@ -213,6 +225,7 @@ public class Member  {
 	}
 
 
+	@Column(length=100)
 	public String getWeiBoAccount() {
 		return this.weiBoAccount;
 	}
@@ -222,6 +235,7 @@ public class Member  {
 	}
 
 
+	@Column(length=100)
 	public String getWeixinAccount() {
 		return this.weixinAccount;
 	}
@@ -231,7 +245,7 @@ public class Member  {
 	}
 
 
-	@Column(name="withdraw_password")
+	@Column(name="withdraw_password", length=32)
 	public String getWithdrawPassword() {
 		return this.withdrawPassword;
 	}
@@ -291,6 +305,31 @@ public class Member  {
 	}
 
 
+	//bi-directional many-to-one association to Feedback
+	@OneToMany(mappedBy="member")
+	public Set<Feedback> getFeedbacks() {
+		return this.feedbacks;
+	}
+
+	public void setFeedbacks(Set<Feedback> feedbacks) {
+		this.feedbacks = feedbacks;
+	}
+
+	public Feedback addFeedback(Feedback feedback) {
+		getFeedbacks().add(feedback);
+		feedback.setMember(this);
+
+		return feedback;
+	}
+
+	public Feedback removeFeedback(Feedback feedback) {
+		getFeedbacks().remove(feedback);
+		feedback.setMember(null);
+
+		return feedback;
+	}
+
+
 	//bi-directional many-to-one association to FinanceProductSubscribe
 	@OneToMany(mappedBy="member")
 	public Set<FinanceProductSubscribe> getFinanceProductSubscribes() {
@@ -313,6 +352,31 @@ public class Member  {
 		financeProductSubscribe.setMember(null);
 
 		return financeProductSubscribe;
+	}
+
+
+	//bi-directional many-to-one association to FinanceProductSubscribeRecord
+	@OneToMany(mappedBy="member")
+	public Set<FinanceProductSubscribeRecord> getFinanceProductSubscribeRecords() {
+		return this.financeProductSubscribeRecords;
+	}
+
+	public void setFinanceProductSubscribeRecords(Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords) {
+		this.financeProductSubscribeRecords = financeProductSubscribeRecords;
+	}
+
+	public FinanceProductSubscribeRecord addFinanceProductSubscribeRecord(FinanceProductSubscribeRecord financeProductSubscribeRecord) {
+		getFinanceProductSubscribeRecords().add(financeProductSubscribeRecord);
+		financeProductSubscribeRecord.setMember(this);
+
+		return financeProductSubscribeRecord;
+	}
+
+	public FinanceProductSubscribeRecord removeFinanceProductSubscribeRecord(FinanceProductSubscribeRecord financeProductSubscribeRecord) {
+		getFinanceProductSubscribeRecords().remove(financeProductSubscribeRecord);
+		financeProductSubscribeRecord.setMember(null);
+
+		return financeProductSubscribeRecord;
 	}
 
 
@@ -426,21 +490,6 @@ public class Member  {
 		this.memberProfitRecords = memberProfitRecords;
 	}
 
-	public MemberProfitRecord addMemberProfitRecord(MemberProfitRecord memberProfitRecord) {
-		getMemberProfitRecords().add(memberProfitRecord);
-		memberProfitRecord.setMember(this);
-
-		return memberProfitRecord;
-	}
-
-	public MemberProfitRecord removeMemberProfitRecord(MemberProfitRecord memberProfitRecord) {
-		getMemberProfitRecords().remove(memberProfitRecord);
-		memberProfitRecord.setMember(null);
-
-		return memberProfitRecord;
-	}
-
-
 	//bi-directional many-to-one association to MemberPucChargeHome
 	@OneToMany(mappedBy="member")
 	public Set<MemberPucChargeHome> getMemberPucChargeHomes() {
@@ -463,6 +512,81 @@ public class Member  {
 		memberPucChargeHome.setMember(null);
 
 		return memberPucChargeHome;
+	}
+
+
+	//bi-directional many-to-one association to MemberPucChargeItem
+	@OneToMany(mappedBy="member")
+	public Set<MemberPucChargeItem> getMemberPucChargeItems() {
+		return this.memberPucChargeItems;
+	}
+
+	public void setMemberPucChargeItems(Set<MemberPucChargeItem> memberPucChargeItems) {
+		this.memberPucChargeItems = memberPucChargeItems;
+	}
+
+	public MemberPucChargeItem addMemberPucChargeItem(MemberPucChargeItem memberPucChargeItem) {
+		getMemberPucChargeItems().add(memberPucChargeItem);
+		memberPucChargeItem.setMember(this);
+
+		return memberPucChargeItem;
+	}
+
+	public MemberPucChargeItem removeMemberPucChargeItem(MemberPucChargeItem memberPucChargeItem) {
+		getMemberPucChargeItems().remove(memberPucChargeItem);
+		memberPucChargeItem.setMember(null);
+
+		return memberPucChargeItem;
+	}
+
+
+	//bi-directional many-to-one association to MemberTally
+	@OneToMany(mappedBy="member")
+	public Set<MemberTally> getMemberTallies() {
+		return this.memberTallies;
+	}
+
+	public void setMemberTallies(Set<MemberTally> memberTallies) {
+		this.memberTallies = memberTallies;
+	}
+
+	public MemberTally addMemberTally(MemberTally memberTally) {
+		getMemberTallies().add(memberTally);
+		memberTally.setMember(this);
+
+		return memberTally;
+	}
+
+	public MemberTally removeMemberTally(MemberTally memberTally) {
+		getMemberTallies().remove(memberTally);
+		memberTally.setMember(null);
+
+		return memberTally;
+	}
+
+
+	//bi-directional many-to-one association to MemberTradeRecord
+	@OneToMany(mappedBy="member")
+	public Set<MemberTradeRecord> getMemberTradeRecords() {
+		return this.memberTradeRecords;
+	}
+
+	public void setMemberTradeRecords(Set<MemberTradeRecord> memberTradeRecords) {
+		this.memberTradeRecords = memberTradeRecords;
+	}
+
+	public MemberTradeRecord addMemberTradeRecord(MemberTradeRecord memberTradeRecord) {
+		getMemberTradeRecords().add(memberTradeRecord);
+		memberTradeRecord.setMember(this);
+
+		return memberTradeRecord;
+	}
+
+	public MemberTradeRecord removeMemberTradeRecord(MemberTradeRecord memberTradeRecord) {
+		getMemberTradeRecords().remove(memberTradeRecord);
+		memberTradeRecord.setMember(null);
+
+		return memberTradeRecord;
 	}
 
 
@@ -526,20 +650,6 @@ public class Member  {
 		this.subjectBbinPurchaseRecords = subjectBbinPurchaseRecords;
 	}
 
-	public SubjectBbinPurchaseRecord addSubjectBbinPurchaseRecord(SubjectBbinPurchaseRecord subjectBbinPurchaseRecord) {
-		getSubjectBbinPurchaseRecords().add(subjectBbinPurchaseRecord);
-		subjectBbinPurchaseRecord.setMember(this);
-
-		return subjectBbinPurchaseRecord;
-	}
-
-	public SubjectBbinPurchaseRecord removeSubjectBbinPurchaseRecord(SubjectBbinPurchaseRecord subjectBbinPurchaseRecord) {
-		getSubjectBbinPurchaseRecords().remove(subjectBbinPurchaseRecord);
-		subjectBbinPurchaseRecord.setMember(null);
-
-		return subjectBbinPurchaseRecord;
-	}
-
 
 	//bi-directional many-to-one association to SubjectOrderRecord
 	@OneToMany(mappedBy="member")
@@ -549,45 +659,6 @@ public class Member  {
 
 	public void setSubjectOrderRecords(Set<SubjectOrderRecord> subjectOrderRecords) {
 		this.subjectOrderRecords = subjectOrderRecords;
-	}
-
-	public SubjectOrderRecord addSubjectOrderRecord(SubjectOrderRecord subjectOrderRecord) {
-		getSubjectOrderRecords().add(subjectOrderRecord);
-		subjectOrderRecord.setMember(this);
-
-		return subjectOrderRecord;
-	}
-
-	public SubjectOrderRecord removeSubjectOrderRecord(SubjectOrderRecord subjectOrderRecord) {
-		getSubjectOrderRecords().remove(subjectOrderRecord);
-		subjectOrderRecord.setMember(null);
-
-		return subjectOrderRecord;
-	}
-
-
-	//bi-directional many-to-one association to SubjectPurchaseRecord
-	@OneToMany(mappedBy="member")
-	public Set<SubjectPurchaseRecord> getSubjectPurchaseRecords() {
-		return this.subjectPurchaseRecords;
-	}
-
-	public void setSubjectPurchaseRecords(Set<SubjectPurchaseRecord> subjectPurchaseRecords) {
-		this.subjectPurchaseRecords = subjectPurchaseRecords;
-	}
-
-	public SubjectPurchaseRecord addSubjectPurchaseRecord(SubjectPurchaseRecord subjectPurchaseRecord) {
-		getSubjectPurchaseRecords().add(subjectPurchaseRecord);
-		subjectPurchaseRecord.setMember(this);
-
-		return subjectPurchaseRecord;
-	}
-
-	public SubjectPurchaseRecord removeSubjectPurchaseRecord(SubjectPurchaseRecord subjectPurchaseRecord) {
-		getSubjectPurchaseRecords().remove(subjectPurchaseRecord);
-		subjectPurchaseRecord.setMember(null);
-
-		return subjectPurchaseRecord;
 	}
 
 }

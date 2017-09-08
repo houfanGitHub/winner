@@ -1,30 +1,19 @@
 package com.item.finance.bean;
 
-import java.math.BigDecimal;
+import java.io.Serializable;
+import javax.persistence.*;
 import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the member_profit_record database table.
- * 成员利润记录表
+ * 
  */
 @Entity
 @Table(name="member_profit_record")
-@NamedQuery(name="MemberProfitRecord.findAll", query="SELECT m FROM MemberProfitRecord m")
 public class MemberProfitRecord  {
-
 	private String id;
 	private BigDecimal amount;
 	private String comment;
@@ -33,18 +22,18 @@ public class MemberProfitRecord  {
 	private byte profitDay;
 	private byte profitMonth;
 	private short profitYear;
-	private BigInteger purchaseId;
 	private String serialNumber;
 	private byte type;
 	private Date updateDate;
 	private Member member;
+	private SubjectBbinPurchaseRecord subjectBbinPurchaseRecord;
 
 	public MemberProfitRecord() {
 	}
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -54,6 +43,7 @@ public class MemberProfitRecord  {
 	}
 
 
+	@Column(precision=10, scale=4)
 	public BigDecimal getAmount() {
 		return this.amount;
 	}
@@ -63,6 +53,7 @@ public class MemberProfitRecord  {
 	}
 
 
+	@Column(nullable=false, length=100)
 	public String getComment() {
 		return this.comment;
 	}
@@ -73,7 +64,7 @@ public class MemberProfitRecord  {
 
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="create_date")
+	@Column(name="create_date", nullable=false)
 	public Date getCreateDate() {
 		return this.createDate;
 	}
@@ -92,7 +83,7 @@ public class MemberProfitRecord  {
 	}
 
 
-	@Column(name="profit_day")
+	@Column(name="profit_day", nullable=false)
 	public byte getProfitDay() {
 		return this.profitDay;
 	}
@@ -102,7 +93,7 @@ public class MemberProfitRecord  {
 	}
 
 
-	@Column(name="profit_month")
+	@Column(name="profit_month", nullable=false)
 	public byte getProfitMonth() {
 		return this.profitMonth;
 	}
@@ -112,7 +103,7 @@ public class MemberProfitRecord  {
 	}
 
 
-	@Column(name="profit_year")
+	@Column(name="profit_year", nullable=false)
 	public short getProfitYear() {
 		return this.profitYear;
 	}
@@ -122,17 +113,7 @@ public class MemberProfitRecord  {
 	}
 
 
-	@Column(name="purchase_id")
-	public BigInteger getPurchaseId() {
-		return this.purchaseId;
-	}
-
-	public void setPurchaseId(BigInteger purchaseId) {
-		this.purchaseId = purchaseId;
-	}
-
-
-	@Column(name="serial_number")
+	@Column(name="serial_number", length=50)
 	public String getSerialNumber() {
 		return this.serialNumber;
 	}
@@ -152,7 +133,7 @@ public class MemberProfitRecord  {
 
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="update_date")
+	@Column(name="update_date", nullable=false)
 	public Date getUpdateDate() {
 		return this.updateDate;
 	}
@@ -164,12 +145,25 @@ public class MemberProfitRecord  {
 
 	//bi-directional many-to-one association to Member
 	@ManyToOne
+	@JoinColumn(name="member_id")
 	public Member getMember() {
 		return this.member;
 	}
 
 	public void setMember(Member member) {
 		this.member = member;
+	}
+
+
+	//bi-directional many-to-one association to SubjectBbinPurchaseRecord
+	@ManyToOne
+	@JoinColumn(name="purchase_id", nullable=false)
+	public SubjectBbinPurchaseRecord getSubjectBbinPurchaseRecord() {
+		return this.subjectBbinPurchaseRecord;
+	}
+
+	public void setSubjectBbinPurchaseRecord(SubjectBbinPurchaseRecord subjectBbinPurchaseRecord) {
+		this.subjectBbinPurchaseRecord = subjectBbinPurchaseRecord;
 	}
 
 }

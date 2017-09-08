@@ -1,26 +1,19 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the sms_record database table.
- * 短信记录表
+ * 
  */
 @Entity
 @Table(name="sms_record")
 @NamedQuery(name="SmsRecord.findAll", query="SELECT s FROM SmsRecord s")
 public class SmsRecord  {
-
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String code;
 	private String content;
@@ -29,14 +22,14 @@ public class SmsRecord  {
 	private String result;
 	private Date senddate;
 	private int status;
-	private int type;
+	private SmsInterface smsInterface;
 
 	public SmsRecord() {
 	}
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -46,6 +39,7 @@ public class SmsRecord  {
 	}
 
 
+	@Column(length=2000)
 	public String getCode() {
 		return this.code;
 	}
@@ -55,6 +49,7 @@ public class SmsRecord  {
 	}
 
 
+	@Column(length=200)
 	public String getContent() {
 		return this.content;
 	}
@@ -74,6 +69,7 @@ public class SmsRecord  {
 	}
 
 
+	@Column(length=11)
 	public String getPhone() {
 		return this.phone;
 	}
@@ -83,6 +79,7 @@ public class SmsRecord  {
 	}
 
 
+	@Column(length=2000)
 	public String getResult() {
 		return this.result;
 	}
@@ -111,12 +108,15 @@ public class SmsRecord  {
 	}
 
 
-	public int getType() {
-		return this.type;
+	//bi-directional many-to-one association to SmsInterface
+	@ManyToOne
+	@JoinColumn(name="type")
+	public SmsInterface getSmsInterface() {
+		return this.smsInterface;
 	}
 
-	public void setType(int type) {
-		this.type = type;
+	public void setSmsInterface(SmsInterface smsInterface) {
+		this.smsInterface = smsInterface;
 	}
 
 }

@@ -1,27 +1,18 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the award_records database table.
- * 奖励记录表
+ * 
  */
 @Entity
 @Table(name="award_records")
-@NamedQuery(name="AwardRecord.findAll", query="SELECT a FROM AwardRecord a")
 public class AwardRecord  {
-	
 	private int id;
 	private Date addTime;
 	private BigDecimal amount;
@@ -35,7 +26,7 @@ public class AwardRecord  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public int getId() {
 		return this.id;
 	}
@@ -55,6 +46,7 @@ public class AwardRecord  {
 	}
 
 
+	@Column(precision=10, scale=2)
 	public BigDecimal getAmount() {
 		return this.amount;
 	}

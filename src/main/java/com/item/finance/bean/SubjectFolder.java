@@ -1,29 +1,18 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the subject_folder database table.
- * 附件归属表
+ * 
  */
 @Entity
 @Table(name="subject_folder")
-@NamedQuery(name="SubjectFolder.findAll", query="SELECT s FROM SubjectFolder s")
 public class SubjectFolder  {
-
 	private String id;
 	private Date createDate;
 	private Date updateDate;
@@ -35,7 +24,7 @@ public class SubjectFolder  {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}

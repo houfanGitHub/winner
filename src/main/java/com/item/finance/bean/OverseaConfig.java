@@ -1,15 +1,13 @@
 package com.item.finance.bean;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -18,13 +16,12 @@ import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the oversea_config database table.
- * 海外配置表
+ * 
  */
 @Entity
 @Table(name="oversea_config")
-@NamedQuery(name="OverseaConfig.findAll", query="SELECT o FROM OverseaConfig o")
 public class OverseaConfig  {
-
+	
 	private String id;
 	private Date addTime;
 	private String childTitle;
@@ -32,20 +29,19 @@ public class OverseaConfig  {
 	private String description;
 	private Date endDate;
 	private String overseaIcon;
-	private int sortColum;
 	private Date startDate;
 	private int status;
 	private String title;
 	private Date updTime;
 	private String userType;
-	private Set<OverseaConfigSubscribe> overseaConfigSubscribes;
+	private Set<OverseaConfigSubscribe> overseaConfigSubscribes = new HashSet<>();
 
 	public OverseaConfig() {
 	}
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public String getId() {
 		return this.id;
 	}
@@ -65,7 +61,7 @@ public class OverseaConfig  {
 	}
 
 
-	@Column(name="child_title")
+	@Column(name="child_title", length=128)
 	public String getChildTitle() {
 		return this.childTitle;
 	}
@@ -85,6 +81,7 @@ public class OverseaConfig  {
 	}
 
 
+	@Column(length=255)
 	public String getDescription() {
 		return this.description;
 	}
@@ -105,22 +102,13 @@ public class OverseaConfig  {
 	}
 
 
-	@Column(name="oversea_icon")
+	@Column(name="oversea_icon", length=200)
 	public String getOverseaIcon() {
 		return this.overseaIcon;
 	}
 
 	public void setOverseaIcon(String overseaIcon) {
 		this.overseaIcon = overseaIcon;
-	}
-
-
-	public int getSortColum() {
-		return this.sortColum;
-	}
-
-	public void setSortColum(int sortColum) {
-		this.sortColum = sortColum;
 	}
 
 
@@ -144,6 +132,7 @@ public class OverseaConfig  {
 	}
 
 
+	@Column(length=255)
 	public String getTitle() {
 		return this.title;
 	}
@@ -163,7 +152,7 @@ public class OverseaConfig  {
 	}
 
 
-	@Column(name="user_type")
+	@Column(name="user_type", length=128)
 	public String getUserType() {
 		return this.userType;
 	}
@@ -171,7 +160,6 @@ public class OverseaConfig  {
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
-
 
 	//bi-directional many-to-one association to OverseaConfigSubscribe
 	@OneToMany(mappedBy="overseaConfig")
@@ -181,20 +169,6 @@ public class OverseaConfig  {
 
 	public void setOverseaConfigSubscribes(Set<OverseaConfigSubscribe> overseaConfigSubscribes) {
 		this.overseaConfigSubscribes = overseaConfigSubscribes;
-	}
-
-	public OverseaConfigSubscribe addOverseaConfigSubscribe(OverseaConfigSubscribe overseaConfigSubscribe) {
-		getOverseaConfigSubscribes().add(overseaConfigSubscribe);
-		overseaConfigSubscribe.setOverseaConfig(this);
-
-		return overseaConfigSubscribe;
-	}
-
-	public OverseaConfigSubscribe removeOverseaConfigSubscribe(OverseaConfigSubscribe overseaConfigSubscribe) {
-		getOverseaConfigSubscribes().remove(overseaConfigSubscribe);
-		overseaConfigSubscribe.setOverseaConfig(null);
-
-		return overseaConfigSubscribe;
 	}
 
 }
