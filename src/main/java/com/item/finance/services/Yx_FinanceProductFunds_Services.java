@@ -11,7 +11,7 @@ import com.item.finance.dao.Yx_FinanceProductFunds_Dao;
 
 @Service
 @Transactional
-public class Yx_FinanceProductFunds_Services {
+public class Yx_FinanceProductFunds_Services{
     @Autowired
 	private Yx_FinanceProductFunds_Dao yx_FinanceProductFunds_Dao;
     
@@ -30,4 +30,5 @@ public class Yx_FinanceProductFunds_Services {
     public void updateFinanceProductFunds(FinanceProductFunds financeProductFunds){
     	this.yx_FinanceProductFunds_Dao.updateFinanceProductFunds(financeProductFunds);
     }
+	
 }
