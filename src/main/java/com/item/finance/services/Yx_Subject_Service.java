@@ -12,7 +12,7 @@ import com.item.finance.bean.Subject;
 import com.item.finance.dao.Yx_Subject_Dao;
 @Service
 @Transactional
-public class Yx_Subject_Services implements ItemServiceImpl<Subject> {
+public class Yx_Subject_Service implements ItemServiceImpl<Subject> {
 	
     @Autowired
 	private Yx_Subject_Dao yx_FinanceProductFunds_Dao;
