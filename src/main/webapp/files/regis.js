@@ -9,53 +9,63 @@ $(function() {
 		};
 	
 	regis = function(b) {
+//		alert(0);
 		base = b;
-		phone=$(".phone");
+		//电话
+		phone=$(".phone");	
+		//验证码
 		code = $(".code");
+		//密码
 		password=$(".password");
+		//再次输入密码
 		password2=$(".password2");
-		
+		//用户名
 		youname=$(".youname");
+		//邀请码
 		invitationCode=$(".invitationCode");
-		qqAccount=$(".qqAccount");
+		//qq
+	//	qqAccount=$(".qqAccount");
+		//图形验证码
 		imgcode=$(".imgcode");
 		
-		
+		//用户名格式验证
 		youname.keyup(function() {
 			if ((/^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$/.test(youname.val()))) {
+				
 				youname.removeAttr("style");
 				youname.next(".errorInfo").html("").hide();
 				return;
 			}
 		});
 		
+		//电话格式验证
+//		phone.keyup(function() {
+//			if ((/^1[3-9][0-9]\d{8}$/.test(phone.val()))) {
+//				$.ajax({
+//					type : "POST", // 用POST方式传输
+//					dataType : "json", // 数据格式:JSON
+//					async : true,
+//					url : base + '/web/valiatorPhone', // 目标地址
+//					data : {
+//						phone : phone.val(),
+//						type:1
+//					},
+//					success : function(msg) {
+//						if (msg.code == 0) {
+//							phone.removeAttr("style");
+//							phone.next(".errorInfo").html(msg.msg).show();
+//							return;
+//						} else {
+//							phone.focus().css(css);
+//							phone.next(".errorInfo").html(msg.msg).show();
+//							return;
+//						}
+//					}
+//				});
+//			}
+//		});
 		
-		phone.keyup(function() {
-			if ((/^1[3-9][0-9]\d{8}$/.test(phone.val()))) {
-				$.ajax({
-					type : "POST", // 用POST方式传输
-					dataType : "json", // 数据格式:JSON
-					async : true,
-					url : base + '/web/valiatorPhone', // 目标地址
-					data : {
-						phone : phone.val(),
-						type:1
-					},
-					success : function(msg) {
-						if (msg.code == 0) {
-							phone.removeAttr("style");
-							phone.next(".errorInfo").html(msg.msg).show();
-							return;
-						} else {
-							phone.focus().css(css);
-							phone.next(".errorInfo").html(msg.msg).show();
-							return;
-						}
-					}
-				});
-			}
-		});
-		
+		//图形验证码验证
 		imgcode.keyup(function() {
 			if ((/^.{4}$/.test(imgcode.val()))) {
 				imgcode.removeAttr("style");
@@ -63,15 +73,15 @@ $(function() {
 				return;
 			}
 		});
-		
-		code.keyup(function() {
-			if ((/^.{4}$/.test(code.val()))) {
-				code.removeAttr("style");
-				code.next(".errorInfo").html("").hide();
-				return;
-			}
-		});
-		
+		//手机验证码
+//		code.keyup(function() {
+//			if ((/^.{4}$/.test(code.val()))) {
+//				code.removeAttr("style");
+//				code.next(".errorInfo").html("").hide();
+//				return;
+//			}
+//		});
+		//密码格式
 		password.keyup(function() {
 			if ((/^[a-zA-Z]\w{5,17}$/.test(password.val()))) {
 				password.removeAttr("style");
@@ -79,6 +89,7 @@ $(function() {
 				return;
 			}
 		});
+		//两次密码比对
 		password2.keyup(function() {
 			if ((password2.val()==password.val())) {
 				password2.removeAttr("style");
@@ -89,28 +100,20 @@ $(function() {
 		
 		//注册
 		$(".submit").click(function() {
+			alert(0);
 			$(".errorInfo").html("").hide();
 			if (!(/^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$/.test(youname.val()))) {
 				youname.focus().css(css);
 				youname.next(".errorInfo").html("用户名格式不正确").show();
 				return;
 			}
-			if (!(/^1[3-9][0-9]\d{8}$/.test(phone.val()))) {
-				phone.focus().css(css);
-				phone.next(".errorInfo").html("手机号码格式不正确").show();
-				return;
-			}
+
 			if (!(/^.{4}$/.test(imgcode.val()))) {
 				imgcode.focus().css(css);
 				imgcode.next(".errorInfo").html("图片验证码格式不正确").show();
 				return;
 			}
-			
-			if (!(/^.{4}$/.test(code.val()))) {
-				code.focus().css(css);
-				code.next(".errorInfo").html("验证码格式不正确").show();
-				return;
-			}
+
 			if (!(/^[a-zA-Z]\w{5,17}$/.test(password.val()))) {
 				password.focus().css(css);
 				password.next(".errorInfo").html("密码为6位以上的英文加数字").show();
@@ -125,12 +128,12 @@ $(function() {
 				alert("本网站服务协议还未加入");
 				return;
 			}
-			
+			alert(1);
 			$.ajax({
 				type : "POST", // 用POST方式传输
 				dataType : "json", // 数据格式:JSON
 				async : true,
-				url : base + '/web/regis', // 目标地址
+				url : "/winner/itemweb/userRegistration", // 目标地址
 				data : {
 					name:youname.val(),
 					mobilePhone : phone.val(),
@@ -144,7 +147,7 @@ $(function() {
 				success : function(msg) {
 					if (msg.code == 0) {
 						alert("注册成功！");
-						window.location.href=base+"/web/login";
+						window.location.href="/winner/itemweb/toLogin";
 					} else {
 						alert(msg.msg);
 					}
@@ -154,51 +157,3 @@ $(function() {
 		});
 	};
 });
-
-
-
-// 发送验证码		
-var InterValObj; //timer变量，控制时间
-var curCount;//当前剩余秒数
-function sendMessage(count) {
-		if (!(/^1[3-9][0-9]\d{8}$/.test(phone.val()))) {
-			phone.focus().css(css);
-			phone.next(".errorInfo").html("手机号码格式不正确").show();
-		return;
-		}
-		curCount = count;
-		$("#btnSendCode").attr("disabled", "true");
-		$("#btnSendCode").addClass("grey")
-		$("#btnSendCode").html(""+ curCount + "秒");
-		InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-		$.ajax({
-			type : "POST", // 用POST方式传输
-			dataType : "json", // 数据格式:JSON
-			async : true,
-			url : base + '/web/sendTestValSms', // 目标地址
-			data : {
-				phone : phone.val(),
-				type:2
-			},
-			success : function(msg) {
-				if (msg.code == 0) {
-					phone.next(".errorInfo").html(msg.msg).show();
-				} else {
-					phone.next(".errorInfo").html(msg.msg).show();
-				}
-			}
-		});
-}
-//timer处理函数
-function SetRemainTime() {
-	if (curCount == 0) {                
-		window.clearInterval(InterValObj);//停止计时器
-		$("#btnSendCode").removeAttr("disabled");//启用按钮
-		$("#btnSendCode").removeClass("grey")
-		$("#btnSendCode").html("重新发送");
-	}
-	else {
-		curCount--;
-		$("#btnSendCode").html(""+ curCount + "秒");
-	}
-}

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,13 +25,19 @@
 <!-- <script type="text/javascript" src="/winner/files/layer.js"></script> -->
 <link rel="stylesheet" href="/winner/files/layer.css" id="layui_layer_skinlayercss">
 <!-- <script src="/winner/files/echarts.js"></script> -->
+<script type="text/javascript">
+  	function changeValidateCode(obj){
+  		var timeNow = new Date().getTime();
+  		obj.src="/winner/checkCode/service.do?time="+timeNow;
+  	}	
+  </script>
 </head>
 <body>
 
 <div class="logo container">
     <div class="row">
         <div class="logoImg">
-            <a href="http://www.ying158.com/home"><img src="/winner/files/logo2.png" onmouseover="this.src = &#39;/resources/web/images/logo1.png&#39;" onmouseout="this.src = &#39;/resources/web/images/logo2.png&#39;"></a>
+            <a href="#"><img src="/winner/files/logo2.png" onmouseover="this.src = &#39;/resources/web/images/logo1.png&#39;" onmouseout="this.src = &#39;/resources/web/images/logo2.png&#39;"></a>
         </div>
         <div class="telInfo">
             <img src="/winner/files/400Icon.png" onmousemove="this.src = &#39;/resources/web/images/400IconActive.png&#39;" onmouseout="	this.src = &#39;/resources/web/images/400Icon.png&#39;">
@@ -45,47 +50,48 @@
         </div>
     </div>
 </div>
+
 <div class="jwNav">
     <div class="container">
         <div class="row">
             <ul class="topNav">
                 <li>
-                    <a class="item first" href="http://www.ying158.com/home">
+                    <a class="item first" href="#">
                         首页
                     </a>
                 </li>
                 <li>
-                    <a class="item" href="http://www.ying158.com/home/kcenter">
+                    <a class="item" href="#">
                         网上体验中心
                     </a>
                 </li>
                 <li class="item">
-                    <a class="item" href="http://pro.ying158.com/subject">
+                    <a class="item" href="#">
                         产品中心
                     </a>
                 </li>
                 <li>
-                    <a class="item" href="http://www.ying158.com/Home/NewsCenter">
+                    <a class="item" href="#">
                         新闻中心
                     </a>
                 </li>
                 <li>
-                    <a class="item" href="http://pro.ying158.com/mobileappdownload">
+                    <a class="item" href="#">
                       下载中心
                     </a>
                 </li>
                 <li>
-                    <a class="item " href="http://www.ying158.com/Home/Help">
+                    <a class="item " href="#">
                         盈+商学院
                     </a>
                 </li>
                 <li>
-                    <a class="item" href="http://ying158.com/UserGuide/TradingSoftware">
+                    <a class="item" href="#">
                         投研中心
                     </a>
                 </li>
                 <li>
-                    <a class="item last" href="http://pro.ying158.com/account/trades/profit/records">
+                    <a class="item last" href="#">
                         我的加法库
                     </a>
                 </li>
@@ -96,35 +102,9 @@
         </div>
     </div>
 </div>
-<!-- <script type="text/javascript"> -->
-<!--     $(function(){ -->
-<!--         function showIn(url){ -->
-<!--             var info="<div class='mydig'><div class='bg'></div><div class='imgbox'><a href="+url+"></a></div></div>"; -->
-<!--             $('body').append(info); -->
-<!--         } -->
 
-<!--     }); -->
-
-<!-- </script>  -->
-<script type="text/javascript">
-	function toSubmit(){
-		var phone = $("#phone").val();
-		var password = $("#password").val();
-		var password2 = $("#password2").val();
-		if(password2!=password){
-			alert(password2);
-			return false;
-		}else if(phone.length()!=11){
-			alert(phone.length());
-			return false;
-		}else{
-			document.forms[0].action="/winner/itemweb/userRegistration";
-			document.forms[0].submit();
-		}
-	}
-</script>
-
-   <div class="proMain">
+<script type="text/javascript" src="/winner/files/regis.js"></script>
+<div class="proMain">
     	</div>
 	<div class="row register">
 		<div class="title">
@@ -138,41 +118,28 @@
 				<hr>
 			</div>
 		</div>
-        <form:form method="post" modelAttribute="User">
+       
+<!--        <form action="" method="post"> -->
+       
         <div class="item">
             <div class="rLabel">
                 用户名
             </div>
             <div class="rInput">
-                <input type="text" placeholder="请输入用户名" id="userName" name="userName" class="form-control textInput youname">（需用实名注册）<span class="errorInfo">用户名不能为空</span>
+                <input type="text" placeholder="请输入用户名" id="userName" name="youname" class="form-control textInput youname">（需用实名注册）<span class="errorInfo">用户名不能为空</span>
             </div>
         </div>
-		<div class="item">
-			<div class="rLabel">
-				手机号
-			</div>
-			<div class="rInput">
-				<input type="text" placeholder="请输入手机号" id="phone" name="mobile_Phone" class="form-control textInput phone"><span class="errorInfo">手机号码不能为空</span>
-			</div>
-		</div>
 		 <div class="item">
             <div class="rLabel">
                 图形验证码
             </div>
             <div class="rInput">
                 <input type="text" placeholder="图片验证码" id="picCode" class="form-control textInput imgcode">
-                <img src="/winner/files/authImage" id="captcha" onclick="updcaptcha(&#39;&#39;)" title="看不清楚,点击换一张" alt="看不清楚,点击换一张" class="picCodeImg">
+                <img src="/winner/checkCode/service.do" id="captcha" onclick="changeValidateCode(this)" title="看不清楚,点击换一张" alt="看不清楚,点击换一张" class="picCodeImg">
                 <span class="errorInfo">请输入图形验证码</span>
             </div>
         </div>
-		<div class="item">
-			<div class="rLabel">
-				验证码
-			</div>
-			<div class="rInput">
-				<input type="text" placeholder="请输入验证码" id="vCode" name="vCode" class="form-control textInput code"><button class="btn vCodeBtn" onclick="sendMessage(90)" id="btnSendCode">获取验证码</button><span class="errorInfo"></span>
-			</div>
-		</div>
+
 		<div class="item">
 			<div class="rLabel">
 				登录密码
@@ -213,10 +180,12 @@
 				&nbsp;
 			</div>
 			<div class="rInput">
-				<input type="button" value="立即注册" class="btn registBtn submit">
+				<button class="btn registBtn submit" onclick="doSubmit();">立即注册</button>
 			</div>
 		</div>
-        </form:form>
+		
+<!-- 		</form> -->
+		
 		<div class="item">
 			<div class="rLabel">
 				&nbsp;
@@ -227,21 +196,17 @@
 		</div>
 	</div>
 	
-<script type="text/javascript" src="/winner/files/regis.js"></script>
+
 <script type="text/javascript">
 	$(function(){
 		var b = "";
 		regis(b);
 	});
-	
-	function updcaptcha(){
-		document.getElementById("captcha").src="/authImage?"+new Date().getTime();
-	}
-
 	function showAgreement(){
 		window.open("/web/zcxy","注册协议","height=800,width=1000,scrollbars=yes, resizable=no,location=no, status=no,screenX=100") 
 	}
 </script>
+ 
 
     <div class="security">
         <div class="item">
@@ -345,14 +310,6 @@
 			</div>
 		</div>
 	</div>
-<!-- <script> -->
-<!-- //     var _hmt = _hmt || []; -->
-<!-- //     (function() { -->
-<!-- //         var hm = document.createElement("script"); -->
-<!-- //         hm.src = "//hm.baidu.com/hm.js?06cf97732baac1a65bed8ae95f2384aa"; -->
-<!-- //         var s = document.getElementsByTagName("script")[0]; -->
-<!-- //         s.parentNode.insertBefore(hm, s); -->
-<!-- //     })(); -->
-<!-- </script> -->
+
 </body>
 </html>
