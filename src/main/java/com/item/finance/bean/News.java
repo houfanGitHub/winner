@@ -1,13 +1,13 @@
 package com.item.finance.bean;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -17,30 +17,31 @@ import javax.persistence.TemporalType;
  * 
  */
 @Entity
+@Table
 public class News  {
-	private int id;
-	private int addId;
-	private Date addTime;
-	private int audit;
-	private String author;
-	private int clickNumber;
-	private String cPhoto;
-	private String filelink;
-	private String info;
-	private String label;
-	private String link;
-	private int placTop;
-	private int recommend;
-	private String seoDes;
-	private String seoKey;
-	private String seoTitle;
-	private String source;
-	private String subTitle;
-	private String text;
-	private String title;
-	private int updId;
-	private Date updTime;
-	private NewsType newsType;
+	private int id;//序号
+	private int addId;//添加id
+	private Date addTime;//添加时间
+	private int audit;//是否审核
+	private String author;//作者
+	private int clickNumber;//点击数量
+	private String cPhoto;//封面图片
+	private String filelink;//附件地址
+	private String info;//简介
+	private String label;//标签
+	private String link;//链接地址
+	private int placTop;//是否置顶 0：为是  1为否
+	private int recommend;//是否推荐
+	private String seoDes;//seo描述
+	private String seoKey;//seo关键字
+	private String seoTitle;//页面seo标题
+	private String source;//来源
+	private String subTitle;//副标题
+	private String text;//内容
+	private String title;//标题
+	private int updId;//修改人ID
+	private Date updTime;//修改时间
+	private NewsType newsType;//咨询类型
 
 	public News() {
 	}
@@ -269,6 +270,14 @@ public class News  {
 
 	public void setNewsType(NewsType newsType) {
 		this.newsType = newsType;
+	}
+	public String getcPhoto() {
+		return cPhoto;
+	}
+
+
+	public void setcPhoto(String cPhoto) {
+		this.cPhoto = cPhoto;
 	}
 
 }
