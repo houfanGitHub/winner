@@ -4,13 +4,9 @@
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
-	<meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width,maximum-scale=1.0,user-scalable=yes">
-	<meta name="Keywords" content="盈+，盈，社区金融，O2O社区金融，社区金融O2O，O2O，互联网+社区金融，O2O连锁，社区门店，首家社区金融，社区金融服务，综合金融，互联网金融，体验中心，普惠金融，金融创新，社区化，普惠化，全渠道化，互联网线上平台，O2O交易，全国首家，盈十，金融衍生品，固收类理财，私募基金，股权基金，股指期货，玩转股指，商品期货，国际期货，外盘，A50，沪深300，中证500，上证50">
-	<meta name="description" content="盈+——全国首家互联网金融交流体验中心，与您共盈，给财富做加法。">
 	<title>盈+理财-首页 - 盈+</title>
-	<link href="http://www.ying158.com/Content/images/jw/icon.ico" type="image/x-icon" rel="shortcut icon">
-	<script src="./files/hm.js"></script><script src="./files/hm(1).js"></script><script>
+<!-- 	<link href="http://www.ying158.com/Content/images/jw/icon.ico" type="image/x-icon" rel="shortcut icon"> -->
+<!-- 	<script src="./files/hm.js"></script><script src="./files/hm(1).js"></script><script> -->
 
 		
 	</script>
@@ -164,70 +160,51 @@
 
 </head>
 <body>
-	<div id="floatTools" class="rides-cs" style="height:408px;">
-		<div class="floatL">
-			<a id="aFloatTools_Show" class="btnOpen" title="查看在线客服" style="top:90px;display:block" href="javascript:void(0);">展开</a>
-			<a id="aFloatTools_Hide" class="btnCtn" title="关闭在线客服" style="top:90px;display:none" href="javascript:void(0);">收缩</a>
-		</div>
-		<div id="divFloatToolsView" class="floatR" style="display: none;height:408px;width: 140px;">
-			<div class="cn">
-				<img src="./files/kefun.png" style="  width: 100px;display: block; margin: 0 auto; padding-top: 10px;">
-				<h3 class="titZx">盈+金融在线客服</h3>
-				<ul>
-					<li><span>客服1</span> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=508886246&site=qq&menu=yes"><img border="0" src="./files/littleQQ.png" alt="点击这里给我发消息" title="点击这里给我发消息"></a> </li>
-					<li><span>客服2</span> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3276064217&site=qq&menu=yes"><img border="0" src="./files/littleQQ.png" alt="点击这里给我发消息" title="点击这里给我发消息"></a> </li>
-					<li><span>客服3</span> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2717994963&site=qq&menu=yes"><img border="0" src="./files/littleQQ.png" alt="点击这里给我发消息" title="点击这里给我发消息"></a> </li>
-                    <li><span>技术A</span> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2088636909&site=qq&menu=yes"><img border="0" src="./files/littleQQ.png" alt="点击这里给我发消息" title="点击这里给我发消息"></a> </li>
-					<li style="border:none;"><span>电话：4000-999-158</span> </li>
-				</ul>
-			</div>
-		</div>
-	</div>
 	
     <div style=" width:1002px; height:94px; margin:0 auto;">
-        <iframe src="./files/iframetop.html" scrolling="no" frameborder="0" width="1002" height="94"></iframe>
+        <iframe src="/winner/files/iframetop.jsp" scrolling="no" frameborder="0" width="1002" height="94"></iframe>
     </div>
 	<div class="jwNav">
 		<div class="container">
 			<div class="row">
 				<ul class="topNav">
 					<li class="active">
-						<a class="item first" href="./files/+.html">
+						<a class="item first" href="/winner/index.jsp">
 							首页
 						</a>
 					</li>
 					<li>
-						<a class="item" href="http://www.ying158.com/home/kcenter">
+						<a class="item" href="#">
 							网上体验中心
 						</a>
 					</li>
 					<li>
-						<a class="item" href="http://pro.ying158.com/">
+						<a class="item" href="#">
 							产品中心
 						</a>
 					</li>
 					<li>
-						<a class="item" href="http://www.ying158.com/Home/NewsCenter">
+						<a class="item" href="#">
 							新闻中心
 						</a>
 					</li>
 					<li>
-                        <a class="item" href="http://pro.ying158.com/mobileappdownload">
+                        <a class="item" href="#">
                             下载中心
                         </a>
 					</li>
 					<li>
-                        <a class="item " href="http://www.ying158.com/Home/Help">
+                        <a class="item " href="#">
                             盈+商学院
                         </a>
 					</li>
 					<li>
-                        <a class="item" href="http://www.ying158.com/UserGuide/TradingSoftware">
+                        <a class="item" href="#">
                             投研中心
                         </a>
 					</li>
 					<li>
-						<a class="item last" href="http://pro.ying158.com/account/trades/profit/records">
+						<a class="item last" href="#">
 							我的加法库
 						</a>
 					</li>
@@ -246,10 +223,10 @@
 <link href="./files/video-js.css" rel="stylesheet" type="text/css">
 <!-- video.js must be in the <head> for older IEs to work. -->
 <script src="./files/video.js"></script>
-<!-- Unless using the CDN hosted version, update the URL to the Flash SWF -->
-<script>
-    videojs.options.flash.swf = "video-js.swf";
-</script>
+<!-- <!-- Unless using the CDN hosted version, update the URL to the Flash SWF --> -->
+<!-- <script> -->
+//     videojs.options.flash.swf = "video-js.swf";
+<!-- </script> -->
 
 <div class="indexBanner">
     
@@ -268,11 +245,11 @@
                 </div>
     </div>
 
-    <a class="left carousel-control" href="http://www.ying158.com/home#homebanner" role="button" data-slide="prev">
+    <a class="left carousel-control" href="#" role="button" data-slide="prev">
         <span class="fa fa-chevron-circle-left" aria-hidden="true"></span>
         <span class="sr-only">上一张</span>
     </a>
-    <a class="right carousel-control" href="http://www.ying158.com/home#homebanner" role="button" data-slide="next">
+    <a class="right carousel-control" href="#" role="button" data-slide="next">
         <span class="fa fa-chevron-circle-right" aria-hidden="true"></span>
         <span class="sr-only">下一张</span>
     </a>
@@ -285,8 +262,8 @@
             
             <p style="margin-top:20px; line-height:50px; font-size:20px; text-align:center; color:#fff;"><span style="color:#917739;">欢迎</span>盈主到来</p>
             <p style="margin-bottom:15px; line-height:50px; font-size:20px; text-align:center; color:#fff;">现在开始<span style="color:#917739;">您的财富</span> 之旅吧</p>
-            <a style="float:none; margin:0 auto; margin-left:15px;    display: inline-block;margin-bottom: 10px;" href="itemweb/login"><img src="./files/ying_index_login_btn.png"></a>
-            <a style="float:none; margin:0 auto; margin-left:15px; margin-top:10px;" href="itemweb/registration"><img src="./files/ying_index_reg_btn.png"></a>
+            <a style="float:none; margin:0 auto; margin-left:15px;    display: inline-block;margin-bottom: 10px;" href="itemweb/toLogin"><img src="./files/ying_index_login_btn.png"></a>
+            <a style="float:none; margin:0 auto; margin-left:15px; margin-top:10px;" href="itemweb/toRegistration"><img src="./files/ying_index_reg_btn.png"></a>
             
         </div>
     </div>
@@ -317,7 +294,7 @@
                 查看更多&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;
             </a>
         </div>
-        <iframe width="972" height="500" scrolling="no" frameborder="0" src="./files/iframeindex.html"></iframe>
+        <iframe width="972" height="500" scrolling="no" frameborder="0" src="/winner/files/iframeindex.jsp"></iframe>
         <div class=" download apply">
             <div class="title">
                 <img src="./files/applyLeft.png">合作商风采<img src="./files/applyRight.png">
@@ -420,193 +397,193 @@
 </div>
 
 <div class="bottomAd" style="position:fixed; bottom:0px; margin:0 auto;">
-    <script type="text/javascript">
-        function hide() {
-            $(".bottomAd").hide();
-        }
-    </script>
+<!--     <script type="text/javascript"> -->
+//         function hide() {
+//             $(".bottomAd").hide();
+//         }
+<!--     </script> -->
     <img src="http://ying158.com/images/yingjia.png" border="0" usemap="#Map">
     <map name="Map" id="Map">
         <area shape="rect" coords="1420,23,1445,48" href="javascript:hide();">
     </map>
 </div>
 
-            <script src="./files/knockout-3.2.0.js"></script>
-            <script>
-    $("#marqueeContainer img").click(function () {
-        var bigImg = $(this).attr("name");
-        var url = "/Content/images/jw/" + bigImg;
-        $("#bigImg #theBigImg").attr("src", url);
-        $("#bigImg").modal();
-    });
+<!--             <script src="./files/knockout-3.2.0.js"></script> -->
+<!--             <script> -->
+//     $("#marqueeContainer img").click(function () {
+//         var bigImg = $(this).attr("name");
+//         var url = "/Content/images/jw/" + bigImg;
+//         $("#bigImg #theBigImg").attr("src", url);
+//         $("#bigImg").modal();
+//     });
 
-    (function () {
-        var raf = window.requestAnimationFrame || function _raf(f) { return setTimeout(f, 16.6); }
-        var caf = window.cancelAnimationFrame || function _caf(f) { return clearTimeout(f); }
-        var tick = function () {
-            var ticks = {};
-            var _tick = function _tick(name, newTick) {
-                if (!ticks[name] || !newTick) {
-                    ticks[name] = newTick;
-                }
-                lastTick = ticks[name];
-                ticks[name] = newTick;
-                return newTick - lastTick;
-            };
-            return _tick;
-        }();
+//     (function () {
+//         var raf = window.requestAnimationFrame || function _raf(f) { return setTimeout(f, 16.6); }
+//         var caf = window.cancelAnimationFrame || function _caf(f) { return clearTimeout(f); }
+//         var tick = function () {
+//             var ticks = {};
+//             var _tick = function _tick(name, newTick) {
+//                 if (!ticks[name] || !newTick) {
+//                     ticks[name] = newTick;
+//                 }
+//                 lastTick = ticks[name];
+//                 ticks[name] = newTick;
+//                 return newTick - lastTick;
+//             };
+//             return _tick;
+//         }();
 
-        var speed = 33.333333;
-        var tab = document.getElementById("introMarquee");
-        var tab1 = document.getElementById("articleImgs");
-        var tab2 = document.getElementById("articleImgs2");
-        tab2.innerHTML = tab1.innerHTML;
-        $("#articleImgs2 img").click(function () {
-            var bigImg = $(this).attr("name");
-            var url = "/Content/images/jw/" + bigImg;
-            $("#bigImg #theBigImg").attr("src", url);
-            $("#bigImg").modal();
-        });
-        var offsetWidth1 = tab1.offsetWidth;
-        var offsetLeft2 = tab2.offsetLeft;
-        var scrollLeft = 0;
-        var MyMar;
-        function Marquee(time) {
-            t = tick("introMarquee", time || new Date());
-            MyMar = raf(Marquee);
+//         var speed = 33.333333;
+//         var tab = document.getElementById("introMarquee");
+//         var tab1 = document.getElementById("articleImgs");
+//         var tab2 = document.getElementById("articleImgs2");
+//         tab2.innerHTML = tab1.innerHTML;
+//         $("#articleImgs2 img").click(function () {
+//             var bigImg = $(this).attr("name");
+//             var url = "/Content/images/jw/" + bigImg;
+//             $("#bigImg #theBigImg").attr("src", url);
+//             $("#bigImg").modal();
+//         });
+//         var offsetWidth1 = tab1.offsetWidth;
+//         var offsetLeft2 = tab2.offsetLeft;
+//         var scrollLeft = 0;
+//         var MyMar;
+//         function Marquee(time) {
+//             t = tick("introMarquee", time || new Date());
+//             MyMar = raf(Marquee);
 
-            if (scrollLeft >= offsetLeft2) {
-                scrollLeft = scrollLeft % offsetLeft2;
-            }
-            scrollLeft += (1 / speed) * t;
-            tab.scrollLeft = scrollLeft;
-        }
-        var MyMar = raf(Marquee, speed);
-        tab.onmouseover = function () { caf(MyMar); tick("introMarquee", null); };
-        tab.onmouseout = function () { MyMar = raf(Marquee, speed); };
-        var currentLeft = 0;
+//             if (scrollLeft >= offsetLeft2) {
+//                 scrollLeft = scrollLeft % offsetLeft2;
+//             }
+//             scrollLeft += (1 / speed) * t;
+//             tab.scrollLeft = scrollLeft;
+//         }
+//         var MyMar = raf(Marquee, speed);
+//         tab.onmouseover = function () { caf(MyMar); tick("introMarquee", null); };
+//         tab.onmouseout = function () { MyMar = raf(Marquee, speed); };
+//         var currentLeft = 0;
         
-    })();
+//     })();
 
-    var loginFromPage = function () {
-        var phone = $("#phone").val();
-        var password = $("#password").val();
-        if ($.trim(phone) == "") {
-            $("#phone").focus();
-            return;
-        }
-        if ($.trim(password) == "") {
-            $("#password").focus();
-            return;
-        }
-        $(".loginBtn").addClass("disabled");
-        $.post("/api/authentication/signIn", { login: phone, password: password }, function (data) {
-            if (data.isAuthenticated) {
-                window.location.href = '/account/UserCenter';
-            } else {
-                $(".loginInfo #loginFail").html(data.errorMessage);
-                $(".loginInfo").modal();
-                $(".loginBtn").removeClass("disabled");
-            }
-        });
-    }
+//     var loginFromPage = function () {
+//         var phone = $("#phone").val();
+//         var password = $("#password").val();
+//         if ($.trim(phone) == "") {
+//             $("#phone").focus();
+//             return;
+//         }
+//         if ($.trim(password) == "") {
+//             $("#password").focus();
+//             return;
+//         }
+//         $(".loginBtn").addClass("disabled");
+//         $.post("/api/authentication/signIn", { login: phone, password: password }, function (data) {
+//             if (data.isAuthenticated) {
+//                 window.location.href = '/account/UserCenter';
+//             } else {
+//                 $(".loginInfo #loginFail").html(data.errorMessage);
+//                 $(".loginInfo").modal();
+//                 $(".loginBtn").removeClass("disabled");
+//             }
+//         });
+//     }
 
-    function login() {
+//     function login() {
 
-        var phone = $.trim($("#phoneNum").val());
-        if (phone == "") {
-            $("#infosResult").html("请输入您的手机号码");
-            $("#infoUser").modal();
-            $("#phoneNum").focus();
-            return false;
-        }
+//         var phone = $.trim($("#phoneNum").val());
+//         if (phone == "") {
+//             $("#infosResult").html("请输入您的手机号码");
+//             $("#infoUser").modal();
+//             $("#phoneNum").focus();
+//             return false;
+//         }
 
-        var pwd = $.trim($("#pwd").val());
+//         var pwd = $.trim($("#pwd").val());
 
-        if (pwd == "") {
-            $("#infosResult").html("请输入登录密码");
-            $("#infoUser").modal();
-            $("#pwd").focus();
-            return false;
-        }
+//         if (pwd == "") {
+//             $("#infosResult").html("请输入登录密码");
+//             $("#infoUser").modal();
+//             $("#pwd").focus();
+//             return false;
+//         }
 
-        $(".loginBtn").addClass("disabled");
-        $.post("/api/authentication/signIn", { login: phone, password: pwd }, function (data) {
-            if (data.isAuthenticated) {
-                if (data.returnUrl) {
-                    window.location.href = data.returnUrl;
-                } else {
-                    window.location.href = '/account/UserCenter';
-                }
-            } else {
-                $("#loginError").html(data.errorMessage);
-                $("#loginError").show();
-                $(".loginBtn").removeClass("disabled");
-            }
-        });
-    }
-    var counter = 1;
-    var announceTimer = function () {
-        return setInterval(function () {
-            var length = $("#spanAnnouncements > span").length;
-            if (length) {
+//         $(".loginBtn").addClass("disabled");
+//         $.post("/api/authentication/signIn", { login: phone, password: pwd }, function (data) {
+//             if (data.isAuthenticated) {
+//                 if (data.returnUrl) {
+//                     window.location.href = data.returnUrl;
+//                 } else {
+//                     window.location.href = '/account/UserCenter';
+//                 }
+//             } else {
+//                 $("#loginError").html(data.errorMessage);
+//                 $("#loginError").show();
+//                 $(".loginBtn").removeClass("disabled");
+//             }
+//         });
+//     }
+//     var counter = 1;
+//     var announceTimer = function () {
+//         return setInterval(function () {
+//             var length = $("#spanAnnouncements > span").length;
+//             if (length) {
 
-                $("#spanAnnouncements > span").each(function (i, e) {
-                    if (i == counter % length) {
-                        $(this).removeClass("hidden");
-                    } else {
-                        $(this).addClass("hidden");
+//                 $("#spanAnnouncements > span").each(function (i, e) {
+//                     if (i == counter % length) {
+//                         $(this).removeClass("hidden");
+//                     } else {
+//                         $(this).addClass("hidden");
 
-                    }
-                });
-                counter++;
-                if (counter == length) counter = 0;
-            }
+//                     }
+//                 });
+//                 counter++;
+//                 if (counter == length) counter = 0;
+//             }
 
-        }, 2000);
-    };
+//         }, 2000);
+//     };
 
-    var timerId = announceTimer();
-    var announcements = ko.observableArray();
-    var announcement = ko.observable();
-    var showannouncement = function (an) {
-        announcement(an);
-        $('#announcementModal').modal('show');
-    }
-    $(function () {
+//     var timerId = announceTimer();
+//     var announcements = ko.observableArray();
+//     var announcement = ko.observable();
+//     var showannouncement = function (an) {
+//         announcement(an);
+//         $('#announcementModal').modal('show');
+//     }
+//     $(function () {
 
-        ko.applyBindings(announcements, document.getElementById("announcements"));
-        ko.applyBindings(announcement, document.getElementById("announcementModal"));
+//         ko.applyBindings(announcements, document.getElementById("announcements"));
+//         ko.applyBindings(announcement, document.getElementById("announcementModal"));
 
-        $.get("/api/article/articleByCategory/b8c8dd38-0805-4ef4-bff6-17b835fca8aa/5", "", function (rel) {
+//         $.get("/api/article/articleByCategory/b8c8dd38-0805-4ef4-bff6-17b835fca8aa/5", "", function (rel) {
 
-            $.each(rel, function (i, v) {
-                if (v.title.length > 32) {
-                    v.title = v.title.substring(0, 30) + '...';
-                }
-            });
-            announcements(rel);
-        });
+//             $.each(rel, function (i, v) {
+//                 if (v.title.length > 32) {
+//                     v.title = v.title.substring(0, 30) + '...';
+//                 }
+//             });
+//             announcements(rel);
+//         });
 
-    });
+//     });
 
 
 
-    var notReady = function () {
-        $("#closePositionDialog #errorMsg").html("<h4>即将推出，敬请期待！</h4>");
-        $("#closePositionDialog").modal();
-    }
+//     var notReady = function () {
+//         $("#closePositionDialog #errorMsg").html("<h4>即将推出，敬请期待！</h4>");
+//         $("#closePositionDialog").modal();
+//     }
 
-</script>
-<script>
-    var _hmt = _hmt || [];
-    (function () {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?3a07c2531807d298ad88175fa22f9413";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
+<!-- </script> -->
+<!-- <script> -->
+//     var _hmt = _hmt || [];
+//     (function () {
+//         var hm = document.createElement("script");
+//         hm.src = "//hm.baidu.com/hm.js?3a07c2531807d298ad88175fa22f9413";
+//         var s = document.getElementsByTagName("script")[0];
+//         s.parentNode.insertBefore(hm, s);
+//     })();
+<!-- </script> -->
 
 
 
@@ -750,10 +727,11 @@
 	<div class="foot3">
 		<div class="container">
 			<div class="row">
-                <script type="text/javascript">
-var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1255940205'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1255940205%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-                </script><span id="cnzz_stat_icon_1255940205"><a href="http://www.cnzz.com/stat/website.php?web_id=1255940205" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./files/pic1.gif"></a></span><script src="./files/z_stat.php" type="text/javascript"></script><script src="./files/core.php" charset="utf-8" type="text/javascript"></script>
+<!--                 <script type="text/javascript"> -->
+// var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+//                     document.write(unescape("%3Cspan id='cnzz_stat_icon_1255940205'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1255940205%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+<!--                 </script> -->
+                <span id="cnzz_stat_icon_1255940205"><a href="http://www.cnzz.com/stat/website.php?web_id=1255940205" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./files/pic1.gif"></a></span><script src="./files/z_stat.php" type="text/javascript"></script><script src="./files/core.php" charset="utf-8" type="text/javascript"></script>
 				Copyright © 2010 - 2015 www.ying158.com All Rights Reserverd 杭州吉威投资管理有限公司 版权所有<br>
 				浙ICP备14030807号-3 杭州市江干区钱江新城迪凯银座19F 4000-999-158
 			</div>
@@ -911,126 +889,128 @@ var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " 
 </div>
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript"> -->
 
 
 
-	function showBannedStocks() {
-		$('#bannedStockModal').modal('show');
-	}
-</script>
+// 	function showBannedStocks() {
+// 		$('#bannedStockModal').modal('show');
+// 	}
+<!-- </script> -->
 
 
-	<script>
-		$("#aFloatTools_Show").click(function () {
-			$('#divFloatToolsView').animate({ width: 'show', opacity: 'show' }, 100, function () { $('#divFloatToolsView').show(); });
-			$('#aFloatTools_Show').hide();
-			$('#aFloatTools_Hide').show();
-		});
-		$("#aFloatTools_Hide").click(function () {
-			$('#divFloatToolsView').animate({ width: 'hide', opacity: 'hide' }, 100, function () { $('#divFloatToolsView').hide(); });
-			$('#aFloatTools_Show').show();
-			$('#aFloatTools_Hide').hide();
-		});
-		$('*[data-toggle="tooltip"]').tooltip();
-		$(document).ready(function () {
-			var href = window.location.href.toLowerCase();
+<!-- 	<script> -->
+// 		$("#aFloatTools_Show").click(function () {
+// 			$('#divFloatToolsView').animate({ width: 'show', opacity: 'show' }, 100, function () { $('#divFloatToolsView').show(); });
+// 			$('#aFloatTools_Show').hide();
+// 			$('#aFloatTools_Hide').show();
+// 		});
+// 		$("#aFloatTools_Hide").click(function () {
+// 			$('#divFloatToolsView').animate({ width: 'hide', opacity: 'hide' }, 100, function () { $('#divFloatToolsView').hide(); });
+// 			$('#aFloatTools_Show').show();
+// 			$('#aFloatTools_Hide').hide();
+// 		});
+// 		$('*[data-toggle="tooltip"]').tooltip();
+// 		$(document).ready(function () {
+// 			var href = window.location.href.toLowerCase();
 
-			if (href.indexOf("/account/") >= 0) {
-				$(".topNav li:eq(7)").addClass("active");
+// 			if (href.indexOf("/account/") >= 0) {
+// 				$(".topNav li:eq(7)").addClass("active");
 
-			} else if (href.indexOf("/home/help") >= 0) {
+// 			} else if (href.indexOf("/home/help") >= 0) {
 
-				$(".topNav li:eq(5)").addClass("active");
+// 				$(".topNav li:eq(5)").addClass("active");
 
-			} else if (href.indexOf("/home/kcenter") >= 0) {
+// 			} else if (href.indexOf("/home/kcenter") >= 0) {
 
-				$(".topNav li:eq(1)").addClass("active");
+// 				$(".topNav li:eq(1)").addClass("active");
 
-			} else if (href.indexOf("/home/newscenter") >= 0 || href.indexOf("/news/") >= 0) {
+// 			} else if (href.indexOf("/home/newscenter") >= 0 || href.indexOf("/news/") >= 0) {
 
-				$(".topNav li:eq(3)").addClass("active");
+// 				$(".topNav li:eq(3)").addClass("active");
 
-			} else if (href.indexOf("/home/rule") >= 0) {
+// 			} else if (href.indexOf("/home/rule") >= 0) {
 
-				$(".topNav li:eq(3)").addClass("active");
+// 				$(".topNav li:eq(3)").addClass("active");
 
-			} else if (href.indexOf("/tradingsoftware") >= 0) {
+// 			} else if (href.indexOf("/tradingsoftware") >= 0) {
 
-				$(".topNav li:eq(6)").addClass("active");
+// 				$(".topNav li:eq(6)").addClass("active");
 
-			} else if (href.indexOf("/gzpeizi") >= 0) {
+// 			} else if (href.indexOf("/gzpeizi") >= 0) {
 
-				$(".topNav li:eq(2)").addClass("active");
+// 				$(".topNav li:eq(2)").addClass("active");
 
-			}
-			else if (href.indexOf("jiameng") >= 0) {
+// 			}
+// 			else if (href.indexOf("jiameng") >= 0) {
 
-				$(".topNav li:eq(4)").addClass("active");
+// 				$(".topNav li:eq(4)").addClass("active");
 
-			} else {
+// 			} else {
 
-				$(".topNav li:eq(0)").addClass("active");
-			}
-
-
-		});
-
-		var kefu = function (num) {
-			var url = "";
-			switch (num) {
-				case 1:
-					url = "tencent://message/?uin=3044901756&Menu=yes";
-					break;
-				case 2:
-					url = "tencent://message/?uin=773031422&Menu=yes";
-					break;
-				default:
-					url = "tencent://message/?uin=2093717869&Menu=yes";
-			}
-			window.open(url, '在线客服', 'height=405,width=500,top=200,left=200,toolbar=no,menubar=no,scrollbars=yes, resizable=no,location=no, status=no');
-		}
-
-		var loginFromModal = function () {
-			var un = $("#modalUser").val();
-			var pw = $("#modalPw").val();
-			if (un == "" || un == undefined) {
-				$("#loginFail").html("请输入用户名");
-				$(".loginInfo").modal();
-				return;
-			}
-			if (pw == "" || pw == undefined) {
-				$("#loginFail").html("请输入登录密码");
-				$(".loginInfo").modal();
-				return;
-			}
-			$.post("/api/authentication/signIn", { login: un, password: pw }, function (data) {
-				if (data.isAuthenticated) {
-					window.location.reload();
-				} else {
-					$("#loginFail").html("用户名或密码有误");
-					$(".loginInfo").modal();
-				}
-			});
-
-		}
+// 				$(".topNav li:eq(0)").addClass("active");
+// 			}
 
 
-		var gotoTop = function () {
-			$("html,body").animate({ scrollTop: 0 }, 1000);
-		}
+// 		});
 
-	</script>
+// 		var kefu = function (num) {
+// 			var url = "";
+// 			switch (num) {
+// 				case 1:
+// 					url = "tencent://message/?uin=3044901756&Menu=yes";
+// 					break;
+// 				case 2:
+// 					url = "tencent://message/?uin=773031422&Menu=yes";
+// 					break;
+// 				default:
+// 					url = "tencent://message/?uin=2093717869&Menu=yes";
+// 			}
+// 			window.open(url, '在线客服', 'height=405,width=500,top=200,left=200,toolbar=no,menubar=no,scrollbars=yes, resizable=no,location=no, status=no');
+// 		}
 
-    <script type="text/javascript">
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?bb6cf2322300378a89a69641641427c0";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-    </script>
+// 		var loginFromModal = function () {
+// 			var un = $("#modalUser").val();
+// 			var pw = $("#modalPw").val();
+// 			if (un == "" || un == undefined) {
+// 				$("#loginFail").html("请输入用户名");
+// 				$(".loginInfo").modal();
+// 				return;
+// 			}
+// 			if (pw == "" || pw == undefined) {
+// 				$("#loginFail").html("请输入登录密码");
+// 				$(".loginInfo").modal();
+// 				return;
+// 			}
+// 			$.post("/api/authentication/signIn", { login: un, password: pw }, function (data) {
+// 				if (data.isAuthenticated) {
+// 					window.location.reload();
+// 				} else {
+// 					$("#loginFail").html("用户名或密码有误");
+// 					$(".loginInfo").modal();
+// 				}
+// 			});
+
+// 		}
+
+
+// 		var gotoTop = function () {
+// 			$("html,body").animate({ scrollTop: 0 }, 1000);
+// 		}
+
+<!-- 	</script> -->
+
+<!--     <script type="text/javascript"> -->
+// var _hmt = _hmt || [];
+// (function() {
+//   var hm = document.createElement("script");
+//   hm.src = "//hm.baidu.com/hm.js?bb6cf2322300378a89a69641641427c0";
+//   var s = document.getElementsByTagName("script")[0];
+//   s.parentNode.insertBefore(hm, s);
+// })();
+<!--     </script> -->
+
+
 
 </body>
 </html>

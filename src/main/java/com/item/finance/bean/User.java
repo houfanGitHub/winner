@@ -145,4 +145,13 @@ public class User  {
 		this.userName = userName;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", createDate=" + createDate + ", delFlag="
+				+ delFlag + ", identity=" + identity + ", mobile_Phone="
+				+ mobile_Phone + ", name=" + name + ", password=" + password
+				+ ", salt=" + salt + ", status=" + status + ", updateDate="
+				+ updateDate + ", userName=" + userName + "]";
+	}
+
 }
