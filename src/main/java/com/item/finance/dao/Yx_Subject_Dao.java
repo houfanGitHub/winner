@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.item.finance.bean.FinanceProductFunds;
+import com.item.finance.bean.Subject;
 
 @Component
 public class Yx_Subject_Dao {
@@ -17,27 +18,27 @@ public class Yx_Subject_Dao {
 	public Session getSession(){
 		return sessionFactory.getCurrentSession();
 	}
-	public void saveFinanceProductFunds(FinanceProductFunds financeProductFunds){
+	public void saveSubject(Subject subject){
 		Session session=getSession();
-		session.save(financeProductFunds);
+		session.save(subject);
 	}
-	public FinanceProductFunds selectFinanceProductFunds(String id){
+	public Subject selectSubject(String id){
 		Session session=getSession();
-		FinanceProductFunds financeProductFunds=(FinanceProductFunds)session.get(FinanceProductFunds.class, id);
-	return financeProductFunds;
+		Subject subject=(Subject)session.get(Subject.class, id);
+	return subject;
 	}
-	public List<FinanceProductFunds> listFinanceProductFunds(){
+	public List<Subject> listSubject(){
 		Session session=getSession();
-		String hql="from FinanceProductFunds";
-		List<FinanceProductFunds> list=session.createQuery(hql).list();
+		String hql="from Subject";
+		List<Subject> list=session.createQuery(hql).list();
 		return list;
 	}
-    public void deleteFinanceProductFunds(FinanceProductFunds financeProductFunds){
+    public void deleteSubject(Subject subject){
     	Session session=getSession();
-    	session.delete(financeProductFunds);
+    	session.delete(subject);
     }
-    public void updateFinanceProductFunds(FinanceProductFunds financeProductFunds){
+    public void updateSubject(Subject subject){
     	Session session=getSession();
-    	session.update(financeProductFunds);
+    	session.update(subject);
     }
 }
