@@ -22,7 +22,7 @@ public interface ItemServiceImpl<T> {
 	 * @param id
 	 * @return
 	 */
-	public T getById(int id);
+	public T selectGetById(String id);
 	
 	/**
 	 * 查询所有
