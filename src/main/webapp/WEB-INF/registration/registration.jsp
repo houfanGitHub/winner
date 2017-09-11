@@ -14,27 +14,28 @@
 	
 <meta name="keywords" content="盈+，盈，社区金融，O2O社区金融，社区金融O2O，O2O，互联网+社区金融，O2O连锁，社区门店，首家社区金融，社区金融服务，综合金融，互联网金融，体验中心，普惠金融，金融创新，社区化，普惠化，全渠道化，互联网线上平台，O2O交易，全国首家，盈十，金融衍生品，固收类理财，私募基金，股权基金，股指期货，玩转股指，商品期货，国际期货，外盘，A50，沪深300，中证500，上证50">
 <meta name="description" content="盈+——全国首家互联网金融交流体验中心，与您共盈，给财富做加法。">
-<link href="http://pro.ying158.com/resources/web/images/icon.ico" type="image/x-icon" rel="shortcut icon">
+<!-- <link href="http://pro.ying158.com/resources/web/images/icon.ico" type="image/x-icon" rel="shortcut icon"> -->
 
-<link href="../files/iconfont.css" rel="stylesheet" type="text/css">
-<link href="../files/common.css" rel="stylesheet">
-<link href="../files/jw.css" rel="stylesheet">
+<link href="/winner/files/iconfont.css" rel="stylesheet" type="text/css">
+<link href="/winner/files/common.css" rel="stylesheet">
+<link href="/winner/files/jw.css" rel="stylesheet">
 
-<!-- <script src="../files/hm.js"></script> -->
-<script src="../files/jquery.js"></script>
-<!-- <script type="text/javascript" src="../files/layer.js"></script> -->
-<link rel="stylesheet" href="../files/layer.css" id="layui_layer_skinlayercss">
-<!-- <script src="../files/echarts.js"></script> -->
+<!-- <script src="/winner/files/hm.js"></script> -->
+<!-- <script src="/winner/files/jquery.js"></script> -->
+<script type="text/javascript" src="/winner/js/jquery-3.2.0.min.js"></script>
+<!-- <script type="text/javascript" src="/winner/files/layer.js"></script> -->
+<link rel="stylesheet" href="/winner/files/layer.css" id="layui_layer_skinlayercss">
+<!-- <script src="/winner/files/echarts.js"></script> -->
 </head>
 <body>
 
 <div class="logo container">
     <div class="row">
         <div class="logoImg">
-            <a href="http://www.ying158.com/home"><img src="../files/logo2.png" onmouseover="this.src = &#39;/resources/web/images/logo1.png&#39;" onmouseout="this.src = &#39;/resources/web/images/logo2.png&#39;"></a>
+            <a href="http://www.ying158.com/home"><img src="/winner/files/logo2.png" onmouseover="this.src = &#39;/resources/web/images/logo1.png&#39;" onmouseout="this.src = &#39;/resources/web/images/logo2.png&#39;"></a>
         </div>
         <div class="telInfo">
-            <img src="../files/400Icon.png" onmousemove="this.src = &#39;/resources/web/images/400IconActive.png&#39;" onmouseout="	this.src = &#39;/resources/web/images/400Icon.png&#39;">
+            <img src="/winner/files/400Icon.png" onmousemove="this.src = &#39;/resources/web/images/400IconActive.png&#39;" onmouseout="	this.src = &#39;/resources/web/images/400Icon.png&#39;">
             <div class="detail">
 
                         <a style="font-size:18px;float:right;margin-top:5px;color:#917739;" href="http://pro.ying158.com/web/login">登录</a>
@@ -95,16 +96,35 @@
         </div>
     </div>
 </div>
+<!-- <script type="text/javascript"> -->
+<!--     $(function(){ -->
+<!--         function showIn(url){ -->
+<!--             var info="<div class='mydig'><div class='bg'></div><div class='imgbox'><a href="+url+"></a></div></div>"; -->
+<!--             $('body').append(info); -->
+<!--         } -->
+
+<!--     }); -->
+
+<!-- </script>  -->
 <script type="text/javascript">
-    $(function(){
-        function showIn(url){
-            var info="<div class='mydig'><div class='bg'></div><div class='imgbox'><a href="+url+"></a></div></div>";
-            $('body').append(info);
-        }
+	function toSubmit(){
+		var phone = $("#phone").val();
+		var password = $("#password").val();
+		var password2 = $("#password2").val();
+		if(password2!=password){
+			alert(password2);
+			return false;
+		}else if(phone.length()!=11){
+			alert(phone.length());
+			return false;
+		}else{
+			document.forms[0].action="/winner/itemweb/userRegistration";
+			document.forms[0].submit();
+		}
+	}
+</script>
 
-    });
-
-</script>    <div class="proMain">
+   <div class="proMain">
     	</div>
 	<div class="row register">
 		<div class="title">
@@ -118,7 +138,7 @@
 				<hr>
 			</div>
 		</div>
-        <form:form action="userRegistration" method="post" modelAttribute="User">
+        <form:form method="post" modelAttribute="User">
         <div class="item">
             <div class="rLabel">
                 用户名
@@ -141,7 +161,7 @@
             </div>
             <div class="rInput">
                 <input type="text" placeholder="图片验证码" id="picCode" class="form-control textInput imgcode">
-                <img src="../files/authImage" id="captcha" onclick="updcaptcha(&#39;&#39;)" title="看不清楚,点击换一张" alt="看不清楚,点击换一张" class="picCodeImg">
+                <img src="/winner/files/authImage" id="captcha" onclick="updcaptcha(&#39;&#39;)" title="看不清楚,点击换一张" alt="看不清楚,点击换一张" class="picCodeImg">
                 <span class="errorInfo">请输入图形验证码</span>
             </div>
         </div>
@@ -193,7 +213,7 @@
 				&nbsp;
 			</div>
 			<div class="rInput">
-				<input type="submit" value="立即注册" class="btn registBtn submit">
+				<input type="button" value="立即注册" class="btn registBtn submit">
 			</div>
 		</div>
         </form:form>
@@ -207,25 +227,25 @@
 		</div>
 	</div>
 	
-<script type="text/javascript" src="../files/regis.js"></script>
-<script type="text/javascript">
-$(function(){
-	var b = "";
-	regis(b);
-});
+<!-- <script type="text/javascript" src="/winner/files/regis.js"></script> -->
+<!-- <script type="text/javascript"> -->
+<!-- // $(function(){ -->
+<!-- // 	var b = ""; -->
+<!-- // 	regis(b); -->
+<!-- // }); -->
 
-function updcaptcha(){
-	document.getElementById("captcha").src="/authImage?"+new Date().getTime();
-}
+<!-- // function updcaptcha(){ -->
+<!-- // 	document.getElementById("captcha").src="/authImage?"+new Date().getTime(); -->
+<!-- // } -->
 
-function showAgreement(){
-	window.open("/web/zcxy","注册协议","height=800,width=1000,scrollbars=yes, resizable=no,location=no, status=no,screenX=100") 
-}
-</script>
+<!-- // function showAgreement(){ -->
+<!-- // 	window.open("/web/zcxy","注册协议","height=800,width=1000,scrollbars=yes, resizable=no,location=no, status=no,screenX=100")  -->
+<!-- // } -->
+<!-- </script> -->
 
     <div class="security">
         <div class="item">
-            <img src="../files/indexSecurity1.png">
+            <img src="/winner/files/indexSecurity1.png">
             <div class="detail">
                 资金银行监管
                 <div class="desc">
@@ -234,7 +254,7 @@ function showAgreement(){
             </div>
         </div>
         <div class="item">
-            <img src="../files/indexSecurity2.png">
+            <img src="/winner/files/indexSecurity2.png">
             <div class="detail">
                 交易证监会监管
                 <div class="desc">
@@ -243,7 +263,7 @@ function showAgreement(){
             </div>
         </div>
         <div class="item">
-            <img src="../files/indexSecurity3.png">
+            <img src="/winner/files/indexSecurity3.png">
             <div class="detail">
                 风控盈+监管
                 <div class="desc">
@@ -259,18 +279,18 @@ function showAgreement(){
                     <div class="title" style=" padding-left:10px; font-weight:normal; font-size:20px; color:#ccc;">
                         主要合作机构
                     </div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.picc.com/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/1_on.png&#39;" onmouseout="this.src = &#39;/resources/web/images/hzhb/1.jpg&#39;" src="../files/1.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.fuioupay.com/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/2_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/2.jpg&#39;" src="../files/2.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.nanhua.net/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/3_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/3.jpg&#39;" src="../files/3.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.zttrust.com.cn/stations/526623d20a/index.php/5268e6b50a"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/4_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/4.jpg&#39;" src="../files/4.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://sc.hkex.com.hk/TuniS/www.hkex.com.hk/eng/index.htm/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/5_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/5.jpg&#39;" src="../files/5.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.cmegroup.com/cn-s/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/6_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/6.jpg&#39;" src="../files/6.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.sgx.com/wps/portal/sgxweb_ch/home/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOKNHB1NPAycDSz9wwzMDTxD_Z2Cg8PCDANdjYEKIoEKDHAARwNC-sP1o8BK8JhQkBthkO6oqAgAzDYPQQ!!/dl5/d5/L2dBISEvZ0FBIS9nQSEh/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/7_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/7.jpg&#39;" src="../files/7.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.neeq.com.cn/index/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/8_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/8.jpg&#39;" src="../files/8.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.cmbchina.com/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/9_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/9.jpg&#39;" src="../files/9.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.bankcomm.com/BankCommSite/default.shtml"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/10_on.png&#39;" onmouseout="this.src = &#39;/resources/web/images/hzhb/10.jpg&#39;" src="../files/10.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.ccb.com/cn/home/index.html"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/11_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/11.jpg&#39;" src="../files/11.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.icbc.com.cn/icbc/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/12_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/12.jpg&#39;" src="../files/12.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.picc.com/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/1_on.png&#39;" onmouseout="this.src = &#39;/resources/web/images/hzhb/1.jpg&#39;" src="/winner/files/1.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.fuioupay.com/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/2_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/2.jpg&#39;" src="/winner/files/2.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.nanhua.net/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/3_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/3.jpg&#39;" src="/winner/files/3.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.zttrust.com.cn/stations/526623d20a/index.php/5268e6b50a"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/4_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/4.jpg&#39;" src="/winner/files/4.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://sc.hkex.com.hk/TuniS/www.hkex.com.hk/eng/index.htm/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/5_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/5.jpg&#39;" src="/winner/files/5.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.cmegroup.com/cn-s/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/6_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/6.jpg&#39;" src="/winner/files/6.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.sgx.com/wps/portal/sgxweb_ch/home/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOKNHB1NPAycDSz9wwzMDTxD_Z2Cg8PCDANdjYEKIoEKDHAARwNC-sP1o8BK8JhQkBthkO6oqAgAzDYPQQ!!/dl5/d5/L2dBISEvZ0FBIS9nQSEh/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/7_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/7.jpg&#39;" src="/winner/files/7.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.neeq.com.cn/index/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/8_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/8.jpg&#39;" src="/winner/files/8.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.cmbchina.com/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/9_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/9.jpg&#39;" src="/winner/files/9.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.bankcomm.com/BankCommSite/default.shtml"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/10_on.png&#39;" onmouseout="this.src = &#39;/resources/web/images/hzhb/10.jpg&#39;" src="/winner/files/10.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.ccb.com/cn/home/index.html"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/11_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/11.jpg&#39;" src="/winner/files/11.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.icbc.com.cn/icbc/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/12_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/12.jpg&#39;" src="/winner/files/12.jpg"></a></div>
                 </div>
 
                 <div class="ft_item ft_item_sns">
@@ -284,7 +304,7 @@ function showAgreement(){
                                 </div>
                                 <div class="tips_bd">
                                     <em class="arrow"></em>
-                                    <img src="../files/yj.jpg" alt="微信公共平台">
+                                    <img src="/winner/files/yj.jpg" alt="微信公共平台">
                                 </div>
                             </div>
                         </li>
@@ -307,7 +327,7 @@ function showAgreement(){
                           联系我们
                         </div>
                         <div class="contactInfo" style="padding-left:30px;">
-                            <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=508886246&amp;site=qq&amp;menu=yes"><img src="../files/qqIcon.png" onmouseover="$(this).css(&#39;height&#39;, &#39;52px&#39;);" onmouseout="    $(this).css(&#39;height&#39;, &#39;48px&#39;);"></a>
+                            <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=508886246&amp;site=qq&amp;menu=yes"><img src="/winner/files/qqIcon.png" onmouseover="$(this).css(&#39;height&#39;, &#39;52px&#39;);" onmouseout="    $(this).css(&#39;height&#39;, &#39;48px&#39;);"></a>
                             <span class="kefu">在线客服</span><span class="time">08:30 - 21:00</span>
                         </div>
                     </div>
@@ -325,14 +345,14 @@ function showAgreement(){
 			</div>
 		</div>
 	</div>
-<script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?06cf97732baac1a65bed8ae95f2384aa";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
+<!-- <script> -->
+<!-- //     var _hmt = _hmt || []; -->
+<!-- //     (function() { -->
+<!-- //         var hm = document.createElement("script"); -->
+<!-- //         hm.src = "//hm.baidu.com/hm.js?06cf97732baac1a65bed8ae95f2384aa"; -->
+<!-- //         var s = document.getElementsByTagName("script")[0]; -->
+<!-- //         s.parentNode.insertBefore(hm, s); -->
+<!-- //     })(); -->
+<!-- </script> -->
 </body>
 </html>

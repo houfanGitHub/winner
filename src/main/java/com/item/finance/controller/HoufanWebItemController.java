@@ -25,6 +25,11 @@ public class HoufanWebItemController {
 	@RequestMapping("/userRegistration")
 	public String userRegistration(User user){
 		System.out.println(user.toString());
+		return "redirect:/itemweb/index";
+	}
+	
+	@RequestMapping("/index")
+	public String index(){
 		return "index";
 	}
 	
