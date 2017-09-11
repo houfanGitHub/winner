@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.item.finance.bean.FinanceProductFunds;
 
 @Component
-public class Yx_SolidClosedClass_Dao {
+public class Yx_FinanceProductFunds_Dao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
