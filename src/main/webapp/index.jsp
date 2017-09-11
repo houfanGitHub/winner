@@ -5,18 +5,18 @@
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
 	<title>盈+理财-首页 - 盈+</title>
-<!-- 	<link href="http://www.ying158.com/Content/images/jw/icon.ico" type="image/x-icon" rel="shortcut icon"> -->
-<!-- 	<script src="./files/hm.js"></script><script src="./files/hm(1).js"></script><script> -->
+	<link href="http://www.ying158.com/Content/images/jw/icon.ico" type="image/x-icon" rel="shortcut icon">
+	<script src="/winner/files/hm.js"></script><script src="/winner/files/hm(1).js"></script><script>
 
 		
 	</script>
-	<link href="./files/common" rel="stylesheet">
+	<link href="/winner/files/common" rel="stylesheet">
 
-	<link href="./files/jw.less" rel="stylesheet">
+	<link href="/winner/files/jw.less" rel="stylesheet">
 
-	<script src="./files/jquery"></script>
+	<script src="/winner/files/jquery"></script>
 
-	<script src="./files/bootstrap"></script>
+	<script src="/winner/files/bootstrap"></script>
 
 
 	<style>
@@ -220,13 +220,13 @@
 		
 
 <!-- Chang URLs to wherever Video.js files will be hosted -->
-<link href="./files/video-js.css" rel="stylesheet" type="text/css">
+<link href="/winner/files/video-js.css" rel="stylesheet" type="text/css">
 <!-- video.js must be in the <head> for older IEs to work. -->
-<script src="./files/video.js"></script>
-<!-- <!-- Unless using the CDN hosted version, update the URL to the Flash SWF --> -->
-<!-- <script> -->
-//     videojs.options.flash.swf = "video-js.swf";
-<!-- </script> -->
+<script src="/winner/files/video.js"></script>
+<!-- Unless using the CDN hosted version, update the URL to the Flash SWF -->
+<script>
+    videojs.options.flash.swf = "video-js.swf";
+ </script> 
 
 <div class="indexBanner">
     
@@ -240,7 +240,7 @@
 
     <div class="carousel-inner" role="listbox">
                 <div class=" item active">
-                    <img src="./files/banner2.jpg" alt="[]">
+                    <img src="/winner/files/banner2.jpg" alt="[]">
                     
                 </div>
     </div>
@@ -262,8 +262,8 @@
             
             <p style="margin-top:20px; line-height:50px; font-size:20px; text-align:center; color:#fff;"><span style="color:#917739;">欢迎</span>盈主到来</p>
             <p style="margin-bottom:15px; line-height:50px; font-size:20px; text-align:center; color:#fff;">现在开始<span style="color:#917739;">您的财富</span> 之旅吧</p>
-            <a style="float:none; margin:0 auto; margin-left:15px;    display: inline-block;margin-bottom: 10px;" href="itemweb/toLogin"><img src="./files/ying_index_login_btn.png"></a>
-            <a style="float:none; margin:0 auto; margin-left:15px; margin-top:10px;" href="itemweb/toRegistration"><img src="./files/ying_index_reg_btn.png"></a>
+            <a style="float:none; margin:0 auto; margin-left:15px;    display: inline-block;margin-bottom: 10px;" href="itemweb/toLogin"><img src="/winner/files/ying_index_login_btn.png"></a>
+            <a style="float:none; margin:0 auto; margin-left:15px; margin-top:10px;" href="itemweb/toRegistration"><img src="/winner/files/ying_index_reg_btn.png"></a>
             
         </div>
     </div>
@@ -297,60 +297,60 @@
         <iframe width="972" height="500" scrolling="no" frameborder="0" src="/winner/files/iframeindex.jsp"></iframe>
         <div class=" download apply">
             <div class="title">
-                <img src="./files/applyLeft.png">合作商风采<img src="./files/applyRight.png">
+                <img src="/winner/files/applyLeft.png">合作商风采<img src="/winner/files/applyRight.png">
             </div>
             <div id="introMarquee">
                 <div id="marqueeContainer">
                     <ul id="articleImgs" class="unstyled" style="  background-color: #917739;padding-top: 10px;">
                         <li>
-                            <img src="./files/hezuo1.jpg" name="hezuo1Big.jpg">
+                            <img src="/winner/files/hezuo1.jpg" name="hezuo1Big.jpg">
                         </li>
                         <li>
-                            <img src="./files/hezuo2.jpg" name="hezuo2Big.jpg">
+                            <img src="/winner/files/hezuo2.jpg" name="hezuo2Big.jpg">
                         </li>
                         <li>
-                            <img src="./files/hezuo3.jpg" name="hezuo3Big.jpg">
+                            <img src="/winner/files/hezuo3.jpg" name="hezuo3Big.jpg">
                         </li>
                         <li>
-                            <img src="./files/hezuo4.jpg" name="hezuo4Big.jpg">
+                            <img src="/winner/files/hezuo4.jpg" name="hezuo4Big.jpg">
                         </li>
                         <li>
-                            <img src="./files/hezuo5.jpg" name="hezuo5Big.jpg">
+                            <img src="/winner/files/hezuo5.jpg" name="hezuo5Big.jpg">
                         </li>
                         <li>
-                            <img src="./files/hezuo6.jpg" name="hezuo6Big.jpg">
+                            <img src="/winner/files/hezuo6.jpg" name="hezuo6Big.jpg">
                         </li>
                         <li>
-                            <img src="./files/hezuo7.jpg" name="hezuo7Big.jpg">
+                            <img src="/winner/files/hezuo7.jpg" name="hezuo7Big.jpg">
                         </li>
                         <li>
-                            <img src="./files/hezuo8.jpg" name="hezuo8Big.jpg">
+                            <img src="/winner/files/hezuo8.jpg" name="hezuo8Big.jpg">
                         </li>
                     </ul>
                     <ul id="articleImgs2" class="unstyled" style="background-color: #917739; padding-top: 10px;margin-left: -5px;">
                         <li>
-                            <img src="./files/hezuo1.jpg" name="hezuo1Big.jpg">
+                            <img src="/winner/files/hezuo1.jpg" name="hezuo1Big.jpg">
                         </li>
                         <li>
-                            <img src="./files/hezuo2.jpg" name="hezuo2Big.jpg">
+                            <img src="/winner/files/hezuo2.jpg" name="hezuo2Big.jpg">
                         </li>
                         <li>
-                            <img src="./files/hezuo3.jpg" name="hezuo3Big.jpg">
+                            <img src="/winner/files/hezuo3.jpg" name="hezuo3Big.jpg">
                         </li>
                         <li>
-                            <img src="./files/hezuo4.jpg" name="hezuo4Big.jpg">
+                            <img src="/winner/files/hezuo4.jpg" name="hezuo4Big.jpg">
                         </li>
                         <li>
-                            <img src="./files/hezuo5.jpg" name="hezuo5Big.jpg">
+                            <img src="/winner/files/hezuo5.jpg" name="hezuo5Big.jpg">
                         </li>
                         <li>
-                            <img src="./files/hezuo6.jpg" name="hezuo6Big.jpg">
+                            <img src="/winner/files/hezuo6.jpg" name="hezuo6Big.jpg">
                         </li>
                         <li>
-                            <img src="./files/hezuo7.jpg" name="hezuo7Big.jpg">
+                            <img src="/winner/files/hezuo7.jpg" name="hezuo7Big.jpg">
                         </li>
                         <li>
-                            <img src="./files/hezuo8.jpg" name="hezuo8Big.jpg">
+                            <img src="/winner/files/hezuo8.jpg" name="hezuo8Big.jpg">
                         </li>
                     </ul>
                 </div>
@@ -397,193 +397,193 @@
 </div>
 
 <div class="bottomAd" style="position:fixed; bottom:0px; margin:0 auto;">
-<!--     <script type="text/javascript"> -->
-//         function hide() {
-//             $(".bottomAd").hide();
-//         }
-<!--     </script> -->
+    <script type="text/javascript">
+        function hide() {
+            $(".bottomAd").hide();
+        }
+    </script>
     <img src="http://ying158.com/images/yingjia.png" border="0" usemap="#Map">
     <map name="Map" id="Map">
         <area shape="rect" coords="1420,23,1445,48" href="javascript:hide();">
     </map>
 </div>
 
-<!--             <script src="./files/knockout-3.2.0.js"></script> -->
-<!--             <script> -->
-//     $("#marqueeContainer img").click(function () {
-//         var bigImg = $(this).attr("name");
-//         var url = "/Content/images/jw/" + bigImg;
-//         $("#bigImg #theBigImg").attr("src", url);
-//         $("#bigImg").modal();
-//     });
+            <script src="/winner/files/knockout-3.2.0.js"></script>
+            <script>
+    $("#marqueeContainer img").click(function () {
+        var bigImg = $(this).attr("name");
+        var url = "/Content/images/jw/" + bigImg;
+        $("#bigImg #theBigImg").attr("src", url);
+        $("#bigImg").modal();
+    });
 
-//     (function () {
-//         var raf = window.requestAnimationFrame || function _raf(f) { return setTimeout(f, 16.6); }
-//         var caf = window.cancelAnimationFrame || function _caf(f) { return clearTimeout(f); }
-//         var tick = function () {
-//             var ticks = {};
-//             var _tick = function _tick(name, newTick) {
-//                 if (!ticks[name] || !newTick) {
-//                     ticks[name] = newTick;
-//                 }
-//                 lastTick = ticks[name];
-//                 ticks[name] = newTick;
-//                 return newTick - lastTick;
-//             };
-//             return _tick;
-//         }();
+    (function () {
+        var raf = window.requestAnimationFrame || function _raf(f) { return setTimeout(f, 16.6); }
+        var caf = window.cancelAnimationFrame || function _caf(f) { return clearTimeout(f); }
+        var tick = function () {
+            var ticks = {};
+            var _tick = function _tick(name, newTick) {
+                if (!ticks[name] || !newTick) {
+                    ticks[name] = newTick;
+                }
+                lastTick = ticks[name];
+                ticks[name] = newTick;
+                return newTick - lastTick;
+            };
+            return _tick;
+        }();
 
-//         var speed = 33.333333;
-//         var tab = document.getElementById("introMarquee");
-//         var tab1 = document.getElementById("articleImgs");
-//         var tab2 = document.getElementById("articleImgs2");
-//         tab2.innerHTML = tab1.innerHTML;
-//         $("#articleImgs2 img").click(function () {
-//             var bigImg = $(this).attr("name");
-//             var url = "/Content/images/jw/" + bigImg;
-//             $("#bigImg #theBigImg").attr("src", url);
-//             $("#bigImg").modal();
-//         });
-//         var offsetWidth1 = tab1.offsetWidth;
-//         var offsetLeft2 = tab2.offsetLeft;
-//         var scrollLeft = 0;
-//         var MyMar;
-//         function Marquee(time) {
-//             t = tick("introMarquee", time || new Date());
-//             MyMar = raf(Marquee);
+        var speed = 33.333333;
+        var tab = document.getElementById("introMarquee");
+        var tab1 = document.getElementById("articleImgs");
+        var tab2 = document.getElementById("articleImgs2");
+        tab2.innerHTML = tab1.innerHTML;
+        $("#articleImgs2 img").click(function () {
+            var bigImg = $(this).attr("name");
+            var url = "/Content/images/jw/" + bigImg;
+            $("#bigImg #theBigImg").attr("src", url);
+            $("#bigImg").modal();
+        });
+        var offsetWidth1 = tab1.offsetWidth;
+        var offsetLeft2 = tab2.offsetLeft;
+        var scrollLeft = 0;
+        var MyMar;
+        function Marquee(time) {
+            t = tick("introMarquee", time || new Date());
+            MyMar = raf(Marquee);
 
-//             if (scrollLeft >= offsetLeft2) {
-//                 scrollLeft = scrollLeft % offsetLeft2;
-//             }
-//             scrollLeft += (1 / speed) * t;
-//             tab.scrollLeft = scrollLeft;
-//         }
-//         var MyMar = raf(Marquee, speed);
-//         tab.onmouseover = function () { caf(MyMar); tick("introMarquee", null); };
-//         tab.onmouseout = function () { MyMar = raf(Marquee, speed); };
-//         var currentLeft = 0;
+            if (scrollLeft >= offsetLeft2) {
+                scrollLeft = scrollLeft % offsetLeft2;
+            }
+            scrollLeft += (1 / speed) * t;
+            tab.scrollLeft = scrollLeft;
+        }
+        var MyMar = raf(Marquee, speed);
+        tab.onmouseover = function () { caf(MyMar); tick("introMarquee", null); };
+        tab.onmouseout = function () { MyMar = raf(Marquee, speed); };
+        var currentLeft = 0;
         
-//     })();
+    })();
 
-//     var loginFromPage = function () {
-//         var phone = $("#phone").val();
-//         var password = $("#password").val();
-//         if ($.trim(phone) == "") {
-//             $("#phone").focus();
-//             return;
-//         }
-//         if ($.trim(password) == "") {
-//             $("#password").focus();
-//             return;
-//         }
-//         $(".loginBtn").addClass("disabled");
-//         $.post("/api/authentication/signIn", { login: phone, password: password }, function (data) {
-//             if (data.isAuthenticated) {
-//                 window.location.href = '/account/UserCenter';
-//             } else {
-//                 $(".loginInfo #loginFail").html(data.errorMessage);
-//                 $(".loginInfo").modal();
-//                 $(".loginBtn").removeClass("disabled");
-//             }
-//         });
-//     }
+    var loginFromPage = function () {
+        var phone = $("#phone").val();
+        var password = $("#password").val();
+        if ($.trim(phone) == "") {
+            $("#phone").focus();
+            return;
+        }
+        if ($.trim(password) == "") {
+            $("#password").focus();
+            return;
+        }
+        $(".loginBtn").addClass("disabled");
+        $.post("/api/authentication/signIn", { login: phone, password: password }, function (data) {
+            if (data.isAuthenticated) {
+                window.location.href = '/account/UserCenter';
+            } else {
+                $(".loginInfo #loginFail").html(data.errorMessage);
+                $(".loginInfo").modal();
+                $(".loginBtn").removeClass("disabled");
+            }
+        });
+    }
 
-//     function login() {
+    function login() {
 
-//         var phone = $.trim($("#phoneNum").val());
-//         if (phone == "") {
-//             $("#infosResult").html("请输入您的手机号码");
-//             $("#infoUser").modal();
-//             $("#phoneNum").focus();
-//             return false;
-//         }
+        var phone = $.trim($("#phoneNum").val());
+        if (phone == "") {
+            $("#infosResult").html("请输入您的手机号码");
+            $("#infoUser").modal();
+            $("#phoneNum").focus();
+            return false;
+        }
 
-//         var pwd = $.trim($("#pwd").val());
+        var pwd = $.trim($("#pwd").val());
 
-//         if (pwd == "") {
-//             $("#infosResult").html("请输入登录密码");
-//             $("#infoUser").modal();
-//             $("#pwd").focus();
-//             return false;
-//         }
+        if (pwd == "") {
+            $("#infosResult").html("请输入登录密码");
+            $("#infoUser").modal();
+            $("#pwd").focus();
+            return false;
+        }
 
-//         $(".loginBtn").addClass("disabled");
-//         $.post("/api/authentication/signIn", { login: phone, password: pwd }, function (data) {
-//             if (data.isAuthenticated) {
-//                 if (data.returnUrl) {
-//                     window.location.href = data.returnUrl;
-//                 } else {
-//                     window.location.href = '/account/UserCenter';
-//                 }
-//             } else {
-//                 $("#loginError").html(data.errorMessage);
-//                 $("#loginError").show();
-//                 $(".loginBtn").removeClass("disabled");
-//             }
-//         });
-//     }
-//     var counter = 1;
-//     var announceTimer = function () {
-//         return setInterval(function () {
-//             var length = $("#spanAnnouncements > span").length;
-//             if (length) {
+        $(".loginBtn").addClass("disabled");
+        $.post("/api/authentication/signIn", { login: phone, password: pwd }, function (data) {
+            if (data.isAuthenticated) {
+                if (data.returnUrl) {
+                    window.location.href = data.returnUrl;
+                } else {
+                    window.location.href = '/account/UserCenter';
+                }
+            } else {
+                $("#loginError").html(data.errorMessage);
+                $("#loginError").show();
+                $(".loginBtn").removeClass("disabled");
+            }
+        });
+    }
+    var counter = 1;
+    var announceTimer = function () {
+        return setInterval(function () {
+            var length = $("#spanAnnouncements > span").length;
+            if (length) {
 
-//                 $("#spanAnnouncements > span").each(function (i, e) {
-//                     if (i == counter % length) {
-//                         $(this).removeClass("hidden");
-//                     } else {
-//                         $(this).addClass("hidden");
+                $("#spanAnnouncements > span").each(function (i, e) {
+                    if (i == counter % length) {
+                        $(this).removeClass("hidden");
+                    } else {
+                        $(this).addClass("hidden");
 
-//                     }
-//                 });
-//                 counter++;
-//                 if (counter == length) counter = 0;
-//             }
+                    }
+                });
+                counter++;
+                if (counter == length) counter = 0;
+            }
 
-//         }, 2000);
-//     };
+        }, 2000);
+    };
 
-//     var timerId = announceTimer();
-//     var announcements = ko.observableArray();
-//     var announcement = ko.observable();
-//     var showannouncement = function (an) {
-//         announcement(an);
-//         $('#announcementModal').modal('show');
-//     }
-//     $(function () {
+    var timerId = announceTimer();
+    var announcements = ko.observableArray();
+    var announcement = ko.observable();
+    var showannouncement = function (an) {
+        announcement(an);
+        $('#announcementModal').modal('show');
+    }
+    $(function () {
 
-//         ko.applyBindings(announcements, document.getElementById("announcements"));
-//         ko.applyBindings(announcement, document.getElementById("announcementModal"));
+        ko.applyBindings(announcements, document.getElementById("announcements"));
+        ko.applyBindings(announcement, document.getElementById("announcementModal"));
 
-//         $.get("/api/article/articleByCategory/b8c8dd38-0805-4ef4-bff6-17b835fca8aa/5", "", function (rel) {
+        $.get("/api/article/articleByCategory/b8c8dd38-0805-4ef4-bff6-17b835fca8aa/5", "", function (rel) {
 
-//             $.each(rel, function (i, v) {
-//                 if (v.title.length > 32) {
-//                     v.title = v.title.substring(0, 30) + '...';
-//                 }
-//             });
-//             announcements(rel);
-//         });
+            $.each(rel, function (i, v) {
+                if (v.title.length > 32) {
+                    v.title = v.title.substring(0, 30) + '...';
+                }
+            });
+            announcements(rel);
+        });
 
-//     });
+    });
 
 
 
-//     var notReady = function () {
-//         $("#closePositionDialog #errorMsg").html("<h4>即将推出，敬请期待！</h4>");
-//         $("#closePositionDialog").modal();
-//     }
+    var notReady = function () {
+        $("#closePositionDialog #errorMsg").html("<h4>即将推出，敬请期待！</h4>");
+        $("#closePositionDialog").modal();
+    }
 
-<!-- </script> -->
-<!-- <script> -->
-//     var _hmt = _hmt || [];
-//     (function () {
-//         var hm = document.createElement("script");
-//         hm.src = "//hm.baidu.com/hm.js?3a07c2531807d298ad88175fa22f9413";
-//         var s = document.getElementsByTagName("script")[0];
-//         s.parentNode.insertBefore(hm, s);
-//     })();
-<!-- </script> -->
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3a07c2531807d298ad88175fa22f9413";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
 
 
 
@@ -591,7 +591,7 @@
 			<div class="row">
 				<div class="security">
 					<div class="item">
-						<img src="./files/indexSecurity1.png">
+						<img src="/winner/files/indexSecurity1.png">
 						<div class="detail">
 							资金银行监管
 							<div class="desc">
@@ -600,7 +600,7 @@
 						</div>
 					</div>
 					<div class="item">
-						<img src="./files/indexSecurity2.png">
+						<img src="/winner/files/indexSecurity2.png">
 						<div class="detail">
 							交易证监会监管
 							<div class="desc">
@@ -609,7 +609,7 @@
 						</div>
 					</div>
 					<div class="item">
-						<img src="./files/indexSecurity3.png">
+						<img src="/winner/files/indexSecurity3.png">
 						<div class="detail">
 							风控盈+监管
 							<div class="desc">
@@ -665,19 +665,19 @@
                     <div class="title" style=" padding-left:10px; font-weight:normal; font-size:20px; color:#ccc;">
                         主要合作机构
                     </div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.picc.com/"><img onmouseover="this.src = &#39;/images/hzhb/1_on.png&#39;" onmouseout="this.src = &#39;/images/hzhb/1.jpg&#39;" src="./files/1.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.fuioupay.com/"><img onmouseover="this.src = &#39;/images/hzhb/2_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/2.jpg&#39;" src="./files/2.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.nanhua.net/"><img onmouseover="this.src = &#39;/images/hzhb/3_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/3.jpg&#39;" src="./files/3.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.zttrust.com.cn/stations/526623d20a/index.php/5268e6b50a"><img onmouseover="this.src = &#39;/images/hzhb/4_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/4.jpg&#39;" src="./files/4.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://sc.hkex.com.hk/TuniS/www.hkex.com.hk/eng/index.htm/"><img onmouseover="this.src = &#39;/images/hzhb/5_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/5.jpg&#39;" src="./files/5.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.cmegroup.com/cn-s/"><img onmouseover="this.src = &#39;/images/hzhb/6_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/6.jpg&#39;" src="./files/6.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.sgx.com/wps/portal/sgxweb_ch/home/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOKNHB1NPAycDSz9wwzMDTxD_Z2Cg8PCDANdjYEKIoEKDHAARwNC-sP1o8BK8JhQkBthkO6oqAgAzDYPQQ!!/dl5/d5/L2dBISEvZ0FBIS9nQSEh/"><img onmouseover="this.src = &#39;/images/hzhb/7_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/7.jpg&#39;" src="./files/7.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.neeq.com.cn/index/"><img onmouseover="this.src = &#39;/images/hzhb/8_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/8.jpg&#39;" src="./files/8.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.cmbchina.com/"><img onmouseover="this.src = &#39;/images/hzhb/9_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/9.jpg&#39;" src="./files/9.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.bankcomm.com/BankCommSite/default.shtml"><img onmouseover="this.src = &#39;/images/hzhb/10_on.png&#39;" onmouseout="this.src = &#39;/images/hzhb/10.jpg&#39;" src="./files/10.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.picc.com/"><img onmouseover="this.src = &#39;/images/hzhb/1_on.png&#39;" onmouseout="this.src = &#39;/images/hzhb/1.jpg&#39;" src="/winner/files/1.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.fuioupay.com/"><img onmouseover="this.src = &#39;/images/hzhb/2_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/2.jpg&#39;" src="/winner/files/2.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.nanhua.net/"><img onmouseover="this.src = &#39;/images/hzhb/3_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/3.jpg&#39;" src="/winner/files/3.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.zttrust.com.cn/stations/526623d20a/index.php/5268e6b50a"><img onmouseover="this.src = &#39;/images/hzhb/4_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/4.jpg&#39;" src="/winner/files/4.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://sc.hkex.com.hk/TuniS/www.hkex.com.hk/eng/index.htm/"><img onmouseover="this.src = &#39;/images/hzhb/5_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/5.jpg&#39;" src="/winner/files/5.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.cmegroup.com/cn-s/"><img onmouseover="this.src = &#39;/images/hzhb/6_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/6.jpg&#39;" src="/winner/files/6.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.sgx.com/wps/portal/sgxweb_ch/home/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOKNHB1NPAycDSz9wwzMDTxD_Z2Cg8PCDANdjYEKIoEKDHAARwNC-sP1o8BK8JhQkBthkO6oqAgAzDYPQQ!!/dl5/d5/L2dBISEvZ0FBIS9nQSEh/"><img onmouseover="this.src = &#39;/images/hzhb/7_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/7.jpg&#39;" src="/winner/files/7.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.neeq.com.cn/index/"><img onmouseover="this.src = &#39;/images/hzhb/8_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/8.jpg&#39;" src="/winner/files/8.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.cmbchina.com/"><img onmouseover="this.src = &#39;/images/hzhb/9_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/9.jpg&#39;" src="/winner/files/9.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.bankcomm.com/BankCommSite/default.shtml"><img onmouseover="this.src = &#39;/images/hzhb/10_on.png&#39;" onmouseout="this.src = &#39;/images/hzhb/10.jpg&#39;" src="/winner/files/10.jpg"></a></div>
 
-                    <div class="hzhb_item"><a target="_blank" href="http://www.ccb.com/cn/home/index.html"><img onmouseover="this.src = &#39;/images/hzhb/11_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/11.jpg&#39;" src="./files/11.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.icbc.com.cn/icbc/"><img onmouseover="this.src = &#39;/images/hzhb/12_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/12.jpg&#39;" src="./files/12.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.ccb.com/cn/home/index.html"><img onmouseover="this.src = &#39;/images/hzhb/11_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/11.jpg&#39;" src="/winner/files/11.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.icbc.com.cn/icbc/"><img onmouseover="this.src = &#39;/images/hzhb/12_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/12.jpg&#39;" src="/winner/files/12.jpg"></a></div>
                 </div>
 
                 <div class="ft_item ft_item_sns">
@@ -691,7 +691,7 @@
                                 </div>
                                 <div class="tips_bd">
                                     <em class="arrow"></em>
-                                    <img src="./files/yj.jpg" alt="微信公共平台">
+                                    <img src="/winner/files/yj.jpg" alt="微信公共平台">
                                 </div>
                             </div>
                         </li>
@@ -714,7 +714,7 @@
                           联系我们
                         </div>
                         <div class="contactInfo" style="padding-left:30px;">
-                            <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=508886246&site=qq&menu=yes"><img src="./files/qqIcon.png" onmouseover="$(this).css(&#39;height&#39;, &#39;52px&#39;);" onmouseout="    $(this).css(&#39;height&#39;, &#39;48px&#39;);"></a>
+                            <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=508886246&site=qq&menu=yes"><img src="/winner/files/qqIcon.png" onmouseover="$(this).css(&#39;height&#39;, &#39;52px&#39;);" onmouseout="    $(this).css(&#39;height&#39;, &#39;48px&#39;);"></a>
                             <span class="kefu">在线客服</span><span class="time">08:30 - 21:00</span>
                         </div>
                     </div>
@@ -727,11 +727,11 @@
 	<div class="foot3">
 		<div class="container">
 			<div class="row">
-<!--                 <script type="text/javascript"> -->
-// var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-//                     document.write(unescape("%3Cspan id='cnzz_stat_icon_1255940205'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1255940205%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-<!--                 </script> -->
-                <span id="cnzz_stat_icon_1255940205"><a href="http://www.cnzz.com/stat/website.php?web_id=1255940205" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./files/pic1.gif"></a></span><script src="./files/z_stat.php" type="text/javascript"></script><script src="./files/core.php" charset="utf-8" type="text/javascript"></script>
+                <script type="text/javascript">
+var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1255940205'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1255940205%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+                <span id="cnzz_stat_icon_1255940205"><a href="http://www.cnzz.com/stat/website.php?web_id=1255940205" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="/winner/files/pic1.gif"></a></span><script src="/winner/files/z_stat.php" type="text/javascript"></script><script src="/winner/files/core.php" charset="utf-8" type="text/javascript"></script>
 				Copyright © 2010 - 2015 www.ying158.com All Rights Reserverd 杭州吉威投资管理有限公司 版权所有<br>
 				浙ICP备14030807号-3 杭州市江干区钱江新城迪凯银座19F 4000-999-158
 			</div>
@@ -889,126 +889,126 @@
 </div>
 
 
-<!-- <script type="text/javascript"> -->
+<script type="text/javascript">
 
 
 
-// 	function showBannedStocks() {
-// 		$('#bannedStockModal').modal('show');
-// 	}
-<!-- </script> -->
+	function showBannedStocks() {
+		$('#bannedStockModal').modal('show');
+	}
+</script>
 
 
-<!-- 	<script> -->
-// 		$("#aFloatTools_Show").click(function () {
-// 			$('#divFloatToolsView').animate({ width: 'show', opacity: 'show' }, 100, function () { $('#divFloatToolsView').show(); });
-// 			$('#aFloatTools_Show').hide();
-// 			$('#aFloatTools_Hide').show();
-// 		});
-// 		$("#aFloatTools_Hide").click(function () {
-// 			$('#divFloatToolsView').animate({ width: 'hide', opacity: 'hide' }, 100, function () { $('#divFloatToolsView').hide(); });
-// 			$('#aFloatTools_Show').show();
-// 			$('#aFloatTools_Hide').hide();
-// 		});
-// 		$('*[data-toggle="tooltip"]').tooltip();
-// 		$(document).ready(function () {
-// 			var href = window.location.href.toLowerCase();
+	<script>
+		$("#aFloatTools_Show").click(function () {
+			$('#divFloatToolsView').animate({ width: 'show', opacity: 'show' }, 100, function () { $('#divFloatToolsView').show(); });
+			$('#aFloatTools_Show').hide();
+			$('#aFloatTools_Hide').show();
+		});
+		$("#aFloatTools_Hide").click(function () {
+			$('#divFloatToolsView').animate({ width: 'hide', opacity: 'hide' }, 100, function () { $('#divFloatToolsView').hide(); });
+			$('#aFloatTools_Show').show();
+			$('#aFloatTools_Hide').hide();
+		});
+		$('*[data-toggle="tooltip"]').tooltip();
+		$(document).ready(function () {
+			var href = window.location.href.toLowerCase();
 
-// 			if (href.indexOf("/account/") >= 0) {
-// 				$(".topNav li:eq(7)").addClass("active");
+			if (href.indexOf("/account/") >= 0) {
+				$(".topNav li:eq(7)").addClass("active");
 
-// 			} else if (href.indexOf("/home/help") >= 0) {
+			} else if (href.indexOf("/home/help") >= 0) {
 
-// 				$(".topNav li:eq(5)").addClass("active");
+				$(".topNav li:eq(5)").addClass("active");
 
-// 			} else if (href.indexOf("/home/kcenter") >= 0) {
+			} else if (href.indexOf("/home/kcenter") >= 0) {
 
-// 				$(".topNav li:eq(1)").addClass("active");
+				$(".topNav li:eq(1)").addClass("active");
 
-// 			} else if (href.indexOf("/home/newscenter") >= 0 || href.indexOf("/news/") >= 0) {
+			} else if (href.indexOf("/home/newscenter") >= 0 || href.indexOf("/news/") >= 0) {
 
-// 				$(".topNav li:eq(3)").addClass("active");
+				$(".topNav li:eq(3)").addClass("active");
 
-// 			} else if (href.indexOf("/home/rule") >= 0) {
+			} else if (href.indexOf("/home/rule") >= 0) {
 
-// 				$(".topNav li:eq(3)").addClass("active");
+				$(".topNav li:eq(3)").addClass("active");
 
-// 			} else if (href.indexOf("/tradingsoftware") >= 0) {
+			} else if (href.indexOf("/tradingsoftware") >= 0) {
 
-// 				$(".topNav li:eq(6)").addClass("active");
+				$(".topNav li:eq(6)").addClass("active");
 
-// 			} else if (href.indexOf("/gzpeizi") >= 0) {
+			} else if (href.indexOf("/gzpeizi") >= 0) {
 
-// 				$(".topNav li:eq(2)").addClass("active");
+				$(".topNav li:eq(2)").addClass("active");
 
-// 			}
-// 			else if (href.indexOf("jiameng") >= 0) {
+			}
+			else if (href.indexOf("jiameng") >= 0) {
 
-// 				$(".topNav li:eq(4)").addClass("active");
+				$(".topNav li:eq(4)").addClass("active");
 
-// 			} else {
+			} else {
 
-// 				$(".topNav li:eq(0)").addClass("active");
-// 			}
-
-
-// 		});
-
-// 		var kefu = function (num) {
-// 			var url = "";
-// 			switch (num) {
-// 				case 1:
-// 					url = "tencent://message/?uin=3044901756&Menu=yes";
-// 					break;
-// 				case 2:
-// 					url = "tencent://message/?uin=773031422&Menu=yes";
-// 					break;
-// 				default:
-// 					url = "tencent://message/?uin=2093717869&Menu=yes";
-// 			}
-// 			window.open(url, '在线客服', 'height=405,width=500,top=200,left=200,toolbar=no,menubar=no,scrollbars=yes, resizable=no,location=no, status=no');
-// 		}
-
-// 		var loginFromModal = function () {
-// 			var un = $("#modalUser").val();
-// 			var pw = $("#modalPw").val();
-// 			if (un == "" || un == undefined) {
-// 				$("#loginFail").html("请输入用户名");
-// 				$(".loginInfo").modal();
-// 				return;
-// 			}
-// 			if (pw == "" || pw == undefined) {
-// 				$("#loginFail").html("请输入登录密码");
-// 				$(".loginInfo").modal();
-// 				return;
-// 			}
-// 			$.post("/api/authentication/signIn", { login: un, password: pw }, function (data) {
-// 				if (data.isAuthenticated) {
-// 					window.location.reload();
-// 				} else {
-// 					$("#loginFail").html("用户名或密码有误");
-// 					$(".loginInfo").modal();
-// 				}
-// 			});
-
-// 		}
+				$(".topNav li:eq(0)").addClass("active");
+			}
 
 
-// 		var gotoTop = function () {
-// 			$("html,body").animate({ scrollTop: 0 }, 1000);
-// 		}
+		});
 
-<!-- 	</script> -->
+		var kefu = function (num) {
+			var url = "";
+			switch (num) {
+				case 1:
+					url = "tencent://message/?uin=3044901756&Menu=yes";
+					break;
+				case 2:
+					url = "tencent://message/?uin=773031422&Menu=yes";
+					break;
+				default:
+					url = "tencent://message/?uin=2093717869&Menu=yes";
+			}
+			window.open(url, '在线客服', 'height=405,width=500,top=200,left=200,toolbar=no,menubar=no,scrollbars=yes, resizable=no,location=no, status=no');
+		}
 
-<!--     <script type="text/javascript"> -->
-// var _hmt = _hmt || [];
-// (function() {
-//   var hm = document.createElement("script");
-//   hm.src = "//hm.baidu.com/hm.js?bb6cf2322300378a89a69641641427c0";
-//   var s = document.getElementsByTagName("script")[0];
-//   s.parentNode.insertBefore(hm, s);
-// })();
-<!--     </script> -->
+		var loginFromModal = function () {
+			var un = $("#modalUser").val();
+			var pw = $("#modalPw").val();
+			if (un == "" || un == undefined) {
+				$("#loginFail").html("请输入用户名");
+				$(".loginInfo").modal();
+				return;
+			}
+			if (pw == "" || pw == undefined) {
+				$("#loginFail").html("请输入登录密码");
+				$(".loginInfo").modal();
+				return;
+			}
+			$.post("/api/authentication/signIn", { login: un, password: pw }, function (data) {
+				if (data.isAuthenticated) {
+					window.location.reload();
+				} else {
+					$("#loginFail").html("用户名或密码有误");
+					$(".loginInfo").modal();
+				}
+			});
+
+		}
+
+
+		var gotoTop = function () {
+			$("html,body").animate({ scrollTop: 0 }, 1000);
+		}
+
+ 	</script> 
+
+    <script type="text/javascript">
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?bb6cf2322300378a89a69641641427c0";
+		  var s = document.getElementsByTagName("script")[0];
+		  s.parentNode.insertBefore(hm, s);
+		})();
+     </script> 
 
 
 
