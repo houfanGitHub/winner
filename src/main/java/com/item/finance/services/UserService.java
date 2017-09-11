@@ -7,7 +7,7 @@ import com.item.finance.bean.User;
 public class UserService implements ItemServiceImpl<User> {
 
 	@Override
-	public User getById(int id) {
+	public User selectGetById(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
