@@ -379,7 +379,7 @@ function link_operating(name,title){
 					<li>
 					<a href="http://www.erdangjiade.com/" class="dropdown-toggle"><i class="icon-list"></i><span class="menu-text"> 学院管理 </span><b class="arrow icon-angle-down"></b></a>
                     <ul class="submenu" id="Sort_link_2">
-                    <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="transaction.html" title="资讯分类" class="iframeurl"><i class="icon-double-angle-right"></i>资讯分类</a></li>
+                    <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/xzy/listNews" title="资讯分类" class="iframeurl"><i class="icon-double-angle-right"></i>资讯分类</a></li>
 					<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Order_Chart.html" title="资讯管理" class="iframeurl"><i class="icon-double-angle-right"></i>资讯管理</a></li>
 <!--                     <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Orderform.html" title="订单管理" class="iframeurl"><i class="icon-double-angle-right"></i>订单管理</a></li> -->
 <!--                     <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Amounts.html" title="交易金额" class="iframeurl"><i class="icon-double-angle-right"></i>交易金额</a></li> -->

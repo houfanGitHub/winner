@@ -25,8 +25,10 @@ Session session = getsesstion();
 session.save(n);
 }
 //删
-public void deleteNews(News n){
+public void deleteNews(News n,int id){
 Session session = getsesstion();
+n = getNews(id);
+n.setNewsType(null);
 session.delete(n);
 } 
 //改
@@ -36,7 +38,7 @@ session.update(n);
 } 
 //查
 public List<News> listNews(Map map){
-String hql = "from news where 0=0";
+String hql = "from News where 0=0";
 getNewsHql(map, hql);
 System.out.println(hql);
 Session session = getsesstion();
