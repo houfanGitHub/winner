@@ -33,16 +33,16 @@ public interface ItemServiceImpl<T> {
 	/**
 	 * 添加
 	 */
-	public void save();
+	public void save(T t);
 	
 	/**
 	 * 修改
 	 */
-	public void update();
+	public void update(T t);
 	
 	/**
 	 * 删除
 	 */
-	public void delete();
+	public void delete(T t);
 	
 }

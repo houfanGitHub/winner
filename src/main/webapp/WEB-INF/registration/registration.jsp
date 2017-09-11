@@ -227,21 +227,21 @@
 		</div>
 	</div>
 	
-<!-- <script type="text/javascript" src="/winner/files/regis.js"></script> -->
-<!-- <script type="text/javascript"> -->
-<!-- // $(function(){ -->
-<!-- // 	var b = ""; -->
-<!-- // 	regis(b); -->
-<!-- // }); -->
+<script type="text/javascript" src="/winner/files/regis.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var b = "";
+		regis(b);
+	});
+	
+	function updcaptcha(){
+		document.getElementById("captcha").src="/authImage?"+new Date().getTime();
+	}
 
-<!-- // function updcaptcha(){ -->
-<!-- // 	document.getElementById("captcha").src="/authImage?"+new Date().getTime(); -->
-<!-- // } -->
-
-<!-- // function showAgreement(){ -->
-<!-- // 	window.open("/web/zcxy","注册协议","height=800,width=1000,scrollbars=yes, resizable=no,location=no, status=no,screenX=100")  -->
-<!-- // } -->
-<!-- </script> -->
+	function showAgreement(){
+		window.open("/web/zcxy","注册协议","height=800,width=1000,scrollbars=yes, resizable=no,location=no, status=no,screenX=100") 
+	}
+</script>
 
     <div class="security">
         <div class="item">

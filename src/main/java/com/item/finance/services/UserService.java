@@ -19,19 +19,19 @@ public class UserService implements ItemServiceImpl<User> {
 	}
 
 	@Override
-	public void save() {
+	public void save(User user) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update() {
+	public void update(User user) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete() {
+	public void delete(User ser) {
 		// TODO Auto-generated method stub
 		
 	}
