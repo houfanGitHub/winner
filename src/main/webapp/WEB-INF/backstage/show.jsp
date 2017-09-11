@@ -363,7 +363,7 @@ function link_operating(name,title){
 				     <li class="home"><a href="javascript:void(0)" name="home.html" class="iframeurl" title=""><i class="icon-home"></i><span class="menu-text"> 系统首页 </span></a></li>
                      <li><a href="#" class="dropdown-toggle"><i class="icon-desktop"></i><span class="menu-text"> 理财管理 </span><b class="arrow icon-angle-down"></b></a>
 					   <ul class="submenu" id="Sort_link_0">
-                         <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Products_List.html" title="固收类" class="iframeurl"><i class="icon-double-angle-right"></i>固收类</a></li>
+                         <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/backstage/show/yx_jsp/yx_subject_show.jsp" title="固收类" class="iframeurl"><i class="icon-double-angle-right"></i>固收类</a></li>
 						 <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Brand_Manage.html" title="私募/股权类" class="iframeurl"><i class="icon-double-angle-right"></i>私募/股权类</a></li>
 						 <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Category_Manage.html" title="海外配置" class="iframeurl"><i class="icon-double-angle-right"></i>海外配置</a></li>
 
