@@ -17,7 +17,7 @@ public class Yx_FinanceProductFunds_Dao {
 	public Session getSession(){
 		return sessionFactory.getCurrentSession();
 	}
-	public void save(FinanceProductFunds financeProductFunds){
+	public void saveFinanceProductFunds(FinanceProductFunds financeProductFunds){
 		Session session=getSession();
 		session.save(financeProductFunds);
 	}
