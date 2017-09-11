@@ -11,8 +11,8 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="FinanceProductFund.findAll", query="SELECT f FROM FinanceProductFund f")
-public class FinanceProductFund  {
+@NamedQuery(name="FinanceProductFund.findAll", query="SELECT f FROM FinanceProductFunds f")
+public class FinanceProductFunds  {
 	private int id;
 	private BigDecimal amount;
 	private String bankAccount;
@@ -41,7 +41,7 @@ public class FinanceProductFund  {
 	private Date updateDate;
 	private BigDecimal yearRate;
 
-	public FinanceProductFund() {
+	public FinanceProductFunds() {
 	}
 
 

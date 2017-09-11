@@ -20,40 +20,41 @@ import java.util.Set;
 @NamedQuery(name="Subject.findAll", query="SELECT s FROM Subject s")
 public class Subject  {
 	private static final long serialVersionUID = 1L;
-	private String id;
+	private String id;//主键ID
 	private BigDecimal amount;
-	private BigInteger borrowerid;
-	private String borrowername;
+	private BigInteger borrowerid;//借款人id
+	private String borrowername; //借款人姓名
 	private BigInteger bought;
-	private String comment;
-	private Date createDate;
-	private byte delflag;
-	private Date endDate;
-	private BigInteger experStatus;
-	private BigInteger firstId;
-	private BigDecimal floorAmount;
-	private String name;
-	private BigInteger parentId;
-	private BigInteger period;
-	private String projectDetails;
-	private String purpose;
-	private Date raiseEnd;
-	private Date raiseStart;
-	private byte refundWay;
-	private byte safeGuard_way;
-	private String safetyControl;
-	private String serialNo;
-	private String serialNumber;
-	private Date startDate;
-	private byte status;
-	private byte type;
-	private Date updateDate;
-	private BigDecimal yearRate;
+	private String comment; //产品速览
+	private Date createDate; //创建日期
+	private byte delflag; //是否删除
+	private Date endDate; //标的结束日期
+	private BigInteger experStatus;// 体验金是否可以购买（0：否，1：是）
+	private BigInteger firstId; //始标id
+	private BigDecimal floorAmount; //起投金额
+	private String name;  //标的名称
+	private BigInteger parentId; //父标id
+	private BigInteger period; //标的周期
+	private String projectDetails; //项目详情
+	private String purpose; //借款目的
+	private Date raiseEnd; //募集结束
+	private Date raiseStart; //募集开始
+	private byte refundWay; //还款方式
+	private byte safeGuard_way; //保障方式
+	private String safetyControl;//安全保障
+	private String serialNo;//合同号
+	private String serialNumber; //流水号
+	private Date startDate; //标的开始日期
+	private byte status; //标的状态
+	private byte type; //标的类型
+	private Date updateDate; //更新日期
+	private BigDecimal yearRate; //年化率
 	private SubjectFolder subjectFolder;
-	private Set<SubjectBbinPurchaseRecord> subjectBbinPurchaseRecords = new HashSet<>();
-	private Set<SubjectFieldRecord> subjectFieldRecords = new HashSet<>();
-	private Set<SubjectOrderRecord> subjectOrderRecords = new HashSet<>();
+	private Set<SubjectBbinPurchaseRecord> subjectBbinPurchaseRecords = new HashSet<>();//体验金购买标的表
+	private Set<SubjectFieldRecord> subjectFieldRecords = new HashSet<>();//主题记录表
+	private Set<SubjectOrderRecord> subjectOrderRecords = new HashSet<>();//标的订单表
 
+	
 	public Subject() {
 	}
 
