@@ -22,7 +22,7 @@ public interface ItemServiceImpl<T> {
 	 * @param id
 	 * @return
 	 */
-	public T getById(int id);
+	public T selectGetById(String id);
 	
 	/**
 	 * 查询所有
@@ -33,16 +33,16 @@ public interface ItemServiceImpl<T> {
 	/**
 	 * 添加
 	 */
-	public void save();
+	public void save(T t);
 	
 	/**
 	 * 修改
 	 */
-	public void update();
+	public void update(T t);
 	
 	/**
 	 * 删除
 	 */
-	public void delete();
+	public void delete(T t);
 	
 }
