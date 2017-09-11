@@ -32,4 +32,9 @@ public class HoufanWebItemController {
 	public String backstage(){
 		return "WEB-INF/backstage/show";
 	}
+	
+	@RequestMapping("/backstageLogin")
+	public String backstageLogin(){
+		return "WEB-INF/backstage/login";
+	}
 }
