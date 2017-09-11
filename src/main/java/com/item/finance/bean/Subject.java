@@ -54,6 +54,7 @@ public class Subject  {
 	private Set<SubjectFieldRecord> subjectFieldRecords = new HashSet<>();
 	private Set<SubjectOrderRecord> subjectOrderRecords = new HashSet<>();
 
+	
 	public Subject() {
 	}
 
