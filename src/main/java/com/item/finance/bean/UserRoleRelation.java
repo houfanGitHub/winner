@@ -21,22 +21,21 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="user_role_relation")
 public class UserRoleRelation  {
+	
 	private String id;
 	private User user;
 	private UserRole userRole;
 	private Date createDate;
 
 	public UserRoleRelation() {
+		
 	}
-
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="create_date")
-	public Date getCreateDate() {
-		return this.createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
+	
+	
+	public UserRoleRelation(User user, UserRole userRole, Date createDate) {
+		super();
+		this.user = user;
+		this.userRole = userRole;
 		this.createDate = createDate;
 	}
 	
@@ -48,6 +47,17 @@ public class UserRoleRelation  {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="create_date")
+	public Date getCreateDate() {
+		return this.createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 	@ManyToOne

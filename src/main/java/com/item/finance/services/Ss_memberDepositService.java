@@ -1,6 +1,5 @@
 package com.item.finance.services;
 
-import java.security.KeyStore.PrivateKeyEntry;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -48,5 +47,6 @@ public class Ss_memberDepositService implements ItemServiceImpl<MemberDepositRec
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

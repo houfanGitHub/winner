@@ -52,6 +52,8 @@ public class Ss_cardmanagementService implements ItemServiceImpl<MemberBankcard>
 		// TODO Auto-generated method stub
 		
 	}
+
+
 	
 
 }

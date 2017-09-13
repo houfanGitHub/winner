@@ -6,6 +6,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.item.finance.bean.User;
+
 
 /**
  * 
@@ -44,5 +46,6 @@ public interface ItemServiceImpl<T> {
 	 * 删除
 	 */
 	public void delete(T t);
+
 	
 }

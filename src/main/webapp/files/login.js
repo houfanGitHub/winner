@@ -10,12 +10,12 @@ $(function () {
 
     login = function (b) {
         base = b;
-        phone = $(".phone");
+        yname = $(".name");
         password = $(".password");
 
-        phone.keyup(function () {
-            if ((/^1[3-9][0-9]\d{8}$/.test(phone.val()))) {
-                phone.removeAttr("style");
+        yname.keyup(function () {
+            if ((/^1[3-9][0-9]\d{8}$/.test(yname.val()))) {
+                yname.removeAttr("style");
                 $(".error").html("").hide();
                 return;
             }
@@ -33,35 +33,36 @@ $(function () {
         //登录
         $(".submit").click(function () {
             $(".error").html("").hide();
-            if (!(/^1[3-9][0-9]\d{8}$/.test(phone.val()))) {
-                phone.focus().css(css);
-                $(".error").html("手机号码格式不正确").show();
-                return;
-            }
+            if (!(/^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$/.test(yname.val()))) {
+				yname.focus().css(css);
+				yname.next(".errorInfo").html("用户名格式不正确").show();
+				return;
+			}
 
             if (!(/^[a-zA-Z]\w{5,17}$/.test(password.val()))) {
                 password.focus().css(css);
                 $(".error").html("密码格式不正确").show();
                 return;
             }
+            document.forms[0].submit();
 
-            $.ajax({
-                type: "POST", // 用POST方式传输
-                dataType: "json", // 数据格式:JSON
-                async: true,
-                url: base + '/web/login', // 目标地址
-                data: {
-                    mobilePhone: phone.val(),
-                    password: password.val()
-                },
-                success: function (msg) {
-                    if (msg.code == 0) {
-                        window.location.href = base + "/account/trades/profit/records";
-                    } else {
-                        $(".error").html(msg.msg).show();
-                    }
-                }
-            });
+//            $.ajax({
+//                type: "POST", // 用POST方式传输
+//                dataType: "json", // 数据格式:JSON
+//                async: true,
+//                url: base + '/web/login', // 目标地址
+//                data: {
+//                    mobilePhone: phone.val(),
+//                    password: password.val()
+//                },
+//                success: function (msg) {
+//                    if (msg.code == 0) {
+//                        window.location.href = base + "/account/trades/profit/records";
+//                    } else {
+//                        $(".error").html(msg.msg).show();
+//                    }
+//                }
+//            });
 
         });
 

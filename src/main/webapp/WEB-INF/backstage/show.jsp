@@ -373,7 +373,7 @@ function link_operating(name,title){
 					<a href="http://www.erdangjiade.com/" class="dropdown-toggle"><i class="icon-picture "></i><span class="menu-text"> 钱包管理 </span><b class="arrow icon-angle-down"></b></a>
 						<ul class="submenu" id="Sort_link_1">
 						<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="advertising.html" title="钱包缴费记录" class="iframeurl"><i class="icon-double-angle-right"></i>钱包缴费记录</a></li>
-<!-- 						<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Sort_ads.html" title="分类管理" class="iframeurl"><i class="icon-double-angle-right"></i>分类管理</a></li> -->
+						<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Sort_ads.html" title="分类管理" class="iframeurl"><i class="icon-double-angle-right"></i>分类管理</a></li>
 							</ul>
 						</li>
 					<li>
@@ -381,10 +381,6 @@ function link_operating(name,title){
                     <ul class="submenu" id="Sort_link_2">
                     <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/xzy/listNews" title="资讯分类" class="iframeurl"><i class="icon-double-angle-right"></i>资讯分类</a></li>
 					<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Order_Chart.html" title="资讯管理" class="iframeurl"><i class="icon-double-angle-right"></i>资讯管理</a></li>
-<!--                     <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Orderform.html" title="订单管理" class="iframeurl"><i class="icon-double-angle-right"></i>订单管理</a></li> -->
-<!--                     <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Amounts.html" title="交易金额" class="iframeurl"><i class="icon-double-angle-right"></i>交易金额</a></li> -->
-<!--                     <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Order_handling.html" title="订单处理" class="iframeurl"><i class="icon-double-angle-right"></i>订单处理</a></li> -->
-<!-- 					  <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Refund.html" title="退款管理" class="iframeurl"><i class="icon-double-angle-right"></i>退款管理</a></li> -->
                    </ul>
 				  </li>
                    <li>
@@ -414,35 +410,13 @@ function link_operating(name,title){
                                 <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Shops_Audit.html" title="意见反馈" class="iframeurl"><i class="icon-double-angle-right"></i>意见反馈<span class="badge badge-danger">5</span></a></li>
 							</ul>
 						</li>
-						<li><a href="http://www.erdangjiade.com/" class="dropdown-toggle"><i class="icon-comments-alt"></i><span class="menu-text"> 系统设置 </span><b class="arrow icon-angle-down"></b></a>
+						<li><a href="#" class="dropdown-toggle"><i class="icon-comments-alt"></i><span class="menu-text"> 系统设置 </span><b class="arrow icon-angle-down"></b></a>
 							<ul class="submenu" id="Sort_link_6">
-								<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Guestbook.html" title="账户设置" class="iframeurl"><i class="icon-double-angle-right"></i>账户设置</a></li>
-                                <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Feedback.html" title="角色设置" class="iframeurl"><i class="icon-double-angle-right"></i>角色设置</a></li>
-                                <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Feedback.html" title="密码设置" class="iframeurl"><i class="icon-double-angle-right"></i>密码设置</a></li>
+								<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/system/users" title="账户设置" class="iframeurl"><i class="icon-double-angle-right"></i>账户设置</a></li>
+                                <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/system/roles" title="角色设置" class="iframeurl"><i class="icon-double-angle-right"></i>角色设置</a></li>
+                                <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/system/passwords" title="密码设置" class="iframeurl"><i class="icon-double-angle-right"></i>密码设置</a></li>
 							</ul>
 						</li>
-<!-- 						<li><a href="http://www.erdangjiade.com/" class="dropdown-toggle"><i class="icon-bookmark"></i><span class="menu-text"> 文章管理 </span><b class="arrow icon-angle-down"></b></a> -->
-<!-- 							<ul class="submenu" id="Sort_link_7"> -->
-<!-- 								<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="article_list.html" title="文章列表" class="iframeurl"><i class="icon-double-angle-right"></i>文章列表</a></li> -->
-<!--                                 <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="article_Sort.html" title="分类管理" class="iframeurl"><i class="icon-double-angle-right"></i>分类管理</a></li> -->
-<!-- 							</ul> -->
-<!-- 						</li> -->
-<!--                         	<li><a href="http://www.erdangjiade.com/" class="dropdown-toggle"><i class="icon-cogs"></i><span class="menu-text"> 系统管理 </span><b class="arrow icon-angle-down"></b></a> -->
-<!-- 							<ul class="submenu" id="Sort_link_8"> -->
-<!-- 								<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Systems.html" title="系统设置" class="iframeurl"><i class="icon-double-angle-right"></i>系统设置</a></li> -->
-<!-- 								<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="System_section.html" title="系统栏目管理" class="iframeurl"><i class="icon-double-angle-right"></i>系统栏目管理</a></li> -->
-							
-<!--                                 <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="System_Logs.html" title="系统日志" class="iframeurl"><i class="icon-double-angle-right"></i>系统日志</a></li> -->
-<!-- 							</ul> -->
-<!-- 						</li> -->
-<!--                         <li><a href="http://www.erdangjiade.com/" class="dropdown-toggle"><i class="icon-group"></i><span class="menu-text"> 管理员管理 </span><b class="arrow icon-angle-down"></b></a> -->
-<!-- 							<ul class="submenu" id="Sort_link_9"> -->
-							
-<!-- 								<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="admin_Competence.html" title="权限管理" class="iframeurl"><i class="icon-double-angle-right"></i>权限管理</a></li> -->
-<!--                                 <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="administrator.html" title="管理员列表" class="iframeurl"><i class="icon-double-angle-right"></i>管理员列表</a></li> -->
-<!-- 								  <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="admin_info.html" title="个人信息" class="iframeurl"><i class="icon-double-angle-right"></i>个人信息</a></li> -->
-<!-- 							</ul> -->
-<!-- 						</li> -->
 					</ul>
 					</div>
 					<script type="text/javascript">

@@ -9,7 +9,6 @@ $(function() {
 		};
 	
 	regis = function(b) {
-//		alert(0);
 		base = b;
 		//电话
 		phone=$(".phone");	
@@ -30,6 +29,15 @@ $(function() {
 		
 		//用户名格式验证
 		youname.keyup(function() {
+			if ((/^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$/.test(youname.val()))) {
+				
+				youname.removeAttr("style");
+				youname.next(".errorInfo").html("").hide();
+				return;
+			}
+		});
+		//真实姓名格式验证
+		username.keyup(function() {
 			if ((/^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$/.test(youname.val()))) {
 				
 				youname.removeAttr("style");
@@ -74,13 +82,13 @@ $(function() {
 			}
 		});
 		//手机验证码
-//		code.keyup(function() {
-//			if ((/^.{4}$/.test(code.val()))) {
-//				code.removeAttr("style");
-//				code.next(".errorInfo").html("").hide();
-//				return;
-//			}
-//		});
+		code.keyup(function() {
+			if ((/^.{4}$/.test(code.val()))) {
+				code.removeAttr("style");
+				code.next(".errorInfo").html("").hide();
+				return;
+			}
+		});
 		//密码格式
 		password.keyup(function() {
 			if ((/^[a-zA-Z]\w{5,17}$/.test(password.val()))) {
@@ -100,11 +108,22 @@ $(function() {
 		
 		//注册
 		$(".submit").click(function() {
-			alert(0);
 			$(".errorInfo").html("").hide();
 			if (!(/^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$/.test(youname.val()))) {
 				youname.focus().css(css);
 				youname.next(".errorInfo").html("用户名格式不正确").show();
+				return;
+			}
+			
+			if (!(/^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$/.test(username.val()))) {
+				username.focus().css(css);
+				username.next(".errorInfo").html("真实姓名格式不正确").show();
+				return;
+			}
+			
+			if (!(/^1[3-9][0-9]\d{8}$/.test(phone.val()))) {
+				phone.focus().css(css);
+				phone.next(".errorInfo").html("手机号码格式不正确").show();
 				return;
 			}
 
@@ -128,31 +147,31 @@ $(function() {
 				alert("本网站服务协议还未加入");
 				return;
 			}
-			alert(1);
-			$.ajax({
-				type : "POST", // 用POST方式传输
-				dataType : "json", // 数据格式:JSON
-				async : true,
-				url : "/winner/itemweb/userRegistration", // 目标地址
-				data : {
-					name:youname.val(),
-					mobilePhone : phone.val(),
-					password:password.val(),
-					code : code.val(),
-					invitedcode:invitationCode.val(),
-					qqnumber:qqAccount.val(),
-					imgcode:imgcode.val()
-					
-				},
-				success : function(msg) {
-					if (msg.code == 0) {
-						alert("注册成功！");
-						window.location.href="/winner/itemweb/toLogin";
-					} else {
-						alert(msg.msg);
-					}
-				}
-			});
+			document.forms[0].submit();
+//			$.ajax({
+//				type : "POST", // 用POST方式传输
+////				dataType : "json", // 数据格式:JSON
+//				async : true,
+//				url : "/winner/itemweb/userRegistration", // 目标地址
+//				data : {
+//					name:youname.val(),
+//					mobilePhone : phone.val(),
+//					password:password.val(),
+//					code : code.val(),
+//					invitedcode:invitationCode.val(),
+//					qqnumber:qqAccount.val(),
+//					imgcode:imgcode.val()
+//					
+//				},
+//				success : function(msg) {
+//					if (msg.code == 0) {
+//						alert("注册成功！");
+//						window.location.href="/winner/itemweb/toLogin";
+//					} else {
+//						alert(msg.msg);
+//					}
+//				}
+//			});
 			
 		});
 	};

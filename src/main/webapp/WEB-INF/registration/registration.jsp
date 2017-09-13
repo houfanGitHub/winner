@@ -119,16 +119,32 @@
 			</div>
 		</div>
        
-<!--        <form action="" method="post"> -->
+       <form action="/winner/itemweb/userRegistration" method="post">
        
         <div class="item">
             <div class="rLabel">
                 用户名
             </div>
             <div class="rInput">
-                <input type="text" placeholder="请输入用户名" id="userName" name="youname" class="form-control textInput youname">（需用实名注册）<span class="errorInfo">用户名不能为空</span>
+                <input type="text" placeholder="请输入用户名" id="name" name="name" class="form-control textInput youname"><span class="errorInfo">用户名不能为空</span>
             </div>
         </div>
+        <div class="item">
+            <div class="rLabel">
+		真实姓名
+            </div>
+            <div class="rInput">
+                <input type="text" placeholder="请输入用户名" id="userName" name="userName" class="form-control textInput username">（需用实名注册）<span class="errorInfo">姓名不能为空</span>
+            </div>
+        </div>
+        <div class="item">
+			<div class="rLabel">
+				手机号
+			</div>
+			<div class="rInput">
+				<input type="text" placeholder="请输入手机号" id="phone" name="mobile_Phone" class="form-control textInput phone"><span class="errorInfo">手机号码不能为空</span>
+			</div>
+		</div>
 		 <div class="item">
             <div class="rLabel">
                 图形验证码
@@ -184,7 +200,7 @@
 			</div>
 		</div>
 		
-<!-- 		</form> -->
+		</form>
 		
 		<div class="item">
 			<div class="rLabel">
