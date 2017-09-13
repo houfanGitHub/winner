@@ -4,6 +4,8 @@ import java.util.List;
 
 
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,8 +22,8 @@ public class Yx_Subject_Service implements ItemServiceImpl<Subject> {
     public void save(Subject subject){
     	this.yx_FinanceProductFunds_Dao.saveSubject(subject);
     }
-    public List<Subject> list(){
-    	return this.yx_FinanceProductFunds_Dao.listSubject();
+    public List<Subject> list(Map map){
+    	return this.yx_FinanceProductFunds_Dao.listSubject(map);
     }
     public Subject selectGetById(String id){
     	return this.yx_FinanceProductFunds_Dao.selectSubject(id);
@@ -32,4 +34,10 @@ public class Yx_Subject_Service implements ItemServiceImpl<Subject> {
     public void update(Subject subject){
     	this.yx_FinanceProductFunds_Dao.updateSubject(subject);
     }
+	@Override
+	public List<Subject> list() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

@@ -1,6 +1,5 @@
 package com.item.finance.bean;
 
-import java.io.Serializable;
 
 import javax.persistence.*;
 
@@ -21,10 +20,10 @@ import java.util.Set;
 public class Subject  {
 	private static final long serialVersionUID = 1L;
 	private String id;//主键ID
-	private BigDecimal amount;
+	private BigDecimal amount; //标的金额
 	private BigInteger borrowerid;//借款人id
 	private String borrowername; //借款人姓名
-	private BigInteger bought;
+	private BigInteger bought; //已购人数
 	private String comment; //产品速览
 	private Date createDate; //创建日期
 	private byte delflag; //是否删除
@@ -49,7 +48,7 @@ public class Subject  {
 	private byte type; //标的类型
 	private Date updateDate; //更新日期
 	private BigDecimal yearRate; //年化率
-	private SubjectFolder subjectFolder;
+	private SubjectFolder subjectFolder;//附件归属表
 	private Set<SubjectBbinPurchaseRecord> subjectBbinPurchaseRecords = new HashSet<>();//体验金购买标的表
 	private Set<SubjectFieldRecord> subjectFieldRecords = new HashSet<>();//主题记录表
 	private Set<SubjectOrderRecord> subjectOrderRecords = new HashSet<>();//标的订单表
@@ -343,11 +342,9 @@ public class Subject  {
 	public BigDecimal getYearRate() {
 		return this.yearRate;
 	}
-
 	public void setYearRate(BigDecimal yearRate) {
 		this.yearRate = yearRate;
 	}
-
 
 	//bi-directional many-to-one association to SubjectFolder
 	@ManyToOne
@@ -355,6 +352,9 @@ public class Subject  {
 	public SubjectFolder getSubjectFolder() {
 		return this.subjectFolder;
 	}
+
+
+
 
 	public void setSubjectFolder(SubjectFolder subjectFolder) {
 		this.subjectFolder = subjectFolder;
