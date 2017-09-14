@@ -1,6 +1,8 @@
 package com.item.finance.services;
 
+
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -26,15 +28,22 @@ public class Ss_memberDepositService implements ItemServiceImpl<MemberDepositRec
 
 	@Override
 	public List<MemberDepositRecord> list() {
-		return this.ss_memberrechargeDao.listshowdeposit();
+		return null;
 		
 	}
+	
+	//显示
+		public List<MemberDepositRecord> list(Map map) {
+			return this.ss_memberrechargeDao.listshowdeposit(map);
+			
+		}
 
 	@Override
 	public void save(MemberDepositRecord t) {
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 	@Override
 	public void update(MemberDepositRecord t) {
@@ -47,6 +56,5 @@ public class Ss_memberDepositService implements ItemServiceImpl<MemberDepositRec
 		// TODO Auto-generated method stub
 		
 	}
-
 
 }

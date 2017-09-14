@@ -20,23 +20,33 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="oversea_config")
-public class OverseaConfig  {
+public class OverseaConfig  {//海外配置订阅表
 	
-	private String id;
-	private Date addTime;
-	private String childTitle;
-	private String content;
-	private String description;
-	private Date endDate;
-	private String overseaIcon;
-	private Date startDate;
-	private int status;
-	private String title;
-	private Date updTime;
-	private String userType;
-	private Set<OverseaConfigSubscribe> overseaConfigSubscribes = new HashSet<>();
+	private String id;//id
+	private Date addTime;//添加时间
+	private String childTitle;//子标题
+	private String content;//内容
+	private int sortColum;//排序值
+	private String description;//描述
+	private Date endDate;//结束时间
+	private String overseaIcon;//图标
+	private Date startDate;//开始时间
+	private int status;//状态
+	private String title;//标题
+	private Date updTime;//修改时间
+	private String userType;//用户群体
+	private Set<OverseaConfigSubscribe> overseaConfigSubscribes = new HashSet<>();//海外配置订阅表
 
 	public OverseaConfig() {
+	}
+
+//排序值
+	public int getSortColum() {
+		return sortColum;
+	}
+
+	public void setSortColum(int sortColum) {
+		this.sortColum = sortColum;
 	}
 
 

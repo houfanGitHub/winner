@@ -103,18 +103,7 @@ public class News  {
 	public void setClickNumber(int clickNumber) {
 		this.clickNumber = clickNumber;
 	}
-
-
-	@Column(length=100)
-	public String getCPhoto() {
-		return this.cPhoto;
-	}
-
-	public void setCPhoto(String cPhoto) {
-		this.cPhoto = cPhoto;
-	}
-
-
+	
 	@Column(length=200)
 	public String getFilelink() {
 		return this.filelink;
@@ -271,6 +260,7 @@ public class News  {
 	public void setNewsType(NewsType newsType) {
 		this.newsType = newsType;
 	}
+	
 	public String getcPhoto() {
 		return cPhoto;
 	}

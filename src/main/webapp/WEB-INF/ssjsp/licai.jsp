@@ -9,7 +9,7 @@
 </head>
 <body>
 <form action="" method="post">
-<table width="600" cellspacing="1" border="0" bgcolor="blue">
+<table width="1100" cellspacing="1" border="0" bgcolor="blue">
 <tr bgcolor="white" align="center">
 <th>序号</th>
 <th>手机号</th>
@@ -19,15 +19,15 @@
 <th>邮寄地址</th>
 <th>状态</th>
 <th>注册时间</th>
-<th>    </th>
+<th> 操作  </th>
 </tr>
 
 <c:forEach items="${listfinap }"  var="lifp"  varStatus="stat">
 
 <tr bgcolor="white" align="center">
-<td>${stat.index+1}</td>
-<td>${lifp.mobile_Phone }</td>  
-<td>${lifp.name }</td>
+<td>${lifp.id}</td>
+<td>${lifp.member.mobile_Phone }</td>  
+<td>${lifp.member.name }</td>
 <td>${lifp.orgname }</td>
 <td>${lifp.mycard }</td>
 <td>${lifp.address }</td>

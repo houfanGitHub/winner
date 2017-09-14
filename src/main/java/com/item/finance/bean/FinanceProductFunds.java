@@ -13,33 +13,33 @@ import java.util.Date;
 @Entity
 @NamedQuery(name="FinanceProductFund.findAll", query="SELECT f FROM FinanceProductFunds f")
 public class FinanceProductFunds  {
-	private int id;
-	private BigDecimal amount;
-	private String bankAccount;
-	private int buyerCount;
-	private String contract;
-	private Date createDate;
-	private Date endDate;
-	private BigDecimal floorAmount;
-	private String investPoints;
-	private String name;
-	private int period;
-	private String productFactor;
-	private String productManager;
-	private String productManagerDesc;
-	private String productManagerName;
-	private String productManagerPic;
-	private String productManagerTitle;
-	private String productStrategy;
-	private String productTopic;
-	private String ratio;
-	private BigDecimal soldAmount;
-	private Date startDate;
-	private byte status;
-	private int subscribeCount;
-	private String type;
-	private Date updateDate;
-	private BigDecimal yearRate;
+	private int id;//id
+	private BigDecimal amount;//募集金额
+	private String bankAccount;//'银行账户（支行名称|银行账号|户名）
+	private int buyerCount;//购买人数
+	private String contract;//私募合同
+	private Date createDate;//添加时间
+	private Date endDate;//结束时间
+	private BigDecimal floorAmount;//起投金额
+	private String investPoints;//投资方向
+	private String name;//名称
+	private int period;//周期
+	private String productFactor;//产品要素
+	private String productManager;//基金经理详细
+	private String productManagerDesc;//产品管理人介绍
+	private String productManagerName;//管理人名称
+	private String productManagerPic;//管理人图片
+	private String productManagerTitle;//管理人头衔
+	private String productStrategy;//产品策略
+	private String productTopic;//基金专题/关于基金
+	private String ratio;//返佣比例
+	private BigDecimal soldAmount;//已售金额
+	private Date startDate;//开始时间
+	private byte status;//状态(0:未发布，1:募集中，2:已结束
+	private int subscribeCount;//预约人数
+	private String type;//产品类型
+	private Date updateDate;//修改时间
+	private BigDecimal yearRate;//年化率
 
 	public FinanceProductFunds() {
 	}

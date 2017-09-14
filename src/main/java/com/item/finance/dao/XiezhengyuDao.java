@@ -80,7 +80,7 @@ String hql = "from NewsType where 0=0";
  getNewsTypeHql(map, hql);
  System.out.println(hql);
 Session session = sessionFactory.getCurrentSession();
-List<NewsType> list= session.createQuery("hql").list();
+List<NewsType> list= session.createQuery(hql).list();
 return list;
 }
 public String getNewsTypeHql(Map map,String hql){

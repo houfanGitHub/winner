@@ -45,7 +45,7 @@ $(function(){
 <td>&nbsp;&nbsp;&nbsp;起投金额(元):</td><td><input type="text" name="floorAmount" class="form-control"></td><td>&nbsp;&nbsp;保障方式:</td><td><select name="safeGuard_way" class="form-control"><option value="0">企业担保</option><option value="1">银行监管</option></select></td>
 </tr>
 <tr height="60">
-<td>&nbsp;&nbsp;&nbsp;年化收益(%):</td><td><input type="text" name="yearRate" class="form-control"></td><td>&nbsp;&nbsp;募集开始时间:</td><td><input type="date" name="raiseStart" class="form-control"></td>
+<td>&nbsp;&nbsp;&nbsp;年化收益(%):</td><td><input type="text" name="yearRate" class="form-control"></td><td>&nbsp;&nbsp;可使用体验金:</td><td><select name="experStatus" class="form-control"><option value="0">否</option><option value="1">是</option></select></td>
 </tr>
 <tr height="60">
 <td>&nbsp;&nbsp;&nbsp;状态:</td><td><select class="form-control" name="status">
@@ -53,25 +53,22 @@ $(function(){
 <option value="1">募集中</option>
 <option value="2">回款中</option>
 <option value="3">还款完成</option>
-</select></td><td>&nbsp;&nbsp;募集结束时间:</td><td><input type="date" class="form-control" name="raiseEnd"></td>
+</select></td><td>&nbsp;&nbsp;已购人数:</td><td><input type="text" class="form-control" name="bought"></td>
 </tr>
 <tr height="60">
-<td>&nbsp;&nbsp;&nbsp;投资期限(天):</td><td><input type="text" class="form-control" name="period"></td><td>标的开始时间:</td><td><input type="text" class="form-control" name="startDate"></td>
+<td>&nbsp;&nbsp;&nbsp;投资期限(天):</td><td><input type="text" class="form-control" name="period"></td><td colspan="2"></td>
 </tr>
 <tr height="60">
-<td>&nbsp;&nbsp;&nbsp;借款人姓名:</td><td><input type="text" name="borrowername" class="form-control"></td><td>标的结束时间:</td><td><input type="date" name="endDate"></td>
-</tr>
-<tr>
-<td>总金额(元):</td><td><input type="text" name="" class="form-control"></td>
+<td>&nbsp;&nbsp;&nbsp;借款人姓名:</td><td><input type="text" name="borrowername" class="form-control"></td><td colspan="2"></td>
 </tr>
 <tr height="60">
 <td colspan="4"><h3>&nbsp;&nbsp;▶ 特定属性</h3><hr></td>
 </tr>
 <tr height="60">
-<td>&nbsp;&nbsp;&nbsp;债权编号:</td><td><input type="text" class="form-control"></td><td>&nbsp;&nbsp;企业认证:</td><td><input type="text" class="form-control"></td>
+<td>&nbsp;&nbsp;&nbsp;债权编号:</td><td><input type="text" name="borrowerid" class="form-control"></td><td>&nbsp;&nbsp;企业认证:</td><td><input type="text" class="form-control"></td>
 </tr>
 <tr height="60">
-<td>&nbsp;&nbsp;&nbsp;债权人:</td><td><input type="text" class="form-control"></td><td>&nbsp;&nbsp;保障平台</td><td><input type="text" class="form-control"></td>
+<td>&nbsp;&nbsp;&nbsp;债权人:</td><td><input type="text" name="borrowername" class="form-control" ></td><td>&nbsp;&nbsp;保障平台</td><td><input type="text" class="form-control"></td>
 </tr>
 
 <tr height="60"><td colspan="4">
