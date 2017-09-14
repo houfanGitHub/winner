@@ -34,6 +34,15 @@ public class UserRoleDao {
 		System.out.println(userRole.toString());
 		return userRole;
 	}
+
+	public List<UserRole> list() {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from UserRole";
+		List<UserRole> list = session.createQuery(hql).list();
+		System.out.println("UserRoleDao:list:"+list.size());
+		return list;
+	}
 	
 	
 }

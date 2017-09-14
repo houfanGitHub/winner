@@ -42,7 +42,7 @@ public class RolePermissionRelation  {
 
 	//bi-directional many-to-one association to UserRole
 	@ManyToOne
-	@JoinColumn(name="permission_id", nullable=false)
+	@JoinColumn(name="role_id", nullable=false)
 	public UserRole getUserRole() {
 		return this.userRole;
 	}

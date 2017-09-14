@@ -412,10 +412,15 @@ function link_operating(name,title){
 						</li>
 						<li><a href="#" class="dropdown-toggle"><i class="icon-comments-alt"></i><span class="menu-text"> 系统设置 </span><b class="arrow icon-angle-down"></b></a>
 							<ul class="submenu" id="Sort_link_6">
-								<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/system/users" title="账户设置" class="iframeurl"><i class="icon-double-angle-right"></i>账户设置</a></li>
+								<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/system/users" id="usersid" title="账户设置" class="iframeurl"><i class="icon-double-angle-right"></i>账户设置</a></li>
                                 <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/system/roles" title="角色设置" class="iframeurl"><i class="icon-double-angle-right"></i>角色设置</a></li>
-                                <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/system/passwords" title="密码设置" class="iframeurl"><i class="icon-double-angle-right"></i>密码设置</a></li>
+                                <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/system/toPasswords" title="密码设置" class="iframeurl"><i class="icon-double-angle-right"></i>密码设置</a></li>
 							</ul>
+							<script type="text/javascript">
+								$("#usersid").click(function(){
+									alert("usersid");
+								});
+							</script>
 						</li>
 					</ul>
 					</div>

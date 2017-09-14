@@ -36,7 +36,8 @@ public class UserRoleService implements ItemServiceImpl<UserRole> {
 	@Override
 	public List<UserRole> list() {
 		// TODO Auto-generated method stub
-		return null;
+		List<UserRole> list = userRoleDao.list();
+		return list;
 	}
 
 	@Override

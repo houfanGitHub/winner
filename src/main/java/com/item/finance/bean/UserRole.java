@@ -17,23 +17,23 @@ import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the user_role database table.
- * 
+ * 角色表
  */
 @Entity
 @Table(name="user_role")
 public class UserRole  {
 	
-	private String id;
-	private byte available;
-	private String category;
-	private String cname;
-	private Date createDate;
-	private byte delFlag;
-	private String ename;
-	private String remark;
-	private BigInteger sourceId;
-	private byte sourceType;
-	private Date updateDate; 
+	private String id;		//主键
+	private byte available;	//是否可用
+	private String category;	//分类
+	private String cname;	//中文名
+	private Date createDate;	//创建时间
+	private byte delFlag;	//是否删除
+	private String ename;	//英文名
+	private String remark;	//备注
+	private BigInteger sourceId;	//源ID
+	private byte sourceType;	// 源型类别
+	private Date updateDate; 	//修改时间
 	private Set<RolePermissionRelation> rolePermissionRelations = new HashSet<>();
 
 	public UserRole() {

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,9 +66,19 @@ public class HoufanWebItemController {
 		SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());  
         // 登录后存放进shiro token  	
         UsernamePasswordToken token = new UsernamePasswordToken(name, password);  
-       token.setRememberMe(true);
-        Subject subject = SecurityUtils.getSubject();  
+        token.setRememberMe(true);
+        Subject subject = SecurityUtils.getSubject();
         subject.login(token); 
+	}
+	
+	/**
+	 * 退出 返回到后台登陆页面
+	 * @return
+	 */
+	@RequestMapping("/logout")
+	public String logout(){
+		SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());  
+		return "redirect:/itemweb/backstageLogin";
 	}
 	
 	@RequestMapping("/backstageUserLogin")
@@ -134,7 +145,7 @@ public class HoufanWebItemController {
 		return "WEB-INF/backstage/login";
 	}
 	
-	//后台登陆页面
+	//错误页面
 	@RequestMapping("/error")
 	public String error(){
 		return "WEB-INF/error/error";

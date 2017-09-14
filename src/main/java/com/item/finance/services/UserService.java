@@ -83,4 +83,30 @@ public class UserService implements ItemServiceImpl<User> {
 		return user;
 	}
 
+	/**
+	 * 验证原密码
+	 * @param oldPassword
+	 * @return
+	 */
+	public boolean toPasswordValidation(User user,String oldPassword) {
+		// TODO Auto-generated method stub
+		if(userDao.toPasswordValidation(user,oldPassword)){
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 修改密码
+	 * @param newPassword
+	 * @return
+	 */
+	public boolean updatePassword(User user,String newPassword) {
+		// TODO Auto-generated method stub
+		if(userDao.updatePassword(user,newPassword)){
+			return true;
+		}
+		return false;
+	}
+
 }
