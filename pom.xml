@@ -139,12 +139,15 @@
     <artifactId>javassist</artifactId>
     <version>3.20.0-GA</version>
 </dependency>
-<!-- ueditor -->
-<dependency>
-    <groupId>com.baidu</groupId>
-    <artifactId>ueditor</artifactId>
-    <version>1.1.2</version>
+<dependency>  
+    <groupId>com.baidu</groupId>  
+    <artifactId>ueditor</artifactId>  
+    <version>1.1.2</version>  
 </dependency>
-
+<dependency>  
+    <groupId>org.json</groupId>  
+    <artifactId>json</artifactId>  
+    <version>0.0.1-SNAPSHOT</version>  
+</dependency>
 	</dependencies>
 </project>

@@ -162,4 +162,16 @@ public class UserRole  {
 		this.rolePermissionRelations = rolePermissionRelations;
 	}
 
+
+	@Override
+	public String toString() {
+		return "UserRole [id=" + id + ", available=" + available
+				+ ", category=" + category + ", cname=" + cname
+				+ ", createDate=" + createDate + ", delFlag=" + delFlag
+				+ ", ename=" + ename + ", remark=" + remark + ", sourceId="
+				+ sourceId + ", sourceType=" + sourceType + ", updateDate="
+				+ updateDate + ", rolePermissionRelations="
+				+ rolePermissionRelations + "]";
+	}
+
 }

@@ -4,12 +4,28 @@
 	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
-
+	
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/itemweb/backstageLogin" />
+		<property name="successUrl" value="/itemweb/backstage" />
+		<property name="unauthorizedUrl" value="/itemweb/error" />
+		<property name="filterChainDefinitions">
+			<value>
+				/** = anon
+			</value>
+		</property>
+	</bean>
+	
 	<bean id="userService" class="com.item.finance.services.UserService"></bean>
+	<bean id="userRoleService" class="com.item.finance.services.UserRoleService"></bean>
+	<bean id="rolePermissionRelationService" class="com.item.finance.services.RolePermissionRelationService"></bean>
 	
 	<bean id="shiroRealm" class="com.item.finance.realm.ShiroRealm">
-		<property name="itemServiceImpl" ref="userService"></property>
-	
+		<property name="userService" ref="userService"></property>
+		<property name="userRoleService" ref="userRoleService"></property>
+		<property name="rolePermissionRelationService" ref="rolePermissionRelationService"></property>
+		
 		<!-- MD5加密 -->
 		<property name="credentialsMatcher">
 			<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
@@ -23,18 +39,6 @@
 	
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="shiroRealm"></property>
-	</bean>
-	
-	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-		<property name="securityManager" ref="securityManager"></property>
-		<property name="loginUrl" value="login/**"></property>
-		<property name="successUrl" value="success/**"></property>
-		<property name="unauthorizedUrl" value="error/**"></property>
-		<property name="filterChainDefinitions">
-			<value>
-				/** = anon
-			</value>
-		</property>
 	</bean>
 
 </beans>
