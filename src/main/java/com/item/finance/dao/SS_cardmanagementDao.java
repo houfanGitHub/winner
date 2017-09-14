@@ -1,5 +1,6 @@
 package com.item.finance.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public class SS_cardmanagementDao {
 	public List<MemberBankcard>list(Map map){
 		Session session=getSession();
 	
-		String hql="from MemberBankcard where 0=0 ";
+		String hql="from MemberBankcard as membank where 0=0 ";
 		hql=gethql(map, hql);
 		List<MemberBankcard>list=session.createQuery(hql).list();
 		return list;
@@ -40,29 +41,43 @@ public class SS_cardmanagementDao {
 	
 	//模糊查询
 	public String gethql(Map map,String hql){
-		String mobile_phone1=(String)map.get("mobile_phone1");  //手机号
-		String member_name1=(String)map.get("member_name1");//绑卡姓名
-		String card_no1=(String)map.get("card_no1");//绑卡卡号
+		String mobile1=(String)map.get("mobile1");  //手机号
+		String name1=(String)map.get("name1");//绑卡姓名
+		String card1=(String)map.get("card1");//绑卡卡号
 		String qdate1=(String)map.get("qdate1");  //注册时间1
 		String qdate2=(String)map.get("qdate2"); //注册时间2
+		/*
+		if(mobile1!=null && !"".equals(mobile1)){  //手机号
+			hql=hql+" and member.mobile_Phone like '%"+mobile1+"%'";
+		}*/
 		
-		if(mobile_phone1!=null && !"".equals(mobile_phone1)){  //手机号
-			hql=hql+" and mobile_phone like '%"+mobile_phone1+"%'";
+		if(mobile1!=null && !"".equals(mobile1)){ //手机号
+			hql=hql+" and membank.member.mobile_Phone like '%"+mobile1+"%'";
 		}
-		if(member_name1!=null && !"".equals(member_name1)){ //绑卡姓名
-			hql=hql+" and member_name like '%"+member_name1+"%'";
+		
+		
+		if(name1!=null && !"".equals(name1)){ //绑卡姓名
+			hql=hql+" and  membank.member.memberName like '%"+name1+"%'";
 		}
-		if(card_no1!=null && !"".equals(card_no1)){ //绑卡卡号
-			hql=hql+" and card_no like '%"+card_no1+"%'";
+		if(card1!=null && !"".equals(card1)){ //绑卡卡号
+			hql=hql+" and cardNo like '%"+card1+"%'";
 		}
 		
 		if(qdate1!=null && !"".equals(qdate1)){  //注册时间1 开始时间
-			hql=hql+" and create_date>='%"+qdate1+"%'";
+			hql=hql+" and createDate>='"+qdate1+"'";
 		}
 		if(qdate2!=null && !"".equals(qdate2)){  //注册时间2  结束时间
-			hql=hql+" and create_date<='%"+qdate2+"%'";
+			hql=hql+" and createDate<='"+qdate2+"'";
 		}
 		return hql;
+	}
+	
+	//解绑状态的方法
+	public void updateDelflag(MemberBankcard memberBankcard){
+		Session session=getSession();
+		Date date=new Date();
+		memberBankcard.setUpdateDate(date);
+		session.update(memberBankcard);
 	}
 	
 

@@ -29,9 +29,16 @@ public class Ss_cardmanagementService implements ItemServiceImpl<MemberBankcard>
 		return null;
 	
 	}
+	
 	//显示
 	public List<MemberBankcard> listshow(Map map){
 		return this.ss_cardmanagementDao.list(map);
+	}
+	//解绑
+	public  void updateDelflag(String id){
+		MemberBankcard memberBankcard=ss_cardmanagementDao.getByID(id);
+		memberBankcard.setDelflag((byte) 2);
+		ss_cardmanagementDao.updateDelflag(memberBankcard);
 	}
 
 
@@ -52,8 +59,6 @@ public class Ss_cardmanagementService implements ItemServiceImpl<MemberBankcard>
 		// TODO Auto-generated method stub
 		
 	}
-
-
 	
 
 }

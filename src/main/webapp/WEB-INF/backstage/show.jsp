@@ -390,13 +390,13 @@ function link_operating(name,title){
                    <li>
 				   <a href="http://www.erdangjiade.com/" class="dropdown-toggle"><i class="icon-credit-card"></i><span class="menu-text"> 会员管理 </span><b class="arrow icon-angle-down"></b></a>
 				     <ul class="submenu" id="Sort_link_3">
-						<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Cover_management.html" title="账户管理" class="iframeurl"><i class="icon-double-angle-right"></i>账户管理</a></li>
-						 <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="payment_method.html" title="理财师审核" class="iframeurl"><i class="icon-double-angle-right"></i>理财师审核</a></li>
-						  <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Payment_Configure.html" title="绑卡管理" class="iframeurl"><i class="icon-double-angle-right"></i>绑卡管理</a></li>
+						<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/sushuang1/list1" title="账户管理" class="iframeurl"><i class="icon-double-angle-right"></i>账户管理</a></li>
+						 <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/sushuang2/list2" title="理财师审核" class="iframeurl"><i class="icon-double-angle-right"></i>理财师审核</a></li>
+						  <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/sushuang3/list3" title="绑卡管理" class="iframeurl"><i class="icon-double-angle-right"></i>绑卡管理</a></li>
 							<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Payment_Configure.html" title="付息计划" class="iframeurl"><i class="icon-double-angle-right"></i>付息计划</a></li>
-							<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Payment_Configure.html" title="充值管理" class="iframeurl"><i class="icon-double-angle-right"></i>充值管理</a></li>
-							<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Payment_Configure.html" title="提现管理" class="iframeurl"><i class="icon-double-angle-right"></i>提现管理</a></li>
-							<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Payment_Configure.html" title="邀请奖励" class="iframeurl"><i class="icon-double-angle-right"></i>邀请奖励</a></li>
+							<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/sushuang4/list4" title="充值管理" class="iframeurl"><i class="icon-double-angle-right"></i>充值管理</a></li>
+							<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/sushuang5/list5" title="提现管理" class="iframeurl"><i class="icon-double-angle-right"></i>提现管理</a></li>
+							<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/sushuang6/list6" title="邀请奖励" class="iframeurl"><i class="icon-double-angle-right"></i>邀请奖励</a></li>
 							</ul>
 						</li>
                   <li>

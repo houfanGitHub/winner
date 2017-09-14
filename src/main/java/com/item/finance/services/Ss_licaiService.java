@@ -51,8 +51,7 @@ public List<FinancialPlanner> list() {
 		// TODO Auto-generated method stub
 		
 	}
-
-
+	
 	
 
 }

@@ -59,13 +59,13 @@ public class Ss_zhManangerDao {
 			hql=hql+" and member_name like '%"+qname2+"%'";
 		}
 		if(invit!=null && !"".equals(invit)){  //邀请码
-			hql=hql+" and invitationCode= '%"+invit+"%'";
+			hql=hql+" and invitationCode like '%"+invit+"%'";
 		}
 		if(create_date1!=null && !"".equals(create_date1)){  //注册时间1  开始时间
-			hql=hql+" and create_date>='%"+create_date1+"%'";
+			hql=hql+" and createDate>='"+create_date1+"'";
 		}
 		if(create_date2!=null && !"".equals(create_date2)){  //注册时间2  结束时间
-			hql=hql+" and create_date<='%"+create_date2+"%'";
+			hql=hql+" and createDate<='"+create_date2+"'";
 		}
 		
 		return hql;
