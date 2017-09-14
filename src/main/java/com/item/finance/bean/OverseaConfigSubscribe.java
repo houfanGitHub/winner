@@ -13,15 +13,15 @@ import java.util.Date;
 @Entity
 @Table(name="oversea_config_subscribe")
 public class OverseaConfigSubscribe  {
-	private int id;
-	private String addr;
-	private Date createDate;
-	private String name;
-	private String phone;
-	private int status;
-	private Date updateDate;
-	private Member member;
-	private OverseaConfig overseaConfig;
+	private int id;//id
+	private String addr;//地址
+	private Date createDate;//创建时间
+	private String name;//姓名
+	private String phone;//电话
+	private int status;//状态
+	private Date updateDate; //修改时间
+	private Member member;//会员id
+	private OverseaConfig overseaConfig;//海外配置表
 
 	public OverseaConfigSubscribe() {
 	}
