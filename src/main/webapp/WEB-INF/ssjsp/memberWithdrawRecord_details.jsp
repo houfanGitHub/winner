@@ -23,7 +23,7 @@
 </head>
 <body>
 <!-- <a href="#" onclick="location.href='javascript:history.go(-1);'"></a>   <a href="#" onclick="history.back()"></a>    -->
-	<p><h3>&nbsp;&nbsp;▶   体现管理账号详情</h3>
+	<p><h3>&nbsp;&nbsp;▶   提现管理账号详情</h3>
 &nbsp;&nbsp;<div style="width:800px;text-align=right"><a href="javascript:history.go(-1);" class="btn btn-primary">返回</a></div>
 <!-- <table width="800" bgcolor="blue" cellspacing="1" border="0" > -->
 	<table width="100%" bgcolor="blue" cellspacing="1" border="0" class="table table-bordered">
@@ -70,22 +70,27 @@
 				
 			</tr>
 			<tr height="20" bgcolor="white">
-				<td>可用余额</td>
-				<td> ${listmemberaccount.useableBalance }  </td>
-				<td>冻结金额</td>
-				<td> ${listmemberaccount.imusealeBalance } </td>
+				<td width="15%" ><font color="black">真实姓名</font></td>
+				<td colspan="3" >${memberAccount.member.memberName }  </td>
+				
 			</tr>
 			<tr height="20" bgcolor="white">
-				<td>累计收益</td>
-				<td>${listmemberaccount.totalProfit }  </td>
-				<td>投资金额</td>
-				<td> ${listmemberaccount.investAmount } </td>
+				<td width="10%"><font color="black">可用余额</font></td>
+				<td width="40%" >${memberAccount.useableBalance }  </td>
+				<td width="10%"><font color="black">冻结金额</font></td>
+				<td width="40%"> ${memberAccount.imusealeBalance} </td>
 			</tr>
 			<tr height="20" bgcolor="white">
-				<td>红包金额</td>
-				<td> ${listmemberaccount.bonusAmount }</td>
-				<td>体验金</td>
-				<td>${listmemberaccount. bbinAmount } </td>
+				<td><font color="black">累计收益</font></td>
+				<td> ${memberAccount.totalProfit } </td>
+				<td><font color="black">投资总额</font></td>
+				<td> ${memberAccount.investAmount } </td>
+			</tr>
+			<tr height="20" bgcolor="white">
+				<td><font color="black">红包金额</font></td>
+				<td>${memberAccount.bonusAmount } </td>
+				<td><font color="black">体验金</font></td>
+				<td> ${memberAccount.bbinAmount}</td>
 			</tr>
 			
 			<tr height="20" >
@@ -98,23 +103,23 @@
 			</tr>
 		</table>
 		<br>
-		
 		<table width="100%" bgcolor="blue" cellspacing="1" border="0" class="table table-bordered">
 			<tr height="20">
 				<td  colspan="4" align="center" bgcolor="#AFD9EE">理财师信息</td>
 				
 			</tr>
+			
 			<tr height="20" bgcolor="white">
-				<td>真实姓名</td>
-				<td> ${list.member.memberName}  </td>
-				<td>机构名称</td>
-				<td> ${list. orgname } </td>
+				<td width="10%"><font color="black">真实姓名</font></td>
+				<td width="40%">${financialPlanner.name }  </td>
+				<td width="10%"><font color="black">机构名称</font></td>
+				<td width="40%"> ${financialPlanner.orgname} </td>
 			</tr>
 			<tr height="20" bgcolor="white">
-				<td>邮寄地址</td>
-				<td> ${list.address } </td>
-				<td>添加时间</td>
-				<td> ${list.createDate } </td>
+				<td><font color="black">邮寄地址</font></td>
+				<td> ${financialPlanner.address } </td>
+				<td><font color="black">添加时间</font></td>
+				<td> ${financialPlanner.createDate } </td>
 			</tr>
 			
 			<tr height="20" >
@@ -126,6 +131,51 @@
 				
 			</tr>
 		</table>
+		<br><table width="100%" bgcolor="blue" cellspacing="1" border="0" class="table table-bordered">
+			<tr height="20">
+				<td  colspan="10" align="center" bgcolor="#AFD9EE">提现记录</td>
+				
+			</tr>
+			<tr align="center" bgcolor="white">
+				<td><font color="black">序号</font></td>
+              <td><font color="black">提现编号</font></td>
+                 <td><font color="black">提现金额</font></td>
+               <td><font color="black">提现状态</font></td>
+              <td><font color="black">提现银行</font></td>
+              <td><font color="black">提现卡号</font></td>
+               <td><font color="black">提现时间</font></td>
+           
+           </tr>
+           <c:forEach items="${memberWithdrawRecord}" var="withdrawr" varStatus="stat">
+           <tr align="center" bgcolor="white">
+           <td>${stat.index+1 }  </td>
+           <td> ${withdrawr.id} </td>
+           <td> ${withdrawr.amount} </td>
+           
+           <td>  <!-- 提现状态 -->
+           <c:if test="${withdrawr.status=='0' }"><font color="red">待审核</font></c:if>
+            <c:if test="${withdrawr.status== '1'}"><font color="green">已打款</font></c:if>
+             <c:if test="${withdrawr.status=='2' }"><font color="blue">打款中</font></c:if>
+              <c:if test="${withdrawr.status=='3'}"><font color="red">打款失败</font></c:if>
+           </td>
+           
+           <td> ${withdrawr.bankName} </td>
+           <td> ${withdrawr.bankCard} </td>
+           <td> ${withdrawr.createDate} </td>
+           </tr>
+           </c:forEach>
+
+
+			<tr height="20" >
+				<td  colspan="10" align="center" bgcolor="white"></td>
+				
+			</tr>
+			<tr height="20" >
+				<td  colspan="10" align="center" bgcolor="#737373"></td>
+				
+			</tr>
+		</table>
+		
 		<br>
 		<table width="100%" bgcolor="blue" cellspacing="1" border="0" class="table table-bordered">
 			<tr height="20">
@@ -154,8 +204,5 @@
 			</tr>
 		</table>
 		
-		
-
-
 </body>
 </html>

@@ -11,15 +11,15 @@
 <form action="" method="post">
 <table width="1100" cellspacing="1" border="0" bgcolor="blue">
 <tr bgcolor="white" align="center">
-<th>序号</th>
-<th>手机号</th>
-<th>真实姓名</th>
-<th>机构名称</th>
-<th>我的名片</th>
-<th>邮寄地址</th>
-<th>状态</th>
-<th>注册时间</th>
-<th> 操作  </th>
+<td>序号</td>
+<td>手机号</td>
+<td>真实姓名</td>
+<td>机构名称</td>
+<td>我的名片</td>
+<td>邮寄地址</td>
+<td>状态</td>
+<td>注册时间</td>
+<td> 操作  </td>
 </tr>
 
 <c:forEach items="${listfinap }"  var="lifp"  varStatus="stat">

@@ -95,7 +95,8 @@ class="table table-striped table-condensed table-condensed table-hover table-bor
 								<font color="red">不能奖励</font>
 							</c:if>
 							<c:if test="${listawardrecord.isAward==1 }">
-								<font color="blue">已奖励</font>&nbsp;&nbsp;<a href="#" class="btn btn-primary" type="button">奖励记录</a>
+								<font color="blue">已奖励</font>&nbsp;&nbsp;
+								<a href="#" class="btn btn-primary" type="button">奖励记录</a>
 							</c:if>
 							<c:if test="${listawardrecord.type != '1'&& listawardrecord.type != '0' }">
 								<font color="red">没有奖励</font>

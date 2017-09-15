@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="winner/webapp/sscss/sushuang.css">
+<link rel="stylesheet" rel="stylesheet" href="winner/webapp/sscss/sushuang.css">
 
 <link rel="stylesheet" href="/winner/files/layer.css" id="layui_layer_skinlayercss"> 
  <link rel="stylesheet" href="/winner/backstage/show/bootstrap.min.css">  
@@ -50,17 +50,17 @@
 <table width="1100" bgcolor="blue" cellspacing="1" border="0"  
 class="table table-striped table-condensed table-condensed table-hover table-bordered">
 <tr align="center" bgcolor="white">
-<th>序号</th>
-<th>手机号</th>
-<th>姓名</th>
-<th>身份证</th>
-<th>提现金额</th>
-<th>提现银行</th>
-<th>提现卡号</th>
-<th>提现开户行地址</th>
-<th>提现状态</th>
-<th>提现时间</th>
-<th>账号详情</th>
+<td>序号</td>
+<td>手机号</td>
+<td>姓名</td>
+<td>身份证</td>
+<td>提现金额</td>
+<td>提现银行</td>
+<td>提现卡号</td>
+<td>提现开户行地址</td>
+<td>提现状态</td>
+<td>提现时间</td>
+<td>账号详情</td>
 <td>操作</td>
 </tr>
 
@@ -70,22 +70,55 @@ class="table table-striped table-condensed table-condensed table-hover table-bor
 <td>${listwith.member.mobile_Phone }</td>   <!-- 手机号 -->
 <td>${listwith.member.memberName }</td> <!-- 姓名 -->
 <td>${listwith.member.identity }</td>  <!-- 身份证 -->
-<td>￥${listwith.amount}</td>       <!-- 提现金额 -->
+<td>${listwith.amount}</td>       <!-- 提现金额 -->
 <td>${listwith.bankName }</td>    <!-- 提现银行 -->
 <td>${listwith.bankCard }</td>    <!-- 提现卡号 -->
 <td>${listwith.cardaddress }</td>   <!-- 体现开户行所在地 -->
 <!-- 提现状态 -->   
 <td><c:if test="${listwith.status == '0' }"><font color="red">待审核</font></c:if>
 	<c:if test="${listwith.status == '1' }"><font color="green">已打款</font></c:if>
-	<c:if test="${listwith.status == '2' }"><font color="red">打款中</font></c:if>
+	<c:if test="${listwith.status == '2' }"><font color="blue">打款中</font></c:if>
 	<c:if test="${listwith.status == '3' }"><font color="red">打款失败</font></c:if>
 	</td>
 <td>${listwith.createDate }</td>  <!-- 提现时间 -->
-<td><a a href="/winner/sushuang5/getmemberWithId/${listwith.id }"  class="btn btn-primary" type="button">账号详情</a></td>
-<td>操作</td>
+<td><a a href="/winner/WEB-INF/ssjsp/details.jsp"  class="btn btn-primary" type="button">账号详情</a></td>
+<!-- <td><a a href="/winner/sushuang7//getmemberaccountId/${listwith.id }"  class="btn btn-primary" type="button">账号详情</a></td> -->
+<!-- /winner/sushuang1/getmemberId/${li.id } -->
+<!-- <a href="WEB-INF/ssjsp/details"></a> -->
+<td> <!-- 操作 -->
+	<c:if test="${listwith.status == '1' }"><font color="green">已打款</font></c:if>
+	<c:if test="${listwith.status == '2' }"><font color="blue">打款中</font></c:if>
+	<c:if test="${listwith.status == '3' }"><font color="red">打款失败</font></c:if>
+	<!-- 说明   点击审核按钮  弹出模态窗口    提交更改     审核按钮变成打款中       待审核也要变成打款中 -->
+	<c:if test="${listwith.status == '0' }" ><font color="black">
+	<a href="" class="btn btn-primary" type="button" id="btn"   data-toggle="modal" href="#example">审核</a></font></c:if>
+	</td>
 </tr>
 </c:forEach>
 </table>
 </form>
+
+<div id="example" class="modal fade in" style="display: none; ">
+ 
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">x</button>
+    </div>
+ 
+    <div class="modal-body">
+     <select >
+     <option value="FUIOU">富友</option>
+     <option value="BEIFU">贝付</option>
+   
+     
+     </select>
+    </div>
+ 
+    <div class="modal-footer">
+    <input class="btn btn-primary" type="button" value="查询" >
+        <a href="#" class="btn btn-primary"  type="button" data-dismiss="modal">取消</a>
+         
+    </div>
+    
+</div>
 </body>
 </html>

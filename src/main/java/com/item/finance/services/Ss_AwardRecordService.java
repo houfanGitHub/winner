@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.item.finance.bean.AwardRecord;
+import com.item.finance.bean.Member;
 import com.item.finance.dao.Ss_AwardRecordDao;
 
 @Service
@@ -39,6 +40,15 @@ public class Ss_AwardRecordService implements ItemServiceImpl<AwardRecord> {
 	//显示
 	public List<AwardRecord>listAwardRecord(Map map){
 		return this.ss_AwardRecordDao.listshowawardRecord(map);
+	}
+	
+	//点击奖励记录
+	public AwardRecord getByAwardr(int id){
+		return this.ss_AwardRecordDao.getAward(id);
+	}
+	//被邀请人信息  通过member找到
+	public Member getbyinvitingname(int id){
+		return this.ss_AwardRecordDao.getByName(id);
 	}
 
 	@Override

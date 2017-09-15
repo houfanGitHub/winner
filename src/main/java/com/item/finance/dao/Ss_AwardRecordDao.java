@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.item.finance.bean.AwardRecord;
+import com.item.finance.bean.Member;
 
 @Component
 public class Ss_AwardRecordDao {
@@ -77,6 +78,14 @@ public class Ss_AwardRecordDao {
 			String hql = "from AwardRecord as awardr where id="+id;
 			List<AwardRecord> award = session.createQuery(hql).list();
 			return award.get(0);  //返回信息
+		}
+		
+		//奖励记录中的被邀请人  邀请人的id 信息 通过member找到
+		public Member getByName(int id){
+			Session session = getSession();
+			String hql = "from Member where id="+id;
+			List<Member> member = session.createQuery(hql).list();
+			return member.get(0); //返回信息
 		}
 
 }
