@@ -30,9 +30,16 @@ public class Ss_licaiDao {
 	//显示
 	public List<FinancialPlanner> list(){
 		Session session=getSession();
-		String hql="from FinancialPlanner" ;
+		String hql="from FinancialPlanner as fina" ;
 		List<FinancialPlanner>list=session.createQuery(hql).list();
 		return list;
+	}
+	
+	public List<FinancialPlanner> listfina(){
+		Session session=getSession();
+		String hql="from FinancialPlanner as fina" ;
+		List<FinancialPlanner>listfina=session.createQuery(hql).list();
+		return listfina;
 	}
 
 }

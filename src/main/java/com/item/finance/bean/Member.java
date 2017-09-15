@@ -21,26 +21,26 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="member")
-public class Member  {
+public class Member  {  //会员表
 	private String id;
-	private Date createDate;
-	private byte delFlag;
-	private BigInteger headid;
-	private String identity;
-	private String invitationCode;
-	private String invitedCode;
-	private String memberName;
-	private String mobile_Phone;
-	private String name;
-	private String password;
-	private String qqAccount;
-	private String qqNumber;
-	private String salt;
-	private byte status;
-	private Date updateDate;
-	private String weiBoAccount;
-	private String weixinAccount;
-	private String withdrawPassword;
+	private Date createDate;  //创建时间
+	private byte delFlag;  //删除标志
+	private BigInteger headid; // 头像图片id
+	private String identity;//身份正
+	private String invitationCode;  //邀请码
+	private String invitedCode;  //被邀请码
+	private String memberName;  //真实姓名
+	private String mobile_Phone;  //手机号
+	private String name;   //用户名
+	private String password;  //密码
+	private String qqAccount;  //QQ账号关联
+	private String qqNumber;  //QQ号码
+	private String salt;  //密码盐
+	private byte status; //账号状态（正常，锁定，删除）
+	private Date updateDate; //修改时间
+	private String weiBoAccount; //微博账号关联
+	private String weixinAccount;  //微信账号关联
+	private String withdrawPassword;  //提款密码
 	private Set<AssociatedAccount> associatedAccounts = new HashSet<>();
 	private Set<BbinInfo> bbinInfos = new HashSet<>();
 	private Set<Feedback> feedbacks = new HashSet<>();

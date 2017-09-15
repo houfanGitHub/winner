@@ -9,7 +9,9 @@ import org.hibernate.loader.custom.Return;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.item.finance.bean.FinancialPlanner;
 import com.item.finance.bean.Member;
+import com.item.finance.bean.MemberAccount;
 import com.item.finance.dao.Ss_zhManangerDao;
 
 @Service
@@ -24,6 +26,16 @@ public class Ss_zhmanagerService implements ItemServiceImpl<Member>  {
 	public Member selectGetById(String id) {
 		Member member=Ss_zhManangerDao.getId(id);
 		return member;
+	}
+	
+	//账号详情id
+	public MemberAccount getById(String id){
+		return Ss_zhManangerDao.getmemberaccount(id);
+	}
+	
+	//理财师id
+	public FinancialPlanner getBYid(String id){
+		return Ss_zhManangerDao.getFinancialplanner(id);
 	}
 
 	@Override

@@ -28,11 +28,11 @@ public class Ss_licaiService implements ItemServiceImpl<FinancialPlanner> {
 		
 		return this.ss_licaiDao.list();
 	}
-/*	//显示
-public List<FinancialPlanner> list() {
+	//显示
+public List<FinancialPlanner> listfina() {
 		
-		return null;
-	}*/
+		return this.ss_licaiDao.listfina();
+	}
 
 	@Override
 	public void save(FinancialPlanner t) {

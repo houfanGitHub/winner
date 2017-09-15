@@ -25,25 +25,27 @@
 			document.forms[0].action="/winner/sushuang5/list5";
 			document.forms[0].submit();
 		});
+	
 	});
 </script>
 
 <body>
-<form action="" method="post">
-姓名：<input type="text"  name="aname" value="${aname }">&nbsp;&nbsp;
-手机号：<input type="text"  name="aphone" value="${aphone }">&nbsp;&nbsp;
+<form action="" method="post"  id="formId">
+姓名：<input   type="text"  name="aname" value="${aname }">&nbsp;&nbsp;
+手机号：<input  type="text"  name="aphone" value="${aphone }">&nbsp;&nbsp;
 绑卡卡号：<input type="text"  name="anumber" value="${anumber }">&nbsp;&nbsp;
-状态：<select name="astatu">
-<option value="${astatu }">${astatu }</option>
-<option value="-1" selelcted="selected">全部状态</option>
-<option value="待审核">待审核</option>
-<option value="已打款">已打款</option>
-<option value="打款中">打款中</option>
-<option value="打款失败">打款失败</option>
+状态：<select  name="astatu" id="astatu">
+<!--  <option value="${astatu }">${astatu }</option>  -->
+<option value="" selelcted="selected">全部状态</option>
+<option value="0">待审核</option>
+<option value="1">已打款</option>
+<option value="2">打款中</option>
+<option value="3">打款失败</option>
 </select><br><br>
-提现时间：<input type="date" name="adate" value="${adate }">&nbsp;&nbsp;
+提现时间：<input   type="date" name="adate" value="${adate }">&nbsp;&nbsp;
 <input class="btn btn-primary" type="button" value="查询" id="btn5">
-<input  class="btn btn-primary" type="reset" value="重置">
+
+<input  class="btn btn-primary"  type="reset"  value="重置">
 <br><br>
 <table width="1100" bgcolor="blue" cellspacing="1" border="0"  
 class="table table-striped table-condensed table-condensed table-hover table-bordered">
@@ -68,7 +70,7 @@ class="table table-striped table-condensed table-condensed table-hover table-bor
 <td>${listwith.member.mobile_Phone }</td>   <!-- 手机号 -->
 <td>${listwith.member.memberName }</td> <!-- 姓名 -->
 <td>${listwith.member.identity }</td>  <!-- 身份证 -->
-<td>${listwith.amount}</td>       <!-- 提现金额 -->
+<td>￥${listwith.amount}</td>       <!-- 提现金额 -->
 <td>${listwith.bankName }</td>    <!-- 提现银行 -->
 <td>${listwith.bankCard }</td>    <!-- 提现卡号 -->
 <td>${listwith.cardaddress }</td>   <!-- 体现开户行所在地 -->
@@ -79,7 +81,7 @@ class="table table-striped table-condensed table-condensed table-hover table-bor
 	<c:if test="${listwith.status == '3' }"><font color="red">打款失败</font></c:if>
 	</td>
 <td>${listwith.createDate }</td>  <!-- 提现时间 -->
-<td><a href="#" class="btn btn-primary" type="button">账号详情</a></td>
+<td><a a href="/winner/sushuang5/getmemberWithId/${listwith.id }"  class="btn btn-primary" type="button">账号详情</a></td>
 <td>操作</td>
 </tr>
 </c:forEach>

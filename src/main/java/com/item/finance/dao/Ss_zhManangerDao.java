@@ -13,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Component;
 
+import com.item.finance.bean.FinancialPlanner;
 import com.item.finance.bean.Member;
+import com.item.finance.bean.MemberAccount;
+
 
 @Component
 public class Ss_zhManangerDao {
@@ -71,6 +74,23 @@ public class Ss_zhManangerDao {
 		return hql;
 		
 	}
+	
+	    //查询账户详情
+		public  MemberAccount getmemberaccount(String id){
+			Session session = getSession();
+			String hql = "from MemberAccount as memberAccount  where memberAccount.member.id="+id;
+			List<MemberAccount> listmembercount = session.createQuery(hql).list();
+			return listmembercount.get(0);
+		}
+		
+		//理财师详情
+		public FinancialPlanner getFinancialplanner(String id){
+			Session session = getSession();
+			String hql = "from FinancialPlanner as finan where finan.member.id="+id;
+			List<FinancialPlanner> listFinancialplanner = session.createQuery(hql).list();
+			return listFinancialplanner.get(0);
+		}
+		
 	
 	
 	

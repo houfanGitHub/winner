@@ -33,7 +33,7 @@ public class Ss_MemberWithdrawRecordController {
 		model.addAttribute("listwithdrawrecord", listwithdrawrecord);
 		
 		//模糊查询
-		model.addAttribute("aname", aname);
+		model.addAttribute("aname", aname); 
 		model.addAttribute("aphone", aphone);
 		model.addAttribute("anumber", anumber);
 		model.addAttribute("astatu", astatu);

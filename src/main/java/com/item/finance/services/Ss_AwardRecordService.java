@@ -1,6 +1,7 @@
 package com.item.finance.services;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -36,8 +37,8 @@ public class Ss_AwardRecordService implements ItemServiceImpl<AwardRecord> {
 	}
 	
 	//显示
-	public List<AwardRecord>listAwardRecord(){
-		return this.ss_AwardRecordDao.listshowawardRecord();
+	public List<AwardRecord>listAwardRecord(Map map){
+		return this.ss_AwardRecordDao.listshowawardRecord(map);
 	}
 
 	@Override

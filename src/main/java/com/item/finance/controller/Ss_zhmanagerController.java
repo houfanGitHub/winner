@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.item.finance.bean.FinancialPlanner;
 import com.item.finance.bean.Member;
+import com.item.finance.bean.MemberAccount;
 import com.item.finance.services.Ss_zhmanagerService;
 
 @Controller
@@ -54,8 +56,12 @@ public class Ss_zhmanagerController {
 	//得到id  传值     model 保存  传值
 	@RequestMapping("/getmemberId/{id}")
 	public String getMember(@PathVariable("id")String id,Model model){
-		Member member=this.ss_zhmanagerService.selectGetById(id);  //id 在dao方法里 已经由 string 转为int类型了
+		Member member=this.ss_zhmanagerService.selectGetById(id);  //会员表
+		MemberAccount memberAccount=this.ss_zhmanagerService.getById(id);//成员账户表
+		FinancialPlanner financialPlanner=this.ss_zhmanagerService.getBYid(id);//理财师表
 		model.addAttribute("member", member);
+		model.addAttribute("memberAccount", memberAccount);
+		model.addAttribute("financialPlanner", financialPlanner);
 		return "WEB-INF/ssjsp/details";   //跳转页面
 	}
 

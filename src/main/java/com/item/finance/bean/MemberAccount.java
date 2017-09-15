@@ -15,15 +15,15 @@ import java.util.Date;
 @Table(name="member_account")
 public class MemberAccount  {
 	private String id;
-	private BigDecimal bbinAmount;
-	private BigDecimal bonusAmount;
-	private Date createDate;
-	private byte delflag;
-	private BigDecimal imusealeBalance;
-	private BigDecimal investAmount;
-	private BigDecimal totalProfit;
-	private Date updateDate;
-	private BigDecimal useableBalance;
+	private BigDecimal bbinAmount;  //体验金
+	private BigDecimal bonusAmount;   //红包金额
+	private Date createDate;   //创建时间
+	private byte delflag;  //是否删除
+	private BigDecimal imusealeBalance;  //冻结金额
+	private BigDecimal investAmount;  //投资金额
+	private BigDecimal totalProfit;  //累计收益
+	private Date updateDate;  //修改时间
+	private BigDecimal useableBalance;  //可用余额
 	private Member member;
 
 	public MemberAccount() {

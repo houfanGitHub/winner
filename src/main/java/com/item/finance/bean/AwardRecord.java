@@ -12,14 +12,27 @@ import java.util.Date;
  */
 @Entity
 @Table(name="award_records")
-public class AwardRecord  {
+public class AwardRecord  {   //奖励记录表
 	private int id;
-	private Date addTime;
-	private BigDecimal amount;
-	private int byinvitingid;
-	private int invitingid;
-	private int isAward;
-	private int type;
+	private Date addTime;  //添加时间
+	private BigDecimal amount;  //奖励金额
+	private int byinvitingid; //被邀请人id
+	//private int invitingid;  //邀请人id
+	private int isAward;  //0:未奖励  1：已奖励',
+	private int type;  //奖励类型（0：注册奖励，1：投资奖励）
+	private Member member;
+	
+	@ManyToOne
+	@JoinColumn(name="invitingid")
+	public Member getMember() {
+		return member;
+	}
+
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
 
 	public AwardRecord() {
 	}
@@ -64,7 +77,7 @@ public class AwardRecord  {
 		this.byinvitingid = byinvitingid;
 	}
 
-
+/*
 	public int getInvitingid() {
 		return this.invitingid;
 	}
@@ -72,7 +85,7 @@ public class AwardRecord  {
 	public void setInvitingid(int invitingid) {
 		this.invitingid = invitingid;
 	}
-
+*/
 
 	public int getIsAward() {
 		return this.isAward;

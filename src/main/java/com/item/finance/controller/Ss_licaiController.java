@@ -21,10 +21,17 @@ public class Ss_licaiController {
 	
 	//显示
 	@RequestMapping("/list2")
-	public String  listshow(Model model){
-		List<FinancialPlanner>listfinap=ss_licaiService.list();
+	public String  listshowfina(Model model){
+		List<FinancialPlanner>listfinap=ss_licaiService.listfina();
 		model.addAttribute("listfinap",listfinap);
 		return "WEB-INF/ssjsp/licai";
+	}
+	//提现管理用
+	@RequestMapping("/listapp")
+	public String  listshow(Model model){
+		List<FinancialPlanner>list=ss_licaiService.list();
+		model.addAttribute("list",list);
+		return "WEB-INF/ssjsp/memberWithdrawRecord_details";   //跳转页面
 	}
 	
 	//得到id  传值     model 保存  传值
