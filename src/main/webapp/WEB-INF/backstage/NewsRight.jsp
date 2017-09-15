@@ -56,22 +56,19 @@
 }
 </style>
 <script type="text/javascript">
-$(function(){
+function fun(){
 	var ue = UE.getEditor('editor',{
     initialFrameWidth:1000,  //初始化编辑器宽度,默认1000
     initialFrameHeight:200  //初始化编辑器高度,默认320	
 	});
     enableBtn();
     ue.getEditor('editor');
-})
+};
 </script>
-<script type="text/javascript">  
-            
-        </script>  
 </head>
 <body>
 <form>
-<div align="right"><a data-toggle="modal" href="#example">添加 </a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+<div align="right"><a data-toggle="modal" href="#example" onclick="fun();">添加 </a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 <table class="table table-bordered table-hover" style='table-layout:fixed;' border="1">
 <tr style="height:8px">
 <th>序号</th><th>标题</th><th>副标题</th><th>简介</th><th>作者</th><th>内容</th><th>是否审核</th><th>是否置顶</th><th>是否推荐</th>
@@ -83,7 +80,7 @@ $(function(){
 <td>${n.id }</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.title }</td> <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.subTitle}</td>
 <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.info }</td><td>${n.author}</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><div style="width: 20px;height: 15px">${n.text}</div></td>
 <td>${n.audit}</td><td>${n.placTop}</td><td>${n.recommend }</td><td>${n.addTime }</td><td>${n.addId}</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.label }</td>
-<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.link}</td><td>${n.clickNumber }</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.cPhoto}</td><td>${n.source}</td>
+<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.link}</td><td>${n.clickNumber }</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><img src= "${n.cPhoto}" /></td><td>${n.source}</td>
 <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.filelink }</td><td>${n.seoDes}</td><td>${n.seoKey }</td><td>${n.seoTitle}</td><td>${n.updId}</td><td>${n.updTime}</td> 
 <td><input type="button" value="修改"  class="blue"/><input type="button" value="删除"  class="red"/></td>
 </tr>
@@ -96,9 +93,9 @@ $(function(){
 <a class="close" data-dismiss="modal">×</a>
 <h3><font color="whitesmoke">添加资讯</font></h3>
 </div>
- <div class="modal-body">
+<div class="modal-body">
 <center>
-<form name="form1" action="saveNews" method="post">
+<form name="form1" action="saveNews" method="post" enctype="multipart/form-data" >
 <table>
 <tr>
 <td><font color="whitesmoke">标 题:</font><td><input type="text"  name="title"  /><td><font color="whitesmoke">副标题:</font></td><td><input type="text"  name="subTitle"  /></td>
@@ -107,7 +104,7 @@ $(function(){
  <td><font color="whitesmoke">作者:</font><td><input type="text"   name="author"   /><td><font color="whitesmoke">简 介:</font></td><td><input type="text"   name="info"  /></td> 
  </tr>
 <tr>
-<td><font color="whitesmoke">来源:</font><td><input type="text" name="source" /><td><font color="whitesmoke">标 签:</font></td><td><input type="text"  name="label"  /></td><td><font color="whitesmoke">封面图片:</font></td><td><input type="file" name="cPhoto"/></td>
+<td><font color="whitesmoke">来源:</font><td><input type="text" name="source" /><td><font color="whitesmoke">标 签:</font></td><td><input type="text"  name="label"  /></td><td><font color="whitesmoke">封面图片 :</font></td><td><input type="file" name="file"/></td>
 </tr>
  <tr>
  <td><font color="whitesmoke">链接地址:</font><td><input type="text" name="link" /><td><font color="whitesmoke">附件地址:</font></td><td><input type="text" name="filelink" /></td><td><font color="whitesmoke">咨询类型:</font></td><td><select name="tid"><c:forEach items="${listt}" var="nt"><option value="${nt.id}">${nt.name}</option></c:forEach></select></td>
