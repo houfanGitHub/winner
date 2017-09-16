@@ -28,97 +28,104 @@ import com.item.finance.services.UserService;
 @Controller
 @RequestMapping("/itemweb")
 public class HoufanWebItemController {
-	
+
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private UserRoleRelationService userRoleRelationService;
 	@Autowired
 	private UserRoleService userRoleService;
-	
-	//进入用户登录界面
+
+	// 进入用户登录界面
 	@RequestMapping("/toLogin")
-	public String toLogin(){
+	public String toLogin() {
 		return "WEB-INF/login/login";
 	}
-	
-	//进入用户注册界面
+
+	// 进入用户注册界面
 	@RequestMapping("/toRegistration")
-	public String toRegistration(HttpServletRequest request, HttpServletResponse response) 
-			 throws ServletException, IOException {
-		
+	public String toRegistration(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
 		return "WEB-INF/registration/registration";
 	}
-	
+
 	/**
 	 * 前台登陆
+	 * 
 	 * @param user
 	 * @return
 	 */
 	@RequestMapping("/userLogin")
-	public String userLogin(User user){
-			 login(user.getName(), user.getPassword());
-	        // 登录成功后会跳转到successUrl配置的链接，不用管下面返回的链接。  
-	        return "redirect:/itemweb/index";  
+	public String userLogin(User user) {
+		login(user.getName(), user.getPassword());
+		// 登录成功后会跳转到successUrl配置的链接，不用管下面返回的链接。
+		return "redirect:/itemweb/index";
 	}
-	
-	public void login(String name,String password){
-		SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());  
-        // 登录后存放进shiro token  	
-        UsernamePasswordToken token = new UsernamePasswordToken(name, password);  
-        token.setRememberMe(true);
-        Subject subject = SecurityUtils.getSubject();
-        subject.login(token); 
+
+	public void login(String name, String password) {
+		SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());
+		// 登录后存放进shiro token
+		UsernamePasswordToken token = new UsernamePasswordToken(name, password);
+		token.setRememberMe(true);
+		Subject subject = SecurityUtils.getSubject();
+		subject.login(token);
 	}
-	
+
 	/**
 	 * 退出 返回到后台登陆页面
+	 * 
 	 * @return
 	 */
 	@RequestMapping("/logout")
-	public String logout(){
-		SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());  
+	public String logout() {
+		SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());
 		return "redirect:/itemweb/backstageLogin";
 	}
-	
+
 	@RequestMapping("/backstageUserLogin")
-	public String backstageUserLogin(@RequestParam("name")String name,@RequestParam("password")String password){
+	public String backstageUserLogin(@RequestParam("name") String name,
+			@RequestParam("password") String password) {
 		login(name, password);
 		return "redirect:/itemweb/backstage";
 	}
-	
-	//用户注册
+
+	// 用户注册
 	@RequestMapping("/userRegistration")
-	public String userRegistration(User user,@RequestParam(required=false)String invitationCode){
-		System.out.println("invitationCode = "+invitationCode);
-		
-		Date createDate = new Date();	//创建时间
-//		byte delFlag = '0';	//删除标志
-		String identity = "0";	//身份
-		String salt = user.getName();	//密码盐
-		byte status = 0;	//账号状态(正常，锁定，删除)
+	public String userRegistration(User user,
+			@RequestParam(required = false) String invitationCode) {
+		System.out.println("invitationCode = " + invitationCode);
+
+		Date createDate = new Date(); // 创建时间
+		// byte delFlag = '0'; //删除标志
+		String identity = "0"; // 身份
+		String salt = user.getName(); // 密码盐
+		byte status = 0; // 账号状态(正常，锁定，删除)
 		user.setCreateDate(createDate);
 		user.setIdentity(identity);
 		user.setSalt(salt);
 		user.setStatus(status);
-		//盐值加密
+		// 盐值加密
 		String hashAlgorithmName = "MD5";
 		Object credentials = user.getPassword();
 		Object obj = ByteSource.Util.bytes(user.getName());
 		int hashIterations = 1024;
-		Object result = new SimpleHash(hashAlgorithmName, credentials, obj, hashIterations);
-		System.out.println("password = "+user.getPassword()+",盐值加密之后 = "+ result);
+		Object result = new SimpleHash(hashAlgorithmName, credentials, obj,
+				hashIterations);
+		System.out.println("password = " + user.getPassword() + ",盐值加密之后 = "
+				+ result);
 		user.setPassword(result.toString());
-		//输出用户信息
+		// 输出用户信息
 		System.out.println(user.toString());
-		
-		//添加用户信息
+
+		// 添加用户信息
 		try {
 			userService.save(user);
-			//查询普通用户的信息
+			// 查询普通用户的信息
 			UserRole userRole = userRoleService.selectGetById("4");
-			//添加角色信息
-			UserRoleRelation urr = new UserRoleRelation(user, userRole, new Date());
+			// 添加角色信息
+			UserRoleRelation urr = new UserRoleRelation(user, userRole,
+					new Date());
 			userRoleRelationService.save(urr);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -126,28 +133,70 @@ public class HoufanWebItemController {
 		}
 		return "redirect:/itemweb/toLogin";
 	}
-	
-	//返回首页
+
+	// 返回首页
 	@RequestMapping("/index")
-	public String index(){
+	public String index() {
 		return "index";
 	}
-	
-	//后台显示页面
+
+	// 后台显示页面
 	@RequestMapping("/backstage")
-	public String backstage(){
+	public String backstage() {
 		return "WEB-INF/backstage/show";
 	}
-	
-	//后台登陆页面
+
+	// 后台登陆页面
 	@RequestMapping("/backstageLogin")
-	public String backstageLogin(){
+	public String backstageLogin() {
 		return "WEB-INF/backstage/login";
 	}
-	
-	//错误页面
+
+	// 错误页面
 	@RequestMapping("/error")
-	public String error(){
+	public String error() {
 		return "WEB-INF/error/error";
+	}
+
+	// 网上体验中心
+	@RequestMapping("/experience")
+	public String experience() {
+		return "WEB-INF/experience/experience";
+	}
+
+	// 产品中心
+	@RequestMapping("/products")
+	public String products() {
+		return "WEB-INF/products/products";
+	}
+
+	// 新闻中心
+	@RequestMapping("/news")
+	public String news() {
+		return "WEB-INF/news/news";
+	}
+
+	// 下载中心
+	@RequestMapping("/download")
+	public String download() {
+		return "WEB-INF/download/download";
+	}
+
+	// 商学院
+	@RequestMapping("/business")
+	public String business() {
+		return "WEB-INF/business/business";
+	}
+
+	// 投研中心
+	@RequestMapping("/research")
+	public String research() {
+		return "WEB-INF/research/research";
+	}
+
+	// 我的加法库
+	@RequestMapping("/myself")
+	public String myself() {
+		return "WEB-INF/myself/myself";
 	}
 }

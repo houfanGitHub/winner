@@ -17,20 +17,52 @@
  <script type="text/javascript" src="/winner/js/jquery-3.2.0.min.js"></script>
  <script type="text/javascript" src="/winner/backstage/show/bootstrap.min.js"></script>
 </head>
+
+
+<script type="text/javascript">
+	$(function(){
+		$("#btn6").click(function(){
+			document.forms[0].action="/winner/sushuang6/list6";
+			document.forms[0].submit();
+		});
+	
+	});
+</script>
 <body>
 <form action="" method="post">
+姓名：<input type="text" name="qmemberName" value="${qmemberName }">&nbsp;&nbsp;
+手机号：<input type="text" name="qmobile_Phone" value="${qmobile_Phone }">&nbsp;&nbsp;
+奖励类型：<select name="qtype" id="qtype">
+  <option value=" -1" selected="selected">请选择</option>
+  <option value="0">注册奖励</option>
+   <option value="1">投资奖励</option>
+</select>&nbsp;&nbsp;
+奖励状态：<select name="qisAward" id="qisAward">
+  <option value=" -1" selected="selected">请选择</option>
+  <option value="1">已奖励</option>
+   <option value="0">未奖励</option>
+</select>
+<br><br>
+邀请码：<input type="text" name="qinvitationCode" value="${qinvitationCode }">&nbsp;&nbsp;
+被邀请码：<input type="text" name="qinvitedCode" value="${qinvitedCode }">&nbsp;&nbsp;
+<input class="btn btn-primary" type="button" value="查询" id="btn6">
+
+<input  class="btn btn-primary"  type="reset"  value="重置">
+<br><br>
+
 <table width="1100" bgcolor="blue" cellspacing="1" border="0"  
 class="table table-striped table-condensed table-condensed table-hover table-bordered">
 <tr align="center" bgcolor="white">
-<th>编号</th>
-<th>手机号</th>
-<th>姓名</th>
-<th>邀请码</th>
-<th>被邀请码</th>
-<th>奖励金额</th>
-<th>是否已注册奖励</th>
-<th>是否已投资奖励</th>
-<th>添加时间</th>
+<td>编号</td>
+<td>手机号</td>
+<td>姓名</td>
+<td>邀请码</td>
+<td>被邀请码</td>
+<td>奖励金额</td>
+<td>奖励类型</td>
+
+<td>奖励状态</td>
+<td>添加时间</td>
 
 <td>操作</td>
 </tr>
@@ -45,14 +77,34 @@ class="table table-striped table-condensed table-condensed table-hover table-bor
 <td>${listawardrecord.amount }</td>    <!-- 奖励金额-->
 
 
-    <!-- 奖励状态 -->  
-<td><c:if test="${listawardrecord.type  == '0' }"><font color="red">注册奖励</font></c:if>
-	<c:if test="${listwith.status == '1' }"><font color="green">投资奖励</font></c:if>
 
+    <!-- 奖励类型 -->  
+<td><c:if test="${listawardrecord.type  == '0' }"><font color="blue">注册奖励</font></c:if>
+	<c:if test="${listawardrecord.type == '1' }"><font color="green">投资奖励</font></c:if>
+	<c:if test="${listawardrecord.type != '1'&& listawardrecord.type != '0' }"><font color="green">没有奖励</font></c:if>
 	</td>
-<td>${listawardrecord.createDate }</td>  <!-- 添加时间 -->
-<td><a href="#" class="btn btn-primary" type="button">操作</a></td>
-<td>操作</td>
+	 <!-- 奖励状态 -->
+	<td><c:if test="${listawardrecord.isAward  == '0' }"><font color="red">未奖励</font></c:if>
+	<c:if test="${listawardrecord.isAward == '1' }"><font color="green">已奖励</font></c:if>
+	</td>
+					
+<td>${listawardrecord.addTime }</td>  <!-- 添加时间 -->
+<!--  <td><a href="#" class="btn btn-primary" type="button">操作</a></td>  -->
+<td>
+							<c:if test="${listawardrecord.isAward==0 }">
+								<font color="red">不能奖励</font>
+							</c:if>
+							<c:if test="${listawardrecord.isAward==1 }">
+								<font color="blue">已奖励</font>&nbsp;&nbsp;
+								
+								<a href="#" class="btn btn-primary" type="button">奖励记录</a>
+								
+							</c:if>
+							<c:if test="${listawardrecord.type != '1'&& listawardrecord.type != '0' }">
+								<font color="red">没有奖励</font>
+							</c:if>
+						</td>
+
 </tr>
 </c:forEach>
 </table>

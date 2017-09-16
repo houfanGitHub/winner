@@ -14,17 +14,17 @@ import java.util.Date;
 @Entity
 @Table(name="member_withdraw_record")
 public class MemberWithdrawRecord  {
-	private String id;
-	private BigDecimal amount;
-	private String bankCard;
-	private String bankName;
-	private String cardaddress;
-	private String channelName;
-	private Date createDate;
-	private byte delFlag;
-	private String serialNumber;
-	private byte status;
-	private Date updateDate;
+	private String id;  
+	private BigDecimal amount; //提现金额
+	private String bankCard;  //卡号
+	private String bankName;  //银行名称
+	private String cardaddress;  //开户所在地
+	private String channelName;  //打款通道  （富友,贝付）
+	private Date createDate;  //添加时间
+	private byte delFlag;  //删除
+	private String serialNumber;   //流水号
+	private byte status;   //'提现状态(0:待审核;1:已打款;2打款中;3:打款失败)',
+	private Date updateDate;  //修改时间
 	private Member member;
 
 	public MemberWithdrawRecord() {
