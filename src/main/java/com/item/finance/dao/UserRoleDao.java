@@ -43,6 +43,12 @@ public class UserRoleDao {
 		System.out.println("UserRoleDao:list:"+list.size());
 		return list;
 	}
+
+	public void save(UserRole t) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		session.save(t);
+	}
 	
 	
 }

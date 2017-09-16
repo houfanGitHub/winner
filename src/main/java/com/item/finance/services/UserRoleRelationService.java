@@ -42,9 +42,15 @@ public class UserRoleRelationService implements ItemServiceImpl<UserRoleRelation
 	}
 
 	@Override
-	public void delete(UserRoleRelation t) {
+	public void delete(UserRoleRelation userRoleRelation) {
 		// TODO Auto-generated method stub
-		
+		userRoleRelationDao.delete(userRoleRelation);
+	}
+
+	public List<UserRoleRelation> selectGetByUid(String id) {
+		// TODO Auto-generated method stub
+		List<UserRoleRelation> list = userRoleRelationDao.selectGetByUid(id);
+		return list;
 	}
 	
 	

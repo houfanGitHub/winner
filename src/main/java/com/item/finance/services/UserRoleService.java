@@ -43,6 +43,7 @@ public class UserRoleService implements ItemServiceImpl<UserRole> {
 	@Override
 	public void save(UserRole t) {
 		// TODO Auto-generated method stub
+		userRoleDao.save(t);
 		
 	}
 

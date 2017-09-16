@@ -1,11 +1,14 @@
 package com.item.finance.bean;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -23,7 +26,7 @@ public class User  {
 	private String id;	//用户id
 	private Date createDate;	//创建时间
 	private byte delFlag;	//删除标志
-	private byte identity;	//身份
+	private String identity;	//身份
 	private String mobile_Phone;	//手机号
 	private String name;	//名称
 	private String password;	//密码
@@ -31,6 +34,7 @@ public class User  {
 	private byte status;	//账号状态(正常，锁定，删除)
 	private Date updateDate;	//修改时间
 	private String userName;	//用户名
+	private Set<UserRoleRelation> userRoleRelations = new HashSet<>();
 
 	public User() {
 	}
@@ -67,14 +71,13 @@ public class User  {
 	}
 
 
-	public byte getIdentity() {
-		return this.identity;
+	public String getIdentity() {
+		return identity;
 	}
 
-	public void setIdentity(byte identity) {
+	public void setIdentity(String identity) {
 		this.identity = identity;
 	}
-
 
 	@Column(length=32)
 	public String getMobile_Phone() {
@@ -152,6 +155,15 @@ public class User  {
 				+ mobile_Phone + ", name=" + name + ", password=" + password
 				+ ", salt=" + salt + ", status=" + status + ", updateDate="
 				+ updateDate + ", userName=" + userName + "]";
+	}
+
+	@OneToMany(mappedBy="user")
+	public Set<UserRoleRelation> getUserRoleRelations() {
+		return userRoleRelations;
+	}
+
+	public void setUserRoleRelations(Set<UserRoleRelation> userRoleRelations) {
+		this.userRoleRelations = userRoleRelations;
 	}
 
 }

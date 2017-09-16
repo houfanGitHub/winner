@@ -21,7 +21,8 @@ public class UserService implements ItemServiceImpl<User> {
 	@Override
 	public User selectGetById(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		User user = userDao.selectGetById(id);
+		return user;
 	}
 
 	@Override
@@ -40,13 +41,14 @@ public class UserService implements ItemServiceImpl<User> {
 	@Override
 	public void update(User user) {
 		// TODO Auto-generated method stub
+		userDao.update(user);
 		
 	}
 
 	@Override
-	public void delete(User ser) {
+	public void delete(User user) {
 		// TODO Auto-generated method stub
-		
+		userDao.delete(user);
 	}
 
 	

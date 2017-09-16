@@ -42,6 +42,7 @@ public class UserDao {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from User";
 		List<User> list = session.createQuery(hql).list();
+		System.out.println(list.get(0).toString());
 		return list;
 	}
 
@@ -86,6 +87,25 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	public User selectGetById(String id) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from User where id = '"+id+"'";
+		User user = (User) session.createQuery(hql).list().get(0);
+		return user;
+	}
+
+	public void delete(User user) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		session.delete(user);
+	}
+
+	public void update(User user) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		session.update(user);
 	}
 
 }

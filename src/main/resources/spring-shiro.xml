@@ -13,6 +13,7 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/** = anon
+				/winner/index.jsp = authc
 			</value>
 		</property>
 	</bean>

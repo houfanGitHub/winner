@@ -14,8 +14,8 @@
 	<div class="row">
 		<br>
 		<p class="col-md-12">
-			<button  class="btn btn-primary btn-lg" data-toggle="modal" 
-   				data-target="#myModal">新增</button>
+			<button  class="btn btn-primary" data-toggle="modal" 
+   				data-target="#addModal">新增</button>
    		</p>
 	</div>
 	<table class="table table-bordered table-hover">
@@ -41,6 +41,61 @@
    </tbody>
    </table>
    
-
+   <!-- 新增modal -->
+ <div class="modal fade" id="addModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;            </button>
+            <h4 class="modal-title" id="myModalLabel">
+            	添加角色信息
+            </h4>
+         </div>
+         <div class="modal-body">
+            <form method="post"  class="form-horizontal" role="form">
+			   <div class="form-group">
+			      <label for="firstname" class="col-sm-2 control-label">角色名</label>
+			      <div class="col-sm-4">
+			         <input type="text" class="form-control" id="cname" name="cname">
+			      </div>
+			   </div>
+			   <div class="form-group">
+			      <label for="lastname" class="col-sm-2 control-label">角色描述</label>
+			      <div class="col-sm-10">
+			         <input type="text" class="form-control" id="remark" name="remark">
+			      </div>
+			   </div>
+            </form>
+         </div> 
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="gb">关闭 </button>
+            <button type="button" class="btn btn-primary" id="tj">提交添加</button>
+         </div>
+      </div>  
+<script type="text/javascript">
+	$(function(){
+		$("#tj").click(function(){
+			if($("#cname").val()==""||$("#remark").val()==""){
+				alert("添加信息不能为空");
+				return;
+			}
+			$.post("/winner/system/addUserRole",
+					{cname:$("#cname").val(),remark:$("#remark").val()},
+					function(falg){
+					if(falg){
+						alert("添加成功");
+						$("#cname").val("");
+						$("#remark").val("");
+						window.parent.document.getElementById("userRole").click();
+					}else{
+						alert("添加失败");
+					}
+			});
+		});
+	});
+</script>
 </body>
 </html>

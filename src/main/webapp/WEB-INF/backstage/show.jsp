@@ -417,37 +417,10 @@ function link_operating(name,title){
 						<li><a href="http://www.erdangjiade.com/" class="dropdown-toggle"><i class="icon-comments-alt"></i><span class="menu-text"> 系统设置 </span><b class="arrow icon-angle-down"></b></a>
 							<ul class="submenu" id="Sort_link_6">
 								<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/system/users" id="usersid" title="账户设置" class="iframeurl"><i class="icon-double-angle-right"></i>账户设置</a></li>
-                                <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/system/roles" title="角色设置" class="iframeurl"><i class="icon-double-angle-right"></i>角色设置</a></li>
+                                <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/system/roles" id="userRole" title="角色设置" class="iframeurl"><i class="icon-double-angle-right"></i>角色设置</a></li>
                                 <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="/winner/system/toPasswords" title="密码设置" class="iframeurl"><i class="icon-double-angle-right"></i>密码设置</a></li>
 							</ul>
-							<script type="text/javascript">
-								$("#usersid").click(function(){
-									alert("usersid");
-								});
-							</script>
 						</li>
-<!-- 						<li><a href="http://www.erdangjiade.com/" class="dropdown-toggle"><i class="icon-bookmark"></i><span class="menu-text"> 文章管理 </span><b class="arrow icon-angle-down"></b></a> -->
-<!-- 							<ul class="submenu" id="Sort_link_7"> -->
-<!-- 								<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="article_list.html" title="文章列表" class="iframeurl"><i class="icon-double-angle-right"></i>文章列表</a></li> -->
-<!--                                 <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="article_Sort.html" title="分类管理" class="iframeurl"><i class="icon-double-angle-right"></i>分类管理</a></li> -->
-<!-- 							</ul> -->
-<!-- 						</li> -->
-<!--                         	<li><a href="http://www.erdangjiade.com/" class="dropdown-toggle"><i class="icon-cogs"></i><span class="menu-text"> 系统管理 </span><b class="arrow icon-angle-down"></b></a> -->
-<!-- 							<ul class="submenu" id="Sort_link_8"> -->
-<!-- 								<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Systems.html" title="系统设置" class="iframeurl"><i class="icon-double-angle-right"></i>系统设置</a></li> -->
-<!-- 								<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="System_section.html" title="系统栏目管理" class="iframeurl"><i class="icon-double-angle-right"></i>系统栏目管理</a></li> -->
-							
-<!--                                 <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="System_Logs.html" title="系统日志" class="iframeurl"><i class="icon-double-angle-right"></i>系统日志</a></li> -->
-<!-- 							</ul> -->
-<!-- 						</li> -->
-<!--                         <li><a href="http://www.erdangjiade.com/" class="dropdown-toggle"><i class="icon-group"></i><span class="menu-text"> 管理员管理 </span><b class="arrow icon-angle-down"></b></a> -->
-<!-- 							<ul class="submenu" id="Sort_link_9"> -->
-							
-<!-- 								<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="admin_Competence.html" title="权限管理" class="iframeurl"><i class="icon-double-angle-right"></i>权限管理</a></li> -->
-<!--                                 <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="administrator.html" title="管理员列表" class="iframeurl"><i class="icon-double-angle-right"></i>管理员列表</a></li> -->
-<!-- 								  <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="admin_info.html" title="个人信息" class="iframeurl"><i class="icon-double-angle-right"></i>个人信息</a></li> -->
-<!-- 							</ul> -->
-<!-- 						</li> -->
 					</ul>
 					</div>
 					<script type="text/javascript">

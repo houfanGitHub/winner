@@ -94,7 +94,7 @@ public class HoufanWebItemController {
 		
 		Date createDate = new Date();	//创建时间
 //		byte delFlag = '0';	//删除标志
-		byte identity = 1;	//身份
+		String identity = "0";	//身份
 		String salt = user.getName();	//密码盐
 		byte status = 0;	//账号状态(正常，锁定，删除)
 		user.setCreateDate(createDate);

@@ -1,6 +1,8 @@
 package com.item.finance.controller;
 
+import java.math.BigInteger;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.item.finance.bean.User;
@@ -44,11 +45,11 @@ public class HoufanItemSystemController {
 		map.put("userList", list);
 	}
 	
-	@RequestMapping("/asynchronousUsers")
-	@ResponseBody
-	public void asynchronousUsers(Map<String,Object> map){
-		getUserList(map);
-	}
+//	@RequestMapping("/asynchronousUsers")
+//	@ResponseBody
+//	public void asynchronousUsers(Map<String,Object> map){
+//		getUserList(map);
+//	}
 	
 	@RequestMapping("/roles")
 	public String roles(Map<String,Object> map){
@@ -109,7 +110,7 @@ public class HoufanItemSystemController {
 			user.setMobile_Phone(phone);
 			user.setPassword(password);
 //			byte delFlag = '0';	//删除标志
-			byte identity = 1;	//身份
+			String identity = "1";	//身份
 			user.setCreateDate(new Date());	//创建时间
 			user.setIdentity(identity);
 			user.setSalt(name);	//密码盐
@@ -133,6 +134,81 @@ public class HoufanItemSystemController {
 				//添加角色信息
 				UserRoleRelation urr = new UserRoleRelation(user, userRole, new Date());
 				userRoleRelationService.save(urr);
+				return true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+		
+		@RequestMapping("/deleteUser/{id}")
+		@ResponseBody
+		public boolean deleteUser(@PathVariable(value="id")String id){
+			System.out.println("deleteUser:id = "+id);
+			//获取user信息
+			User user = userService.selectGetById(id);
+			//删除user信息
+			try {
+				//删除关联信息
+				List<UserRoleRelation> list = userRoleRelationService.selectGetByUid(id);
+				for (UserRoleRelation urr : list) {
+					urr.setUserRole(null);
+					userRoleRelationService.delete(urr);
+				}
+				userService.delete(user);
+				return true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+		
+		@RequestMapping("/toUserUpdate")
+		@ResponseBody
+		public boolean toUserUpdate(String id,String ustauts,String cname){
+			System.out.println("..............................................");
+			System.out.println("toUserUpdate:id = "+id+",ustauts = "+ustauts+",cname = "+cname);
+			try {
+				//根据id获得user信息
+				User user = userService.selectGetById(id);
+				//修改user信息
+				user.setStatus(Byte.valueOf(ustauts));
+				Iterator<UserRoleRelation> it = user.getUserRoleRelations().iterator();
+				while(it.hasNext()){
+					it.next().getUserRole().setId(cname);;
+				}
+				userService.update(user);
+				return true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+		
+		/**
+		 * 添加角色信息
+		 * @param cname
+		 * @param remark
+		 * @return
+		 */
+		@RequestMapping("/addUserRole")
+		@ResponseBody
+		public boolean addUserRole(String cname,String remark){
+			System.out.println("addUserRole:cname = "+cname+",remark = "+remark);
+			try {
+				UserRole userRole = new UserRole();
+				userRole.setAvailable((byte)1);
+				userRole.setCategory("User");
+				userRole.setCname(cname);
+				userRole.setDelFlag((byte)0);
+				userRole.setCreateDate(new Date());
+				userRole.setEname("user:common");
+				userRole.setRemark(remark);
+				userRole.setSourceId(BigInteger.valueOf(0));
+				userRole.setSourceType((byte)0);
+				userRole.setUpdateDate(new Date());
+				userRole.setRolePermissionRelations(null);
+				userRoleService.save(userRole);
 				return true;
 			} catch (Exception e) {
 				e.printStackTrace();
