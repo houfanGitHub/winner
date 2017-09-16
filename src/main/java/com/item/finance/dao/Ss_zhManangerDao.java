@@ -67,9 +67,7 @@ public class Ss_zhManangerDao {
 		if(create_date2!=null && !"".equals(create_date2)){  //注册时间2  结束时间
 			hql=hql+" and createDate<='"+create_date2+"'";
 		}
-		
 		return hql;
-		
 	}
 	
 	
