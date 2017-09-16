@@ -1,5 +1,6 @@
 package com.item.finance.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +21,11 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="oversea_config")
-public class OverseaConfig  {//海外配置订阅表
+public class OverseaConfig implements Serializable {/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+//海外配置订阅表
 	
 	private String id;//id
 	private Date addTime;//添加时间

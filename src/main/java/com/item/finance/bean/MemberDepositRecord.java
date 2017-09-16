@@ -13,16 +13,16 @@ import java.util.Date;
  */
 @Entity
 @Table(name="member_deposit_record")
-public class MemberDepositRecord  {
+public class MemberDepositRecord  {//充值记录
 	private String id;
-	private BigDecimal amount;
-	private Date createDate;
-	private byte delFlag;
-	private String payChannelName;
-	private String payChannelOrderNo;
-	private String serialNumber;
-	private byte status;
-	private Date updateDate;
+	private BigDecimal amount;  //金额
+	private Date createDate; //创建时间
+	private byte delFlag;  //删除状态
+	private String payChannelName; //充值渠道名称
+	private String payChannelOrderNo;  //充值渠道订单号
+	private String serialNumber;  //流水号
+	private byte status;  //'状态(0:充值失败;1:充值成功)',
+	private Date updateDate; //修改时间
 	private Member member;
 
 	public MemberDepositRecord() {

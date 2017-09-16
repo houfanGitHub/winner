@@ -14,13 +14,13 @@ import java.util.Date;
 @Table(name="financial_planner")
 public class FinancialPlanner  {
 	private String id;
-	private String address;
-	private Date createDate;
-	private String mycard;
-	private String name;
-	private String orgname;
-	private int status;
-	private Date updateDate;
+	private String address;  //邮寄地址
+	private Date createDate;  //创建时间
+	private String mycard;  //我的名片
+	private String name;  //真实姓名
+	private String orgname;  //机构名称
+	private int status;  //状态
+	private Date updateDate;  //修改时间
 	private Member member;
 
 	public FinancialPlanner() {

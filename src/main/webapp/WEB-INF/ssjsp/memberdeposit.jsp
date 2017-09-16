@@ -49,16 +49,16 @@
 <input class="btn btn-primary" type="reset" value="重置">
 <table width="1100" cellspacing="1" border="0" bgcolor="blue" class="table table-striped table-condensed table-condensed table-hover table-bordered">
 <tr bgcolor="white" align="center">
-<th>序号</th>
-<th>订单编号</th>
-<th>手机号</th>
-<th>订单金额</th>
-<th>订单状态</th>
-<th>充值渠道</th>
-<th>富友手机充值订单</th>
-<th>订单时间</th>
+<td>序号</td>
+<td>订单编号</td>
+<td>手机号</td>
+<td>订单金额</td>
+<td>订单状态</td>
+<td>充值渠道</td>
+<td>富友手机充值订单</td>
+<td>订单时间</td>
 
-<th> 操作   </th>
+<td> 操作   </td>
 </tr>
 
 <c:forEach items="${listdeposit}"  var="listdeposit"  varStatus="stat">
