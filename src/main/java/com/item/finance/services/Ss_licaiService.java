@@ -1,6 +1,7 @@
 package com.item.finance.services;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -26,13 +27,14 @@ public class Ss_licaiService implements ItemServiceImpl<FinancialPlanner> {
 	@Override
 	public List<FinancialPlanner> list() {
 		
-		return this.ss_licaiDao.list();
-	}
-/*	//显示
-public List<FinancialPlanner> list() {
-		
 		return null;
-	}*/
+	}
+	
+public List<FinancialPlanner> list(Map map) {
+		
+		return this.ss_licaiDao.list(map);
+	}
+	
 
 	@Override
 	public void save(FinancialPlanner t) {

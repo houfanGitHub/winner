@@ -24,18 +24,33 @@
 			document.forms[0].action="/winner/sushuang1/list1";
 			document.forms[0].submit();
 		});
+	
+		//$("#cz").click(function(){
+		//	("#qname").val("");
+	//})
 	});
+	//清空文本矿的值
+	//$(document).ready(function(){  
+		// $(function(){  
+		//   $('input:reset').click(function(){  
+		  //   $('.input').val("");  
+		  //  });  
+		//  });
+	//  }); 
 </script>
 <body>
 <form action="" method="post">
-用户名：<input type="text" name="qname1" value="${qname1}">&nbsp;&nbsp;
+用户名：<input type="text"  class="input" name="qname1"  id="qname1" value="${qname1}">&nbsp;&nbsp;
 手机号：<input type="text" name="mobile"  value="${mobile}">&nbsp;&nbsp;
 姓名：<input type="text" name="qname2" value="${qname2}">&nbsp;&nbsp;
 邀请码：<input type="text" name="invit" value="${invit}"><br><br>
 注册时间：<input type="date" name="create_date1" value="${create_date1}">&nbsp;&nbsp;
 <input type="date" name="create_date2" align="left" value="${create_date2 }">
+
 <input class="btn btn-primary" type="button" id="btn1" value="查  询">&nbsp;&nbsp;
-<input class="btn btn-primary" type="reset"   value="重置">
+<input class="btn btn-primary" type="reset"   id="cz" value="重置">
+<!-- <input value="重置" class="btn btn-primary" onClick="" type="reset">  -->
+
 <table class="table table-striped table-condensed table-condensed table-hover table-bordered" 
  width="1100" bgcolor="blue" cellspacing="1" border="0" >
 <tr align="center" bgcolor="white">

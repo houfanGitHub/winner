@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="winner/webapp/sscss/sushuang.css">
+<link rel="stylesheet" rel="stylesheet" href="winner/webapp/sscss/sushuang.css">
 
 <link rel="stylesheet" href="/winner/files/layer.css" id="layui_layer_skinlayercss"> 
  <link rel="stylesheet" href="/winner/backstage/show/bootstrap.min.css">  
@@ -25,40 +25,42 @@
 			document.forms[0].action="/winner/sushuang5/list5";
 			document.forms[0].submit();
 		});
+	
 	});
 </script>
 
 <body>
-<form action="" method="post">
-姓名：<input type="text"  name="aname" value="${aname }">&nbsp;&nbsp;
-手机号：<input type="text"  name="aphone" value="${aphone }">&nbsp;&nbsp;
+<form action="" method="post"  id="formId">
+姓名：<input   type="text"  name="aname" value="${aname }">&nbsp;&nbsp;
+手机号：<input  type="text"  name="aphone" value="${aphone }">&nbsp;&nbsp;
 绑卡卡号：<input type="text"  name="anumber" value="${anumber }">&nbsp;&nbsp;
-状态：<select name="astatu">
-<option value="${astatu }">${astatu }</option>
-<option value="-1" selelcted="selected">全部状态</option>
-<option value="待审核">待审核</option>
-<option value="已打款">已打款</option>
-<option value="打款中">打款中</option>
-<option value="打款失败">打款失败</option>
+状态：<select  name="astatu" id="astatu">
+<!--  <option value="${astatu }">${astatu }</option>  -->
+<option value="" selelcted="selected">全部状态</option>
+<option value="0">待审核</option>
+<option value="1">已打款</option>
+<option value="2">打款中</option>
+<option value="3">打款失败</option>
 </select><br><br>
-提现时间：<input type="date" name="adate" value="${adate }">&nbsp;&nbsp;
+提现时间：<input   type="date" name="adate" value="${adate }">&nbsp;&nbsp;
 <input class="btn btn-primary" type="button" value="查询" id="btn5">
-<input  class="btn btn-primary" type="reset" value="重置">
+
+<input  class="btn btn-primary"  type="reset"  value="重置">
 <br><br>
 <table width="1100" bgcolor="blue" cellspacing="1" border="0"  
 class="table table-striped table-condensed table-condensed table-hover table-bordered">
 <tr align="center" bgcolor="white">
-<th>序号</th>
-<th>手机号</th>
-<th>姓名</th>
-<th>身份证</th>
-<th>提现金额</th>
-<th>提现银行</th>
-<th>提现卡号</th>
-<th>提现开户行地址</th>
-<th>提现状态</th>
-<th>提现时间</th>
-<th>账号详情</th>
+<td>序号</td>
+<td>手机号</td>
+<td>姓名</td>
+<td>身份证</td>
+<td>提现金额</td>
+<td>提现银行</td>
+<td>提现卡号</td>
+<td>提现开户行地址</td>
+<td>提现状态</td>
+<td>提现时间</td>
+<td>账号详情</td>
 <td>操作</td>
 </tr>
 
@@ -75,15 +77,48 @@ class="table table-striped table-condensed table-condensed table-hover table-bor
 <!-- 提现状态 -->   
 <td><c:if test="${listwith.status == '0' }"><font color="red">待审核</font></c:if>
 	<c:if test="${listwith.status == '1' }"><font color="green">已打款</font></c:if>
-	<c:if test="${listwith.status == '2' }"><font color="red">打款中</font></c:if>
+	<c:if test="${listwith.status == '2' }"><font color="blue">打款中</font></c:if>
 	<c:if test="${listwith.status == '3' }"><font color="red">打款失败</font></c:if>
 	</td>
 <td>${listwith.createDate }</td>  <!-- 提现时间 -->
-<td><a href="#" class="btn btn-primary" type="button">账号详情</a></td>
-<td>操作</td>
+<td><a a href="/winner/WEB-INF/ssjsp/details.jsp"  class="btn btn-primary" type="button">账号详情</a></td>
+<!-- <td><a a href="/winner/sushuang7//getmemberaccountId/${listwith.id }"  class="btn btn-primary" type="button">账号详情</a></td> -->
+<!-- /winner/sushuang1/getmemberId/${li.id } -->
+<!-- <a href="WEB-INF/ssjsp/details"></a> -->
+<td> <!-- 操作 -->
+	<c:if test="${listwith.status == '1' }"><font color="green">已打款</font></c:if>
+	<c:if test="${listwith.status == '2' }"><font color="blue">打款中</font></c:if>
+	<c:if test="${listwith.status == '3' }"><font color="red">打款失败</font></c:if>
+	<!-- 说明   点击审核按钮  弹出模态窗口    提交更改     审核按钮变成打款中       待审核也要变成打款中 -->
+	<c:if test="${listwith.status == '0' }" ><font color="black">
+	<a href="" class="btn btn-primary" type="button" id="btn"   data-toggle="modal" href="#example">审核</a></font></c:if>
+	</td>
 </tr>
 </c:forEach>
 </table>
 </form>
+
+<div id="example" class="modal fade in" style="display: none; ">
+ 
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">x</button>
+    </div>
+ 
+    <div class="modal-body">
+     <select >
+     <option value="FUIOU">富友</option>
+     <option value="BEIFU">贝付</option>
+   
+     
+     </select>
+    </div>
+ 
+    <div class="modal-footer">
+    <input class="btn btn-primary" type="button" value="查询" >
+        <a href="#" class="btn btn-primary"  type="button" data-dismiss="modal">取消</a>
+         
+    </div>
+    
+</div>
 </body>
 </html>

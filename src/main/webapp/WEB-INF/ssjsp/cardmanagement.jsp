@@ -42,16 +42,16 @@
 <input class="btn btn-primary" type="reset" value="重置"><br><br>
 <table  width="1100" bgcolor="blue" cellspacing="1" border="0" class="table table-bordered">
 <tr align="center" bgcolor="white">
-<th>序号</th>
-<th>手机号</th>
-<th>绑卡人姓名</th>
-<th>绑卡身份证</th>
-<th>绑卡类型</th>
-<th>绑卡卡号</th>
-<th>绑卡地址</th>
-<th>状态</th>
-<th>添加时间</th>
-<th>操作</th>
+<td>序号</td>
+<td>手机号</td>
+<td>绑卡人姓名</td>
+<td>绑卡身份证</td>
+<td>绑卡类型</td>
+<td>绑卡卡号</td>
+<td>绑卡地址</td>
+<td>状态</td>
+<td>添加时间</td>
+<td>操作</td>
 </tr>
 
 <c:forEach items="${listbank }" var="listbank" varStatus="stat">

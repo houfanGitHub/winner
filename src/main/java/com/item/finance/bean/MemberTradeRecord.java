@@ -15,18 +15,18 @@ import java.util.Date;
 @Table(name="member_trade_record")
 public class MemberTradeRecord  {
 	private String id;
-	private BigDecimal amount;
-	private String counterpart;
+	private BigDecimal amount;  //交易金额
+	private String counterpart;//交易对方
 	private Date createDate;
-	private String extField1;
-	private String extField2;
-	private String extField3;
-	private byte fundFlow;
-	private String tradeName;
-	private String tradeNo;
-	private byte tradeStatus;
-	private String tradeType;
-	private Date updateDate;
+	private String extField1;//扩展1
+	private String extField2;//扩张2
+	private String extField3;//扩展3
+	private byte fundFlow;  //资金流向(0:流出1:流入)',
+	private String tradeName;  //交易名称
+	private String tradeNo;  //交易号
+	private byte tradeStatus; //交易状态
+	private String tradeType; //交易分类
+	private Date updateDate;//修改时间
 	private Member member;
 
 	public MemberTradeRecord() {

@@ -3,10 +3,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta charset="utf-8">
-	<title>盈+理财-首页 - 盈+</title>
-	<link href="http://www.ying158.com/Content/images/jw/icon.ico" type="image/x-icon" rel="shortcut icon">
-	<script src="/winner/files/hm.js"></script><script src="/winner/files/hm(1).js"></script><script>
+	
+	<meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,maximum-scale=1.0,user-scalable=yes">
+	<meta name="Keywords" content="股指期货，市场风险，股指期货合约，风控能力，资金银行监管，交易期货公司监管，风控盈+监管，金融投资，安全保证，投资收益，持仓成本价，借款期限，还款方式，借款利率，审核失败，金融推广，佣金结算，推广平台">
+	<meta name="description" content="所谓股指期货，即股票价格指数期货的简称，就是以某种股票指数为基础资产的标准化的期货合约。平台资金由第三方银行监管，股指交易由第三方期货公司监管，盈+全自动风控系统为您保驾护航。在盈+投资的常见问题。盈+投资的帮助中心。盈+金融推广是一种按用户投资赚取佣金的推广平台，您可以通过朋友、QQ、微信、微博、博客、论坛或在自己的网站上进行推广。">
+	<title>盈+商学院 - 盈+</title>
+<!-- 	<link href="http://www.ying158.com/Content/images/jw/icon.ico" type="image/x-icon" rel="shortcut icon"> -->
+	<script src="/winner/files/hm.js"></script><script>
 
 		
 	</script>
@@ -162,7 +166,7 @@
 <body>
 	
     <div style=" width:1002px; height:94px; margin:0 auto;">
-        <iframe src="/winner/files/iframetop.jsp" scrolling="no" frameborder="0" width="1002" height="94"></iframe>
+        <iframe src="/winner/files/iframetop.html" scrolling="no" frameborder="0" width="1002" height="94"></iframe>
     </div>
 	<div class="jwNav">
 		<div class="container">
@@ -219,373 +223,307 @@
 	<div class="main">
 		
 
-<!-- Chang URLs to wherever Video.js files will be hosted -->
-<link href="/winner/files/video-js.css" rel="stylesheet" type="text/css">
-<!-- video.js must be in the <head> for older IEs to work. -->
-<script src="/winner/files/video.js"></script>
-<!-- Unless using the CDN hosted version, update the URL to the Flash SWF -->
-<script>
-    videojs.options.flash.swf = "video-js.swf";
- </script> 
 
-<div class="indexBanner">
-    
-
-<div id="homebanner" class="carousel slide" data-ride="carousel">
-
-
-    <ol class="carousel-indicators">
-            <li data-target="#homebanner" data-slide-to="0" class=" active"></li>
-    </ol>
-
-    <div class="carousel-inner" role="listbox">
-                <div class=" item active">
-                    <img src="/winner/files/banner2.jpg" alt="[]">
-                    
-                </div>
-    </div>
-
-    <a class="left carousel-control" href="#" role="button" data-slide="prev">
-        <span class="fa fa-chevron-circle-left" aria-hidden="true"></span>
-        <span class="sr-only">上一张</span>
-    </a>
-    <a class="right carousel-control" href="#" role="button" data-slide="next">
-        <span class="fa fa-chevron-circle-right" aria-hidden="true"></span>
-        <span class="sr-only">下一张</span>
-    </a>
-</div>
-    <div class="login-box">
-        <div class="block backdrop"></div>
-        <div class="block" style=" height:280px;">
-
-            
-            
-            <p style="margin-top:20px; line-height:50px; font-size:20px; text-align:center; color:#fff;"><span style="color:#917739;">欢迎</span>盈主到来</p>
-            <p style="margin-bottom:15px; line-height:50px; font-size:20px; text-align:center; color:#fff;">现在开始<span style="color:#917739;">您的财富</span> 之旅吧</p>
-            <a style="float:none; margin:0 auto; margin-left:15px;    display: inline-block;margin-bottom: 10px;" href="itemweb/toLogin"><img src="/winner/files/ying_index_login_btn.png"></a>
-            <a style="float:none; margin:0 auto; margin-left:15px; margin-top:10px;" href="itemweb/toRegistration"><img src="/winner/files/ying_index_reg_btn.png"></a>
-            
-        </div>
-    </div>
-</div>
-
-<div class="container index">
+<div class="container helpCenter">
     <div class="row">
-        <div class="report">
-            <div class="title">
-                <i class="fa fa-volume-up fa-2"></i>最新公告
+        <div class="left">
+            <div class="first item active" name="peizi" id="peiziTab">
+                理财大讲堂
             </div>
-            <div class="content" id="announcements">
-                <span id="spanAnnouncements" data-bind="foreach:$data">
-                    <input type="hidden" data-bind="value:id" value="19dc50b5-0284-4bed-bbe3-a363739f9e15">
-                    <span data-bind="text:title+&#39; &#39;+strDate, click: showannouncement" class="" style="cursor:pointer">2017年春节放假安排 [01-23]</span>
-                
-                    <input type="hidden" data-bind="value:id" value="e0d2276e-a35f-4b0a-aea7-3473cd800533">
-                    <span data-bind="text:title+&#39; &#39;+strDate, click: showannouncement" class="hidden" style="cursor:pointer">重磅推出阳光私募基金-吉威量化套利稳健1号 [04-14]</span>
-                
-                    <input type="hidden" data-bind="value:id" value="48aefff0-bcdb-45c2-b247-9910896603d2">
-                    <span data-bind="text:title+&#39; &#39;+strDate, click: showannouncement" class="hidden" style="cursor:pointer">关于盈+理财平台安全卡管理通告 [01-13]</span>
-                
-                    <input type="hidden" data-bind="value:id" value="a140c288-f3ed-40b5-8ae1-73c131f87dfa">
-                    <span data-bind="text:title+&#39; &#39;+strDate, click: showannouncement" class="hidden" style="cursor:pointer">盈+全球首映 [07-13]</span>
-                </span>
+           
+            <div class="item" name="question" id="questionTab">
+                常见问题
             </div>
-            <a href="http://www.ying158.com/home/newscenter">
-                查看更多&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;
-            </a>
+            <div class="item" name="helps" id="helpsTab">
+                帮助中心
+            </div>
+            
+            <div class="item" name="securities" id="securitiesTab">
+                操作指引
+            </div>
+            <div class="blank" style="height: 1232px;">
+
+            </div>
         </div>
-        <iframe width="972" height="500" scrolling="no" frameborder="0" src="/winner/files/iframeindex.jsp"></iframe>
-        <div class=" download apply">
-            <div class="title">
-                <img src="/winner/files/applyLeft.png">合作商风采<img src="/winner/files/applyRight.png">
+        <div class="right">
+            <div class="content" id="peizi">
+                <div class="title">
+                    理财大讲堂
+                </div>
+                <div class="main">
+                    <div class="first point">
+                        什么是投资理财?
+                    </div>
+                    <div class="desc">
+
+                        理财是理一生的财，不是解决燃眉之急的金钱问题而已。而是一个可持续循环的过程。
+                        理财是现金流量管理，每一个人一出生就需要用钱（现金流出）、也需要赚钱来产生现金流入。因此不管是否有钱，每一个人都需要理财。
+                        理财也涵盖了风险管理。因为未来的更多流量具有不确定性，包括人身风险、财产风险与市场风险，都会影响到现金流入（收入中断风险）或现金流出（费用递增风险）。<br>
+                    </div>
+                       
+                            <div class="point">
+                                如何投资理财?
+                            </div>
+                            <div class="desc">
+                                
+                                投资其实就是一种形式而已，但是随着人类社会不断的进步，社会发展中越来越多的人开始关注投资，而且投资知识也有人想了解。
+                                投资理财现在慢慢的在走进我们的生活，我们可以享受亲民化的理财产品，来给我们的财富做合理的资产配资，现在一些社区金融的理财产品还是很适合我们进行投资理财的。
+                                风险投资有很多的要素，比如有风险资本、投资人、投资对象、投资期限、投资目的和投资方式。投资者将对资本的投向及领域需要有个全面的了解，一些的投资领域也是蕴含着重大的失败的风险的，所以就叫做风险投资，从这个投资行为来说专业化的投资，一般都能找到具有潜能的企业。
+                                风险投资同业也成为了很多的新兴企业的福星，对于一些高科技的创新企业来说是一笔非常宝贵的资源，高科技的创新需要的就是资金方面的支持，保证让其商品化，产业化，从而到达了一定的受益。风险企业投入的权益一般会占企业的三成以上，双方也都是互惠互利的。投资怎样获得回报，通过上市、转让股权的方式来实现增值。<br>
+                            </div>
+                            <div class="point">
+
+                                投资理财一般步骤
+                            </div>
+                            <div class="desc">
+                                首先：专业理财分析师都是有很好的心态的，你看看金融市场中是不是很喧闹呢?但是分析师照样可以安静的一个人在那里分析市场，所以不会受到其他人的干扰，所以要想做一个技术高超的理财分析师，我们就要学会控制好自己的心态，以后在做单的时候遇到大风大浪是不会有很多的心理变化的。
+                                其次：精准的分析来源于我们的收集和判断，一个行情能不能做进去，我们之前就要进行分析，那么怎么分析呢?分析师都会按照消息面的数据进行查询，可以查询之前的数据和预估数值进行对比，另外需要在市场中找出一些重要人物对相关的消息所抛出的言论，综合分析后就会有一个比较明朗的界限。
+                                再者：做单干净利索，一个单子分析好了后，也看到点位到了相应的点数了，这个时候我们的投资分析师就会毫不犹豫的进场，根据不同的点位进行相应的参数设置，那么投资理财分析师是不会有很大的顾忌做单的，不会和其他投资者一样，进去会不会有亏损的担忧。单子只要坐进去到了相应的点位也不会留恋就直接出仓。<br>
+                            </div>
+                            <div class="point">
+                                财富的4321定律
+                            </div>
+                            <div class="desc">
+                                财富的4321定律：即财产的合理配置的比例是，家庭总收入的五分之二用于房贷等长期固定资产的投资；30%用于家庭日常生活开支；五分之一用于灵活的银行存款以备应急之需；剩下的少部分用于保险保障或者风险系数与收益系数都比较高的股票、期货投资。
+                            </div>
+                            
+                            <div class="point">
+                                财富的 72定律
+                            </div>
+                            <div class="desc">
+                                财富的 72定律：投资理财所获得的收益，一般不取出，而继续投入理财本金，实现利滚利的高收益财，本金增值一倍所需要的时间等于72除以年收益率。假如在银行存款1万元，年利率是2%，那末经过多少年才能增值为2万元？只要用72除以2得36，便可=大概知道银行存款需36年才能翻番。
+                            </div>
+                            <div class="desc">
+                                投资的关键之处，对个人及家庭亲人身体健康的投资：即使你所投资的项目有100%的收益每一年，但却健康情况很差，那投资赚再多的财富又有什么用呢。对身体健康的投资保持有健康的身体是人生的根基，而健康是生命的基本保证和追求人生理想的前提条件，是最大的财富。有健康，才有生命的保证，才能实现财富的意义。
+                            </div>
+
+
+                         
+                            <div class="desc">
+                                投资切忌鼠目寸光，而要有高远的战略眼光：短线投资目光不能短视，长线投资也要有辩证的发展眼光，今天的朝阳产业也许明天会变为夕阳产业。选择好的投资，小钱会生大钱。反之，则可能会像"肉包子打狗，有去无回"。金钱在于运动：金钱的本质在于流动，钱是不能休眠的。当今经济社会发展日新月异，资金只能在投资流通中才能不断实现保值和增值。投资失误是损失，资金停滞不动也是损失。
+
+                            </div>
+                    <div class="desc">
+                        投资组合考虑的时候，应考虑到家庭资产的情况，风险程度，时间投资期限，变现能力，投资灵活性，都要进行综合考虑，保证在家庭有紧迫需求时能马上变换出需要的资金。风险忍受度原则即"生活风险忍受度"，保障本金是投资理财的重中之重，一切投资都需要遵守此规则。
+
+                    </div>
+                    <div class="desc">
+                        理财的前提必须是要有人一定的财可理，而且应该有定期的稳定收入源，不然，无基本之财怎么理。接着，建立一个家庭资产情况一览表，你需要随时清楚地掌握了解家庭的财产数额和资产性质，同时也要了解相应的财产法规。其次，理财需要多元化理财，理财所用的资本要多元化投资，切不可将许多鸡蛋放在一个篮子里，分散风险，扩宽理财渠道，增加收益。然后，投资理财的周期长短相结合，合理安排，做到流动性好，防止关键时期有钱而不能使用。最后，很重要的是，理财不过是为是财富的增值或者保值，有钱的最终目的是让生活过得更加幸福美满，衣食无忧，财富在适当时期应该制定适当的方案用于消费。如果只为理财而理财，那就不没有了实际的意义。
+
+                    </div>
+                    
+
+                            
+
+
+
+                        </div>
             </div>
-            <div id="introMarquee">
-                <div id="marqueeContainer">
-                    <ul id="articleImgs" class="unstyled" style="  background-color: #917739;padding-top: 10px;">
-                        <li>
-                            <img src="/winner/files/hezuo1.jpg" name="hezuo1Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo2.jpg" name="hezuo2Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo3.jpg" name="hezuo3Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo4.jpg" name="hezuo4Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo5.jpg" name="hezuo5Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo6.jpg" name="hezuo6Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo7.jpg" name="hezuo7Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo8.jpg" name="hezuo8Big.jpg">
-                        </li>
-                    </ul>
-                    <ul id="articleImgs2" class="unstyled" style="background-color: #917739; padding-top: 10px;margin-left: -5px;">
-                        <li>
-                            <img src="/winner/files/hezuo1.jpg" name="hezuo1Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo2.jpg" name="hezuo2Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo3.jpg" name="hezuo3Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo4.jpg" name="hezuo4Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo5.jpg" name="hezuo5Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo6.jpg" name="hezuo6Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo7.jpg" name="hezuo7Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo8.jpg" name="hezuo8Big.jpg">
-                        </li>
-                    </ul>
+            <div class="content" id="question">
+                <div class="title">
+                    常见问题
+                </div>
+                <div class="main">
+                    <div class="first point">
+                        什么是固定收益类理财产品?
+                    </div>
+                    <div class="desc">
+                        固定收益类理财产品，是指收益率和期限固定的产品。其特点是：收益固定、投资期限明确(一般为1年到2年)，通常都通过资产抵押、担保公司等来保证资金安全性，安全系数较高。
+                    </div>
+
+                    <div class="point">
+                        如何选择固定收益类理财产品?
+                    </div>
+                    <div class="desc">
+                        固定收益类理财产品因其独特的优势，现今比较抢手，可以四步来选择固定收益类理财产品：第一步，选择信誉良好的理财机构发行的产品，相对来说这些机构风控措施应该不错。第二步，优选自己熟悉的投资领域的固定收益类品种，比如投资标的为房地产;最后，结合自身理财需求和自身风险承受能力来选择适合自己的固定收益类理财产品。
+                    </div>
+
+                    <div class="point">
+                        保本型理财产品与固定收益产品有什么区别?
+                    </div>
+                    <div class="desc">
+                        保本型理财产品，并不是说全保本，购买时除了关注产品的安全性、收益性，还要注意有些产品对本金的保证条件。比如有些产品只保证90%的本金;有些产品对本金的保证设有“保本期限”，比如在1年内本金能100%保证。倘若提前赎回，本金可能会受到损失。
+                    </div>
+                </div>
+
+                
+            </div>
+            <div class="content" id="aboutUs">
+                <div class="title">
+                    关于我们
+                </div>
+                <div class="first desc">
+                    盈+金融网于2015年正式上线，是一家专业的第三方互联网金融平台。公司由一批具有创业热情的互联网以及金融行业内的精英组成。团队主要成员来自于奇虎360、腾讯、新浪微博、惠普、微软、赶集网、中金等国内知名互联网和金融企业，已拿到梅花创投的500万元天使投资。<br><br>
+                    公司自成立以来，始终秉承着用户利益高于一切的理念，专注为用户打造一个安全、专业、透明的网上股票投资平台，帮助用户从股市得到更好的资产升值。<br><br>
+                    公司注重实效、恪守诚信与中信建投，长城证券等建立了良好的金融合作关系。在保证用户资金安全和透明的同时给用户提供优质的资金配备及风险控制，与恒生电子达成协议，为客户提供更加专业、高效、安全的投资管理服务。<br><br>
+                    盈+金融坚信，凭借其卓越的团队，独特的经济视角，丰富的风险控制经验，会在未来，不断的为用户创造更高的价值。
+                </div>
+                <div class="point">
+                    联系我们
+                </div>
+                <div class="desc">
+                    商务合作：bd@xx.com<br><br>
+                    媒体报道：pr@xx.com<br><br>
+                    公司地址：北京市朝阳区太阳宫19号院5号楼1045<br><br>
+                    <br><br><br><br>
                 </div>
             </div>
+           
+            <div class="content" id="securities">
+                <div class="title">
+                    网站操作流程指引
+                </div>
+                <div class="point first">
+
+                </div>
+                <div class="desc">
+                    <div class="desc">
+                        如果您对盈+理财网站操作流程不太熟悉，
+                        请参考为您制作的网站操作流程指引：
+                        <button class="btn" onclick="window.location = &#39;http://pro.ying158.com/web/regis&#39;">我来给您带路！</button>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="content" id="helps">
+                <div class="title">
+                    帮助中心
+                </div>
+
+                <div class="main">
+                    <div class="point first">
+                        官网操作对于浏览器有什么要求吗？
+                    </div>
+                    <div class="desc">
+                        建议使用IE、360浏览器、Chrome浏览器等主流浏览器登录。<br><br>
+                    </div>
+
+                    <div class="point">
+                        平台是正规的吗？
+                    </div>
+                    <div class="desc">
+                        放心，平台是合法合规的，具体包括以下6点：<br><br>
+                        1）资金流向保障<br><br>
+                        为最大程度的保障投资人资金安全，特与多家知名第三方支付平台合作，为您的资金保驾护航；<br><br>
+                        2）不自保自融<br><br>
+                        所有的项目均有实际借款企业需求，引入第三方承保机构；<br><br>
+                        3）利率市场化<br><br>
+                        不盲目追求高利率，平台还可持续发展道路；<br><br>
+                        4）维护反洗钱法规<br><br>
+                        投资人、融资人均需通过实名认证、投资人身份证、银行卡信息必须一致，融资人重要信息充分披露，资金账户流水清晰可寻；<br><br>
+                        5）充分信息披露<br><br>
+                        融资信息披露详尽，风险揭示充分，投资人在投资前就能对项目有详尽的了解，资金流转信息透明；<br><br>
+                        6）获得相关权威认证与认可<br><br>
+                        平台获得权威认证和政府的认可。<br><br>
+                    </div>
+
+                    <div class="point">
+                        忘记注册手机号怎么办？
+                    </div>
+                    <div class="desc">
+                        您可以联系客服人员，提供身份证号为您进行查询。如未查询到，则表示该身份证号码未在平台上实名。请您用目前的手机号码进行注册，如提示已注册，请直接登录或点击忘记密码找回密码后登录。 <br>
+
+                    </div>
+
+
+                </div>
+
+
+                
+            </div>
+
         </div>
-
     </div>
 </div>
 
-
-
-
-<div id="announcementModal" class="modal fade infoModal">
-    <div class="modal-dialog">
-        <div class="modal-content" data-bind="if: $data"></div>
-    </div>
-</div>
-
-<div class="modal fade myModal" id="bigImg" role="dialog">
-    <div class="modal-dialog modal-sm" style="width: 1200px;">
-        <div class="modal-content">
-            <div class="modal-header" style="padding-top:10px;padding-bottom:10px;">
-                <span>合作商风采</span>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
-            </div>
-            <div class="modal-body" style="text-align: center;">
-                <img id="theBigImg" src="">
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade errorInfo infoModal" id="closePositionDialog" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content" style="border-radius: 0px;width:400px;">
-            <div class="modal-header">
-                <span>温馨提示</span>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-                <div id="errorMsg"></div><br>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="bottomAd" style="position:fixed; bottom:0px; margin:0 auto;">
-    <script type="text/javascript">
-        function hide() {
-            $(".bottomAd").hide();
-        }
-    </script>
-    <img src="http://ying158.com/images/yingjia.png" border="0" usemap="#Map">
-    <map name="Map" id="Map">
-        <area shape="rect" coords="1420,23,1445,48" href="javascript:hide();">
-    </map>
-</div>
-
-            <script src="/winner/files/knockout-3.2.0.js"></script>
-            <script>
-    $("#marqueeContainer img").click(function () {
-        var bigImg = $(this).attr("name");
-        var url = "/Content/images/jw/" + bigImg;
-        $("#bigImg #theBigImg").attr("src", url);
-        $("#bigImg").modal();
-    });
-
-    (function () {
-        var raf = window.requestAnimationFrame || function _raf(f) { return setTimeout(f, 16.6); }
-        var caf = window.cancelAnimationFrame || function _caf(f) { return clearTimeout(f); }
-        var tick = function () {
-            var ticks = {};
-            var _tick = function _tick(name, newTick) {
-                if (!ticks[name] || !newTick) {
-                    ticks[name] = newTick;
-                }
-                lastTick = ticks[name];
-                ticks[name] = newTick;
-                return newTick - lastTick;
-            };
-            return _tick;
-        }();
-
-        var speed = 33.333333;
-        var tab = document.getElementById("introMarquee");
-        var tab1 = document.getElementById("articleImgs");
-        var tab2 = document.getElementById("articleImgs2");
-        tab2.innerHTML = tab1.innerHTML;
-        $("#articleImgs2 img").click(function () {
-            var bigImg = $(this).attr("name");
-            var url = "/Content/images/jw/" + bigImg;
-            $("#bigImg #theBigImg").attr("src", url);
-            $("#bigImg").modal();
-        });
-        var offsetWidth1 = tab1.offsetWidth;
-        var offsetLeft2 = tab2.offsetLeft;
-        var scrollLeft = 0;
-        var MyMar;
-        function Marquee(time) {
-            t = tick("introMarquee", time || new Date());
-            MyMar = raf(Marquee);
-
-            if (scrollLeft >= offsetLeft2) {
-                scrollLeft = scrollLeft % offsetLeft2;
-            }
-            scrollLeft += (1 / speed) * t;
-            tab.scrollLeft = scrollLeft;
-        }
-        var MyMar = raf(Marquee, speed);
-        tab.onmouseover = function () { caf(MyMar); tick("introMarquee", null); };
-        tab.onmouseout = function () { MyMar = raf(Marquee, speed); };
-        var currentLeft = 0;
-        
-    })();
-
-    var loginFromPage = function () {
-        var phone = $("#phone").val();
-        var password = $("#password").val();
-        if ($.trim(phone) == "") {
-            $("#phone").focus();
-            return;
-        }
-        if ($.trim(password) == "") {
-            $("#password").focus();
-            return;
-        }
-        $(".loginBtn").addClass("disabled");
-        $.post("/api/authentication/signIn", { login: phone, password: password }, function (data) {
-            if (data.isAuthenticated) {
-                window.location.href = '/account/UserCenter';
-            } else {
-                $(".loginInfo #loginFail").html(data.errorMessage);
-                $(".loginInfo").modal();
-                $(".loginBtn").removeClass("disabled");
-            }
-        });
-    }
-
-    function login() {
-
-        var phone = $.trim($("#phoneNum").val());
-        if (phone == "") {
-            $("#infosResult").html("请输入您的手机号码");
-            $("#infoUser").modal();
-            $("#phoneNum").focus();
-            return false;
-        }
-
-        var pwd = $.trim($("#pwd").val());
-
-        if (pwd == "") {
-            $("#infosResult").html("请输入登录密码");
-            $("#infoUser").modal();
-            $("#pwd").focus();
-            return false;
-        }
-
-        $(".loginBtn").addClass("disabled");
-        $.post("/api/authentication/signIn", { login: phone, password: pwd }, function (data) {
-            if (data.isAuthenticated) {
-                if (data.returnUrl) {
-                    window.location.href = data.returnUrl;
-                } else {
-                    window.location.href = '/account/UserCenter';
-                }
-            } else {
-                $("#loginError").html(data.errorMessage);
-                $("#loginError").show();
-                $(".loginBtn").removeClass("disabled");
-            }
-        });
-    }
-    var counter = 1;
-    var announceTimer = function () {
-        return setInterval(function () {
-            var length = $("#spanAnnouncements > span").length;
-            if (length) {
-
-                $("#spanAnnouncements > span").each(function (i, e) {
-                    if (i == counter % length) {
-                        $(this).removeClass("hidden");
-                    } else {
-                        $(this).addClass("hidden");
-
-                    }
-                });
-                counter++;
-                if (counter == length) counter = 0;
-            }
-
-        }, 2000);
-    };
-
-    var timerId = announceTimer();
-    var announcements = ko.observableArray();
-    var announcement = ko.observable();
-    var showannouncement = function (an) {
-        announcement(an);
-        $('#announcementModal').modal('show');
-    }
-    $(function () {
-
-        ko.applyBindings(announcements, document.getElementById("announcements"));
-        ko.applyBindings(announcement, document.getElementById("announcementModal"));
-
-        $.get("/api/article/articleByCategory/b8c8dd38-0805-4ef4-bff6-17b835fca8aa/5", "", function (rel) {
-
-            $.each(rel, function (i, v) {
-                if (v.title.length > 32) {
-                    v.title = v.title.substring(0, 30) + '...';
-                }
-            });
-            announcements(rel);
-        });
-
-    });
-
-
-
-    var notReady = function () {
-        $("#closePositionDialog #errorMsg").html("<h4>即将推出，敬请期待！</h4>");
-        $("#closePositionDialog").modal();
-    }
-
-</script>
 <script>
-    var _hmt = _hmt || [];
-    (function () {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?3a07c2531807d298ad88175fa22f9413";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
+    $(document).ready(function () {
+        var url = window.location.hash.toLowerCase();
+        if (url.indexOf("question") >= 0) {
+            $("#questionTab").click();
+        } else if (url.indexOf("reports") >= 0) {
+            $("#reportsTab").click();
+        } else if (url.indexOf("securities") >= 0) {
+            $("#securitiesTab").click();
+        } else if (url.indexOf("helpcenter") >= 0) {
+            $("#helpsTab").click();
+        } else if (url.indexOf("aboutus") >= 0) {
+            $("#aboutUsTab").click();
+        } else if (url.indexOf("recruitment") >= 0) {
+            $("#recruitmentTab").click();
+        } else if (url.indexOf("promotion") >= 0) {
+            $("#promotionTab").click();
+        }
+
+        var height = $(".content").height();
+
+        var blankHeight = (height - 168) + "px";
+        $(".blank").css("height", blankHeight);
+
+    });
+
+    function pagation(pageIndex) {
+        $.get("/news/10/" + pageIndex, function (rel) {
+            $("ul.newsList").html(rel);
+        });
+    }
+
+
+    $(".helpCenter .left").on("click", ".item", function () {
+
+        var className = $(this).attr("class");
+        if (className.indexOf("active") >= 0) {
+            return;
+        } else {
+            var idName = $(this).attr("name");
+            $(".helpCenter .left .item").removeClass("active");
+            $(this).addClass("active");
+            $(".content").hide();
+            var height = "";
+            switch (idName) {
+                case "peizi":
+                    $("#peizi").show();
+                    height = $("#peizi").css("height");
+                    break;
+                case "question":
+                    $("#question").show();
+                    height = $("#question").css("height");
+                    break;
+                case "aboutUs":
+                    $("#aboutUs").show();
+                    height = $("#aboutUs").css("height");
+                    break;
+                case "promotion":
+                    $("#promotion").show();
+                    height = $("#promotion").css("height");
+                    break;
+                case "securities":
+                    $("#securities").show();
+                    height = $("#securities").css("height");
+                    break;
+                case "helps":
+                    $("#helps").show();
+                    height = $("#helps").css("height");
+                    break;
+                case "reports":
+                    $("#reports").show();
+                    height = $("#reports").css("height");
+                    break;
+                case "recruitment":
+                    $("#recruitment").show();
+                    height = $("#recruitment").css("height");
+                    break;
+                default:
+                    break;
+            }
+
+            height = height.split("px")[0];
+            var blankHeight = (height - 200) + "px";
+            $(".blank").css("height", blankHeight);
+
+        }
+    });
 </script>
-
-
 
 		<div class="container index">
 			<div class="row">
@@ -696,13 +634,13 @@
                             </div>
                         </li>
                         <li>
-                            <a href="" target="_blank" rel="nofollow">
+                            <a href="#" target="_blank" rel="nofollow">
                                 <em class="ico_sns ico_sinawb"></em>
                                 <span class="txt">新浪微博</span>
                             </a>
                         </li>
                         <li>
-                            <a href="" target="_blank" rel="nofollow">
+                            <a href="#" target="_blank" rel="nofollow">
                                 <em class="ico_sns ico_txwb"></em>
                                 <span class="txt">腾讯微博</span>
                             </a>
@@ -714,7 +652,7 @@
                           联系我们
                         </div>
                         <div class="contactInfo" style="padding-left:30px;">
-                            <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=508886246&site=qq&menu=yes"><img src="/winner/files/qqIcon.png" onmouseover="$(this).css(&#39;height&#39;, &#39;52px&#39;);" onmouseout="    $(this).css(&#39;height&#39;, &#39;48px&#39;);"></a>
+                            <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank" href="#"><img src="/winner/files/qqIcon.png" onmouseover="$(this).css(&#39;height&#39;, &#39;52px&#39;);" onmouseout="    $(this).css(&#39;height&#39;, &#39;48px&#39;);"></a>
                             <span class="kefu">在线客服</span><span class="time">08:30 - 21:00</span>
                         </div>
                     </div>
@@ -730,8 +668,7 @@
                 <script type="text/javascript">
 var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
                     document.write(unescape("%3Cspan id='cnzz_stat_icon_1255940205'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1255940205%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-                </script>
-                <span id="cnzz_stat_icon_1255940205"><a href="http://www.cnzz.com/stat/website.php?web_id=1255940205" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="/winner/files/pic1.gif"></a></span><script src="/winner/files/z_stat.php" type="text/javascript"></script><script src="/winner/files/core.php" charset="utf-8" type="text/javascript"></script>
+                </script><span id="cnzz_stat_icon_1255940205"><a href="http://www.cnzz.com/stat/website.php?web_id=1255940205" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="/winner/files/pic1.gif"></a></span><script src="/winner/files/z_stat.php" type="text/javascript"></script><script src="/winner/files/core.php" charset="utf-8" type="text/javascript"></script>
 				Copyright © 2010 - 2015 www.ying158.com All Rights Reserverd 杭州吉威投资管理有限公司 版权所有<br>
 				浙ICP备14030807号-3 杭州市江干区钱江新城迪凯银座19F 4000-999-158
 			</div>
@@ -954,63 +891,11 @@ var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " 
 
 		});
 
-		var kefu = function (num) {
-			var url = "";
-			switch (num) {
-				case 1:
-					url = "tencent://message/?uin=3044901756&Menu=yes";
-					break;
-				case 2:
-					url = "tencent://message/?uin=773031422&Menu=yes";
-					break;
-				default:
-					url = "tencent://message/?uin=2093717869&Menu=yes";
-			}
-			window.open(url, '在线客服', 'height=405,width=500,top=200,left=200,toolbar=no,menubar=no,scrollbars=yes, resizable=no,location=no, status=no');
-		}
-
-		var loginFromModal = function () {
-			var un = $("#modalUser").val();
-			var pw = $("#modalPw").val();
-			if (un == "" || un == undefined) {
-				$("#loginFail").html("请输入用户名");
-				$(".loginInfo").modal();
-				return;
-			}
-			if (pw == "" || pw == undefined) {
-				$("#loginFail").html("请输入登录密码");
-				$(".loginInfo").modal();
-				return;
-			}
-			$.post("/api/authentication/signIn", { login: un, password: pw }, function (data) {
-				if (data.isAuthenticated) {
-					window.location.reload();
-				} else {
-					$("#loginFail").html("用户名或密码有误");
-					$(".loginInfo").modal();
-				}
-			});
-
-		}
-
-
 		var gotoTop = function () {
 			$("html,body").animate({ scrollTop: 0 }, 1000);
 		}
 
- 	</script> 
-
-    <script type="text/javascript">
-		var _hmt = _hmt || [];
-		(function() {
-		  var hm = document.createElement("script");
-		  hm.src = "//hm.baidu.com/hm.js?bb6cf2322300378a89a69641641427c0";
-		  var s = document.getElementsByTagName("script")[0];
-		  s.parentNode.insertBefore(hm, s);
-		})();
-     </script> 
-
-
+	</script>
 
 </body>
 </html>
