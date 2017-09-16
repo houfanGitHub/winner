@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -40,7 +41,24 @@ class="table table-striped table-condensed table-condensed table-hover table-bor
         <td>邀请码</td>
       			
        </tr>
-       <tr align="center" bgcolor="white"></tr>
+       <tr align="center" bgcolor="white">
+       <td>${awardRecord.id }</td>
+       <td>${awardRecord.member.mobile_Phone }</td>
+       <!-- 被邀请人手机号  AwardRecord表中的被邀请人id  == Member表中的被邀请人id  就取出来 -->
+           <td>
+           		<c:if test="${awardRecord.byinvitingid == memberbyinvitingname.id }"></c:if>
+           		${memberbyinvitingname.mobile_Phone}
+           </td>
+       <!-- 奖励类型 -->
+       <td>
+			<c:if test="${awardRecord.type == '0' }"><font color="blue">注册奖励</font></c:if>
+			<c:if test="${awardRecord.type == '1' }"><font color="blue">投资奖励</font></c:if>
+		</td>
+       <td>${awardRecord.amount }</td>
+       <td>${awardRecord.addTime }</td>
+       <td>${awardRecord.member.invitationCode }</td>
+       
+       </tr>
 
 </table>
 

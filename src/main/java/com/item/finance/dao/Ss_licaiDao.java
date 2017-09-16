@@ -1,6 +1,7 @@
 package com.item.finance.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,18 +29,46 @@ public class Ss_licaiDao {
 	}
 	
 	//显示
-	public List<FinancialPlanner> list(){
+	public List<FinancialPlanner> list(Map map){
 		Session session=getSession();
-		String hql="from FinancialPlanner as fina" ;
+		String hql="from FinancialPlanner as fina where 0=0" ;
+		hql=gethql(map, hql);
 		List<FinancialPlanner>list=session.createQuery(hql).list();
 		return list;
 	}
 	
-	public List<FinancialPlanner> listfina(){
-		Session session=getSession();
-		String hql="from FinancialPlanner as fina" ;
-		List<FinancialPlanner>listfina=session.createQuery(hql).list();
-		return listfina;
-	}
+	
+	//模糊查询
+		public String gethql(Map map,String hql){
+			String amobile_Phone=(String)map.get("amobile_Phone");  //手机号
+			String amemberName=(String)map.get("amemberName");//真实姓名
+			String astatu=(String)map.get("astatu");//状态
+			String adate1=(String)map.get("adate1");  //注册时间1
+			String adate2=(String)map.get("adate2"); //注册时间2
+			/*
+			if(mobile1!=null && !"".equals(mobile1)){  //手机号
+				hql=hql+" and member.mobile_Phone like '%"+mobile1+"%'";
+			}*/
+			
+			if(amobile_Phone!=null && !"".equals(amobile_Phone)){ //手机号
+				hql=hql+" and fina.member.mobile_Phone like '%"+amobile_Phone+"%'";
+			}
+			
+			
+			if(amemberName!=null && !"".equals(amemberName)){ //真实姓名
+				hql=hql+" and  fina.member.memberName like '%"+amemberName+"%'";
+			}
+			if(astatu!=null && !"".equals(astatu)){ //状态
+				hql=hql+" and status= "+astatu+"";
+			}
+			
+			if(adate1!=null && !"".equals(adate1)){  //注册时间1 开始时间
+				hql=hql+" and createDate>='"+adate1+"'";
+			}
+			if(adate2!=null && !"".equals(adate2)){  //注册时间2  结束时间
+				hql=hql+" and createDate<='"+adate2+"'";
+			}
+			return hql;
+		}
 
 }
