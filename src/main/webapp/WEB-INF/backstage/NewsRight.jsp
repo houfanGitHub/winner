@@ -14,6 +14,26 @@
 <script type="text/javascript" src="/winner/ueditor/lang/zh-cn/zh-cn.js"></script>
 <title>咨询分类</title>
 <style type="text/css">
+.green {
+	color: #e8f0de;
+	border: solid 1px #538312;
+	background: #64991e;
+	background: -webkit-gradient(linear, left top, left bottom, from(#7db72f), to(#4e7d0e));
+	background: -moz-linear-gradient(top,  #7db72f,  #4e7d0e);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#7db72f', endColorstr='#4e7d0e');
+}
+.green:hover {
+	background: #538018;
+	background: -webkit-gradient(linear, left top, left bottom, from(#6b9d28), to(#436b0c));
+	background: -moz-linear-gradient(top,  #6b9d28,  #436b0c);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b9d28', endColorstr='#436b0c');
+}
+.green:active {
+	color: #a9c08c;
+	background: -webkit-gradient(linear, left top, left bottom, from(#4e7d0e), to(#7db72f));
+	background: -moz-linear-gradient(top,  #4e7d0e,  #7db72f);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e7d0e', endColorstr='#7db72f');
+}
 .red {
 	color: #faddde;
 	border: solid 1px #980c10;
@@ -64,29 +84,34 @@ function fun(){
     enableBtn();
     ue.getEditor('editor');
 };
+function funtwo(){
+document.forms[0].action="/winner/listNews";
+document.forms[0].submit();
+}
 </script>
 </head>
 <body>
-<form>
-<div align="right"><a data-toggle="modal" href="#example" onclick="fun();">添加 </a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+<form  method="post">
 <table class="table table-bordered table-hover" style='table-layout:fixed;' border="1">
+<center><span><b>咨询标题:</b><input type="text"  name="stitle"  value="${stitle}" /></span>&nbsp&nbsp&nbsp&nbsp<span> <b>咨询类别:</b><input type="text" name="stname"  value="${stname}" /></span><span><input type="button" class="green" value="搜索" onclick="funtwo();"></span></center>
+</form>
+<div align="right"><a data-toggle="modal" href="#example" onclick="fun();">添加 </a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 <tr style="height:8px">
-<th>序号</th><th>标题</th><th>副标题</th><th>简介</th><th>作者</th><th>内容</th><th>是否审核</th><th>是否置顶</th><th>是否推荐</th>
+<th>序号</th><th>咨询类型:</th><th>标题</th><th>副标题</th><th>简介</th><th>作者</th><th>内容</th><th>是否审核</th><th>是否置顶</th><th>是否推荐</th>
 <th style="width:100px;">添加时间</th><th>添加人ID</th><th>标签</th><th>链接地址</th><th>点击数量</th><th>封面图片</th><th>来源</th><th>附件地址</th>
 <th>SEO描述</th><th>SEO关键字</th><th>SEO标题</th><th>修改ID</th><th style="width:100px;">修改时间</th><th>操作</th>
 </tr>
 <c:forEach items="${list}" var="n">
 <tr>
-<td>${n.id }</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.title }</td> <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.subTitle}</td>
+<td>${n.id }</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.title }</td> <td>${n.newsType.name}</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.subTitle}</td>
 <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.info }</td><td>${n.author}</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><div style="width: 20px;height: 15px">${n.text}</div></td>
 <td>${n.audit}</td><td>${n.placTop}</td><td>${n.recommend }</td><td>${n.addTime }</td><td>${n.addId}</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.label }</td>
-<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.link}</td><td>${n.clickNumber }</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><img src= "${n.cPhoto}" /></td><td>${n.source}</td>
+<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.link}</td><td>${n.clickNumber }</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><div style="width: 200px;height:80px;"><img src= "${n.cPhoto}" /></div></td><td>${n.source}</td>
 <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.filelink }</td><td>${n.seoDes}</td><td>${n.seoKey }</td><td>${n.seoTitle}</td><td>${n.updId}</td><td>${n.updTime}</td> 
 <td><input type="button" value="修改"  class="blue"/><input type="button" value="删除"  class="red"/></td>
 </tr>
 </c:forEach>
 </table>
-</form>
 <div class="container">
 <div id="example" class="modal fade in" style="display: none; ">
 <div class="modal-header">

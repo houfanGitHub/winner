@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.text.html.FormSubmitEvent.MethodType;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,10 +35,14 @@ public String NewsRight(){
 return "WEB-INF/backstage/NewsRight";
 }
 @RequestMapping("/listNews")
-public String listNews(Map map){
+public String listNews(Map<String,Object> map,String stname,String stitle){
+System.out.println(stitle);
+System.out.println(stname);
+map.put("stitle", stitle);
+map.put("stname", stname);
+List<NewsType> listt=this.newsTypeService.listNewsType(map);
 List<News> list = this.newsService.listNews(map);
 map.put("list",list);
-List<NewsType> listt=this.newsTypeService.listNewsType(map);
 map.put("listt", listt);
 return "WEB-INF/backstage/NewsRight";
 }
@@ -69,17 +76,17 @@ System.out.println(filename);
 //获取将要上传的文件位置
 String path = request.getRealPath("/HomeUpload/");
 System.out.println(path);
+
 //创建该文件
 File newfile = new File(path, filename);
 n.setcPhoto("HomeUpload\\"+filename);
-this.newsService.save(n);
-System.out.println(path+"\\"+filename);
 //判断文件是否存在
 if(!newfile.exists()){
 newfile.createNewFile();
 }
 //把上传的内容传送给新创建的文件中
 file.transferTo(newfile);
+this.newsService.save(n);
 return "redirect:listNews";
 }
 }
