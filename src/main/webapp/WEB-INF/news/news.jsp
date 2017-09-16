@@ -3,10 +3,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta charset="utf-8">
-	<title>盈+理财-首页 - 盈+</title>
-	<link href="http://www.ying158.com/Content/images/jw/icon.ico" type="image/x-icon" rel="shortcut icon">
-	<script src="/winner/files/hm.js"></script><script src="/winner/files/hm(1).js"></script><script>
+	
+	<meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,maximum-scale=1.0,user-scalable=yes">
+	<meta name="Keywords" content="股指配资，股票配资，股指期货，沪深300">
+	<meta name="description" content="提供证券、商品期货、金融期货投融资等相关新闻。">
+	<title>新闻中心 - 盈+</title>
+<!-- 	<link href="http://www.ying158.com/Content/images/jw/icon.ico" type="image/x-icon" rel="shortcut icon"> -->
+	<script src="/winner/files/hm.js"></script><script>
 
 		
 	</script>
@@ -160,9 +164,10 @@
 
 </head>
 <body>
+
 	
     <div style=" width:1002px; height:94px; margin:0 auto;">
-        <iframe src="/winner/files/iframetop.jsp" scrolling="no" frameborder="0" width="1002" height="94"></iframe>
+        <iframe src="/winner/files/iframetop.html" scrolling="no" frameborder="0" width="1002" height="94"></iframe>
     </div>
 	<div class="jwNav">
 		<div class="container">
@@ -219,373 +224,299 @@
 	<div class="main">
 		
 
-<!-- Chang URLs to wherever Video.js files will be hosted -->
-<link href="/winner/files/video-js.css" rel="stylesheet" type="text/css">
-<!-- video.js must be in the <head> for older IEs to work. -->
-<script src="/winner/files/video.js"></script>
-<!-- Unless using the CDN hosted version, update the URL to the Flash SWF -->
-<script>
-    videojs.options.flash.swf = "video-js.swf";
- </script> 
 
-<div class="indexBanner">
-    
-
-<div id="homebanner" class="carousel slide" data-ride="carousel">
-
-
-    <ol class="carousel-indicators">
-            <li data-target="#homebanner" data-slide-to="0" class=" active"></li>
-    </ol>
-
-    <div class="carousel-inner" role="listbox">
-                <div class=" item active">
-                    <img src="/winner/files/banner2.jpg" alt="[]">
-                    
-                </div>
-    </div>
-
-    <a class="left carousel-control" href="#" role="button" data-slide="prev">
-        <span class="fa fa-chevron-circle-left" aria-hidden="true"></span>
-        <span class="sr-only">上一张</span>
-    </a>
-    <a class="right carousel-control" href="#" role="button" data-slide="next">
-        <span class="fa fa-chevron-circle-right" aria-hidden="true"></span>
-        <span class="sr-only">下一张</span>
-    </a>
-</div>
-    <div class="login-box">
-        <div class="block backdrop"></div>
-        <div class="block" style=" height:280px;">
-
-            
-            
-            <p style="margin-top:20px; line-height:50px; font-size:20px; text-align:center; color:#fff;"><span style="color:#917739;">欢迎</span>盈主到来</p>
-            <p style="margin-bottom:15px; line-height:50px; font-size:20px; text-align:center; color:#fff;">现在开始<span style="color:#917739;">您的财富</span> 之旅吧</p>
-            <a style="float:none; margin:0 auto; margin-left:15px;    display: inline-block;margin-bottom: 10px;" href="itemweb/toLogin"><img src="/winner/files/ying_index_login_btn.png"></a>
-            <a style="float:none; margin:0 auto; margin-left:15px; margin-top:10px;" href="itemweb/toRegistration"><img src="/winner/files/ying_index_reg_btn.png"></a>
-            
-        </div>
-    </div>
-</div>
-
-<div class="container index">
+<div class="container helpCenter">
     <div class="row">
-        <div class="report">
-            <div class="title">
-                <i class="fa fa-volume-up fa-2"></i>最新公告
+        <div class="left">
+            <div class="item first active" name="reports" id="reportsTab">
+                平台公告
             </div>
-            <div class="content" id="announcements">
-                <span id="spanAnnouncements" data-bind="foreach:$data">
-                    <input type="hidden" data-bind="value:id" value="19dc50b5-0284-4bed-bbe3-a363739f9e15">
-                    <span data-bind="text:title+&#39; &#39;+strDate, click: showannouncement" class="" style="cursor:pointer">2017年春节放假安排 [01-23]</span>
-                
-                    <input type="hidden" data-bind="value:id" value="e0d2276e-a35f-4b0a-aea7-3473cd800533">
-                    <span data-bind="text:title+&#39; &#39;+strDate, click: showannouncement" class="hidden" style="cursor:pointer">重磅推出阳光私募基金-吉威量化套利稳健1号 [04-14]</span>
-                
-                    <input type="hidden" data-bind="value:id" value="48aefff0-bcdb-45c2-b247-9910896603d2">
-                    <span data-bind="text:title+&#39; &#39;+strDate, click: showannouncement" class="hidden" style="cursor:pointer">关于盈+理财平台安全卡管理通告 [01-13]</span>
-                
-                    <input type="hidden" data-bind="value:id" value="a140c288-f3ed-40b5-8ae1-73c131f87dfa">
-                    <span data-bind="text:title+&#39; &#39;+strDate, click: showannouncement" class="hidden" style="cursor:pointer">盈+全球首映 [07-13]</span>
-                </span>
+            <div class="item" name="lastest" id="lastestTab">
+                市场动态
             </div>
-            <a href="http://www.ying158.com/home/newscenter">
-                查看更多&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;
-            </a>
+	        <div class="item" name="strategy" id="strategyTab">
+		        趣味理财
+	        </div>
+			
+            <div class="item" name="topNews" id="topNewsTab">
+                新闻头条
+            </div>
+            <div class="blank" style="height:532px;">
+
+            </div>
         </div>
-        <iframe width="972" height="500" scrolling="no" frameborder="0" src="/winner/files/iframeindex.jsp"></iframe>
-        <div class=" download apply">
-            <div class="title">
-                <img src="/winner/files/applyLeft.png">合作商风采<img src="/winner/files/applyRight.png">
-            </div>
-            <div id="introMarquee">
-                <div id="marqueeContainer">
-                    <ul id="articleImgs" class="unstyled" style="  background-color: #917739;padding-top: 10px;">
-                        <li>
-                            <img src="/winner/files/hezuo1.jpg" name="hezuo1Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo2.jpg" name="hezuo2Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo3.jpg" name="hezuo3Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo4.jpg" name="hezuo4Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo5.jpg" name="hezuo5Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo6.jpg" name="hezuo6Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo7.jpg" name="hezuo7Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo8.jpg" name="hezuo8Big.jpg">
-                        </li>
-                    </ul>
-                    <ul id="articleImgs2" class="unstyled" style="background-color: #917739; padding-top: 10px;margin-left: -5px;">
-                        <li>
-                            <img src="/winner/files/hezuo1.jpg" name="hezuo1Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo2.jpg" name="hezuo2Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo3.jpg" name="hezuo3Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo4.jpg" name="hezuo4Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo5.jpg" name="hezuo5Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo6.jpg" name="hezuo6Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo7.jpg" name="hezuo7Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo8.jpg" name="hezuo8Big.jpg">
-                        </li>
-                    </ul>
+        <div class="right">
+            <div class="content" id="reports" style="display: block;">
+                <div class="title">
+                    平台公告
                 </div>
+                <ul class="newsList">
+                    
+	<li>
+		<a href="http://www.ying158.com/news/19dc50b5-0284-4bed-bbe3-a363739f9e15" target="_blank">2017年春节放假安排</a><span class="time">2017-01-23</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/e0d2276e-a35f-4b0a-aea7-3473cd800533" target="_blank">重磅推出阳光私募基金-吉威量化套利稳健1号</a><span class="time">2016-04-14</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/48aefff0-bcdb-45c2-b247-9910896603d2" target="_blank">关于盈+理财平台安全卡管理通告</a><span class="time">2016-01-13</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/a140c288-f3ed-40b5-8ae1-73c131f87dfa" target="_blank">盈+全球首映</a><span class="time">2015-07-13</span>
+	</li>
+
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+
+<li>
+	<a onclick="pagation(0)">上一页</a> | <a onclick="pagation(2)">下一页</a>
+</li>
+
+                </ul>
             </div>
+            <div id="strategy" class="content" style="display: none;">
+                <div class="title">
+                    趣味理财
+                </div>
+                <ul class="newsList">
+                    
+	<li>
+		<a href="http://www.ying158.com/news/5a70857e-2b2a-4ba6-aa25-a2e53fd0de23" target="_blank">【私募知识】私募基金的五大误区</a><span class="time">2016-04-15</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/da3ea339-3ae6-4080-9aec-2e73f5264f55" target="_blank">秒杀盖茨和巴老 这哥们财富增长了14658%</a><span class="time">2015-09-17</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/35696d49-9724-4072-a292-073d4bb3c3e0" target="_blank">会买衣服怎么可能不会投资？教你从买衣服中学投资！</a><span class="time">2015-09-17</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/04b29d8b-fd00-4669-b9e6-2515d0e89bf0" target="_blank">他赚了75亿美金, 却要在2016年之前散尽家产</a><span class="time">2015-09-16</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/4fd91292-554c-49d6-9c62-f1185de438d6" target="_blank">美团估值为何骤降了？“烧钱模式”惹的祸!</a><span class="time">2015-09-16</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/fe845eec-4b78-456b-bdd1-0cbe8d8334e9" target="_blank">滴滴投资人王刚：滴滴发展过程跌宕起伏堪比韩剧</a><span class="time">2015-09-15</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/2f11b8b1-edd2-4841-862d-17cf09953d93" target="_blank">张泉灵离职央视：生命的后半段，我想重来一次！</a><span class="time">2015-09-14</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/606b9a91-ade1-43b8-9a03-7252861f37f9" target="_blank">美国“9.11”事件3700余名救援人员确诊患癌</a><span class="time">2015-09-14</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/bda161cd-1333-4c0b-8c6f-f8405c34f16d" target="_blank">触控笔、微软站台还有爱马仕，苹果简直能把乔帮主气活了！</a><span class="time">2015-09-11</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/ae6966b2-b791-42c8-a2c4-9f820c3ac341" target="_blank">股权众筹第一案焦点：平台是受托人还是居间人</a><span class="time">2015-09-07</span>
+	</li>
+
+
+<li>
+	<a onclick="pagation(0)">上一页</a> | <a onclick="pagation(2)">下一页</a>
+</li>
+
+                </ul>
+            </div>
+	        <div id="lastest" class="content" style="display: none;">
+		        <div class="title">
+			        市场动态
+		        </div>
+		        <ul class="newsList">
+			        
+	<li>
+		<a href="http://www.ying158.com/news/35cdf9bc-76d9-4cfc-8647-7568a3e5e515" target="_blank">私募巨头贝莱德掌门人：负利率或导致“危险”后果</a><span class="time">2016-04-15</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/2584681c-5077-4fa1-b41c-9dfbe843f6fd" target="_blank">美联储告诉全世界：紧盯中国！</a><span class="time">2015-09-21</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/532d1896-aceb-4184-9a31-d485ffe519a6" target="_blank">央行马骏：中国经济前景将明显好于那些悲观的市场预</a><span class="time">2015-09-17</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/5c61a9ad-24b9-458b-92b1-71cd3114269f" target="_blank">股权众筹第一案判决 平台人人投胜出</a><span class="time">2015-09-17</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/402f48d8-5aff-4833-a023-bd5288adf1bb" target="_blank">海通证券姜超：三理由告诉你不要那么悲观 市场已经不算贵</a><span class="time">2015-09-16</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/ddbdbc69-de21-4951-a07d-43d6dbe836a8" target="_blank">告别“钱荒” 步入“资产配置荒”时代</a><span class="time">2015-09-15</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/0b5d5cf0-ffd9-42a8-a167-d1571ddbf577" target="_blank">美元，别人的货币，我们的问题</a><span class="time">2015-09-15</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/3634906c-e0c6-4363-809c-c7bee7bd04f8" target="_blank">经济下行压力明显增大 继高盛之后中金下调中国GDP预期</a><span class="time">2015-09-15</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/72ca7cee-ae96-45e0-8ffd-b4c540c5d173" target="_blank">你真的理解什么是O2O吗？它的三大特点和两大难题</a><span class="time">2015-09-14</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/92090fd6-c3d3-4338-8bf1-64c56328dffb" target="_blank">李曙军欲开“一人公募” 首现自然人公募基金</a><span class="time">2015-09-14</span>
+	</li>
+
+
+<li>
+	<a onclick="pagation(0)">上一页</a> | <a onclick="pagation(2)">下一页</a>
+</li>
+
+		        </ul>
+	        </div>
+			<div id="topNews" class="content" style="display: none;">
+				<div class="title">
+					新闻头条
+				</div>
+				<ul class="newsList">
+					
+	<li>
+		<a href="http://www.ying158.com/news/d8dfb77a-0de1-451e-8480-9ec6ab84f0a9" target="_blank">【投资策略】一文看懂量化对冲</a><span class="time">2016-04-15</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/c91088fc-0a15-4f82-a09d-8990fd43aec0" target="_blank">十年后的中国远超你想象（深度！）</a><span class="time">2016-02-02</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/265cbb92-479a-4748-b0e3-953f11a99044" target="_blank">唐彬：互联网金融的哲学思考</a><span class="time">2016-02-02</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/df020c67-be05-43ba-afa9-de8687b5345d" target="_blank">哈佛76年研究结果：只要遇到真爱，人生繁盛的几率就会显著提升</a><span class="time">2016-02-02</span>
+	</li>
+	<li>
+		<a href="http://www.ying158.com/news/0e3982a3-adff-4aaa-a98e-2ad3e64969b8" target="_blank">私人财富重配 波澜壮阔的大牛市或在路上</a><span class="time">2016-02-02</span>
+	</li>
+
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+
+<li>
+	<a onclick="pagation(0)">上一页</a> | <a onclick="pagation(2)">下一页</a>
+</li>
+
+				</ul>
+			</div>
+			<div id="zuixins" class="content" style="display: none;">
+				<div class="title">
+					最新动态
+				</div>
+				<ul class="newsList">
+					
+
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+
+<li>
+	<a onclick="pagation(0)">上一页</a> | <a onclick="pagation(2)">下一页</a>
+</li>
+
+				</ul>
+			</div>
         </div>
-
     </div>
 </div>
 
-
-
-
-<div id="announcementModal" class="modal fade infoModal">
-    <div class="modal-dialog">
-        <div class="modal-content" data-bind="if: $data"></div>
-    </div>
-</div>
-
-<div class="modal fade myModal" id="bigImg" role="dialog">
-    <div class="modal-dialog modal-sm" style="width: 1200px;">
-        <div class="modal-content">
-            <div class="modal-header" style="padding-top:10px;padding-bottom:10px;">
-                <span>合作商风采</span>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
-            </div>
-            <div class="modal-body" style="text-align: center;">
-                <img id="theBigImg" src="">
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade errorInfo infoModal" id="closePositionDialog" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content" style="border-radius: 0px;width:400px;">
-            <div class="modal-header">
-                <span>温馨提示</span>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-                <div id="errorMsg"></div><br>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="bottomAd" style="position:fixed; bottom:0px; margin:0 auto;">
-    <script type="text/javascript">
-        function hide() {
-            $(".bottomAd").hide();
-        }
-    </script>
-    <img src="http://ying158.com/images/yingjia.png" border="0" usemap="#Map">
-    <map name="Map" id="Map">
-        <area shape="rect" coords="1420,23,1445,48" href="javascript:hide();">
-    </map>
-</div>
-
-            <script src="/winner/files/knockout-3.2.0.js"></script>
-            <script>
-    $("#marqueeContainer img").click(function () {
-        var bigImg = $(this).attr("name");
-        var url = "/Content/images/jw/" + bigImg;
-        $("#bigImg #theBigImg").attr("src", url);
-        $("#bigImg").modal();
-    });
-
-    (function () {
-        var raf = window.requestAnimationFrame || function _raf(f) { return setTimeout(f, 16.6); }
-        var caf = window.cancelAnimationFrame || function _caf(f) { return clearTimeout(f); }
-        var tick = function () {
-            var ticks = {};
-            var _tick = function _tick(name, newTick) {
-                if (!ticks[name] || !newTick) {
-                    ticks[name] = newTick;
-                }
-                lastTick = ticks[name];
-                ticks[name] = newTick;
-                return newTick - lastTick;
-            };
-            return _tick;
-        }();
-
-        var speed = 33.333333;
-        var tab = document.getElementById("introMarquee");
-        var tab1 = document.getElementById("articleImgs");
-        var tab2 = document.getElementById("articleImgs2");
-        tab2.innerHTML = tab1.innerHTML;
-        $("#articleImgs2 img").click(function () {
-            var bigImg = $(this).attr("name");
-            var url = "/Content/images/jw/" + bigImg;
-            $("#bigImg #theBigImg").attr("src", url);
-            $("#bigImg").modal();
-        });
-        var offsetWidth1 = tab1.offsetWidth;
-        var offsetLeft2 = tab2.offsetLeft;
-        var scrollLeft = 0;
-        var MyMar;
-        function Marquee(time) {
-            t = tick("introMarquee", time || new Date());
-            MyMar = raf(Marquee);
-
-            if (scrollLeft >= offsetLeft2) {
-                scrollLeft = scrollLeft % offsetLeft2;
-            }
-            scrollLeft += (1 / speed) * t;
-            tab.scrollLeft = scrollLeft;
-        }
-        var MyMar = raf(Marquee, speed);
-        tab.onmouseover = function () { caf(MyMar); tick("introMarquee", null); };
-        tab.onmouseout = function () { MyMar = raf(Marquee, speed); };
-        var currentLeft = 0;
-        
-    })();
-
-    var loginFromPage = function () {
-        var phone = $("#phone").val();
-        var password = $("#password").val();
-        if ($.trim(phone) == "") {
-            $("#phone").focus();
-            return;
-        }
-        if ($.trim(password) == "") {
-            $("#password").focus();
-            return;
-        }
-        $(".loginBtn").addClass("disabled");
-        $.post("/api/authentication/signIn", { login: phone, password: password }, function (data) {
-            if (data.isAuthenticated) {
-                window.location.href = '/account/UserCenter';
-            } else {
-                $(".loginInfo #loginFail").html(data.errorMessage);
-                $(".loginInfo").modal();
-                $(".loginBtn").removeClass("disabled");
-            }
-        });
-    }
-
-    function login() {
-
-        var phone = $.trim($("#phoneNum").val());
-        if (phone == "") {
-            $("#infosResult").html("请输入您的手机号码");
-            $("#infoUser").modal();
-            $("#phoneNum").focus();
-            return false;
-        }
-
-        var pwd = $.trim($("#pwd").val());
-
-        if (pwd == "") {
-            $("#infosResult").html("请输入登录密码");
-            $("#infoUser").modal();
-            $("#pwd").focus();
-            return false;
-        }
-
-        $(".loginBtn").addClass("disabled");
-        $.post("/api/authentication/signIn", { login: phone, password: pwd }, function (data) {
-            if (data.isAuthenticated) {
-                if (data.returnUrl) {
-                    window.location.href = data.returnUrl;
-                } else {
-                    window.location.href = '/account/UserCenter';
-                }
-            } else {
-                $("#loginError").html(data.errorMessage);
-                $("#loginError").show();
-                $(".loginBtn").removeClass("disabled");
-            }
-        });
-    }
-    var counter = 1;
-    var announceTimer = function () {
-        return setInterval(function () {
-            var length = $("#spanAnnouncements > span").length;
-            if (length) {
-
-                $("#spanAnnouncements > span").each(function (i, e) {
-                    if (i == counter % length) {
-                        $(this).removeClass("hidden");
-                    } else {
-                        $(this).addClass("hidden");
-
-                    }
-                });
-                counter++;
-                if (counter == length) counter = 0;
-            }
-
-        }, 2000);
-    };
-
-    var timerId = announceTimer();
-    var announcements = ko.observableArray();
-    var announcement = ko.observable();
-    var showannouncement = function (an) {
-        announcement(an);
-        $('#announcementModal').modal('show');
-    }
-    $(function () {
-
-        ko.applyBindings(announcements, document.getElementById("announcements"));
-        ko.applyBindings(announcement, document.getElementById("announcementModal"));
-
-        $.get("/api/article/articleByCategory/b8c8dd38-0805-4ef4-bff6-17b835fca8aa/5", "", function (rel) {
-
-            $.each(rel, function (i, v) {
-                if (v.title.length > 32) {
-                    v.title = v.title.substring(0, 30) + '...';
-                }
-            });
-            announcements(rel);
-        });
-
-    });
-
-
-
-    var notReady = function () {
-        $("#closePositionDialog #errorMsg").html("<h4>即将推出，敬请期待！</h4>");
-        $("#closePositionDialog").modal();
-    }
-
-</script>
 <script>
-    var _hmt = _hmt || [];
-    (function () {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?3a07c2531807d298ad88175fa22f9413";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
+
+    var cid = "B8C8DD38-0805-4EF4-BFF6-17B835FCA8AA";
+    var container = "#reports";
+
+   
+
+    $(document).ready(function () {
+        var url = window.location.href.toLowerCase();
+        if (url.indexOf("strategy") >= 0) {
+          
+            $("#strategyTab").click();
+        } else if (url.indexOf("reports") >= 0) {
+         
+            $("#reportsTab").click();
+        } else if (url.indexOf("lastest") >= 0) {
+        
+            $("#lastestTab").click();
+        }
+        else if (url.indexOf("zuixin") >= 0) {
+
+        	$("#zuixinsTab").click();
+        }
+        else if (url.indexOf("topNews") >= 0) {
+
+        	$("#topNewsTab").click();
+        }
+    });
+
+    function pagation(pageIndex) {
+        $.get("/allnews/" + cid + "/10/" + pageIndex, function (rel) {
+            $(container).find("ul.newsList").html(rel);
+        });
+    }
+
+
+    $(".helpCenter .left").on("click", ".item", function () {
+
+        var className = $(this).attr("class");
+        if (className.indexOf("active") >= 0) {
+            return;
+        } else {
+            var idName = $(this).attr("name");
+            $(".helpCenter .left .item").removeClass("active");
+            $(this).addClass("active");
+            $(".content").hide();
+            var height = "";
+            switch (idName) {
+                case "strategy":
+                    $("#strategy").show();
+                    cid = "60573482-BDDC-445B-8557-3EF264552977";
+                    container = "#strategy";
+                    height = $("#strategy").css("height");
+                    break;
+                case "reports":
+                    $("#reports").show();
+                    cid = "B8C8DD38-0805-4EF4-BFF6-17B835FCA8AA";
+                    container = "#reports";
+                    height = $("#reports").css("height");
+                    break;
+                case "lastest":
+                    $("#lastest").show();
+                    cid = "DEF1B712-29AE-42E5-9A35-A5D163D6F384";
+                    container = "#lastest";
+                    height = $("#lastest").css("height");
+                    break;
+            	case "topNews":
+            		$("#topNews").show();
+            		cid = "C121BC77-2E19-4419-8B47-F4D568A3B34C";
+            		container = "#topNews";
+            		height = $("#topNews").css("height");
+            		break;
+            	case "zuixins":
+            		$("#zuixins").show();
+            		cid = "EE2E7057-881C-46B5-92AC-E9CE5D2E0FF8";
+            		container = "#zuixins";
+            		height = $("#zuixins").css("height");
+            		break;
+                default:
+                    break;
+            }
+
+            height = height.split("px")[0];
+            var blankHeight = (height - 120) + "px";
+            $(".blank").css("height", blankHeight);
+
+        }
+    });
 </script>
-
-
 
 		<div class="container index">
 			<div class="row">
@@ -696,13 +627,13 @@
                             </div>
                         </li>
                         <li>
-                            <a href="" target="_blank" rel="nofollow">
+                            <a href="http://www.ying158.com/Home/NewsCenter" target="_blank" rel="nofollow">
                                 <em class="ico_sns ico_sinawb"></em>
                                 <span class="txt">新浪微博</span>
                             </a>
                         </li>
                         <li>
-                            <a href="" target="_blank" rel="nofollow">
+                            <a href="http://www.ying158.com/Home/NewsCenter" target="_blank" rel="nofollow">
                                 <em class="ico_sns ico_txwb"></em>
                                 <span class="txt">腾讯微博</span>
                             </a>
@@ -714,7 +645,7 @@
                           联系我们
                         </div>
                         <div class="contactInfo" style="padding-left:30px;">
-                            <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=508886246&site=qq&menu=yes"><img src="/winner/files/qqIcon.png" onmouseover="$(this).css(&#39;height&#39;, &#39;52px&#39;);" onmouseout="    $(this).css(&#39;height&#39;, &#39;48px&#39;);"></a>
+                            <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=508886246&amp;site=qq&amp;menu=yes"><img src="/winner/files/qqIcon.png" onmouseover="$(this).css(&#39;height&#39;, &#39;52px&#39;);" onmouseout="    $(this).css(&#39;height&#39;, &#39;48px&#39;);"></a>
                             <span class="kefu">在线客服</span><span class="time">08:30 - 21:00</span>
                         </div>
                     </div>
@@ -730,8 +661,7 @@
                 <script type="text/javascript">
 var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
                     document.write(unescape("%3Cspan id='cnzz_stat_icon_1255940205'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1255940205%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-                </script>
-                <span id="cnzz_stat_icon_1255940205"><a href="http://www.cnzz.com/stat/website.php?web_id=1255940205" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="/winner/files/pic1.gif"></a></span><script src="/winner/files/z_stat.php" type="text/javascript"></script><script src="/winner/files/core.php" charset="utf-8" type="text/javascript"></script>
+                </script><span id="cnzz_stat_icon_1255940205"><a href="http://www.cnzz.com/stat/website.php?web_id=1255940205" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="/winner/files/pic1.gif"></a></span><script src="/winner/files/z_stat.php" type="text/javascript"></script><script src="/winner/files/core.php" charset="utf-8" type="text/javascript"></script>
 				Copyright © 2010 - 2015 www.ying158.com All Rights Reserverd 杭州吉威投资管理有限公司 版权所有<br>
 				浙ICP备14030807号-3 杭州市江干区钱江新城迪凯银座19F 4000-999-158
 			</div>
@@ -953,62 +883,11 @@ var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " 
 
 
 		});
-
-		var kefu = function (num) {
-			var url = "";
-			switch (num) {
-				case 1:
-					url = "tencent://message/?uin=3044901756&Menu=yes";
-					break;
-				case 2:
-					url = "tencent://message/?uin=773031422&Menu=yes";
-					break;
-				default:
-					url = "tencent://message/?uin=2093717869&Menu=yes";
-			}
-			window.open(url, '在线客服', 'height=405,width=500,top=200,left=200,toolbar=no,menubar=no,scrollbars=yes, resizable=no,location=no, status=no');
-		}
-
-		var loginFromModal = function () {
-			var un = $("#modalUser").val();
-			var pw = $("#modalPw").val();
-			if (un == "" || un == undefined) {
-				$("#loginFail").html("请输入用户名");
-				$(".loginInfo").modal();
-				return;
-			}
-			if (pw == "" || pw == undefined) {
-				$("#loginFail").html("请输入登录密码");
-				$(".loginInfo").modal();
-				return;
-			}
-			$.post("/api/authentication/signIn", { login: un, password: pw }, function (data) {
-				if (data.isAuthenticated) {
-					window.location.reload();
-				} else {
-					$("#loginFail").html("用户名或密码有误");
-					$(".loginInfo").modal();
-				}
-			});
-
-		}
-
-
 		var gotoTop = function () {
 			$("html,body").animate({ scrollTop: 0 }, 1000);
 		}
 
- 	</script> 
-
-    <script type="text/javascript">
-		var _hmt = _hmt || [];
-		(function() {
-		  var hm = document.createElement("script");
-		  hm.src = "//hm.baidu.com/hm.js?bb6cf2322300378a89a69641641427c0";
-		  var s = document.getElementsByTagName("script")[0];
-		  s.parentNode.insertBefore(hm, s);
-		})();
-     </script> 
+	</script>
 
 
 
