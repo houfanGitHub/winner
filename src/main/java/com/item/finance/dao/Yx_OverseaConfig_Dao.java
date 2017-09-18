@@ -29,5 +29,11 @@ public class Yx_OverseaConfig_Dao {
 		List<OverseaConfig> list=session.createQuery(hql).list();
 		return list;
 	}
+	//修改前查询
+	public OverseaConfig selectOverseaConfig(int id){
+		Session session=getSession();
+		OverseaConfig overseaConfig=(OverseaConfig)session.get(OverseaConfig.class,id);
+	    return overseaConfig;
+	}
 
 }

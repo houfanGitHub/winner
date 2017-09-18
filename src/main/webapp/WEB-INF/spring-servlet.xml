@@ -49,5 +49,6 @@
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />  
    		 </mvc:message-converters> 
 	</mvc:annotation-driven>
-	<mvc:default-servlet-handler/>	
+	<mvc:default-servlet-handler/>
+	
 </beans>

@@ -1,13 +1,24 @@
 package com.item.finance.bean;
 
 
-import javax.persistence.*;
-
-import java.math.BigInteger;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -18,8 +29,19 @@ import java.util.Set;
 @Table(name="subject")
 @NamedQuery(name="Subject.findAll", query="SELECT s FROM Subject s")
 public class Subject  {
+	
+	@Id
+	@GeneratedValue
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	private static final long serialVersionUID = 1L;
-	private String id;//主键ID
+	private int id;//主键ID
 	private BigDecimal amount; //标的金额
 	private BigInteger borrowerid;//借款人id
 	private String borrowername; //借款人姓名
@@ -41,32 +63,48 @@ public class Subject  {
 	private byte refundWay; //还款方式
 	private byte safeGuard_way; //保障方式
 	private String safetyControl;//安全保障
-	private String serialNo;//合同号
+	private String serialNo;//合同号        
 	private String serialNumber; //流水号
 	private Date startDate; //标的开始日期
 	private byte status; //标的状态
 	private byte type; //标的类型
 	private Date updateDate; //更新日期
 	private BigDecimal yearRate; //年化率
+	//private long yearEarnings;//年化收益
 	private SubjectFolder subjectFolder;//附件归属表
 	private Set<SubjectBbinPurchaseRecord> subjectBbinPurchaseRecords = new HashSet<>();//体验金购买标的表
 	private Set<SubjectFieldRecord> subjectFieldRecords = new HashSet<>();//主题记录表
 	private Set<SubjectOrderRecord> subjectOrderRecords = new HashSet<>();//标的订单表
-
+	
 	
 	public Subject() {
 	}
-
-
-	@Id
-	@Column(unique=true, nullable=false)
-	public String getId() {
-		return this.id;
+	
+	
+	
+	
+	/*public void setYearEarnings(long yearEarnings) {
+		this.yearEarnings = yearEarnings;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public long getYearEarnings() {
+		//收益=本金*年利率/365*天数
+				BigDecimal a=this.getFloorAmount();//本金
+				BigDecimal b=this.getYearRate();//年化率
+				BigDecimal c=this.getPeriod();//天数
+				BigDecimal d=BigDecimal.valueOf(365);
+				DecimalFormat dbf=new DecimalFormat("0.00");
+				String yearEarnings1=dbf.format(a.add(b).divide(d).multiply(c));
+				 yearEarnings=Long.valueOf(yearEarnings1);
+				System.out.println("yearEarnings2:"+yearEarnings);
+		      return yearEarnings;
+	}*/
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
+
 
 
 	@Column(precision=10, scale=2)
@@ -197,14 +235,19 @@ public class Subject  {
 		this.parentId = parentId;
 	}
 
-
 	public BigInteger getPeriod() {
-		return this.period;
+		return period;
 	}
+
+
 
 	public void setPeriod(BigInteger period) {
 		this.period = period;
 	}
+
+
+
+
 
 
 	@Lob

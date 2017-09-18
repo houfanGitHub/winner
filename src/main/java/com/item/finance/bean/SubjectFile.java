@@ -13,7 +13,7 @@ import java.util.Date;
 @Entity
 @Table(name="subject_file")
 public class SubjectFile  {
-	private String id;
+	private int id;
 	private Date createDate;
 	private String fileName;
 	private String originalName;
@@ -27,11 +27,12 @@ public class SubjectFile  {
 
 	@Id
 	@Column(unique=true, nullable=false)
-	public String getId() {
-		return this.id;
+	public int getId() {
+		return id;
 	}
 
-	public void setId(String id) {
+
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -41,6 +42,9 @@ public class SubjectFile  {
 	public Date getCreateDate() {
 		return this.createDate;
 	}
+
+
+
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;

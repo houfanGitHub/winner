@@ -15,32 +15,30 @@ import java.util.Set;
 @Entity
 @Table(name="subject_bbin_purchase_record")
 public class SubjectBbinPurchaseRecord  {
-	private String id;
-	private BigDecimal amount;
-	private Date createDate;
+	private int id;
+	private BigDecimal amount;//购买金额
+	private Date createDate;//创建时间
 	private String dealIp;
-	private byte delflag;
+	private String delflag;//是否删除
 	private BigDecimal interest;
-	private byte ispayment;
+	private byte ispayment;//是否还款
 	private int lastProfitDay;
-	private int payInterestTimes;
+	private int payInterestTimes;//支付时间
 	private String serialNumber;
 	private Date updateDate;
 	private Set<MemberProfitRecord> memberProfitRecords;
-	private Member member;
+	private Member member;//(用户基本表)
 	private Subject subject;
-
+	
 	public SubjectBbinPurchaseRecord() {
 	}
 
-
 	@Id
 	@Column(unique=true, nullable=false)
-	public String getId() {
-		return this.id;
+	public int getId() {
+		return id;
 	}
-
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -49,6 +47,9 @@ public class SubjectBbinPurchaseRecord  {
 	public BigDecimal getAmount() {
 		return this.amount;
 	}
+
+	
+
 
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
@@ -76,14 +77,20 @@ public class SubjectBbinPurchaseRecord  {
 	}
 
 
-	public byte getDelflag() {
+	/*public byte getDelflag() {
 		return this.delflag;
 	}
 
 	public void setDelflag(byte delflag) {
 		this.delflag = delflag;
+	}*/
+	public String getDelflag() {
+		return delflag;
 	}
 
+	public void setDelflag(String delflag) {
+		this.delflag = delflag;
+	}
 
 	@Column(precision=10, scale=4)
 	public BigDecimal getInterest() {

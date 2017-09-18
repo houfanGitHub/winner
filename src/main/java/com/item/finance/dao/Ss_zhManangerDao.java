@@ -73,9 +73,7 @@ public class Ss_zhManangerDao {
 		if(create_date2!=null && !"".equals(create_date2)){  //注册时间2  结束时间
 			hql=hql+" and createDate<='"+create_date2+"'";
 		}
-		
 		return hql;
-		
 	}
 	
 	    //查询资金信息详情  通过id  传参  返回对应的数据     按下标取值 

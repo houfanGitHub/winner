@@ -1,6 +1,7 @@
 package com.item.finance.services;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -22,8 +23,8 @@ public class Yx_FinanceProductFunds_Service implements ItemServiceImpl<FinancePr
 		return null;
 	}
 
-	public List<FinanceProductFunds> listFinanceProductFunds() {
-		return this.yx_FinanceProductFunds_Dao.listFinanceProductFunds();
+	public List<FinanceProductFunds> listFinanceProductFunds(Map map) {
+		return this.yx_FinanceProductFunds_Dao.listFinanceProductFunds(map);
 	}
 	public FinanceProductFunds listEdit(int id){
 		return yx_FinanceProductFunds_Dao.listEdit(id);

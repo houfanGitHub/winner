@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import com.item.finance.bean.FinanceProductFunds;
 import com.item.finance.bean.Subject;
+import com.item.finance.bean.SubjectBbinPurchaseRecord;
+import com.item.finance.bean.SubjectFile;
 
 @Component
 public class Yx_Subject_Dao {
@@ -19,11 +21,18 @@ public class Yx_Subject_Dao {
 	public Session getSession(){
 		return sessionFactory.getCurrentSession();
 	}
+	//保存
 	public void saveSubject(Subject subject){
 		Session session=getSession();
 		session.save(subject);
 	}
-	public Subject selectSubject(String id){
+	//上传
+	public void saveSubjectFile(SubjectFile subjectFile){
+		Session session=getSession();
+		session.save(subjectFile);
+	}
+	//根据id查询对象
+	public Subject selectSubject(int id){
 		Session session=getSession();
 		Subject subject=(Subject)session.get(Subject.class, id);
 	return subject;
@@ -50,10 +59,19 @@ public class Yx_Subject_Dao {
 		}
 		return hql;
 	}
+	//查看投资
+	public List<SubjectBbinPurchaseRecord> listtouzi(int id){
+		Session session=getSession();
+		String hql="from SubjectBbinPurchaseRecord where subject_id="+id;
+		List<SubjectBbinPurchaseRecord> list=session.createQuery(hql).list();
+		return list;
+	}
+	
     public void deleteSubject(Subject subject){
     	Session session=getSession();
     	session.delete(subject);
     }
+    //修改
     public void updateSubject(Subject subject){
     	Session session=getSession();
     	session.update(subject);
