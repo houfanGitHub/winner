@@ -45,12 +45,6 @@ public class HoufanItemSystemController {
 		map.put("userList", list);
 	}
 	
-//	@RequestMapping("/asynchronousUsers")
-//	@ResponseBody
-//	public void asynchronousUsers(Map<String,Object> map){
-//		getUserList(map);
-//	}
-	
 	@RequestMapping("/roles")
 	public String roles(Map<String,Object> map){
 		//查询所有角色信息

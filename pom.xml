@@ -11,13 +11,17 @@
         <plugin>  
             <groupId>org.apache.maven.plugins</groupId>  
             <artifactId>maven-compiler-plugin</artifactId>  
+<!--             <version>3.0</version> -->
             <configuration>  
+            	<encoding>utf-8</encoding>
                 <source>1.7</source>  
                 <target>1.7</target>  
             </configuration>  
         </plugin>  
     </plugins>  
 </build> 
+
+<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   
   <!-- jar包 -->
   <properties>
@@ -106,21 +110,27 @@
 </dependency>
   
 <!-- shiro -->  
-<dependency>  
-    <groupId>org.apache.shiro</groupId>  
-    <artifactId>shiro-core</artifactId>  
-    <version>${shiro.version}</version>  
-</dependency>  
-<dependency>  
-    <groupId>org.apache.shiro</groupId>  
-    <artifactId>shiro-web</artifactId>  
-    <version>${shiro.version}</version>  
-</dependency>  
-<dependency>  
-    <groupId>org.apache.shiro</groupId>  
-    <artifactId>shiro-spring</artifactId>  
-    <version>${shiro.version}</version>  
-</dependency> 
+<!-- <dependency>   -->
+<!--     <groupId>org.apache.shiro</groupId>   -->
+<!--     <artifactId>shiro-core</artifactId>   -->
+<!--     <version>${shiro.version}</version>   -->
+<!-- </dependency>   -->
+<!-- <dependency>   -->
+<!--     <groupId>org.apache.shiro</groupId>   -->
+<!--     <artifactId>shiro-web</artifactId>   -->
+<!--     <version>${shiro.version}</version>   -->
+<!-- </dependency>   -->
+<!-- <dependency>   -->
+<!--     <groupId>org.apache.shiro</groupId>   -->
+<!--     <artifactId>shiro-spring</artifactId>   -->
+<!--     <version>${shiro.version}</version>   -->
+<!-- </dependency>  -->
+	<dependency>
+	    <groupId>org.apache.shiro</groupId>  
+	    <artifactId>shiro-all</artifactId>  
+	    <version>0.0.1-SNAPSHOT</version>  
+	</dependency> 
+
 <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
 <dependency>
     <groupId>org.aspectj</groupId>
@@ -185,6 +195,23 @@
     <groupId>commons-logging</groupId>
     <artifactId>commons-logging</artifactId>
     <version>1.1.1</version>
+</dependency>
+
+<dependency>
+	<groupId>org.slf4j</groupId>
+	<artifactId>slf4j-api</artifactId>
+	<version>1.7.21</version>
+</dependency>
+
+<dependency>
+	<groupId>org.slf4j</groupId>
+	<artifactId>slf4j-log4j</artifactId>
+	<version>1.7.21</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.log4j</groupId>
+	<artifactId>log4j</artifactId>
+	<version>1.2.16</version>
 </dependency>
 
 	</dependencies>	
