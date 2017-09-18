@@ -1,5 +1,6 @@
 package com.item.finance.controller;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -7,10 +8,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.swing.text.html.FormSubmitEvent.MethodType;
 
+import org.apache.catalina.util.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,8 +39,6 @@ return "WEB-INF/backstage/NewsRight";
 }
 @RequestMapping("/listNews")
 public String listNews(Map<String,Object> map,String stname,String stitle){
-System.out.println(stitle);
-System.out.println(stname);
 map.put("stitle", stitle);
 map.put("stname", stname);
 List<NewsType> listt=this.newsTypeService.listNewsType(map);
@@ -50,6 +51,7 @@ return "WEB-INF/backstage/NewsRight";
 //上传
 @RequestMapping("/saveNews")
 public String saveNews(News n,int tid,HttpServletRequest request,@RequestParam("file")MultipartFile file)throws Exception{
+System.out.println("!!!!!!!!!!!!!!!!!!!q");
 n.setAddTime(new Date());
 NewsType type=this.newsTypeService.selectGetById(tid+"");
 n.setNewsType(type);
@@ -72,11 +74,11 @@ n.setRecommend(Integer.valueOf(request.getParameter("recommend")));
 n.setText(request.getParameter("text"));
 //获取上传文件名称
 String filename = file.getOriginalFilename();
+System.out.println("!!!!!!!!!!!!!!!!!!!2");
 System.out.println(filename);
 //获取将要上传的文件位置
 String path = request.getRealPath("/HomeUpload/");
 System.out.println(path);
-
 //创建该文件
 File newfile = new File(path, filename);
 n.setcPhoto("HomeUpload\\"+filename);
@@ -88,5 +90,13 @@ newfile.createNewFile();
 file.transferTo(newfile);
 this.newsService.save(n);
 return "redirect:listNews";
+}
+//修改前获得当前ID和对象
+@RequestMapping("/getNews/{id}")
+public String getNews(@PathVariable("id")String id,Map<String,Object> map){
+News n = this.newsService.selectGetById(id);
+map.put("n", n);
+System.out.println("jjjjjjjjjjjjjjjjjjjjjj");
+return "WEB-INF/backstage/NewsUpdate";
 }
 }
