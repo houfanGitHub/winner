@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>海外配置</title>
+<title>海外配置预约记录</title>
 <link rel="stylesheet" href="/winner/files/layer.css" id="layui_layer_skinlayercss"> 
  <link rel="stylesheet" href="/winner/backstage/show/bootstrap.min.css">  
 </head>
@@ -28,7 +28,6 @@
 <td>${t2.addr}</td>
 <td>${t2.createDate}</td>
 </tr>
-
 </c:forEach>
 </table>
 </body>

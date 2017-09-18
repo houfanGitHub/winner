@@ -31,6 +31,10 @@ public class Yx_OverseaConfig_Services implements ItemServiceImpl<OverseaConfig>
 	public List<OverseaConfig> list2() {
 		return this.yx_OverseaConfig_Dao.listOverseaConfigSubscribe();
 	}
+	//海外配置修改前查询
+	public OverseaConfig selectOverseaConfig(int id){
+		return this.yx_OverseaConfig_Dao.selectOverseaConfig(id);
+	}
 
 	@Override
 	public void save(OverseaConfig t) {

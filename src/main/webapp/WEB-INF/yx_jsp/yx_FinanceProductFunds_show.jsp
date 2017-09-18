@@ -18,7 +18,6 @@
 	 location="/winner/yx2/listEdit/"+id;
  }
 </script>
-
  <script type="text/javascript">
  $(function(){
 $("#cx").click(function(){

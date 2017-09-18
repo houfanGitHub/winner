@@ -1,7 +1,9 @@
 package com.item.finance.bean;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -11,7 +13,8 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="FinanceProductFund.findAll", query="SELECT f FROM FinanceProductFunds f")
+@Table(name="finance_product_funds")
+@NamedQuery(name="FinanceProductFunds.findAll", query="SELECT f FROM FinanceProductFunds f")
 public class FinanceProductFunds  {
 	private int id;//id
 	private BigDecimal amount;//募集金额

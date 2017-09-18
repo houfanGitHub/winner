@@ -42,7 +42,6 @@ public class Yx_FinanceProductFunds_Controller {
 	@RequestMapping("/listEdit/{id}")
 	public String listEdit(@PathVariable("id")int id,HttpSession session){
 		Map map=new HashMap<>();
-		System.out.println("id"+id);
 		FinanceProductFunds fs=this.yx_FinanceProductFunds_Service.listEdit(id);
 		List<FinanceProductFunds> list=yx_FinanceProductFunds_Service.listFinanceProductFunds(map);
 		session.setAttribute("fs", fs);

@@ -19,11 +19,26 @@ $("#cx").click(function(){
 		document.forms[0].action="/winner/yx/list";
 		document.forms[0].submit();
 	});
-$("#btn1").click(function(){
+$("#btn1").click(function(){//跳转到添加方法
 	document.forms[0].action="/winner/yx/toSubject";
 	document.forms[0].submit();
 });
+
+$("#cz").click(function(){//重置
+	document.forms[0].action="/winner/yx/listcz";
+	document.forms[0].submit();
+});
+
  });
+</script>
+
+<script type="text/javascript">
+function showtz(id){
+	window.location="/winner/yx/listtouzi/"+id;
+}
+function editshow(id){
+	window.location="/winner/yx/listEdit/"+id;
+	}
 </script>
 
 <p><p><p><h4>▶&nbsp;固收类/P2P</h4>
@@ -31,7 +46,8 @@ $("#btn1").click(function(){
 <form action="">
 <table border="0" class="table table-condensed table-hover">
 <tr>
-<td colspan="2" align="center">名称</td><td colspan="2"><input type="text" name="qname" value="${qname}" class="form-control" placeholder="名称"></td><td align="center">状态</td>
+<td colspan="2" align="center"><label>名称</label></td><td colspan="2"><input type="text" id="qname" name="qname" value="${qname}" class="form-control" placeholder="名称"></td>
+<td align="center"><label>状态</label></td>
 <td colspan="2">
 <select class="form-control" name="qstatus" id="qstatus"><option value="">全部</option>
 <option value="0">未发布</option>
@@ -40,7 +56,7 @@ $("#btn1").click(function(){
 <option value="3">还款完成</option>
 </select>
 </td>
-<td align="center">类型</td>
+<td align="center"><label>类型:</label></td>
 <td colspan="2" align="center">
 <select class="form-control" name="qtype">
 <option value="">全部</option>
@@ -50,7 +66,7 @@ $("#btn1").click(function(){
 </select>
 </td>
 <td></td>  
-<td align="center"><input type="button" class="btn btn-primary" id="cx" value="查询"></td><td align="center"><input type="reset" class="btn btn-primary"  value="重置"/></td>
+<td align="center"><input type="button" id="cx" class="btn btn-primary"  value="查询"></td><td align="center"><input type="button" class="btn btn-primary" id="cz"  value="重置"/></td>
 <td><input type="button" class="btn btn-primary" id="btn1" value="新增"/></td>
 </tr>
 <tr class="info" align="center">
@@ -91,12 +107,14 @@ P2P房贷
 </td>
 <td>${t.createDate }</td>
 <td>
-<button  class="btn btn-primary">编辑/查看</button><br>
-<button class="btn btn-primary">查看投资</button>
+<input type="button"  class="btn btn-primary" value="编辑/查看" onclick="editshow(${t.id})"/><br>
+<input type="button" class="btn btn-primary" value="查看投资" onclick="showtz(${t.id })"/>
 </td>
 </tr>
 </c:forEach>
 </table>
 </form>
+
+
 </body>
 </html>
