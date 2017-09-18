@@ -4,7 +4,6 @@
   <artifactId>winner</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  
   <!-- maven局部jdk配置 -->
   <build>  
     <plugins>  
