@@ -32,6 +32,7 @@ public class SubjectPurchaseRecord  {
 	private Date updateDate;
 
 	public SubjectPurchaseRecord() {
+		
 	}
 
 

@@ -43,6 +43,35 @@ public class HoufanWebItemController {
 	@Autowired
 	private UserRoleService userRoleService;
 
+	
+	//提款记录
+	@RequestMapping("/withdraw")
+	public String withdraw(){
+		return "WEB-INF/myself/withdrawals";
+	}
+	
+	//账户充值
+		@RequestMapping("/deposit")
+		public String experienceGold(){
+			return "WEB-INF/myself/experienceGold";
+		}
+		
+		@RequestMapping("/security")
+		public String security(){
+			return "WEB-INF/myself/security";
+		}
+				
+				//我要提款
+				@RequestMapping("/drawMoney")
+				public String drawMoney(){
+					return "WEB-INF/myself/drawMoney";
+				}
+				//我是理财师
+				@RequestMapping("/financialPlanner")
+				public String financialPlanner(){
+					return "WEB-INF/myself/financialPlanner";
+				}
+
 	// 进入用户登录界面
 	@RequestMapping("/toLogin")
 	public String toLogin() {

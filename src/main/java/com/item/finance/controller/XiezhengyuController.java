@@ -1,18 +1,13 @@
 package com.item.finance.controller;
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.text.html.FormSubmitEvent.MethodType;
 
-import org.apache.catalina.util.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,7 +25,7 @@ private NewsService newsService;
 @Autowired
 private NewsTypeService newsTypeService;
 @RequestMapping("/show")
-public String login(Map map){
+public String login(Map<String,Object> map){
 return "WEB-INF/backstage/show";
 }
 @RequestMapping("/NewsRight")

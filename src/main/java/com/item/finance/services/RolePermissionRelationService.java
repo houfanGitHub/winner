@@ -60,4 +60,20 @@ public class RolePermissionRelationService implements ItemServiceImpl<RolePermis
 		return set;
 	}
 
+	/**
+	 * 根据角色id查询权限名称
+	 * @param roleId
+	 * @return
+	 */
+	public Set<String> selectGetByRoleId(String roleId) {
+		// TODO Auto-generated method stub
+		Set<String> set = rolePermissionRelationDao.selectGetByRoleId(roleId);
+		return set;
+	}
+
+	public void updateByRoleId(String[] pname, String roleId) {
+		// TODO Auto-generated method stub
+		rolePermissionRelationDao.updateByRoleId(pname,roleId);
+	}
+
 }

@@ -35,11 +35,16 @@
 	     	<th>${roles.cname }</th>
 	         <th>${roles.remark }</th>
 	         <th>${roles.createDate }</th>   
-	         <th><button class="btn btn-primary">菜单配置</button></th>
+	         <th><button class="btn btn-primary" onclick="menuSystem(${roles.id });">菜单配置</button></th>
 	     </tr>
      </c:forEach>
    </tbody>
    </table>
+   <script type="text/javascript">
+   		function menuSystem(id){
+   			document.location.href="/winner/system/menuSystem/"+id;
+   		}
+   </script>
    
    <!-- 新增modal -->
  <div class="modal fade" id="addModal" tabindex="-1" role="dialog" 
