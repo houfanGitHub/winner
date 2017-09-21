@@ -1,7 +1,9 @@
 package com.item.finance.bean;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigInteger;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -111,7 +113,7 @@ public class SubjectOrderRecord  {
 
 
 	//bi-directional many-to-one association to Member
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="member_id")
 	public Member getMember() {
 		return this.member;

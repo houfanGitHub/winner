@@ -141,31 +141,22 @@
 		</tbody>
 	</table>
 	<div class="countBox">
-		<ul>
-			<li><h2>0</h2>
-				<p>
-					账户可用余额(元)<a href="javascript:;" class="iconfont"><span>账户可用余额</span><i></i></a>
-				</p></li>
-			<li><h2>0</h2>
-				<p>
-					账户总资产(元)<a href="javascript:;" class="iconfont"><span>可用余额+投资金额+累计收益</span><i></i></a>
-				</p></li>
-			<li><h2 style="color: #9d8440">0</h2>
-				<p>
-					投资金额(元)<a href="javascript:;" class="iconfont"><span>投资中资金</span><i></i></a>
-				</p></li>
-			<li><h2 style="color: #9d8440">0</h2>
-				<p>
-					累计收益(元)<a href="javascript:;" class="iconfont"><span>累计收益</span><i></i></a>
-				</p></li>
-			<li><h2 style="color: #9d8440">0</h2>
-				<p>
-					冻结金额(元)<a href="javascript:;" class="iconfont"><span>提现冻结金额</span><i></i></a>
-				</p></li>
-		</ul>
-		<a href="http://pro.ying158.com/account/deposit" class="cz">充值</a> <a
-			href="http://pro.ying158.com/account/withdraw" class="tk">提款</a>
-	</div>
+    <ul>
+        <li><h2>
+        <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.useableBalance}</c:forEach>
+        </c:if>
+        </h2>
+        <p>账户可用余额(元)<a href="javascript:;" class="iconfont"><span>账户可用余额</span><i></i></a></p></li>
+        <li><h2>0</h2><p>账户总资产(元)<a href="javascript:;" class="iconfont"><span>可用余额+投资金额+累计收益</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">0</h2><p>投资金额(元)<a href="javascript:;" class="iconfont"><span>投资中资金</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">0</h2><p>累计收益(元)<a href="javascript:;" class="iconfont"><span>累计收益</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">0</h2><p>冻结金额(元)<a href="javascript:;" class="iconfont"><span>提现冻结金额</span><i></i></a></p></li>
+    </ul>
+    <a href="http://pro.ying158.com/account/deposit" class="cz">充值</a>
+    <a href="http://pro.ying158.com/account/withdraw" class="tk">提款</a>
+</div>
 	<div class="proMain clearfix">
 		<div class="adminLeft">
 			<h2>我的投资</h2>

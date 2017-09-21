@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -256,7 +257,7 @@ public class Member  {  //会员表
 
 
 	//bi-directional many-to-one association to AssociatedAccount
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<AssociatedAccount> getAssociatedAccounts() {
 		return this.associatedAccounts;
 	}
@@ -267,7 +268,7 @@ public class Member  {  //会员表
 
 
 	//bi-directional many-to-one association to BbinInfo
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<BbinInfo> getBbinInfos() {
 		return this.bbinInfos;
 	}
@@ -278,7 +279,7 @@ public class Member  {  //会员表
 
 
 	//bi-directional many-to-one association to Feedback
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<Feedback> getFeedbacks() {
 		return this.feedbacks;
 	}
@@ -289,7 +290,7 @@ public class Member  {  //会员表
 
 
 	//bi-directional many-to-one association to FinanceProductSubscribe
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<FinanceProductSubscribe> getFinanceProductSubscribes() {
 		return this.financeProductSubscribes;
 	}
@@ -300,7 +301,7 @@ public class Member  {  //会员表
 
 
 	//bi-directional many-to-one association to FinanceProductSubscribeRecord
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<FinanceProductSubscribeRecord> getFinanceProductSubscribeRecords() {
 		return this.financeProductSubscribeRecords;
 	}
@@ -311,7 +312,7 @@ public class Member  {  //会员表
 
 
 	//bi-directional many-to-one association to FinancialPlanner
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<FinancialPlanner> getFinancialPlanners() {
 		return this.financialPlanners;
 	}
@@ -322,7 +323,7 @@ public class Member  {  //会员表
 
 
 	//bi-directional many-to-one association to MemberAccount
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<MemberAccount> getMemberAccounts() {
 		return this.memberAccounts;
 	}
@@ -333,7 +334,7 @@ public class Member  {  //会员表
 
 
 	//bi-directional many-to-one association to MemberBankcard
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<MemberBankcard> getMemberBankcards() {
 		return this.memberBankcards;
 	}
@@ -343,7 +344,7 @@ public class Member  {  //会员表
 	}
 
 	//bi-directional many-to-one association to MemberDepositRecord
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<MemberDepositRecord> getMemberDepositRecords() {
 		return this.memberDepositRecords;
 	}
@@ -353,7 +354,7 @@ public class Member  {  //会员表
 	}
 
 	//bi-directional many-to-one association to MemberProfitRecord
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<MemberProfitRecord> getMemberProfitRecords() {
 		return this.memberProfitRecords;
 	}
@@ -363,7 +364,7 @@ public class Member  {  //会员表
 	}
 
 	//bi-directional many-to-one association to MemberPucChargeHome
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<MemberPucChargeHome> getMemberPucChargeHomes() {
 		return this.memberPucChargeHomes;
 	}
@@ -373,7 +374,7 @@ public class Member  {  //会员表
 	}
 
 	//bi-directional many-to-one association to MemberPucChargeItem
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<MemberPucChargeItem> getMemberPucChargeItems() {
 		return this.memberPucChargeItems;
 	}
@@ -383,7 +384,7 @@ public class Member  {  //会员表
 	}
 
 	//bi-directional many-to-one association to MemberTally
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<MemberTally> getMemberTallies() {
 		return this.memberTallies;
 	}
@@ -394,7 +395,7 @@ public class Member  {  //会员表
 
 
 	//bi-directional many-to-one association to MemberTradeRecord
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<MemberTradeRecord> getMemberTradeRecords() {
 		return this.memberTradeRecords;
 	}
@@ -405,7 +406,7 @@ public class Member  {  //会员表
 
 
 	//bi-directional many-to-one association to MemberWithdrawRecord
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<MemberWithdrawRecord> getMemberWithdrawRecords() {
 		return this.memberWithdrawRecords;
 	}
@@ -416,7 +417,7 @@ public class Member  {  //会员表
 
 
 	//bi-directional many-to-one association to OverseaConfigSubscribe
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<OverseaConfigSubscribe> getOverseaConfigSubscribes() {
 		return this.overseaConfigSubscribes;
 	}
@@ -427,7 +428,7 @@ public class Member  {  //会员表
 
 
 	//bi-directional many-to-one association to SubjectBbinPurchaseRecord
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<SubjectBbinPurchaseRecord> getSubjectBbinPurchaseRecords() {
 		return this.subjectBbinPurchaseRecords;
 	}
@@ -438,7 +439,7 @@ public class Member  {  //会员表
 
 
 	//bi-directional many-to-one association to SubjectOrderRecord
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<SubjectOrderRecord> getSubjectOrderRecords() {
 		return this.subjectOrderRecords;
 	}

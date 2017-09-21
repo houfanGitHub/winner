@@ -99,7 +99,7 @@ public class AssociatedAccount  {
 
 
 	//bi-directional many-to-one association to Member
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="member_id")
 	public Member getMember() {
 		return this.member;

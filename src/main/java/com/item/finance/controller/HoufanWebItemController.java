@@ -1,9 +1,12 @@
 package com.item.finance.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
@@ -32,13 +35,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.alipay.api.AlipayApiException;
-import com.alipay.api.AlipayClient;
-import com.alipay.api.DefaultAlipayClient;
-import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.config.AlipayConfig;
 import com.item.finance.bean.Member;
+import com.item.finance.bean.MemberAccount;
 import com.item.finance.bean.MemberBankcard;
+import com.item.finance.bean.MemberDepositRecord;
+import com.item.finance.services.MemberAccountService;
 import com.item.finance.services.MemberBankcardService;
+import com.item.finance.services.MemberDepositRecordService;
 import com.item.finance.services.MemberService;
 import com.item.finance.services.UserRoleRelationService;
 import com.item.finance.services.UserRoleService;
@@ -58,38 +63,171 @@ public class HoufanWebItemController {
 	private MemberService memberService;
 	@Autowired
 	private MemberBankcardService memberBankcardService;
+	@Autowired
+	private MemberDepositRecordService memberDepositRecordService;
+	@Autowired
+	private MemberAccountService memberAccountService;
 
 	//充值
 	@RequestMapping("/accountRecharge")
 	public String accountRecharge(@RequestParam(value="fee")String fee,Map<String, Object> map,HttpServletRequest request) {
 		//生成订单号
 		String randomPayName = getRandomPayName();
-//		map.put("serialNumber", randomPayName);
-		//付款金额
-//		map.put("amountDecimal", fee);
-		//订单名称
-//		map.put("payName", "富友账户充值");
-		//商品描述
-//		map.put("payinfo", "");
-		//商户订单号，商户网站订单系统中唯一订单号，必填
-//		String out_trade_no = randomPayName;
-//				new String(request.getParameter("serialNumber").getBytes("ISO-8859-1"),"UTF-8");
-		//付款金额，必填
-//		String total_amount = fee;
-//				new String(request.getParameter("amountDecimal").getBytes("ISO-8859-1"),"UTF-8");
-		//订单名称，必填
-//		String subject = "富友账户充值";
-//				new String(request.getParameter("payName").getBytes("ISO-8859-1"),"UTF-8");
-		//商品描述，可空
-//		String body = null;
-//				new String(request.getParameter("payinfo").getBytes("ISO-8859-1"),"UTF-8");
-		
+
 		request.setAttribute("serialNumber", randomPayName);
+		//付款金额，必填
 		request.setAttribute("amountDecimal", fee);
+		//订单名称，必填
 		request.setAttribute("payName", "富友账户充值");
+		//商品描述，可空
 		request.setAttribute("payinfo", "");
 		
 		return "/WEB-INF/myself/accountRecharge";
+	}
+	
+//	功能：支付宝服务器同步通知页面
+	@RequestMapping("/returnUrl")
+	public String returnUrl(HttpServletRequest request,HttpSession session) throws UnsupportedEncodingException, AlipayApiException{
+		//获取支付宝GET过来反馈信息
+		Map<String,String> params = new HashMap<String,String>();
+		Map<String,String[]> requestParams = request.getParameterMap();
+		for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
+			String name = (String) iter.next();
+			String[] values = (String[]) requestParams.get(name);
+			String valueStr = "";
+			for (int i = 0; i < values.length; i++) {
+				valueStr = (i == values.length - 1) ? valueStr + values[i]
+						: valueStr + values[i] + ",";
+			}
+			//乱码解决，这段代码在出现乱码时使用
+//			valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
+			params.put(name, valueStr);
+		}
+		
+		boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type); //调用SDK验证签名
+
+		//——请在这里编写您的程序（以下代码仅作参考）——
+		if(signVerified) {
+			//商户订单号
+			String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("UTF-8"),"UTF-8");
+			System.out.println("商户订单号:"+out_trade_no);
+			//支付宝交易号
+			String trade_no = new String(request.getParameter("trade_no").getBytes("UTF-8"),"UTF-8");
+			System.out.println("支付宝交易号:"+out_trade_no);
+			//付款金额
+			String total_amount = new String(request.getParameter("total_amount").getBytes("UTF-8"),"UTF-8");
+			System.out.println("付款金额:"+total_amount);
+			//账户充值
+			Member member =(Member)session.getAttribute("memberinfo");
+			//根据memberId查询该用户的账户信息
+			try {
+				System.out.println("账户id:"+((Member)session.getAttribute("memberinfo")).getId());
+				MemberAccount memberAccount = memberAccountService.selectGetByMemberId(member.getId());
+				//如果没有查询到该用户的账户信息则进行添加
+				if(memberAccount == null){
+					memberAccount = new MemberAccount(Double.valueOf(0), Double.valueOf(0), new Date(), (byte)0, Double.valueOf(0), Double.valueOf(0), Double.valueOf(0), new Date(), Double.valueOf(total_amount), member);
+					memberAccountService.save(memberAccount);
+					System.out.println("账户充值成功(添加)");
+					//重新查询member
+					Member member2 = memberService.selectGetByName(member.getName());
+					session.setAttribute("memberinfo", member2);
+					System.out.println("重新查询member"+member2.toString());
+				}else{
+					//修改账户余额
+					memberAccount.setUseableBalance(memberAccount.getUseableBalance()+Double.valueOf(total_amount));
+					memberAccount.setUpdateDate(new Date());
+					memberAccountService.update(memberAccount);
+					System.out.println("账户充值成功(修改)");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("账户充值失败");
+			}
+			//添加充值记录
+			try {
+				MemberDepositRecord memberDepositRecord = 
+						new MemberDepositRecord(Double.valueOf(total_amount), new Date(), (byte)0, "FUIOU", getRandomPayName(), trade_no, (byte)1, new Date(), (Member)session.getAttribute("memberinfo"));
+				memberDepositRecordService.save(memberDepositRecord);
+				System.out.println("充值记录信息添加成功");
+				//重新查询member
+				Member member2 = memberService.selectGetByName(member.getName());
+				session.setAttribute("memberinfo", member2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("充值记录信息添加失败");
+			}
+			System.out.println("trade_no:"+trade_no+"\n"+"out_trade_no:"+out_trade_no+"\n"+"total_amount:"+total_amount);
+		}else {
+			System.out.println("验签失败");
+		}
+		return "redirect:/itemweb/rechargeRecords";
+	}
+	
+//	功能：支付宝服务器异步通知页面
+	@RequestMapping("/notifyUrl")
+	@ResponseBody
+	public void notifyUrl(HttpServletRequest request) throws UnsupportedEncodingException, AlipayApiException{
+		//获取支付宝POST过来反馈信息
+		Map<String,String> params = new HashMap<String,String>();
+		Map<String,String[]> requestParams = request.getParameterMap();
+		for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
+			String name = (String) iter.next();
+			String[] values = (String[]) requestParams.get(name);
+			String valueStr = "";
+			for (int i = 0; i < values.length; i++) {
+				valueStr = (i == values.length - 1) ? valueStr + values[i]
+						: valueStr + values[i] + ",";
+			}
+			//乱码解决，这段代码在出现乱码时使用
+			valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
+			params.put(name, valueStr);
+		}
+		
+		boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type); //调用SDK验证签名
+
+		//——请在这里编写您的程序（以下代码仅作参考）——
+		
+		/* 实际验证过程建议商户务必添加以下校验：
+		1、需要验证该通知数据中的out_trade_no是否为商户系统中创建的订单号，
+		2、判断total_amount是否确实为该订单的实际金额（即商户订单创建时的金额），
+		3、校验通知中的seller_id（或者seller_email) 是否为out_trade_no这笔单据的对应的操作方（有的时候，一个商户可能有多个seller_id/seller_email）
+		4、验证app_id是否为该商户本身。
+		*/
+		if(signVerified) {//验证成功
+			//商户订单号
+			String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
+		
+			//支付宝交易号
+			String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
+		
+			//交易状态
+			String trade_status = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"),"UTF-8");
+			
+			if(trade_status.equals("TRADE_FINISHED")){
+				//判断该笔订单是否在商户网站中已经做过处理
+				//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
+				//如果有做过处理，不执行商户的业务程序
+					
+				//注意：
+				//退款日期超过可退款期限后（如三个月可退款），支付宝系统发送该交易状态通知
+			}else if (trade_status.equals("TRADE_SUCCESS")){
+				//判断该笔订单是否在商户网站中已经做过处理
+				//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
+				//如果有做过处理，不执行商户的业务程序
+				
+				//注意：
+				//付款完成后，支付宝系统发送该交易状态通知
+			}
+			
+			System.out.println("success");
+			
+		}else {//验证失败
+			System.out.println("fail");
+		
+			//调试用，写文本函数记录程序运行情况是否正常
+			//String sWord = AlipaySignature.getSignCheckContentV1(params);
+			//AlipayConfig.logResult(sWord);
+		}
 	}
 	
 	//生成订单号

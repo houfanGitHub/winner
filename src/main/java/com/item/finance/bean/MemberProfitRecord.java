@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -162,7 +163,7 @@ public class MemberProfitRecord  {
 
 
 	//bi-directional many-to-one association to SubjectBbinPurchaseRecord
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="purchase_id", nullable=false)
 	public SubjectBbinPurchaseRecord getSubjectBbinPurchaseRecord() {
 		return this.subjectBbinPurchaseRecord;

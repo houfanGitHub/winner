@@ -208,7 +208,7 @@ public class FinanceProductSubscribe  {
 
 
 	//bi-directional many-to-one association to Member
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="member_id")
 	public Member getMember() {
 		return this.member;
@@ -227,20 +227,6 @@ public class FinanceProductSubscribe  {
 
 	public void setFinanceProductSubscribeRecords(Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords) {
 		this.financeProductSubscribeRecords = financeProductSubscribeRecords;
-	}
-
-	public FinanceProductSubscribeRecord addFinanceProductSubscribeRecord(FinanceProductSubscribeRecord financeProductSubscribeRecord) {
-		getFinanceProductSubscribeRecords().add(financeProductSubscribeRecord);
-		financeProductSubscribeRecord.setFinanceProductSubscribe(this);
-
-		return financeProductSubscribeRecord;
-	}
-
-	public FinanceProductSubscribeRecord removeFinanceProductSubscribeRecord(FinanceProductSubscribeRecord financeProductSubscribeRecord) {
-		getFinanceProductSubscribeRecords().remove(financeProductSubscribeRecord);
-		financeProductSubscribeRecord.setFinanceProductSubscribe(null);
-
-		return financeProductSubscribeRecord;
 	}
 
 }
