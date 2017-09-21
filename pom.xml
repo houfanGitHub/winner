@@ -20,7 +20,8 @@
     </plugins>  
 </build> 
 
-<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<!-- <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
+
   
   <!-- jar包 -->
   <properties>
@@ -29,6 +30,8 @@
 	</properties>
 
 	<dependencies>
+	
+	
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -222,6 +225,12 @@
     <groupId>com.alibaba</groupId>
     <artifactId>fastjson</artifactId>
     <version>1.2.7</version>
+</dependency>
+
+<dependency>
+	<groupId>com.alipay.api</groupId>
+	<artifactId>alipay-api</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 </dependency>
 
 	</dependencies>	
