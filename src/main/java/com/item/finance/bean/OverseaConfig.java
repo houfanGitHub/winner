@@ -116,7 +116,7 @@ public class OverseaConfig implements Serializable {/**
 	}
 
 
-	@Column(name="oversea_icon", length=200)
+	@Column(name="oversea_icon", length=4000)
 	public String getOverseaIcon() {
 		return this.overseaIcon;
 	}

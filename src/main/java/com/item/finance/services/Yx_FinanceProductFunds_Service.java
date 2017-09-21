@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.item.finance.bean.FinanceProductFunds;
+import com.item.finance.bean.FinanceProductSubscribe;
 import com.item.finance.dao.Yx_FinanceProductFunds_Dao;
 
 @Service
@@ -29,6 +30,22 @@ public class Yx_FinanceProductFunds_Service implements ItemServiceImpl<FinancePr
 	public FinanceProductFunds listEdit(int id){
 		return yx_FinanceProductFunds_Dao.listEdit(id);
 	}
+	public void saveFinanceProductFunds(FinanceProductFunds financeProductFunds){
+		this.yx_FinanceProductFunds_Dao.saveFinanceProductFunds(financeProductFunds);
+	}
+	public List<FinanceProductSubscribe> listWqs(int id){
+		return this.yx_FinanceProductFunds_Dao.listWdl(id);
+	}
+	public FinanceProductSubscribe listChakan(int id){
+		return this.yx_FinanceProductFunds_Dao.listchakan(id);
+	}
+	public FinanceProductSubscribe	selectqssb(int id){
+		return this.yx_FinanceProductFunds_Dao.selectqssb(id);
+	}
+	public void updateqssb(FinanceProductSubscribe fe){
+		 this.yx_FinanceProductFunds_Dao.updateqssb(fe);
+	}
+
 	@Override
 	public void save(FinanceProductFunds t) {
 		// TODO Auto-generated method stub

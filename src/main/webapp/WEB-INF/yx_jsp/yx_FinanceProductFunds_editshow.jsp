@@ -46,7 +46,8 @@ $(function(){
 <table width="100%">
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类别:</td><td><select readonly="readonly" class="form-control">
-<option value="${fs.type}">私募类</option>
+<option value="${fs.type=='SIMU'}">私募类</option>
+<option value="${fs.type=='GUQUAN'}">股权类</option>
 </select></td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名称:</td><td><input type="text" value="${fs.name}" class="form-control"></td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;起投金额:</td><td><input type="text" value="${fs.floorAmount}" class="form-control"></td></tr>

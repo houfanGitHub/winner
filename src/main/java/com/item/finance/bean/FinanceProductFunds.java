@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -43,10 +44,9 @@ public class FinanceProductFunds  {
 	private String type;//产品类型
 	private Date updateDate;//修改时间
 	private BigDecimal yearRate;//年化率
-
+	private Integer counts;
 	public FinanceProductFunds() {
 	}
-
 
 	@Id
 	@GeneratedValue
@@ -57,12 +57,23 @@ public class FinanceProductFunds  {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 
+	@Column(precision=10, scale=2)
+	public Integer getCounts() {
+		return counts;
+	}
+
+	public void setCounts(Integer counts) {
+		this.counts = counts;
+	}
 
 	@Column(precision=10, scale=2)
 	public BigDecimal getAmount() {
 		return this.amount;
 	}
+
+
 
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;

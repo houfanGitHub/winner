@@ -35,7 +35,7 @@ public class Yx_Subject_Dao {
 	public Subject selectSubject(int id){
 		Session session=getSession();
 		Subject subject=(Subject)session.get(Subject.class, id);
-	return subject;
+	   return subject;
 	}
 	public List<Subject> listSubject(Map map){
 		Session session=getSession();
@@ -75,5 +75,10 @@ public class Yx_Subject_Dao {
     public void updateSubject(Subject subject){
     	Session session=getSession();
     	session.update(subject);
+    }
+    //修改上传
+    public void updateSubject(SubjectFile subjectFile){
+    	Session session=getSession();
+    	session.update(subjectFile);
     }
 }
