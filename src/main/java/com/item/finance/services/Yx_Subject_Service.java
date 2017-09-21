@@ -34,7 +34,7 @@ public class Yx_Subject_Service implements ItemServiceImpl<Subject> {
     public List<SubjectBbinPurchaseRecord>  listtouzi(int id){
     	return this.yx_Subject_Dao.listtouzi(id);
     }
-   
+   //查询对象
     public Subject selectGetById(int id){
     	return this.yx_Subject_Dao.selectSubject(id);
     } 
@@ -42,9 +42,15 @@ public class Yx_Subject_Service implements ItemServiceImpl<Subject> {
     public void delete(Subject subject){
     	this.yx_Subject_Dao.deleteSubject(subject);
     }
+    //修改
     public void updateSubject(Subject subject){
     	this.yx_Subject_Dao.updateSubject(subject);
     }
+    //修改上传
+    public void updateSubjectFile(SubjectFile subjectFile){
+    	this.yx_Subject_Dao.updateSubject(subjectFile);
+    }
+    
 	@Override
 	public List<Subject> list() {
 		// TODO Auto-generated method stub

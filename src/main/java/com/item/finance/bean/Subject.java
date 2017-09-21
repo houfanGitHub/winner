@@ -30,15 +30,6 @@ import javax.persistence.TemporalType;
 @NamedQuery(name="Subject.findAll", query="SELECT s FROM Subject s")
 public class Subject  {
 	
-	@Id
-	@GeneratedValue
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	private static final long serialVersionUID = 1L;
 	private int id;//主键ID
@@ -80,9 +71,14 @@ public class Subject  {
 	public Subject() {
 	}
 	
-	
-	
-	
+	@Id
+	@GeneratedValue
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	/*public void setYearEarnings(long yearEarnings) {
 		this.yearEarnings = yearEarnings;
 	}
@@ -395,10 +391,6 @@ public class Subject  {
 	public SubjectFolder getSubjectFolder() {
 		return this.subjectFolder;
 	}
-
-
-
-
 	public void setSubjectFolder(SubjectFolder subjectFolder) {
 		this.subjectFolder = subjectFolder;
 	}

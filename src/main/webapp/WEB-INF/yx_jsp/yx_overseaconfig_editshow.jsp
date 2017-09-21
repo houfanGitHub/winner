@@ -26,68 +26,50 @@ body{ padding:50px 0 0 50px;}
  <script type="text/javascript" src="/winner/backstage/show/bootstrap.min.js"></script>
 <script type="text/javascript" src="/winner/js/jedate.js"></script>
 <body>
-<script type="text/javascript">
-    //实例化编辑器
-    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-    var ue = UE.getEditor('editor1');
-    function sub() {
-        if(!UE.getEditor('editor1').hasContents()){	// 判断内容是否为空
-        	alert("请填写内容！");
+<script type="text/javascript" charset="utf-8">
+var ue = UE.getEditor("myUeditor");  
+  	function sub(){    
+         if(!UE.getEditor('myUeditor').hasContents()){	// 判断内容是否为空
+        	alert("请填写回复内容！");
         	return false;
          }  
-    }
-</script> 
-<!-- 日期控件 -->
+	}
+</script>
 <script type="text/javascript">
-    //jeDate.skin('gray');
-	jeDate({
-		dateCell:"#indate",//isinitVal:true,
-		format:"YYYY-MM",
-		isTime:false, //isClear:false,
-		minDate:"2015-10-19 00:00:00",
-		maxDate:"2016-11-8 00:00:00"
-	})
-    jeDate({
-		dateCell:"#dateinfo",
-		format:"YYYY年MM月DD日 hh:mm:ss",
-		isinitVal:true,
-		isTime:true, //isClear:false,
-		minDate:"2014-09-19 00:00:00",
-		okfun:function(val){alert(val)}
-	})
+$(function(){
+	$("#id").val(${overseaConfig.status});
+});
 </script>
 
 
 <p><p><p><h4>▶&nbsp;海外配置编辑</h4>
-<form action="" method="post">
+<form action="/winner/yx3/updateOverseaConfig/"  method="post" enctype="multipart/form-data">
 <table width="100%">
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标题:</td><td><input type="text"name="title" class="form-control" size="100" align="top"  value="${overseaConfig.title}"></td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子标题:</td><td><input type="text" value="${overseaConfig.childTitle}" class="form-control"></td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;描述:</td><td><input type="text" value="${overseaConfig.description}" class="form-control"></td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户群体:</td><td><input type="text" value="${overseaConfig.userType}" class="form-control"></td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;排序值:</td><td><input type="text" value="${overseaConfig.sortColum}" class="form-control"></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子标题:</td><td><input type="text" name="childTitle" value="${overseaConfig.childTitle}" class="form-control"></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;描述:</td><td><input type="text" name="description" value="${overseaConfig.description}" class="form-control"></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户群体:</td><td><input type="text" name="userType" value="${overseaConfig.userType}" class="form-control"></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;排序值:</td><td><input type="text" name="sortColum" value="${overseaConfig.sortColum}" class="form-control"></td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态:</td><td>
-<select id="id" class="form-control">  
+<select id="id" class="form-control" name="status">  
 <option value="0">未发布</option>
 <option value="1">募集中</option>
 <option value="2">回款中</option>
 <option value="3">还款完成</option>
+
 </select>
 </td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始时间:</td><td><input type="text" value="${overseaConfig.startDate}" class="datainp" id="dateinfo"  class="form-control"></td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;结束时间:</td><td><input type="text" value="${overseaConfig.endDate}" class="form-control"></td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图标:</td><td><input type="file" value="${overseaConfig.overseaIcon}" class="form-control"></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始时间:</td><td><input type="text" name="startDate" value="${overseaConfig.startDate}" class="datainp" id="dateinfo"  class="form-control"></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;结束时间:</td><td><input type="text" name="endDate" value="${overseaConfig.endDate}" class="form-control"></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图标:</td><td><input type="file" name="overseaIcon" value="${overseaConfig.overseaIcon}" class="form-control"></td></tr>
 <tr><td colspan="2">
- <script id="editor1" type="text/plain" name="overseaIcon" value="${overseaConfig.content}"  style="width:100%px;height:500px;"></script>
 </td></tr>
-<tr>
-<td colspan="2" align="center"><input type="submit" value="保存" class="btn btn-primary"></td>
-</tr>
 </table>
+<div>
+<input type="submit"   value="" style="width:80px;height:33px;background:url(img/pn_reply.png); border:none;"/>
+	</div><textarea id="myUeditor" name="content"style="height:250px;">${overseaConfig.content}</textarea>
+<div align="center"><input type="submit" value="保存" class="btn btn-primary"></div>
 </form>
-${startDate1}
-
-
 
 
 

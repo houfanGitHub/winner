@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.item.finance.bean.OverseaConfig;
+import com.item.finance.bean.OverseaConfigSubscribe;
 import com.item.finance.dao.Yx_OverseaConfig_Dao;
 
 @Service
@@ -28,14 +29,19 @@ public class Yx_OverseaConfig_Services implements ItemServiceImpl<OverseaConfig>
 		return this.yx_OverseaConfig_Dao.listOverseaConfig();
 	}
 	//海外配置预约记录
-	public List<OverseaConfig> list2() {
+	public List<OverseaConfigSubscribe> list2() {
 		return this.yx_OverseaConfig_Dao.listOverseaConfigSubscribe();
 	}
 	//海外配置修改前查询
 	public OverseaConfig selectOverseaConfig(int id){
 		return this.yx_OverseaConfig_Dao.selectOverseaConfig(id);
 	}
-
+public void updateOverseaConfig(OverseaConfig overseaConfig){
+	this.yx_OverseaConfig_Dao.updateOverseaConfig(overseaConfig);
+}
+public void saveOverseaConfig(OverseaConfig overseaConfig){
+	this.yx_OverseaConfig_Dao.saveOverseaConfig(overseaConfig);
+}
 	@Override
 	public void save(OverseaConfig t) {
 		// TODO Auto-generated method stub

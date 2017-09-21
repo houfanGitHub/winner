@@ -20,20 +20,26 @@ $(function(){
 			document.forms[0].action="/winner/yx3/list3_3";
 			document.forms[0].submit();
 		});
+			$("#add").click(function(){
+				document.forms[0].action="/winner/yx3/toOverseaConfig";
+				document.forms[0].submit();
+			});
 });
+</script>
+<script type="text/javascript">
+
 </script>
 
 
 <p><p><p><h4>▶&nbsp;海外配置</h4><hr>
-<form action="">
+<form action="" method="post" >
 <table border="0" class="table table-condensed table-hover">
 <tr>
-<td colspan="9" align="right"><input type="button" class="btn btn-primary" value="添加">&nbsp;&nbsp;</td>
+<td colspan="9" align="right"><input type="button" id="add" class="btn btn-primary" value="添加">&nbsp;&nbsp;</td>
 </tr>
 <tr align="center" height="40" bgcolor="#F5F5F5">
 <td>序号</td><td>ID</td><td>标题</td><td>子标题</td><td>状态</td><td>排序值</td><td>图标</td><td>添加时间</td><td>操作</td>
 </tr>
-
 <c:forEach items="${list}" var="t" varStatus="stat">
 <tr align="center">
 <td>${stat.index+1}</td>

@@ -19,25 +19,28 @@ import java.util.Set;
 @Table(name="finance_product_subscribe")
 public class FinanceProductSubscribe  {
 	private int id;
-	private String addr;
-	private BigDecimal amount;
-	private String comment;
-	private Date createDate;
-	private Date endDate;
-	private BigDecimal interest;
-	private String name;
-	private String phone;
-	private int productId;
-	private String riskReveal;
-	private String signedPhotos;
-	private Date startDate;
-	private byte status;
-	private Date updateDate;
-	private Member member;
+	private String addr;//所在地区
+	private BigDecimal amount;//私募购买金额
+	private String comment;//电子签署文档信息
+	private Date createDate;//添加时间
+	private Date endDate;//结束时间
+	private BigDecimal interest;//私募结算收益
+	private String name;//姓名
+	private String phone;//联系电话
+	//private int productId;
+	private FinanceProductFunds financeProductFunds;//私募/股权类
+	private String riskReveal;//风险揭示书
+	private String signedPhotos;//签署拍照
+	private Date startDate;//开始时间
+	private int status;//'是否处理(0:签署拍照|1:已签约|2:审核中|3:签署失败)',
+	private Date updateDate;//修改时间
+	private Member member;//用户基本表
+	//体验金购买标的表
 	private Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords = new HashSet<>();
 
 	public FinanceProductSubscribe() {
 	}
+
 
 
 	@Id
@@ -50,7 +53,17 @@ public class FinanceProductSubscribe  {
 		this.id = id;
 	}
 
-
+	@ManyToOne
+	@JoinColumn(name="product_id")
+	public FinanceProductFunds getFinanceProductFunds() {
+		return financeProductFunds;
+	}
+	public void setFinanceProductFunds(FinanceProductFunds financeProductFunds) {
+		this.financeProductFunds = financeProductFunds;
+	}
+	
+	
+	
 	@Column(length=50)
 	public String getAddr() {
 		return this.addr;
@@ -133,7 +146,7 @@ public class FinanceProductSubscribe  {
 	}
 
 
-	@Column(name="product_id")
+/*	@Column(name="product_id")
 	public int getProductId() {
 		return this.productId;
 	}
@@ -141,7 +154,7 @@ public class FinanceProductSubscribe  {
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
-
+*/
 
 	@Column(name="risk_reveal", length=200)
 	public String getRiskReveal() {
@@ -174,11 +187,11 @@ public class FinanceProductSubscribe  {
 	}
 
 
-	public byte getStatus() {
+	public int getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(byte status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
