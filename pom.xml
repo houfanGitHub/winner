@@ -223,6 +223,10 @@
     <artifactId>fastjson</artifactId>
     <version>1.2.7</version>
 </dependency>
-
+<dependency>
+	<groupId>com.alipay.api</groupId>
+	<artifactId>alipay-api</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+</dependency>
 	</dependencies>	
 </project>

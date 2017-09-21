@@ -246,7 +246,7 @@
                 </div>
     </div>
 
-<c:if test="${empty userinfo}">
+<c:if test="${empty memberinfo}">
 	</div>
 	    <div class="login-box">
 	        <div class="block backdrop"></div>

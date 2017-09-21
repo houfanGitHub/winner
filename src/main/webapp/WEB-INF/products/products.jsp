@@ -162,7 +162,7 @@
 								
 						</li>
 						<li class="five">
-							<a class="abtn" href="http://pro.ying158.com/subject/subjectContent/1612">购买</a>
+							<a class="abtn" href="/winner/itemweb/toBuyProducts/1628">购买</a>
 						</li>
 					</ul>
 					<ul class="tbList">
@@ -196,7 +196,7 @@
 								
 						</li>
 						<li class="five">
-							<a class="abtn" href="http://pro.ying158.com/subject/subjectContent/1611">购买</a>
+							<a class="abtn" href="/winner/itemweb/toBuyProducts/1637">购买</a>
 						</li>
 					</ul>
 					<ul class="tbList">
@@ -230,7 +230,7 @@
 								
 						</li>
 						<li class="five">
-							<a class="abtn" href="http://pro.ying158.com/subject/subjectContent/1610">购买</a>
+							<a class="abtn" href="/winner/itemweb/toBuyProducts/1638">购买</a>
 						</li>
 					</ul>
 					<ul class="tbList">

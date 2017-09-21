@@ -95,7 +95,7 @@
         <td align="left" valign="middle" class="info">
             <a href="http://pro.ying158.com/account/security">
                 <div class="img"><img src="/winner/files/userPic.jpg"></div>
-                <h2>${userinfo.name }，<span>您好!</span></h2>
+                <h2>${memberinfo.name }，<span>您好!</span></h2>
             </a>
             <div class="safe">账户安全&nbsp;&nbsp;<span class="scroll"><em style="width:50%"></em></span></div>
             <ul class="listIco iconfont">

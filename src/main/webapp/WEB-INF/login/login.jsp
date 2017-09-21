@@ -101,7 +101,7 @@
                 <div class="loginBlock">
                     <img class="cornerImg" src="/winner/files/loginCorner.png">
                    
-                    <form action="/winner/itemweb/userLogin" method="post">
+                    <form action="/winner/itemweb/memberLogin" method="post">
                  
                     	<div class="item item1">
 	                        <div class="lLabel">
@@ -120,7 +120,7 @@
 	                        </div>
 	                    </div>
 	                    <div class="rest">
-	                        <p><font color="#D43F3A">${errorMsg}</font></p>
+	                        <p><font color="#D43F3A">${errorinfo}</font></p>
 	                        <span id="loginError"></span><a class="forgetLink" href="/winner/itemweb/forgetPassword">忘记密码？</a>
 	                    </div>
 	                    <div class="rest">

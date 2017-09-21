@@ -120,7 +120,7 @@
 		真实姓名
             </div>
             <div class="rInput">
-                <input type="text" placeholder="请输入用户名" id="userName" name="userName" class="form-control textInput username">（需用实名注册）<span class="errorInfo">姓名不能为空</span>
+                <input type="text" placeholder="请输入用户名" id="memberName" name="memberName" class="form-control textInput membername">（需用实名注册）<span class="errorInfo">姓名不能为空</span>
             </div>
         </div>
         <div class="item">
@@ -163,7 +163,7 @@
                 理财师邀请码
             </div>
             <div class="rInput">
-                <input type="text" placeholder="选填" id="invitationCode" name="invitationCode" class="form-control textInput invitationCode">（填写理财师邀请码，将会有更多惊喜）
+                <input type="text" placeholder="选填" id="invitedCode" name="invitedCode" class="form-control textInput invitationCode">（填写理财师邀请码，将会有更多惊喜）
             </div>
         </div>
 		<div class="item">
