@@ -1,33 +1,40 @@
 package com.item.finance.bean;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.math.BigInteger;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
  * The persistent class for the member_bankcards database table.
- * 
+ * 成员银联表
  */
 @Entity
 @Table(name="member_bankcards")
 public class MemberBankcard  {
-	private String id;
-	private String cardNo;
-	private String cardaddress;
-	private Date createDate;
-	private byte delflag;
-	private String type;
-	private Date updateDate;
-	private Member member;
+	private String id;	//ID
+	private String cardNo;	//卡号',
+	private String cardaddress;	//开户银行所在地
+	private Date createDate;	//创建时间
+	private byte delflag;	//是否删除（0：正常使用，2：被删除）
+	private String type;	//银行卡类型',
+	private Date updateDate;	//修改时间
+	private Member member;	//用户
 
 	public MemberBankcard() {
 	}
 
 
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public String getId() {
 		return this.id;
 	}
@@ -100,13 +107,22 @@ public class MemberBankcard  {
 
 	//bi-directional many-to-one association to Member
 	@ManyToOne
-	@JoinColumn(name="member_id")
+	@JoinColumn(name="member_id",unique=true)
 	public Member getMember() {
 		return this.member;
 	}
 
 	public void setMember(Member member) {
 		this.member = member;
+	}
+
+
+	@Override
+	public String toString() {
+		return "MemberBankcard [id=" + id + ", cardNo=" + cardNo
+				+ ", cardaddress=" + cardaddress + ", createDate=" + createDate
+				+ ", delflag=" + delflag + ", type=" + type + ", updateDate="
+				+ updateDate + ", memberID=" + member.getId() + "]";
 	}
 
 }

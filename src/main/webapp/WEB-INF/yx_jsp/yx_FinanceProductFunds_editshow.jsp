@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>私募/股权类编辑</title>
 <link rel="stylesheet" href="/winner/files/layer.css" id="layui_layer_skinlayercss"> 
  <link rel="stylesheet" href="/winner/backstage/show/bootstrap.min.css"> 
 </head>
@@ -17,7 +17,7 @@
     <script type="text/javascript" src="/winner/ueditor/ueditor.parse.js"></script>
  <script type="text/javascript" src="/winner/js/jquery-3.2.0.min.js"></script>
  <script type="text/javascript" src="/winner/backstage/show/bootstrap.min.js"></script>
- 
+ <p><p><p><h4>▶&nbsp;私募/股权类编辑</h4>
 <body>
  <script type="text/javascript">
     //实例化编辑器
@@ -46,7 +46,8 @@ $(function(){
 <table width="100%">
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类别:</td><td><select readonly="readonly" class="form-control">
-<option value="${fs.type}">私募类</option>
+<option value="${fs.type=='SIMU'}">私募类</option>
+<option value="${fs.type=='GUQUAN'}">股权类</option>
 </select></td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名称:</td><td><input type="text" value="${fs.name}" class="form-control"></td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;起投金额:</td><td><input type="text" value="${fs.floorAmount}" class="form-control"></td></tr>

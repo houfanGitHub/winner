@@ -27,7 +27,7 @@ public class OverseaConfig implements Serializable {/**
 	private static final long serialVersionUID = 1L;
 //海外配置订阅表
 	
-	private String id;//id
+	private int id;//id
 	private Date addTime;//添加时间
 	private String childTitle;//子标题
 	private String content;//内容
@@ -57,11 +57,10 @@ public class OverseaConfig implements Serializable {/**
 
 	@Id
 	@Column(unique=true, nullable=false)
-	public String getId() {
+	public int getId() {
 		return this.id;
 	}
-
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -117,7 +116,7 @@ public class OverseaConfig implements Serializable {/**
 	}
 
 
-	@Column(name="oversea_icon", length=200)
+	@Column(name="oversea_icon", length=4000)
 	public String getOverseaIcon() {
 		return this.overseaIcon;
 	}

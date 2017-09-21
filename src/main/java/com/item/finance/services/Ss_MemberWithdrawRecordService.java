@@ -35,6 +35,10 @@ public class Ss_MemberWithdrawRecordService implements ItemServiceImpl<MemberWit
 		return this.ss_MemberWithdrawRecordDao.listshow(map);
 		
 	}
+	//模态窗口 审核操作
+	public void updatememberwith(String id){
+		ss_MemberWithdrawRecordDao.updateShenhe(id);
+	}
 
 	@Override
 	public void save(MemberWithdrawRecord t) {

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -245,29 +246,19 @@
                 </div>
     </div>
 
-    <a class="left carousel-control" href="#" role="button" data-slide="prev">
-        <span class="fa fa-chevron-circle-left" aria-hidden="true"></span>
-        <span class="sr-only">上一张</span>
-    </a>
-    <a class="right carousel-control" href="#" role="button" data-slide="next">
-        <span class="fa fa-chevron-circle-right" aria-hidden="true"></span>
-        <span class="sr-only">下一张</span>
-    </a>
-</div>
-    <div class="login-box">
-        <div class="block backdrop"></div>
-        <div class="block" style=" height:280px;">
-
-            
-            
-            <p style="margin-top:20px; line-height:50px; font-size:20px; text-align:center; color:#fff;"><span style="color:#917739;">欢迎</span>盈主到来</p>
-            <p style="margin-bottom:15px; line-height:50px; font-size:20px; text-align:center; color:#fff;">现在开始<span style="color:#917739;">您的财富</span> 之旅吧</p>
-            <a style="float:none; margin:0 auto; margin-left:15px;    display: inline-block;margin-bottom: 10px;" href="itemweb/toLogin"><img src="/winner/files/ying_index_login_btn.png"></a>
-            <a style="float:none; margin:0 auto; margin-left:15px; margin-top:10px;" href="itemweb/toRegistration"><img src="/winner/files/ying_index_reg_btn.png"></a>
-            
-        </div>
-    </div>
-</div>
+<c:if test="${empty memberinfo}">
+	</div>
+	    <div class="login-box">
+	        <div class="block backdrop"></div>
+	        <div class="block" style=" height:280px;">
+	            <p style="margin-top:20px; line-height:50px; font-size:20px; text-align:center; color:#fff;"><span style="color:#917739;">欢迎</span>盈主到来</p>
+	            <p style="margin-bottom:15px; line-height:50px; font-size:20px; text-align:center; color:#fff;">现在开始<span style="color:#917739;">您的财富</span> 之旅吧</p>
+	            <a style="float:none; margin:0 auto; margin-left:15px;    display: inline-block;margin-bottom: 10px;" href="/winner/itemweb/toLogin"><img src="/winner/files/ying_index_login_btn.png"></a>
+	            <a style="float:none; margin:0 auto; margin-left:15px; margin-top:10px;" href="/winner/itemweb/toRegistration"><img src="/winner/files/ying_index_reg_btn.png"></a>
+	        </div>
+	    </div>
+	</div>
+</c:if>
 
 <div class="container index">
     <div class="row">
@@ -665,19 +656,19 @@
                     <div class="title" style=" padding-left:10px; font-weight:normal; font-size:20px; color:#ccc;">
                         主要合作机构
                     </div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.picc.com/"><img onmouseover="this.src = &#39;/images/hzhb/1_on.png&#39;" onmouseout="this.src = &#39;/images/hzhb/1.jpg&#39;" src="/winner/files/1.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.fuioupay.com/"><img onmouseover="this.src = &#39;/images/hzhb/2_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/2.jpg&#39;" src="/winner/files/2.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.nanhua.net/"><img onmouseover="this.src = &#39;/images/hzhb/3_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/3.jpg&#39;" src="/winner/files/3.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.zttrust.com.cn/stations/526623d20a/index.php/5268e6b50a"><img onmouseover="this.src = &#39;/images/hzhb/4_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/4.jpg&#39;" src="/winner/files/4.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://sc.hkex.com.hk/TuniS/www.hkex.com.hk/eng/index.htm/"><img onmouseover="this.src = &#39;/images/hzhb/5_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/5.jpg&#39;" src="/winner/files/5.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.cmegroup.com/cn-s/"><img onmouseover="this.src = &#39;/images/hzhb/6_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/6.jpg&#39;" src="/winner/files/6.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.sgx.com/wps/portal/sgxweb_ch/home/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOKNHB1NPAycDSz9wwzMDTxD_Z2Cg8PCDANdjYEKIoEKDHAARwNC-sP1o8BK8JhQkBthkO6oqAgAzDYPQQ!!/dl5/d5/L2dBISEvZ0FBIS9nQSEh/"><img onmouseover="this.src = &#39;/images/hzhb/7_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/7.jpg&#39;" src="/winner/files/7.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.neeq.com.cn/index/"><img onmouseover="this.src = &#39;/images/hzhb/8_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/8.jpg&#39;" src="/winner/files/8.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.cmbchina.com/"><img onmouseover="this.src = &#39;/images/hzhb/9_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/9.jpg&#39;" src="/winner/files/9.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.bankcomm.com/BankCommSite/default.shtml"><img onmouseover="this.src = &#39;/images/hzhb/10_on.png&#39;" onmouseout="this.src = &#39;/images/hzhb/10.jpg&#39;" src="/winner/files/10.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.picc.com/"><img src="/winner/files/1.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.fuioupay.com/"><img src="/winner/files/2.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.nanhua.net/"><img src="/winner/files/3.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.zttrust.com.cn/stations/526623d20a/index.php/5268e6b50a"><img src="/winner/files/4.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://sc.hkex.com.hk/TuniS/www.hkex.com.hk/eng/index.htm/"><img src="/winner/files/5.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.cmegroup.com/cn-s/"><img src="/winner/files/6.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.sgx.com/wps/portal/sgxweb_ch/home/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOKNHB1NPAycDSz9wwzMDTxD_Z2Cg8PCDANdjYEKIoEKDHAARwNC-sP1o8BK8JhQkBthkO6oqAgAzDYPQQ!!/dl5/d5/L2dBISEvZ0FBIS9nQSEh/"><img src="/winner/files/7.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.neeq.com.cn/index/"><img src="/winner/files/8.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.cmbchina.com/"><img src="/winner/files/9.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.bankcomm.com/BankCommSite/default.shtml"><img src="/winner/files/10.jpg"></a></div>
 
-                    <div class="hzhb_item"><a target="_blank" href="http://www.ccb.com/cn/home/index.html"><img onmouseover="this.src = &#39;/images/hzhb/11_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/11.jpg&#39;" src="/winner/files/11.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.icbc.com.cn/icbc/"><img onmouseover="this.src = &#39;/images/hzhb/12_on.png&#39;" onmouseout="    this.src = &#39;/images/hzhb/12.jpg&#39;" src="/winner/files/12.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.ccb.com/cn/home/index.html"><img src="/winner/files/11.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.icbc.com.cn/icbc/"><img src="/winner/files/12.jpg"></a></div>
                 </div>
 
                 <div class="ft_item ft_item_sns">
@@ -696,13 +687,13 @@
                             </div>
                         </li>
                         <li>
-                            <a href="" target="_blank" rel="nofollow">
+                            <a target="_blank" rel="nofollow">
                                 <em class="ico_sns ico_sinawb"></em>
                                 <span class="txt">新浪微博</span>
                             </a>
                         </li>
                         <li>
-                            <a href="" target="_blank" rel="nofollow">
+                            <a target="_blank" rel="nofollow">
                                 <em class="ico_sns ico_txwb"></em>
                                 <span class="txt">腾讯微博</span>
                             </a>
@@ -714,7 +705,7 @@
                           联系我们
                         </div>
                         <div class="contactInfo" style="padding-left:30px;">
-                            <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=508886246&site=qq&menu=yes"><img src="/winner/files/qqIcon.png" onmouseover="$(this).css(&#39;height&#39;, &#39;52px&#39;);" onmouseout="    $(this).css(&#39;height&#39;, &#39;48px&#39;);"></a>
+                            <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank"><img src="/winner/files/qqIcon.png"></a>
                             <span class="kefu">在线客服</span><span class="time">08:30 - 21:00</span>
                         </div>
                     </div>
@@ -954,44 +945,6 @@ var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " 
 
 		});
 
-		var kefu = function (num) {
-			var url = "";
-			switch (num) {
-				case 1:
-					url = "tencent://message/?uin=3044901756&Menu=yes";
-					break;
-				case 2:
-					url = "tencent://message/?uin=773031422&Menu=yes";
-					break;
-				default:
-					url = "tencent://message/?uin=2093717869&Menu=yes";
-			}
-			window.open(url, '在线客服', 'height=405,width=500,top=200,left=200,toolbar=no,menubar=no,scrollbars=yes, resizable=no,location=no, status=no');
-		}
-
-		var loginFromModal = function () {
-			var un = $("#modalUser").val();
-			var pw = $("#modalPw").val();
-			if (un == "" || un == undefined) {
-				$("#loginFail").html("请输入用户名");
-				$(".loginInfo").modal();
-				return;
-			}
-			if (pw == "" || pw == undefined) {
-				$("#loginFail").html("请输入登录密码");
-				$(".loginInfo").modal();
-				return;
-			}
-			$.post("/api/authentication/signIn", { login: un, password: pw }, function (data) {
-				if (data.isAuthenticated) {
-					window.location.reload();
-				} else {
-					$("#loginFail").html("用户名或密码有误");
-					$(".loginInfo").modal();
-				}
-			});
-
-		}
 
 
 		var gotoTop = function () {
@@ -999,18 +952,5 @@ var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " 
 		}
 
  	</script> 
-
-    <script type="text/javascript">
-		var _hmt = _hmt || [];
-		(function() {
-		  var hm = document.createElement("script");
-		  hm.src = "//hm.baidu.com/hm.js?bb6cf2322300378a89a69641641427c0";
-		  var s = document.getElementsByTagName("script")[0];
-		  s.parentNode.insertBefore(hm, s);
-		})();
-     </script> 
-
-
-
 </body>
 </html>

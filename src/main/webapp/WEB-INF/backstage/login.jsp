@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>深圳市城建管理工作平台</title>
+<title>赢+官网网站后台登陆平台</title>
 <script type="text/javascript" src="/winner/js/jquery-3.2.0.min.js"></script>
 <style type="text/css">
 <!--
@@ -32,7 +32,11 @@ body {
       <tr>
         <td height="84"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="381" height="84" background="/winner/backstage/images/login_06.gif" align="right"><span id="uspa" style="display:none"><font color="#CC3333" size="-2">账号或密码不能为空</font></span>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td width="381" height="84" background="/winner/backstage/images/login_06.gif" align="right">
+            <span id="uspa" style="display:none">
+            ${errorMsg }<br>
+            <font color="#CC3333" size="-2">账号或密码不能为空</font>
+            </span>&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td width="162" valign="middle" background="/winner/backstage/images/login_07.gif"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               
               <form action="/winner/itemweb/backstageUserLogin" method="post">

@@ -26,9 +26,10 @@
 &nbsp;&nbsp;<div style="width:800px;text-align=right"><a href="javascript:history.go(-1);" class="btn btn-primary">返回</a></div>
 <!-- <table width="800" bgcolor="blue" cellspacing="1" border="0" > -->
 
+<br>
+邀请手机号：<font color="red">${member.mobile_Phone}</font>&nbsp;&nbsp;&nbsp;&nbsp;
+邀请码:<font color="red">${member.invitationCode}</font>&nbsp;&nbsp;&nbsp;&nbsp;
 <br><br>
-邀请手机号：<font color="red">${awardRecord.member.mobile_Phone}</font>&nbsp;&nbsp;&nbsp;&nbsp;
-邀请码:<font color="red">${awardRecord.member.invitationCode}</font>
 <table width="1100" bgcolor="blue" cellspacing="1" border="0"  
 class="table table-striped table-condensed table-condensed table-hover table-bordered">
        <tr align="center" bgcolor="white">
@@ -41,25 +42,24 @@ class="table table-striped table-condensed table-condensed table-hover table-bor
         <td>邀请码</td>
       			
        </tr>
+       <c:forEach items="${listawrd }" var="listawrd" varStatus="stat">
+      
        <tr align="center" bgcolor="white">
-       <td>${awardRecord.id }</td>
-       <td>${awardRecord.member.mobile_Phone }</td>
-       <!-- 被邀请人手机号  AwardRecord表中的被邀请人id  == Member表中的被邀请人id  就取出来 -->
-           <td>
-           		<c:if test="${awardRecord.byinvitingid == memberbyinvitingname.id }"></c:if>
-           		${memberbyinvitingname.mobile_Phone}
-           </td>
+       <td>${stat.index+1 }</td>
+       <td>${listawrd.member.mobile_Phone }</td>
+       <!-- 被邀请人手机号-->
+         <td>${member.mobile_Phone }</td>
        <!-- 奖励类型 -->
        <td>
-			<c:if test="${awardRecord.type == '0' }"><font color="blue">注册奖励</font></c:if>
-			<c:if test="${awardRecord.type == '1' }"><font color="blue">投资奖励</font></c:if>
+			<c:if test="${listawrd.type == '0' }"><font color="blue">注册奖励</font></c:if>
+			<c:if test="${listawrd.type == '1' }"><font color="blue">投资奖励</font></c:if>
 		</td>
-       <td>${awardRecord.amount }</td>
-       <td>${awardRecord.addTime }</td>
-       <td>${awardRecord.member.invitationCode }</td>
+       <td>${listawrd.amount }</td>
+       <td>${listawrd.addTime }</td>
+       <td>${member.invitationCode }</td>
        
        </tr>
-
+</c:forEach>
 </table>
 
 </table>

@@ -38,17 +38,21 @@ session.update(n);
 } 
 //查
 public List<News> listNews(Map map){
-String hql = "from News where 0=0";
-getNewsHql(map, hql);
+String hql = "from  News as n where 0=0 ";
+hql=getNewsHql(map, hql);
 System.out.println(hql);
 Session session = getsesstion();
 List<News> list = session.createQuery(hql).list();
 return list;
 }
 public String getNewsHql(Map map,String hql){
-String  title=(String) map.get("title");
-if(title!=null && !title.equals("")){
-hql+=" and title like '%"+title+"%'";
+String  stitle=(String) map.get("stitle");
+String  stname= (String) map.get("stname");
+if(stitle!=null && !stitle.equals("")){
+hql+=" and n.title like '%"+stitle+"%'";
+}
+if(stname != null && !stname.equals("")){
+hql+=" and n.newsType.name like  '%"+stname+"%'";
 }
 return hql;
 }

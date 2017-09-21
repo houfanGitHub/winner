@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>私募股权类显示</title>
 <link rel="stylesheet" href="/winner/files/layer.css" id="layui_layer_skinlayercss"> 
  <link rel="stylesheet" href="/winner/backstage/show/bootstrap.min.css">  
 </head>
@@ -18,18 +18,21 @@
 	 location="/winner/yx2/listEdit/"+id;
  }
 </script>
-
  <script type="text/javascript">
  $(function(){
 $("#cx").click(function(){
 		document.forms[0].action="/winner/yx2/list2";
 		document.forms[0].submit();
 	});
+$("#tj").click(function(){
+	document.forms[0].action="/winner/yx2/toFinanceProductFunds";
+	document.forms[0].submit();
+});
  });
 </script>
 
 
-
+<p><p><p><h4>▶&nbsp;私募/股权类</h4>
 
 <form action="" method="post">
 
@@ -50,12 +53,12 @@ $("#cx").click(function(){
 <td colspan="2" align="center">
 <select class="form-control" name="qtype">
 <option value="">全部</option>
-<option value="SIMU">私募</option>
-<option value="GUQUAN">股权</option>
+<option value="SIMU">私募类</option>
+<option value="GUQUAN">股权类</option>
 </select>
 </td>
 <td>
-<input type="button" class="btn btn-primary" id="cx"  value="搜索"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" id="btn1" value="新增"/>
+<input type="button" class="btn btn-primary" id="cx"  value="搜索"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" id="tj" value="新增"/>
 </td>
 </tr>
 
@@ -80,12 +83,18 @@ $("#cx").click(function(){
 <td>${t.period}</td>
 <td>${t.floorAmount}</td>
 <td>${t.createDate }</td>
-<td><input type="button"  class="btn btn-primary" value="未签署人" id="weiqianshu"/>
-<input type="button"  class="btn btn-primary" value="编辑/查看" onclick="editshow(${t.id})"/>
+<td><input type="button"  class="btn btn-primary" value="未签署人" onclick='wqs(${t.id})'/>
+<input type="button"  class="btn btn-primary" value="编辑/查看" onclick='editshow(${t.id})'/>
 </td>
-</tr>
 </c:forEach>
 </table>
 </form>
+
+<script type="text/javascript">
+function wqs(id){
+	window.location="/winner/yx2/listWqs/"+id;
+}
+
+</script>
 </body>
 </html>

@@ -5,11 +5,13 @@ import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.type.AbstractLongStringType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.item.finance.bean.AwardRecord;
 import com.item.finance.bean.Member;
+import com.item.finance.bean.MemberAccount;
 
 @Component
 public class Ss_AwardRecordDao {
@@ -29,12 +31,23 @@ public class Ss_AwardRecordDao {
 	return awardRecord;
 	}
 	
+	//得到 member的id
+	public Member getmemberid(String id){
+		Session session=getSession();
+		Member member=(Member)session.get(Member.class, id);
+		return member;
+	}
+	
+	
 	//查询显示
 	public List<AwardRecord> listshowawardRecord(Map map){
 		Session session=getSession();
-		String hql="from AwardRecord as awardr where 0=0";
+		String hql="from AwardRecord as awa where 0=0";
 		hql=list_Award(map, hql);
 		List<AwardRecord>listawardRecords=session.createQuery(hql).list();
+	//	for (AwardRecord awardRecord : listawardRecords) {
+	//    	System.out.println();
+		//}
 		return  listawardRecords;
 	}
 	
@@ -49,43 +62,62 @@ public class Ss_AwardRecordDao {
 			
 			
 			if(qmemberName!=null && !qmemberName.equals("")){  //姓名
-				hql+=" and  awardr.member.memberName like '%"+qmemberName+"%' ";
+				hql+=" and awa.member.memberName like '%"+qmemberName+"%' ";
 			}
 			if(qmobile_Phone!=null && !qmobile_Phone.equals("")){  //手机号
-				hql+=" and  awardr.member.mobile_Phone="+qmobile_Phone;
+				hql+=" and awa.member.mobile_Phone="+qmobile_Phone;
 			}
 			if(qinvitationCode!=null && !qinvitationCode.equals("")){ //邀请码
-				hql+=" and  awardr.member.invitationCode="+qinvitationCode;
+				hql+=" and awa.member.invitationCode="+qinvitationCode;
 			}
 			if(qinvitedCode!=null && !qinvitedCode.equals("")){  //被邀请码
-				hql+=" and  awardr.member.invitedCode="+qinvitedCode;
+				hql+=" and awa.member.invitedCode="+qinvitedCode;
 			}
 			//   奖励类型       是否注册奖励  是否投资奖励      
 			if(qtype!=null && !qtype.equals("")){
-				hql+=" and  awardr.type="+qtype;
+				hql+=" and  type="+qtype;
 			}
 			//奖励状态    0  为奖励   1已奖励
 			if(qisAward!=null && !qisAward.equals("")){
-				hql+=" and awardr.isAward="+qisAward;
+				hql+=" and isAward="+qisAward;
 			}
 		
 			return hql;
 		}
 		
-		//奖励记录  点击奖励记录通过查询得到的   id 返回信息
+	/*	//奖励记录  点击奖励记录通过查询得到的   id 返回信息  
 		public AwardRecord getAward(int id){
 			Session session = getSession();
-			String hql = "from AwardRecord as awardr where id="+id;
+			String hql = "from AwardRecord where id="+id;
 			List<AwardRecord> award = session.createQuery(hql).list();
 			return award.get(0);  //返回信息
 		}
 		
-		//奖励记录中的被邀请人  邀请人的id 信息 通过member找到
-		public Member getByName(int id){
+		*/
+	/*	//奖励记录  点击奖励记录通过查询得到的   id 返回信息    邀请人
+		public List<AwardRecord> listinvitingid(int invitingid){
+			String hql="from AwardRecord as awardr where awardr.member.id="+invitingid;
 			Session session = getSession();
-			String hql = "from Member where id="+id;
-			List<Member> member = session.createQuery(hql).list();
-			return member.get(0); //返回信息
+			List<AwardRecord> listaward = session.createQuery(hql).list();
+			return listaward;
+		}*/
+		
+	
+		//邀请奖励id
+		public List<AwardRecord> listawrecord(int id){
+				Session session=getSession();
+				String hql="from AwardRecord as ar where  ar.member.id="+id;
+				List<AwardRecord> listaward=session.createQuery(hql).list();
+				return listaward;
 		}
-
+		
+		
+		//投资金额查询
+		public List<MemberAccount>listma(){
+			Session session=getSession();
+			String hql="from MemberAccount ";
+			List<MemberAccount>listm=session.createQuery(hql).list();
+			return listm;
+		}
+		
 }

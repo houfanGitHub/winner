@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.hibernate.annotations.common.util.StringHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +26,7 @@ public class Ss_MemberWithdrawRecordController {
 	private Ss_MemberWithdrawRecordService ss_MemberWithdrawRecordService;
 	
 	@RequestMapping("/list5")
-	public String listshow(Model model,String aname,String aphone ,String anumber,String astatu,String adate ){
+	public String listshow( HttpSession session,Model model,String aname,String aphone ,String anumber,String astatu,String adate ){
 		Map map=new HashMap();
 		map.put("aname", aname);   //姓名
 		map.put("aphone", aphone);  //手机号
@@ -30,16 +34,37 @@ public class Ss_MemberWithdrawRecordController {
 		map.put("astatu", astatu);  //状态
 		map.put("adate", adate);   //提现时间
 		List<MemberWithdrawRecord>listwithdrawrecord=ss_MemberWithdrawRecordService.list(map);
-		model.addAttribute("listwithdrawrecord", listwithdrawrecord);
+		//model.addAttribute("listwithdrawrecord", listwithdrawrecord);
+		session.setAttribute("listwithdrawrecord", listwithdrawrecord);
 		
-		//模糊查询
+	/*	//模糊查询
 		model.addAttribute("aname", aname); 
 		model.addAttribute("aphone", aphone);
 		model.addAttribute("anumber", anumber);
 		model.addAttribute("astatu", astatu);
-		model.addAttribute("adate", adate);
+		model.addAttribute("adate", adate); */
+		
+		session.setAttribute("aname", aname);
+		session.setAttribute("aphone", aphone);
+		session.setAttribute("anumber", anumber);
+		session.setAttribute("astatu", astatu);
+		session.setAttribute("adate", adate);
+		
 		return "WEB-INF/ssjsp/MemberWithdrawRecord";
 	}
+	
+	//重置操作
+		@RequestMapping("/listcz5")
+		public String listcz(HttpSession session){
+			session.removeAttribute("aname");
+			session.removeAttribute("aphone");
+			session.removeAttribute("anumber");
+			session.removeAttribute("astatu");
+			session.removeAttribute("adate");
+		
+			
+			return "redirect:/sushuang5/list5";   //重定向到首页
+		}
 	
 	
 	//得到id  传值     model 保存  传值
@@ -49,5 +74,23 @@ public class Ss_MemberWithdrawRecordController {
 			model.addAttribute("memberWithdrawRecord", memberWithdrawRecord);
 			return "WEB-INF/ssjsp/memberWithdrawRecord_details";   //跳转页面
 		}
+		
+	/*	//模态窗口选择框保存
+		@RequestMapping("/savemodal5")
+		public String savemodal(HttpServletRequest request,Model model){
+			//获取选择框里的值
+			String modalname=request.getParameter("amodal");
+			model.addAttribute("modalname", modalname);
+			return "redirect:/sushuang5/list5";
+		
+		}
+		*/
+		//模态窗口  审核
+		@RequestMapping("/updatememberwithdraw5/{id}")
+		public String updatememberwith(@PathVariable("id")String id,HttpServletRequest request){
+			ss_MemberWithdrawRecordService.updatememberwith(id);
+			return "redirect:/sushuang5/list5";   //重定向
+		}
+		
 
 }

@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" rel="stylesheet" href="winner/webapp/sscss/sushuang.css">
@@ -16,6 +17,8 @@
 
  <script type="text/javascript" src="/winner/js/jquery-3.2.0.min.js"></script>
  <script type="text/javascript" src="/winner/backstage/show/bootstrap.min.js"></script>
+ 
+ 
 </head>
 
 
@@ -25,6 +28,11 @@
 			document.forms[0].action="/winner/sushuang5/list5";
 			document.forms[0].submit();
 		});
+		
+		$("#cz").click(function(){
+			document.forms[0].action="/winner/sushuang5/listcz5";
+			document.forms[0].submit();
+	})
 	
 	});
 </script>
@@ -36,7 +44,7 @@
 绑卡卡号：<input type="text"  name="anumber" value="${anumber }">&nbsp;&nbsp;
 状态：<select  name="astatu" id="astatu">
 <!--  <option value="${astatu }">${astatu }</option>  -->
-<option value="" selelcted="selected">全部状态</option>
+<option value="" selected="selected">全部状态</option>
 <option value="0">待审核</option>
 <option value="1">已打款</option>
 <option value="2">打款中</option>
@@ -45,7 +53,7 @@
 提现时间：<input   type="date" name="adate" value="${adate }">&nbsp;&nbsp;
 <input class="btn btn-primary" type="button" value="查询" id="btn5">
 
-<input  class="btn btn-primary"  type="reset"  value="重置">
+<input  class="btn btn-primary"  type="reset"   id="cz" value="重置">
 <br><br>
 <table width="1100" bgcolor="blue" cellspacing="1" border="0"  
 class="table table-striped table-condensed table-condensed table-hover table-bordered">
@@ -81,7 +89,7 @@ class="table table-striped table-condensed table-condensed table-hover table-bor
 	<c:if test="${listwith.status == '3' }"><font color="red">打款失败</font></c:if>
 	</td>
 <td>${listwith.createDate }</td>  <!-- 提现时间 -->
-<td><a a href="/winner/WEB-INF/ssjsp/details.jsp"  class="btn btn-primary" type="button">账号详情</a></td>
+<td><a a href="/winner/sushuang1/getmemberId/${listwith.member.id }"  class="btn btn-primary" type="button">账号详情</a></td>
 <!-- <td><a a href="/winner/sushuang7//getmemberaccountId/${listwith.id }"  class="btn btn-primary" type="button">账号详情</a></td> -->
 <!-- /winner/sushuang1/getmemberId/${li.id } -->
 <!-- <a href="WEB-INF/ssjsp/details"></a> -->
@@ -90,35 +98,56 @@ class="table table-striped table-condensed table-condensed table-hover table-bor
 	<c:if test="${listwith.status == '2' }"><font color="blue">打款中</font></c:if>
 	<c:if test="${listwith.status == '3' }"><font color="red">打款失败</font></c:if>
 	<!-- 说明   点击审核按钮  弹出模态窗口    提交更改     审核按钮变成打款中       待审核也要变成打款中 -->
-	<c:if test="${listwith.status == '0' }" ><font color="black">
-	<a href="" class="btn btn-primary" type="button" id="btn"   data-toggle="modal" href="#example">审核</a></font></c:if>
+	<c:if test="${listwith.status == '0' }" >
+	<button class="btn btn-primary" data-toggle="modal" onclick="mymodal(${listwith.id})">审核</button>
+	 </c:if>
 	</td>
 </tr>
 </c:forEach>
 </table>
 </form>
 
-<div id="example" class="modal fade in" style="display: none; ">
- 
-    <div class="modal-header">
-        <button class="close" data-dismiss="modal">x</button>
-    </div>
- 
-    <div class="modal-body">
-     <select >
+<!-- bootstrap模态窗口显示 -->
+   <div class="modal fade " id="myModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"  aria-hidden="true">×</button>
+          
+         </div>
+          <h4 class="modal-title" id="myModalLabel">审核 </h4>
+         <div class="modal-body">
+         <select  >
+     <option value="" selected="selected">全部</option>
      <option value="FUIOU">富友</option>
      <option value="BEIFU">贝付</option>
    
+     </select>  </div>
      
-     </select>
-    </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭  </button>
+           <!--  <button type="submit" class="btn btn-primary"> 提交更改</button> --> 
+         <button  class="btn btn-primary"  type="button"  id="btn" >提交更改</button>
+       
+         </div>
+      </div><!-- /.modal-content -->
+   </div><!-- /.modal-dialog -->
+   </div><!-- /.modal -->
+    <script type="text/javascript">
+ 		function mymodal(id){ 			
+ 			alert("11111111111");
+ 			$("#myModal").modal("show");
+ 			alert("222222");
+ 			$("#btn").click(function(){
+ 				alert("333333");
+ 				location="/winner/sushuang5/updatememberwithdraw5/"+id;
+ 			});
+ 			
+ 		}
+	
+</script>
  
-    <div class="modal-footer">
-    <input class="btn btn-primary" type="button" value="查询" >
-        <a href="#" class="btn btn-primary"  type="button" data-dismiss="modal">取消</a>
-         
-    </div>
-    
-</div>
+  
 </body>
 </html>

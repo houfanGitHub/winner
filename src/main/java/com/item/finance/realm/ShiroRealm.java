@@ -10,6 +10,7 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
@@ -67,6 +68,7 @@ public class ShiroRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
 		// TODO Auto-generated method stub
 		//从 PrincipalCollection 获取用户登录信息
+				System.out.println("ShiroRealm:获取用户授权信息");
 				String username = (String)arg0.getPrimaryPrincipal();
 				//根据username查询user 并赋予 SimpleAuthorizationInfo
 				SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
@@ -87,6 +89,7 @@ public class ShiroRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken arg0) throws AuthenticationException {
+		System.out.println("ShiroRealm:验证当前登录的用户");
 		//1. 把 AuthenticationToken 转换为 UsernamePasswordToken 
 		 UsernamePasswordToken token = (UsernamePasswordToken) arg0;  
 		 
@@ -113,13 +116,13 @@ public class ShiroRealm extends AuthorizingRealm {
 	        return null;
 	}
 	
-//	public static void main(String[] args) {
-//		String hashAlgorithmName = "MD5";
-//		Object credentials = "123456";
-//		Object obj = ByteSource.Util.bytes("admin");
-//		int hashIterations = 1024;
-//		Object result = new SimpleHash(hashAlgorithmName, credentials, obj, hashIterations);
-//		System.out.println("password = 123456,盐值加密之后 = "+ result);
-//	}
+	public static void main(String[] args) {
+		String hashAlgorithmName = "MD5";
+		Object credentials = "a123456";
+		Object obj = ByteSource.Util.bytes("houfan");
+		int hashIterations = 1024;
+		Object result = new SimpleHash(hashAlgorithmName, credentials, obj, hashIterations);
+		System.out.println("password = 123456,盐值加密之后 = "+ result);
+	}
 
 }

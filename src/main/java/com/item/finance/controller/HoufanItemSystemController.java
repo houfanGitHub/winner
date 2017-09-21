@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.item.finance.bean.User;
 import com.item.finance.bean.UserRole;
 import com.item.finance.bean.UserRoleRelation;
+import com.item.finance.services.RolePermissionRelationService;
 import com.item.finance.services.UserRoleRelationService;
 import com.item.finance.services.UserRoleService;
 import com.item.finance.services.UserService;
@@ -32,6 +35,33 @@ public class HoufanItemSystemController {
 	private UserRoleService userRoleService;
 	@Autowired
 	private UserRoleRelationService userRoleRelationService;
+	@Autowired
+	private RolePermissionRelationService rolePermissionRelationService;
+	
+	@RequestMapping("/updatePermission/{pname}")
+	@ResponseBody
+	public boolean updatePermission(@PathVariable(name="pname")String[] pname,String roleId){
+		//修改权限信息
+		try {
+			rolePermissionRelationService.updateByRoleId(pname,roleId);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	@RequestMapping("/menuSystem/{id}")
+	public String menuSystem(@PathVariable(value="id")String roleId,Map<String,Object> map){
+		//根据id查询角色对应的权限
+		System.out.println("system>>menuSystem:roleId = "+roleId);
+		Set<String> setPermission = rolePermissionRelationService.selectGetByRoleId(roleId);
+		System.out.println("system>>menuSystem:setPermission.size = "+setPermission.size());
+		String text = JSON.toJSONString(setPermission);
+		map.put("setPermission", text);
+		map.put("roleId", roleId);
+		return "/WEB-INF/backstage/system/menu";
+	}
 	
 	@RequestMapping("/users")
 	public String systemUsers(Map<String,Object> map){
@@ -44,12 +74,6 @@ public class HoufanItemSystemController {
 		List<User> list = userService.list();
 		map.put("userList", list);
 	}
-	
-//	@RequestMapping("/asynchronousUsers")
-//	@ResponseBody
-//	public void asynchronousUsers(Map<String,Object> map){
-//		getUserList(map);
-//	}
 	
 	@RequestMapping("/roles")
 	public String roles(Map<String,Object> map){

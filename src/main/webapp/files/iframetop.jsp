@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,15 +24,27 @@
 <div class="logo container">
     <div class="row">
         <div class="logoImg">
-            <a target="_parent" href="index.jsp"><img src="logo2.png"></a>
+            <a target="_parent" href="/winner/itemweb/index"><img src="/winner/files/logo2.png"></a>
         </div>
-        <div class="telInfo">
-            <img src="400Icon.png">
-            <div class="detail">
-
-                    	<div style="font-size:16px;float:right;margin-top:5px;color:#917739;">  欢迎userName,<a target="_parent" href="#">[会员中心]</a>,<a target="_parent" href="#">[退出]</a></div>
-                <br>4000-999-158
-            </div>
+       <div class="telInfo">
+        <c:if test="${empty memberinfo }">
+	            <img src="/winner/files/400Icon.png">
+	            <div class="detail">
+	                        <a target="_parent" style="font-size:18px;float:right;margin-top:5px;color:#917739;" href="/winner/itemweb/toLogin">登录</a>
+	                        <a target="_parent" style="font-size:18px;float:right;margin-right:15px;margin-top:5px;color:#917739;" href="/winner/itemweb/toRegistration">注册</a>
+	                <br>4000-999-158
+	            </div>
+        </c:if>
+        <c:if test="${!empty memberinfo }">
+	            <img src="/winner/files/400Icon.png">
+	            <div class="detail">
+	                <div style="font-size:16px;float:right;margin-top:5px;color:#917739;">
+	                		  欢迎${memberinfo.name },<a target="_parent" href="#">[会员中心]</a>,
+	                  <a target="_parent" href="/winner/itemweb/webUserLogout">[退出]</a>
+	                  </div>
+	                <br>4000-999-158
+	            </div>
+        </c:if>
         </div>
     </div>
 </div>

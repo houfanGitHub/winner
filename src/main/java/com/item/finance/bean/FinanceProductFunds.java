@@ -1,8 +1,11 @@
 package com.item.finance.bean;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -11,7 +14,8 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="FinanceProductFund.findAll", query="SELECT f FROM FinanceProductFunds f")
+@Table(name="finance_product_funds")
+@NamedQuery(name="FinanceProductFunds.findAll", query="SELECT f FROM FinanceProductFunds f")
 public class FinanceProductFunds  {
 	private int id;//id
 	private BigDecimal amount;//募集金额
@@ -40,10 +44,9 @@ public class FinanceProductFunds  {
 	private String type;//产品类型
 	private Date updateDate;//修改时间
 	private BigDecimal yearRate;//年化率
-
+	private Integer counts;
 	public FinanceProductFunds() {
 	}
-
 
 	@Id
 	@GeneratedValue
@@ -54,12 +57,23 @@ public class FinanceProductFunds  {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 
+	@Column(precision=10, scale=2)
+	public Integer getCounts() {
+		return counts;
+	}
+
+	public void setCounts(Integer counts) {
+		this.counts = counts;
+	}
 
 	@Column(precision=10, scale=2)
 	public BigDecimal getAmount() {
 		return this.amount;
 	}
+
+
 
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;

@@ -13,7 +13,7 @@ import java.util.Set;
 @Entity
 @Table(name="subject_folder")
 public class SubjectFolder  {
-	private String id;
+	private int id;
 	private Date createDate;
 	private Date updateDate;
 	private Set<Subject> subjects;
@@ -25,11 +25,11 @@ public class SubjectFolder  {
 
 	@Id
 	@Column(unique=true, nullable=false)
-	public String getId() {
-		return this.id;
+	public int getId() {
+		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -39,6 +39,9 @@ public class SubjectFolder  {
 	public Date getCreateDate() {
 		return this.createDate;
 	}
+
+
+
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;

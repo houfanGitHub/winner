@@ -25,6 +25,11 @@
 			document.forms[0].action="/winner/sushuang2/list2";
 			document.forms[0].submit();
 		});
+		
+		$("#cz").click(function(){
+			document.forms[0].action="/winner/sushuang2/listcz2";
+			document.forms[0].submit();
+	})
 	
 	});
 </script>
@@ -41,7 +46,7 @@
 <input type="date" name="adate2" value="${adate2 }">
 <input class="btn btn-primary" type="button" value="查询" id="btn2">&nbsp;&nbsp;
 
-<input  class="btn btn-primary"  type="reset"  value="重置">
+<input  class="btn btn-primary"  type="reset" id="cz"  value="重置">
 <br><br>
 <table  width="1100" bgcolor="blue" cellspacing="1" border="0" class="table table-bordered">
 <tr bgcolor="white" align="center">
