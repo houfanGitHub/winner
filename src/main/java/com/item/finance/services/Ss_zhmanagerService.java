@@ -15,6 +15,7 @@ import com.item.finance.bean.MemberAccount;
 import com.item.finance.bean.MemberDepositRecord;
 import com.item.finance.bean.MemberTradeRecord;
 import com.item.finance.bean.MemberWithdrawRecord;
+import com.item.finance.bean.SubjectPurchaseRecord;
 import com.item.finance.dao.Ss_zhManangerDao;
 
 @Service
@@ -56,9 +57,14 @@ public List<Member> list(Map map) {
 	
 	//投资记录id
 	
+	public List<SubjectPurchaseRecord> getlistspr(String id){
+		return this.Ss_zhManangerDao.listSubjectpur(id);
+	}
+	
+	
+	
 	
 	//提现记录  id
-	
 	public List<MemberWithdrawRecord> getByIdwith(String id){
 		return this.Ss_zhManangerDao.getmemberwithdraw(id);
 		

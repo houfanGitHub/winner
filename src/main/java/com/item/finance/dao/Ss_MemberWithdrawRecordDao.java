@@ -70,5 +70,16 @@ public class Ss_MemberWithdrawRecordDao {
 		
 			return hql;
 		}
+	
+		//模态窗口 审核操作
+		public  void updateShenhe(String id){
+			Session session=getSession();
+			MemberWithdrawRecord memberwithd=(MemberWithdrawRecord)session.get(MemberWithdrawRecord.class, id);
+			memberwithd.setStatus((byte) 2);  //根据提现状态  审核     变成打款中状态
+			session.update(memberwithd);
+			
+		}
+		
+		
 
 }

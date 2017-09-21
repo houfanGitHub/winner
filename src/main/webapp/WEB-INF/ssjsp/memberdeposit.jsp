@@ -28,6 +28,11 @@
 			document.forms[0].action="/winner/sushuang4/list4";
 			document.forms[0].submit();
 		});
+		
+		$("#cz").click(function(){
+			document.forms[0].action="/winner/sushuang4/listcz4";
+			document.forms[0].submit();
+	})
 	});
 </script>
 <body>
@@ -46,7 +51,7 @@
 订单时间：<input type="date" name="date1" value="${date1 }">&nbsp;&nbsp;
 <input type="date" name="date2" value="${date2 }">&nbsp;&nbsp;
 <input  class="btn btn-primary" type="button" id="btn4" value="查询">&nbsp;&nbsp;
-<input class="btn btn-primary" type="reset" value="重置">
+<input class="btn btn-primary" type="reset"  id="cz" value="重置"><br><br>
 <table width="1100" cellspacing="1" border="0" bgcolor="blue" class="table table-striped table-condensed table-condensed table-hover table-bordered">
 <tr bgcolor="white" align="center">
 <td>序号</td>

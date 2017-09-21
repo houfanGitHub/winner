@@ -1,6 +1,8 @@
 package com.item.finance.dao;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +21,7 @@ import com.item.finance.bean.MemberAccount;
 import com.item.finance.bean.MemberDepositRecord;
 import com.item.finance.bean.MemberTradeRecord;
 import com.item.finance.bean.MemberWithdrawRecord;
+import com.item.finance.bean.SubjectPurchaseRecord;
 
 
 @Component
@@ -95,6 +98,15 @@ public class Ss_zhManangerDao {
 		}
 		
 		//查询投资记录   传参  返回集合中对应的数据     
+		public List<SubjectPurchaseRecord> listSubjectpur(String id){
+			Session session = getSession();
+			//SubjectPurchaseRecord 表中有一member_id 是与member中的id  相对应的  可通过member中的id 取到相应的值
+			String hql = "from SubjectPurchaseRecord as subjectp where subjectp.member.id="+id;
+			List<SubjectPurchaseRecord> listsubjectp = session.createQuery(hql).list();
+			
+			return listsubjectp;
+		}
+		
 		
 		//查询提现记录   传参  返回集合中对应的数据   
 		public  List<MemberWithdrawRecord> getmemberwithdraw(String id){

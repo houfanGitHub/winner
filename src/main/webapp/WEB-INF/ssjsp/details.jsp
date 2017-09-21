@@ -147,16 +147,23 @@
                <td><font color="black">投资时间</font></td>
            
            </tr>
-           <c:forEach items="" var=" " varStatus="stat">
+           <c:forEach items="${listspr}" var="listspr" varStatus="stat">
            <tr align="center" bgcolor="white">
-           <td>  </td>
-           <td>  </td>
-           <td>  </td>
-           <td>  </td>
-           <td>  </td>
-           <td>  </td>
-           <td>  </td>
-           </tr>
+             <td><font color="black">${stat.index+1 }</font></td>
+			<td><font color="black">${listspr.id }</font></td>
+			<td><font color="black">${listspr.amount }</font></td>
+			<td><font color="black">
+			
+			<c:if test="${listspr.subject.status == '0'}"><font color="red">未发布</font></c:if>
+      <c:if test="${listspr.subject.status == '1'}"><font color="blue">募集中</font></c:if>
+       <c:if test="${llistspr.subject.status == '2'}"><font color="black">募集结束</font></c:if>
+       </font></td>
+			<td><font color="black">${listspr.subject.name }</font></td>
+		
+	
+		<td>11111</td>
+		 <td><font color="black">${listspr.createDate}</font></td>
+		</tr>
            </c:forEach>
 
 
