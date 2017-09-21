@@ -34,74 +34,60 @@
 </head>
 <body>
 
-<div class="logo container">
-    <div class="row">
-        <div class="logoImg">
-            <a href="#"><img src="/winner/files/logo2.png" onmouseover="this.src = &#39;/resources/web/images/logo1.png&#39;" onmouseout="this.src = &#39;/resources/web/images/logo2.png&#39;"></a>
-        </div>
-        <div class="telInfo">
-            <img src="/winner/files/400Icon.png" onmousemove="this.src = &#39;/resources/web/images/400IconActive.png&#39;" onmouseout="	this.src = &#39;/resources/web/images/400Icon.png&#39;">
-            <div class="detail">
-
-                        <a style="font-size:18px;float:right;margin-top:5px;color:#917739;" href="http://pro.ying158.com/web/login">登录</a>
-                        <a style="font-size:18px;float:right;margin-right:15px;margin-top:5px;color:#917739;" href="http://pro.ying158.com/web/regis">注册</a>
-                <br>4000-999-158
-            </div>
-        </div>
+<div style=" width:1002px; height:94px; margin:0 auto;">
+        <iframe src="/winner/files/iframetop.jsp" scrolling="no" frameborder="0" width="1002" height="94"></iframe>
     </div>
-</div>
-
 <div class="jwNav">
-    <div class="container">
-        <div class="row">
-            <ul class="topNav">
-                <li>
-                    <a class="item first" href="#">
-                        首页
-                    </a>
-                </li>
-                <li>
-                    <a class="item" href="#">
-                        网上体验中心
-                    </a>
-                </li>
-                <li class="item">
-                    <a class="item" href="#">
-                        产品中心
-                    </a>
-                </li>
-                <li>
-                    <a class="item" href="#">
-                        新闻中心
-                    </a>
-                </li>
-                <li>
-                    <a class="item" href="#">
-                      下载中心
-                    </a>
-                </li>
-                <li>
-                    <a class="item " href="#">
-                        盈+商学院
-                    </a>
-                </li>
-                <li>
-                    <a class="item" href="#">
-                        投研中心
-                    </a>
-                </li>
-                <li>
-                    <a class="item last" href="#">
-                        我的加法库
-                    </a>
-                </li>
+		<div class="container">
+			<div class="row">
+				<ul class="topNav">
+					<li class="active">
+						<a class="item first" href="/winner/index.jsp">
+							首页
+						</a>
+					</li>
+					<li>
+						<a class="item" href="/winner/itemweb/experience">
+							网上体验中心
+						</a>
+					</li>
+					<li>
+						<a class="item" href="/winner/itemweb/products">
+							产品中心
+						</a>
+					</li>
+					<li>
+						<a class="item" href="/winner/itemweb/news">
+							新闻中心
+						</a>
+					</li>
+					<li>
+                        <a class="item" href="/winner/itemweb/download">
+                            下载中心
+                        </a>
+					</li>
+					<li>
+                        <a class="item " href="/winner/itemweb/business">
+                            盈+商学院
+                        </a>
+					</li>
+					<li>
+                        <a class="item" href="/winner/itemweb/research">
+                            投研中心
+                        </a>
+					</li>
+					<li>
+						<a class="item last" href="/winner/itemweb/myself">
+							我的加法库
+						</a>
+					</li>
+					                    
 
 
-
-            </ul>
-        </div>
-    </div>
-</div>
+				</ul>
+			</div>
+		</div>
+	</div>
 
 <script type="text/javascript" src="/winner/files/regis.js"></script>
 <div class="proMain">
@@ -260,18 +246,19 @@
                     <div class="title" style=" padding-left:10px; font-weight:normal; font-size:20px; color:#ccc;">
                         主要合作机构
                     </div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.picc.com/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/1_on.png&#39;" onmouseout="this.src = &#39;/resources/web/images/hzhb/1.jpg&#39;" src="/winner/files/1.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.fuioupay.com/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/2_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/2.jpg&#39;" src="/winner/files/2.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.nanhua.net/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/3_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/3.jpg&#39;" src="/winner/files/3.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.zttrust.com.cn/stations/526623d20a/index.php/5268e6b50a"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/4_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/4.jpg&#39;" src="/winner/files/4.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://sc.hkex.com.hk/TuniS/www.hkex.com.hk/eng/index.htm/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/5_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/5.jpg&#39;" src="/winner/files/5.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.cmegroup.com/cn-s/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/6_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/6.jpg&#39;" src="/winner/files/6.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.sgx.com/wps/portal/sgxweb_ch/home/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOKNHB1NPAycDSz9wwzMDTxD_Z2Cg8PCDANdjYEKIoEKDHAARwNC-sP1o8BK8JhQkBthkO6oqAgAzDYPQQ!!/dl5/d5/L2dBISEvZ0FBIS9nQSEh/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/7_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/7.jpg&#39;" src="/winner/files/7.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.neeq.com.cn/index/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/8_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/8.jpg&#39;" src="/winner/files/8.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.cmbchina.com/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/9_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/9.jpg&#39;" src="/winner/files/9.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.bankcomm.com/BankCommSite/default.shtml"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/10_on.png&#39;" onmouseout="this.src = &#39;/resources/web/images/hzhb/10.jpg&#39;" src="/winner/files/10.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.ccb.com/cn/home/index.html"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/11_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/11.jpg&#39;" src="/winner/files/11.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.icbc.com.cn/icbc/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/12_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/12.jpg&#39;" src="/winner/files/12.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.picc.com/"><img src="/winner/files/1.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.fuioupay.com/"><img src="/winner/files/2.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.nanhua.net/"><img src="/winner/files/3.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.zttrust.com.cn/stations/526623d20a/index.php/5268e6b50a"><img src="/winner/files/4.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://sc.hkex.com.hk/TuniS/www.hkex.com.hk/eng/index.htm/"><img src="/winner/files/5.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.cmegroup.com/cn-s/"><img src="/winner/files/6.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.sgx.com/wps/portal/sgxweb_ch/home/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOKNHB1NPAycDSz9wwzMDTxD_Z2Cg8PCDANdjYEKIoEKDHAARwNC-sP1o8BK8JhQkBthkO6oqAgAzDYPQQ!!/dl5/d5/L2dBISEvZ0FBIS9nQSEh/"><img src="/winner/files/7.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.neeq.com.cn/index/"><img src="/winner/files/8.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.cmbchina.com/"><img src="/winner/files/9.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.bankcomm.com/BankCommSite/default.shtml"><img src="/winner/files/10.jpg"></a></div>
+
+                    <div class="hzhb_item"><a target="_blank" href="http://www.ccb.com/cn/home/index.html"><img src="/winner/files/11.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.icbc.com.cn/icbc/"><img src="/winner/files/12.jpg"></a></div>
                 </div>
 
                 <div class="ft_item ft_item_sns">
@@ -290,13 +277,13 @@
                             </div>
                         </li>
                         <li>
-                            <a href="http://pro.ying158.com/web/regis" target="_blank" rel="nofollow">
+                            <a target="_blank" rel="nofollow">
                                 <em class="ico_sns ico_sinawb"></em>
                                 <span class="txt">新浪微博</span>
                             </a>
                         </li>
                         <li>
-                            <a href="http://pro.ying158.com/web/regis" target="_blank" rel="nofollow">
+                            <a target="_blank" rel="nofollow">
                                 <em class="ico_sns ico_txwb"></em>
                                 <span class="txt">腾讯微博</span>
                             </a>
@@ -308,7 +295,7 @@
                           联系我们
                         </div>
                         <div class="contactInfo" style="padding-left:30px;">
-                            <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=508886246&amp;site=qq&amp;menu=yes"><img src="/winner/files/qqIcon.png" onmouseover="$(this).css(&#39;height&#39;, &#39;52px&#39;);" onmouseout="    $(this).css(&#39;height&#39;, &#39;48px&#39;);"></a>
+                            <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank"><img src="/winner/files/qqIcon.png"></a>
                             <span class="kefu">在线客服</span><span class="time">08:30 - 21:00</span>
                         </div>
                     </div>

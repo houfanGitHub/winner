@@ -2,21 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:util="http://www.springframework.org/schema/util"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
-	
-	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/itemweb/backstageLogin" />
-		<property name="successUrl" value="/itemweb/backstage" />
-		<property name="unauthorizedUrl" value="/itemweb/error" />
-		<property name="filterChainDefinitions">
-			<value>
-				/** = anon
-				/winner/index.jsp = authc
-			</value>
-		</property>
-	</bean>
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 	
 	<bean id="userService" class="com.item.finance.services.UserService"></bean>
 	<bean id="userRoleService" class="com.item.finance.services.UserRoleService"></bean>
@@ -40,6 +29,20 @@
 	
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="shiroRealm"></property>
+	</bean>
+		
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/itemweb/backstageLogin" />
+		<property name="successUrl" value="/itemweb/backstage" />
+		<property name="unauthorizedUrl" value="/itemweb/error" />
+		<property name="filterChainDefinitions">
+			<value>
+				/itemweb/backstage/** = authc
+				/system/** = authc
+				/** = anon
+			</value>
+		</property>
 	</bean>
 
 </beans>

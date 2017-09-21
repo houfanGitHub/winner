@@ -21,11 +21,19 @@ import javax.persistence.TemporalType;
 @Table(name="role_permission_relation")
 public class RolePermissionRelation  {
 	private String id;
-	private String[] pername;
+	private String pername;
 	private Date createDate;
 	private UserRole userRole;
 
 	public RolePermissionRelation() {
+	}
+
+	public RolePermissionRelation(String pername, Date createDate,
+			UserRole userRole) {
+		super();
+		this.pername = pername;
+		this.createDate = createDate;
+		this.userRole = userRole;
 	}
 
 
@@ -52,13 +60,13 @@ public class RolePermissionRelation  {
 	}
 
 
-	@JoinColumn(name="permission_ename")
-	public String[] getPername() {
+	@Column(name="permission_ename")
+	public String getPername() {
 		return pername;
 	}
 
 
-	public void setPername(String[] pername) {
+	public void setPername(String pername) {
 		this.pername = pername;
 	}
 

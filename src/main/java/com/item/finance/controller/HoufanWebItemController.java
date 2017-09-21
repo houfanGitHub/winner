@@ -8,6 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.ExcessiveAttemptsException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
@@ -17,6 +22,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.item.finance.bean.User;
 import com.item.finance.bean.UserRole;
@@ -35,6 +42,35 @@ public class HoufanWebItemController {
 	private UserRoleRelationService userRoleRelationService;
 	@Autowired
 	private UserRoleService userRoleService;
+
+	
+	//提款记录
+	@RequestMapping("/withdraw")
+	public String withdraw(){
+		return "WEB-INF/myself/withdrawals";
+	}
+	
+	//账户充值
+		@RequestMapping("/deposit")
+		public String experienceGold(){
+			return "WEB-INF/myself/experienceGold";
+		}
+		
+		@RequestMapping("/security")
+		public String security(){
+			return "WEB-INF/myself/security";
+		}
+				
+				//我要提款
+				@RequestMapping("/drawMoney")
+				public String drawMoney(){
+					return "WEB-INF/myself/drawMoney";
+				}
+				//我是理财师
+				@RequestMapping("/financialPlanner")
+				public String financialPlanner(){
+					return "WEB-INF/myself/financialPlanner";
+				}
 
 	// 进入用户登录界面
 	@RequestMapping("/toLogin")
@@ -57,19 +93,45 @@ public class HoufanWebItemController {
 	 * @return
 	 */
 	@RequestMapping("/userLogin")
-	public String userLogin(User user) {
-		login(user.getName(), user.getPassword());
+	public String userLogin(User user,RedirectAttributes attributes) {
+		login(user.getName(), user.getPassword(),attributes);
 		// 登录成功后会跳转到successUrl配置的链接，不用管下面返回的链接。
 		return "redirect:/itemweb/index";
 	}
 
-	public void login(String name, String password) {
-		SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());
-		// 登录后存放进shiro token
-		UsernamePasswordToken token = new UsernamePasswordToken(name, password);
-		token.setRememberMe(true);
+	public void login(String name, String password,RedirectAttributes attributes) {
+		//退出当前的用户
+		allUserLogout();
 		Subject subject = SecurityUtils.getSubject();
-		subject.login(token);
+		UsernamePasswordToken token = new UsernamePasswordToken(name, password);
+		try {
+			subject.login(token);
+			Session session = subject.getSession();
+//			System.out.println("sessionId:"+session.getId());
+//			System.out.println("sessionHost:"+session.getHost());
+//			System.out.println("sessionTimeout:"+session.getTimeout());
+			//查询用户的信息
+			session.setAttribute("userinfo", userService.getUserByUserName(name));
+		}catch(UnknownAccountException uae){
+            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,未知账户");  
+            attributes.addFlashAttribute("errorMsg", "未知账户！"); 
+        }catch(IncorrectCredentialsException ice){  
+            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,错误的凭证");  
+            attributes.addFlashAttribute("errorMsg", "密码不正确");  
+        }catch(LockedAccountException lae){  
+            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,账户已锁定");  
+            attributes.addFlashAttribute("errorMsg", "账户已锁定");  
+        }catch(ExcessiveAttemptsException eae){  
+            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,错误次数过多");  
+            attributes.addFlashAttribute("errorMsg", "用户名或密码错误次数过多");  
+        }catch(AuthenticationException ae){  
+            //通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景  
+            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,堆栈轨迹如下");  
+            ae.printStackTrace();  
+            attributes.addFlashAttribute("errorMsg", "用户名或密码不正确");  
+        }  catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -79,14 +141,30 @@ public class HoufanWebItemController {
 	 */
 	@RequestMapping("/logout")
 	public String logout() {
-		SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());
+		allUserLogout();
 		return "redirect:/itemweb/backstageLogin";
 	}
+	
+	public void allUserLogout(){
+		SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());
+	}
+	/**
+	 * 前台用户退出	返回index
+	 * @param name
+	 * @param password
+	 * @param attributes
+	 * @return
+	 */
+	@RequestMapping("webUserLogout")
+	public String webUserLogout(){
+		allUserLogout();
+		return "redirect:/itemweb/toLogin";
+	} 
 
 	@RequestMapping("/backstageUserLogin")
 	public String backstageUserLogin(@RequestParam("name") String name,
-			@RequestParam("password") String password) {
-		login(name, password);
+			@RequestParam("password") String password,RedirectAttributes attributes) {
+		login(name, password,attributes);
 		return "redirect:/itemweb/backstage";
 	}
 
@@ -198,5 +276,11 @@ public class HoufanWebItemController {
 	@RequestMapping("/myself")
 	public String myself() {
 		return "WEB-INF/myself/myself";
+	}
+	
+	//忘记密码
+	@RequestMapping("/forgetPassword")
+	public String forgetPassword(){
+		return "WEB-INF/forgetPassword/forgetPassword";
 	}
 }

@@ -2,19 +2,14 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 	
 	<meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width,maximum-scale=1.0,user-scalable=yes">
 	<meta name="Keywords" content="股指体验交易，股指单手交易，股指多手交易">
 	<meta name="description" content="申请实盘交易账户，直接进行实盘交易。">
-	<title>登录 - 盈+</title>
-    <style type="text/css">
-       .error{
-           color: #d43f3a;
-        }
-    </style>
+	<title>忘记密码 - 盈+</title>
 	
 <meta name="keywords" content="盈+，盈，社区金融，O2O社区金融，社区金融O2O，O2O，互联网+社区金融，O2O连锁，社区门店，首家社区金融，社区金融服务，综合金融，互联网金融，体验中心，普惠金融，金融创新，社区化，普惠化，全渠道化，互联网线上平台，O2O交易，全国首家，盈十，金融衍生品，固收类理财，私募基金，股权基金，股指期货，玩转股指，商品期货，国际期货，外盘，A50，沪深300，中证500，上证50">
 <meta name="description" content="盈+——全国首家互联网金融交流体验中心，与您共盈，给财富做加法。">
@@ -94,55 +89,68 @@
 
 </script>    <div class="proMain">
     	<div class="container">
-            <div class="row login">
-                <div class="loginPic">
-                    <img src="/winner/files/loginImg.png">
-                </div>
-                <div class="loginBlock">
-                    <img class="cornerImg" src="/winner/files/loginCorner.png">
-                   
-                    <form action="/winner/itemweb/userLogin" method="post">
-                 
-                    	<div class="item item1">
-	                        <div class="lLabel">
-	                            用户名
-	                        </div>
-	                        <div class="lInput">
-	                            <img src="/winner/files/userIcon.png"><input type="text" placeholder="用户名" id="name" name="name" class="form-control name"><span class="errorInfo">用户名不能为空</span>
-	                        </div>
-	                    </div>
-	                    <div class="item">
-	                        <div class="lLabel">
-	                            登录密码
-	                        </div>
-	                        <div class="lInput">
-	                            <img src="/winner/files/passwordIcon.png"><input type="password" placeholder="密码" id="password" name="password" class="form-control password"><span class="errorInfo"></span>
-	                        </div>
-	                    </div>
-	                    <div class="rest">
-	                        <p><font color="#D43F3A">${errorMsg}</font></p>
-	                        <span id="loginError"></span><a class="forgetLink" href="/winner/itemweb/forgetPassword">忘记密码？</a>
-	                    </div>
-	                    <div class="rest">
-	                        <button class="btn loginBtn submit">立即登录</button>
-	                    </div>
-                    </form>
-                    <div class="rest">
-                        <span class="registUrl">没有账号？<a href="/winner/itemweb/toRegistration">免费注册</a></span>
+            <div class="row register">
+                <div class="title">
+                    <div class="left">
+                        <hr>
                     </div>
-        
+                    <div class="mid">
+                        重设密码
+                    </div>
+                    <div class="right">
+                        <hr>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="rLabel">
+                        手机号
+                    </div>
+                    <div class="rInput">
+                        <input placeholder="请输入手机号" id="phone" name="phone" class="form-control textInput phone" type="text"><span class="errorInfo">手机号码不能为空</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="rLabel">
+                        验证码
+                    </div>
+                    <div class="rInput">
+                        <input placeholder="请输入验证码" id="vCode" name="code" class="form-control textInput code" type="text"><button class="btn vCodeBtn" onclick="sendMessage(60)" id="btnSendCode">获取验证码</button><span class="errorInfo"></span>
+                    </div>
+                </div>
+                 <div class="item">
+                    <div class="rLabel">
+           输入新密码     
+                    </div>
+                    <div class="rInput">
+                        <input placeholder=" 输入新密码" id="password" name="password" class="form-control textInput password" type="password"><span class="errorInfo">手机号码不能为空</span>
+                    </div>
+                </div>
+                 <div class="item">
+                    <div class="rLabel">
+                        确认新密码
+                    </div>
+                    <div class="rInput">
+                        <input placeholder="确认新密码" id="password2" name="password2" class="form-control textInput password2" type="password"><span class="errorInfo">手机号码不能为空</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="rLabel">
+                        &nbsp;
+                    </div>
+                    <div class="rInput">
+                        <button class="btn registBtn submit" id="checkCode">重设密码</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-<script type="text/javascript" src="/winner/files/login.js"></script>
+<script type="text/javascript" src="/winner/files/forget.js"></script>
 <script type="text/javascript">
 $(function(){
 	var b = "";
-	login(b);
+	forget(b);
 });
 </script>
-   
 
     <div class="security">
         <div class="item">
@@ -247,14 +255,5 @@ $(function(){
 			</div>
 		</div>
 	</div>
-<script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?06cf97732baac1a65bed8ae95f2384aa";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
 </body>
 </html>
