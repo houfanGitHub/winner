@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
@@ -22,8 +23,9 @@ public class PushNotice  {
 	private String id;
 	private String content;
 	private Date createDate;
-	private byte status;
+	private int status;
 	private String title;
+	private int PushType;
 	private Date update_Date;
 
 	public PushNotice() {
@@ -31,7 +33,7 @@ public class PushNotice  {
 
 
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public String getId() {
 		return this.id;
 	}
@@ -62,11 +64,11 @@ public class PushNotice  {
 	}
 
 
-	public byte getStatus() {
+	public int getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(byte status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
@@ -90,4 +92,14 @@ public class PushNotice  {
 		this.update_Date = update_Date;
 	}
 
+
+	public int getPushType() {
+		return PushType;
+	}
+
+
+	public void setPushType(int pushType) {
+		PushType = pushType;
+	}
+    
 }

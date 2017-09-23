@@ -7,9 +7,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.item.finance.bean.Feedback;
+import com.item.finance.bean.Member;
 import com.item.finance.bean.News;
 import com.item.finance.bean.NewsType;
+import com.item.finance.bean.PushNotice;
 
 @Component
 public class XiezhengyuDao {
@@ -81,16 +85,17 @@ session.update(nt);
 //查
 public List<NewsType> listNewsType(Map map){
 String hql = "from NewsType where 0=0";
- getNewsTypeHql(map, hql);
+hql= getNewsTypeHql(map, hql);
  System.out.println(hql);
 Session session = sessionFactory.getCurrentSession();
 List<NewsType> list= session.createQuery(hql).list();
 return list;
 }
+//获得news
 public String getNewsTypeHql(Map map,String hql){
 Session session = sessionFactory.getCurrentSession();
 String tname = (String) map.get("tname");
-if(tname!=null && tname.equals("")){
+if(tname!=null && !tname.equals("")){
 hql+= " and name like '%"+tname+"%'";
 }
 return hql;
@@ -100,5 +105,76 @@ public NewsType getNewsType(int id){
 Session session = sessionFactory.getCurrentSession();
 NewsType nt = (NewsType) session.get(NewsType.class, id);
 return nt;
+}
+/*-------------------------------------------------------------------------Push_----------------------------------------------------*/
+//增
+public void savePushNotice(PushNotice p){
+Session session = sessionFactory.getCurrentSession();
+session.save(p);
+}
+//删
+public void deletePushNotice(PushNotice nt){
+Session session = sessionFactory.getCurrentSession();
+session.delete(nt);
+}
+//改
+public void updatePushNotice(PushNotice nt){
+Session session = sessionFactory.getCurrentSession();
+session.update(nt);
+}
+//查
+public List<PushNotice> listPushNotice(Map map){
+String hql = "from PushNotice where status = 0 and  0=0 ";
+hql= getPushNoticeHql(map, hql);
+Session session = sessionFactory.getCurrentSession();
+List<PushNotice> list= session.createQuery(hql).list();
+return list;
+}
+//查
+public List<PushNotice> listPushNoticeed(Map map){
+String hql = "from PushNotice where status = 1 and  0=0 ";
+hql= getPushNoticeHql(map, hql);
+Session session = sessionFactory.getCurrentSession();
+List<PushNotice> list= session.createQuery(hql).list();
+return list;
+}
+//获得PushNotice
+public String getPushNoticeHql(Map map,String hql){
+Session session = sessionFactory.getCurrentSession();
+String tname = (String) map.get("tname");
+if(tname!=null && !tname.equals("")){
+hql+= " and title like '%"+tname+"%'";
+}
+return hql;
+}
+//PushNotice
+public PushNotice getPushNotice(String id){
+Session session = sessionFactory.getCurrentSession();
+PushNotice p = (PushNotice) session.get(PushNotice.class,id);
+return p;
+}
+/*-------------------------------------------------------------------------feedback----------------------------------------------------*/
+//查
+public List<Feedback> listFeedback(Map map){
+String hql = "from Feedback as f  where  0=0 ";
+hql= getFeedbackHql(map, hql);
+Session session = sessionFactory.getCurrentSession();
+List<Feedback> list= session.createQuery(hql).list();
+return list;
+}
+//模糊
+public String getFeedbackHql(Map map,String hql){
+Session session = sessionFactory.getCurrentSession();
+String tname = (String) map.get("tname");
+if(tname!=null && !tname.equals("")){
+hql+= " and  f.member.memberName like '%"+tname+"%'";
+}
+return hql;
+}
+//获得Member
+public Member getMember(String id){
+Session session = sessionFactory.getCurrentSession();
+Member m = (Member) session.get(Member.class, id);
+return m;
 }
 }
