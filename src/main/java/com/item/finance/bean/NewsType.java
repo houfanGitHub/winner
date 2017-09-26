@@ -219,4 +219,12 @@ public class NewsType  {
 		this.newss = newss;
 	}
 
+	@Override
+	public String toString() {
+		return "NewsType [id=" + id + ", addId=" + addId + ", addTime=" + addTime + ", cPhoto=" + cPhoto + ", info="
+				+ info + ", link=" + link + ", name=" + name + ", note=" + note + ", pageType=" + pageType + ", seoDes="
+				+ seoDes + ", seoKey=" + seoKey + ", seoTitle=" + seoTitle + ", sort=" + sort + ", supType=" + supType
+				+ ", text=" + text + ", updId=" + updId + ", updTime=" + updTime + ", newss=" + newss + "]";
+	}
+
 }

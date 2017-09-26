@@ -43,7 +43,7 @@ public class Member  {  //会员表
 	private String withdrawPassword;  //提款密码
 	private Set<AssociatedAccount> associatedAccounts = new HashSet<>();
 	private Set<BbinInfo> bbinInfos = new HashSet<>();
-	private Set<Feedback> feedbacks = new HashSet<>();
+	private Set<Feedback> feedbacks = new HashSet<>();//意见反馈
 	private Set<FinanceProductSubscribe> financeProductSubscribes = new HashSet<>();
 	private Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords = new HashSet<>();
 	private Set<FinancialPlanner> financialPlanners = new HashSet<>();

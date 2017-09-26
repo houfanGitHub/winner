@@ -19,6 +19,7 @@
 <link href="/winner/files/common.css" rel="stylesheet">
 <link href="/winner/files/jw.css" rel="stylesheet">
 
+ <script type="text/javascript" src="/winner/js/jquery-3.2.0.min.js"></script>
 <script src="/winner/files/hm.js"></script><script src="/winner/files/jquery.js"></script>
 <script type="text/javascript" src="/winner/files/layer.js"></script><link rel="stylesheet" href="/winner/files/layer.css" id="layui_layer_skinlayercss">
 <script src="/winner/files/echarts.js"></script><script data-require-id="echarts/chart/pie" src="/winner/files/pie.js" async=""></script></head>
@@ -85,16 +86,45 @@
     <div class="proMain">
     	<div class="hwpzNav">
     		<ul>
-    			<li class="first"><a class="active" href="http://pro.ying158.com/subject">固收类理财</a></li>
-    			<li class="second"><a href="http://pro.ying158.com/finance">私募基金</a></li>
-    			<li class="three"><a href="http://pro.ying158.com/oversea">海外配置</a></li>
-    			<li class="four"><a href="http://pro.ying158.com/finance">股权基金</a></li>
+    			<li class="first"><a class="active" href="/winner/itemweb/products">固收类理财</a></li>
+    			<li class="second"><a href="/winner/itemweb/products">私募基金</a></li>
+    			<li class="three"><a href="/winner/itemweb/products">海外配置</a></li>
+    			<li class="four"><a href="/winner/itemweb/products">股权基金</a></li>
     		</ul>
     	</div>
+    	
+    	   	<script type="text/javascript">
+    	
+    	$(function(){
+        	$("#all").click(function(){
+	alert("123");
+    	});
+</script>
+    	
+    	<script type="text/javascript">
+    	
+    	$(function(){
+    		/* $.ajaxSetup({
+        		async:false
+        	}); */
+        	$("#all").click(function(){
+        		alert("123");
+$post("/winner/ago/check_ago",function(data){
+	if(msg){
+		location.href="/winner/ago/listSubject_ago";
+	}else{
+		alert("查询失败");
+	}
+	
+});
+    	});
+    	});
+</script>
+    	
         <div class="sdShaix">
         	<ul>
             	<li class="first">标的类型：</li>
-               		<li><a href="http://pro.ying158.com/subject?cid=11&amp;type=11&amp;yearRate=21&amp;period=31&amp;status=41" id="11" class="select">全部</a></li>
+               		<li><a href="#" id="all" class="select">全部</a></li>
                		<li><a href="http://pro.ying158.com/subject?cid=12&amp;type=11&amp;yearRate=21&amp;period=31&amp;status=41" id="12">固收类理财</a></li>
                		<li><a href="http://pro.ying158.com/subject?cid=13&amp;type=11&amp;yearRate=21&amp;period=31&amp;status=41" id="13">车盈宝</a></li>
             </ul>

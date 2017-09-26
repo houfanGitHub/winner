@@ -12,8 +12,14 @@
 <script type="text/javascript" src="/winner/backstage/show/bootstrap.min.js"></script>
 <link href="/winner/backstage/show/ButtonColors.css" rel="stylesheet"> 
 <script type="text/javascript" src="/winner/ueditor/lang/zh-cn/zh-cn.js"></script>
-<title>咨询分类</title>
+<title>咨询管理</title>
 <style type="text/css">
+img{
+ width:auto;
+ height:auto;
+ max-width:100%;
+ max-height:100%;
+}
 .green {
 	color: #e8f0de;
 	border: solid 1px #538312;
@@ -88,16 +94,37 @@ function funtwo(){
 document.forms[0].action="/winner/listNews";
 document.forms[0].submit();
 }
+function deletes(id){
+	      $('#url').val("/winner/deleteNews/"+id);//给会话中的隐藏属性URL赋值  
+	      $('#delcfmModel').modal('show');  
+}
 function update(id){
 window.location.href="/winner/getNews/"+id;
+} 
+function urlSubmit(){  
+	   var url=$("#url").val();//获取会话中的隐藏属性URL 
+	   window.location.href=url;    
+	}  
+function upload(file){
+	var imgt = document.getElementById("imgt");
+	if(file.files && file.files[0]){
+		var reader = new FileReader();
+		reader.onload = function(evt){
+			imgt.innerHTML='<img src="' + evt.target.result + '" />';  
+		}
+		reader.readAsDataURL(file.files[0]);
+	}else{
+		/* imgt.innerHTML = 
+	    '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';  */
+	return;
+	}
 }
-
 </script>
 </head>
 <body>
 <form  method="post">
 <table class="table table-bordered table-hover" style='table-layout:fixed;' border="1">
-<center><span><b>咨询标题:</b><input type="text"  name="stitle"  value="${stitle}" /></span>&nbsp&nbsp&nbsp&nbsp<span> <b>咨询类别:</b><input type="text" name="stname"  value="${stname}" /></span><span><input type="button" class="green" value="搜索" onclick="funtwo();"></span><div id="imgt"></div></center>
+<center><span><b>咨询标题:</b><input type="text"  name="stitle"  value="${stitle}" /></span>&nbsp&nbsp&nbsp&nbsp<span> <b>咨询类别:</b><input type="text" name="stname"  value="${stname}" /></span><span><input type="button" class="green" value="搜索" onclick="funtwo();"></span></center>
 </form>
 <div align="right"><a data-toggle="modal" href="#example" onclick="fun();">添加 </a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 <tr style="height:8px">
@@ -110,9 +137,10 @@ window.location.href="/winner/getNews/"+id;
 <td>${n.id }</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.title }</td> <td>${n.newsType.name}</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.subTitle}</td>
 <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.info }</td><td>${n.author}</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><div style="width: 20px;height: 15px">${n.text}</div></td>
 <td>${n.audit}</td><td>${n.placTop}</td><td>${n.recommend }</td><td>${n.addTime }</td><td>${n.addId}</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.label }</td>
-<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.link}</td><td>${n.clickNumber }</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><div style="width: 200px;height:80px;"><img src= "${n.cPhoto}" /></div></td><td>${n.source}</td>
+<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.link}</td><td>${n.clickNumber }</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><div style="width: 200px;height:80px;"><img src= "/winner/${n.cPhoto}" /></div></td><td>${n.source}</td>
 <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.filelink }</td><td>${n.seoDes}</td><td>${n.seoKey }</td><td>${n.seoTitle}</td><td>${n.updId}</td><td>${n.updTime}</td> 
-<td><button id="up" class="blue" data-toggle="modal" data-target="#example2"  onclick="update(${n.id});">修改</button><button class="red" data-toggle="modal">删除</button></td>
+<td><input type="button" class="blue" onclick="update(${n.id})" value="修改" />
+<input type="button" class="red" data-toggle="modal" onclick="deletes(${n.id});" value="删除"></td>
 </tr>
 </c:forEach>
 </table>
@@ -128,13 +156,13 @@ window.location.href="/winner/getNews/"+id;
 <form name="form1" action="saveNews" method="post" enctype="multipart/form-data" >
 <table>
 <tr>
-<td><font color="whitesmoke">标 题:</font><td><input type="text"  name="title"  /><td><font color="whitesmoke">副标题:</font></td><td><input type="text"  name="subTitle"  /></td>
+<td><font color="whitesmoke">标 题:</font></td><td><input type="text"  name="title"  /></td><td><font color="whitesmoke">副标题:</font></td><td><input type="text"  name="subTitle"  /></td><td colspan="2" rowspan="2" style="width: 200px;height: 55px;" id="imgt"><img src="" /></td>
 </tr>
  <tr> 
- <td><font color="whitesmoke">作者:</font><td><input type="text"   name="author"   /><td><font color="whitesmoke">简 介:</font></td><td><input type="text"   name="info"  /></td> 
+ <td><font color="whitesmoke">作者:</font><td><input type="text"   name="author"   /><td><font color="whitesmoke">简 介:</font></td><td><input type="text"   name="info"  /></td>
  </tr>
 <tr>
-<td><font color="whitesmoke">来源:</font><td><input type="text" name="source" /><td><font color="whitesmoke">标 签:</font></td><td><input type="text"  name="label"  /></td><td><font color="whitesmoke">封面图片 :</font></td><td><input type="file" name="file" /></td>
+<td><font color="whitesmoke">来源:</font><td><input type="text" name="source" /><td><font color="whitesmoke">标 签:</font></td><td><input type="text"  name="label"  /></td><td><font color="whitesmoke">封面图片 :</font></td><td><input type="file" name="file" onchange="upload(this);" /></td>
 </tr>
  <tr>
  <td><font color="whitesmoke">链接地址:</font><td><input type="text" name="link" /><td><font color="whitesmoke">附件地址:</font></td><td><input type="text" name="filelink" /></td><td><font color="whitesmoke">咨询类型:</font></td><td><select name="tid"><c:forEach items="${listt}" var="nt"><option value="${nt.id}">${nt.name}</option></c:forEach></select></td>
@@ -158,5 +186,23 @@ window.location.href="/winner/getNews/"+id;
 </div>
 </div>
 </div>
+<div class="modal fade" id="delcfmModel">  
+  <div class="modal-dialog">  
+    <div class="modal-content message_align">  
+      <div class="modal-header">  
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>  
+        <h4 class="modal-title">提示信息</h4>  
+      </div>  
+      <div class="modal-body">  
+        <p>您确认要删除吗？</p>  
+      </div>  
+      <div class="modal-footer">  
+         <input type="hidden" id="url"/>  
+         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>  
+         <a  onclick="urlSubmit()" class="btn btn-success" data-dismiss="modal">确定</a>  
+      </div>
+     </div><!-- /.modal-content -->  
+  </div><!-- /.modal-dialog -->  
+</div><!-- /.modal -->  
 </body>
 </html>
