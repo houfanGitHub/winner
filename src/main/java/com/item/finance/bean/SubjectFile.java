@@ -1,7 +1,9 @@
 package com.item.finance.bean;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigInteger;
 import java.util.Date;
 
@@ -14,11 +16,11 @@ import java.util.Date;
 @Table(name="subject_file")
 public class SubjectFile  {
 	private int id;
-	private Date createDate;
+	private String createDate;
 	private String fileName;
-	private String originalName;
+	private String originalName;//文件名
 	private String path;
-	private Date updateDate;
+	private String updateDate;
 	private SubjectFolder subjectFolder;
 
 	public SubjectFile() {
@@ -26,7 +28,7 @@ public class SubjectFile  {
 
 
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public int getId() {
 		return id;
 	}
@@ -37,17 +39,15 @@ public class SubjectFile  {
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_date")
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return this.createDate;
 	}
 
 
-
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
+	public void setCreateDate(String string) {
+		this.createDate = string;
 	}
 
 
@@ -81,13 +81,13 @@ public class SubjectFile  {
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="update_date")
-	public Date getUpdateDate() {
+	public String getUpdateDate() {
 		return this.updateDate;
 	}
 
-	public void setUpdateDate(Date updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 

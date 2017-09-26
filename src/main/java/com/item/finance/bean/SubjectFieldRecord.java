@@ -13,12 +13,12 @@ import java.util.Date;
 @Entity
 @Table(name="subject_field_record")
 public class SubjectFieldRecord  {
-	private String id;
+	private int id;
 	private Date createDate;
 	private byte delflag;
-	private BigInteger fieldId;
+	private int fieldId;
 	private String fieldValue;
-	private Date updateDate;
+	private String updateDate;
 	private Subject subject;
 
 	public SubjectFieldRecord() {
@@ -27,11 +27,12 @@ public class SubjectFieldRecord  {
 
 	@Id
 	@Column(unique=true, nullable=false)
-	public String getId() {
+	@GeneratedValue
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -57,11 +58,11 @@ public class SubjectFieldRecord  {
 
 
 	@Column(name="field_id")
-	public BigInteger getFieldId() {
+	public int getFieldId() {
 		return this.fieldId;
 	}
 
-	public void setFieldId(BigInteger fieldId) {
+	public void setFieldId(int fieldId) {
 		this.fieldId = fieldId;
 	}
 
@@ -76,13 +77,13 @@ public class SubjectFieldRecord  {
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
+//	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="update_date", nullable=false)
-	public Date getUpdateDate() {
+	public String getUpdateDate() {
 		return this.updateDate;
 	}
 
-	public void setUpdateDate(Date updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 

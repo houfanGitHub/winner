@@ -12,6 +12,7 @@ import com.item.finance.bean.FinanceProductFunds;
 import com.item.finance.bean.Subject;
 import com.item.finance.bean.SubjectBbinPurchaseRecord;
 import com.item.finance.bean.SubjectFile;
+import com.item.finance.bean.SubjectFolder;
 
 @Component
 public class Yx_Subject_Dao {
@@ -36,6 +37,11 @@ public class Yx_Subject_Dao {
 		Session session=getSession();
 		Subject subject=(Subject)session.get(Subject.class, id);
 	   return subject;
+	}
+	public SubjectFile selectSubjectFile(int id){
+		Session session=getSession();
+		SubjectFile subjectFile=(SubjectFile)session.get(SubjectFile.class, id);
+	   return subjectFile;
 	}
 	public List<Subject> listSubject(Map map){
 		Session session=getSession();
@@ -77,8 +83,13 @@ public class Yx_Subject_Dao {
     	session.update(subject);
     }
     //修改上传
-    public void updateSubject(SubjectFile subjectFile){
+    public void updateSubjectFile(SubjectFile subjectFile){
     	Session session=getSession();
     	session.update(subjectFile);
+    }
+    //添加SubjectFolder表
+    public void saveSubjectFolder(SubjectFolder subjectFolder){
+    	Session session=getSession();
+    	session.save(subjectFolder);
     }
 }

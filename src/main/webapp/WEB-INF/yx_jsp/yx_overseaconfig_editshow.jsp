@@ -43,7 +43,8 @@ $(function(){
 
 
 <p><p><p><h4>▶&nbsp;海外配置编辑</h4>
-<form action="/winner/yx3/updateOverseaConfig/"  method="post" enctype="multipart/form-data">
+<form action="/winner/yx3/updateOverseaConfig" enctype="multipart/form-data" method="post">
+<input type="hidden" name="id" value="${overseaConfig.id}"/>
 <table width="100%">
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标题:</td><td><input type="text"name="title" class="form-control" size="100" align="top"  value="${overseaConfig.title}"></td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子标题:</td><td><input type="text" name="childTitle" value="${overseaConfig.childTitle}" class="form-control"></td></tr>
@@ -58,10 +59,10 @@ $(function(){
 <option value="3">还款完成</option>
 
 </select>
-</td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始时间:</td><td><input type="text" name="startDate" value="${overseaConfig.startDate}" class="datainp" id="dateinfo"  class="form-control"></td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;结束时间:</td><td><input type="text" name="endDate" value="${overseaConfig.endDate}" class="form-control"></td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图标:</td><td><input type="file" name="overseaIcon" value="${overseaConfig.overseaIcon}" class="form-control"></td></tr>
+</td></tr>                                                            
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始时间:</td><td><input type="date" name="startDate" value="${overseaConfig.startDate}"  class="form-control"></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;结束时间:</td><td><input type="date" name="endDate" value="${overseaConfig.endDate}"  class="form-control"></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图标:</td><td><input type="file" name="fileopload" class="form-control" required="required">${overseaConfig.overseaIcon}</td></tr>
 <tr><td colspan="2">
 </td></tr>
 </table>

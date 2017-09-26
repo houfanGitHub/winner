@@ -1,7 +1,9 @@
 package com.item.finance.bean;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigInteger;
 import java.util.Date;
 
@@ -27,8 +29,10 @@ public class OverseaConfigSubscribe  {
 	}
 
 
+	/*@Id
+	@Column(unique=true, nullable=false)*/
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public int getId() {
 		return this.id;
 	}

@@ -46,67 +46,65 @@ private Yx_OverseaConfig_Services yx_OverseaConfig_Services;
 	//修改前查询
 	@RequestMapping("/listEdit/{id}")
 	public String listEdit(@PathVariable("id")int id,HttpSession session){
-	//	SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd");
+     SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd");
 		OverseaConfig overseaConfig=yx_OverseaConfig_Services.selectOverseaConfig(id);
+		//overseaConfig.setStartDate(sdf.format(overseaConfig.getStartDate()));
+		//String ss=sdf.format(overseaConfig.getStartDate());
 		session.setAttribute("overseaConfig",overseaConfig);
 		return "WEB-INF/yx_jsp/yx_overseaconfig_editshow";
 	}
 	//修改
 	@RequestMapping("/updateOverseaConfig")
-	public String updateOverseaConfig(
-			OverseaConfig overseaConfig,HttpServletRequest request,HttpSession session) throws IOException{
-		this.yx_OverseaConfig_Services.updateOverseaConfig(overseaConfig);
-		return "redirect:/yx3/list3";
-	}
-/*	@RequestMapping("/updateOverseaConfig")
-	public String updateOverseaConfig(@RequestParam("overseaIcon")MultipartFile file_name,
-			OverseaConfig overseaConfig,HttpServletRequest request,HttpSession session) throws IOException{
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmssssss");
-    	System.out.println("文件名"+file_name.getOriginalFilename());
-    	session.setAttribute("filename",file_name.getOriginalFilename());
-    	String type=file_name.getOriginalFilename().substring(file_name.getOriginalFilename().indexOf("."));
-		Date date=new Date();
+	public String updateOverseaConfig(OverseaConfig overseaConfig,
+			@RequestParam("fileopload")MultipartFile file_name,
+			HttpServletRequest request,HttpSession session) throws IOException{
+		//System.out.println(overseaConfig.getStartDate()+","+overseaConfig.getEndDate()+","+overseaConfig.getId()+overseaConfig.getChildTitle());
+		SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		overseaConfig.setAddTime(sdf2.format(new Date()));
+		overseaConfig.setUpdTime(sdf2.format(new Date()));
 		
-		SimpleDateFormat sdf2=new SimpleDateFormat("yyyyMMdd");
-		//System.out.println(sdf.format(date));
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmssssss");
+    	session.setAttribute("fileopload",file_name.getOriginalFilename());
+    	String type=file_name.getOriginalFilename().substring(file_name.getOriginalFilename().indexOf("."));
+    	Date date=new Date();
 		String filenameTime=sdf.format(date)+type;
-    	String path=request.getRealPath("/upload/");//String path=request.getSession().getServletContext().getRealPath("/upload/");
+    	String path=request.getRealPath("/upload/");
     	File newfile=new File(path,filenameTime);
     	if(!newfile.exists()){
 			newfile.createNewFile();
 		}
-		file_name.transferTo(newfile);
-		session.setAttribute("filenameTime",filenameTime);
-		session.setAttribute("path",path);
+    	file_name.transferTo(newfile);
 		overseaConfig.setOverseaIcon(filenameTime);
+		
 		this.yx_OverseaConfig_Services.updateOverseaConfig(overseaConfig);
 		return "redirect:/yx3/list3";
-	}*/
+	}
+
 	@RequestMapping("/toOverseaConfig")
 	public String toOverseaConfig(){
 		return "WEB-INF/yx_jsp/yx_overseaconfig_add";
 	}
 	
 	@RequestMapping("/saveOverseaConfig")
-	public String saveOverseaConfig(@RequestParam("overseaIcon")MultipartFile overseaIcon,
-			OverseaConfig overseaConfig,HttpServletRequest request,HttpSession session) throws IOException{
-		System.out.println(overseaIcon);
+	public String saveOverseaConfig(OverseaConfig overseaConfig,@RequestParam("fileopload")MultipartFile fileopload,
+			HttpServletRequest request,HttpSession session) throws IOException{
+		SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		overseaConfig.setAddTime(sdf2.format(new Date()));
+		overseaConfig.setUpdTime(sdf2.format(new Date()));
+		//System.out.println(overseaConfig.getStartDate()+","+overseaConfig.getEndDate()+","+overseaConfig.getId()+overseaConfig.getChildTitle());
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmssssss");
-    	System.out.println("文件名"+overseaIcon.getOriginalFilename());
-    	session.setAttribute("filename",overseaIcon.getOriginalFilename());
-    	String type=overseaIcon.getOriginalFilename().substring(overseaIcon.getOriginalFilename().indexOf("."));
-		Date date=new Date();
-		SimpleDateFormat sdf2=new SimpleDateFormat("yyyyMMdd");
-		//System.out.println(sdf.format(date));
+    	session.setAttribute("fileopload",fileopload.getOriginalFilename());
+    	String type=fileopload.getOriginalFilename().substring(fileopload.getOriginalFilename().indexOf("."));
+    	Date date=new Date();
 		String filenameTime=sdf.format(date)+type;
-    	String path=request.getRealPath("/upload/");//String path=request.getSession().getServletContext().getRealPath("/upload/");
+    	String path=request.getRealPath("/upload/");
     	File newfile=new File(path,filenameTime);
     	if(!newfile.exists()){
 			newfile.createNewFile();
 		}
-    	overseaIcon.transferTo(newfile);
-		System.out.println(path);
+    	fileopload.transferTo(newfile);
 		overseaConfig.setOverseaIcon(filenameTime);
+		//System.out.println(overseaConfig.getEndDate()+overseaConfig.getStartDate());
 		this.yx_OverseaConfig_Services.saveOverseaConfig(overseaConfig);
 		return "redirect:/yx3/list3";
 		

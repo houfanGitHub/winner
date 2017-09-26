@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-       <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,11 +33,11 @@ $(function(){
 
 <p><p><p><h4>▶&nbsp;海外配置</h4><hr>
 
-<form action="/winner/yx3/saveOverseaConfig" method="post" enctype="multipart/form-data">
-<table border="0" width="100%">
+<form action="/winner/yx3/saveOverseaConfig" enctype="multipart/form-data" method="post" >
+ <table border="0" width="100%">
 <tr>
 <td width="15%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名称:</td>
-<td width="35%"><input type="text" name="name"  class="form-control"placeholder="请输入文本"></td><td colspan="2"></td>
+<td width="35%"><input type="text" name="title"  class="form-control"placeholder="请输入文本"></td><td colspan="2"></td>
 </tr>
 <tr>
 <td width="15%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子标题:</td>
@@ -66,28 +65,28 @@ $(function(){
 </select>
 </td><td colspan="2"></td>
 </tr>
-<tr>
+  <tr>
 <td width="15%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始时间:</td>
 <td width="35%">
-<input type="date" name="startDate" class="form-control" placeholder="请输入文本">
+<input type="date" name="startDate"  class="form-control">
 </td><td colspan="2">
 </td></tr>
 <tr>
 <td width="15%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;结束时间:</td>
 <td width="35%">
-<input type="date" name="endDate" class="form-control" placeholder="请输入文本">
+<input type="date" name="endDate"  class="form-control">
 </td><td colspan="2">
-</td></tr>
-<tr>
+</td></tr> 
+<tr> 
 <td width="15%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图标:</td>
 <td width="35%">
-<input type="file" name="overseaIcon"  class="form-control">
+<input type="file" name="fileopload"  class="form-control" required="required">
 </td><td colspan="2">
 </td></tr>
 </table>
 <div style="width:100%;background-color:#EDE7D1;">
 		<input type="submit"   value="" style="width:80px;height:33px;background:url(img/pn_reply.png); border:none;"/>
-	</div><textarea id="myUeditor" name="productTopic" style="height:250px;"></textarea>
+	</div><textarea id="myUeditor" name="content" style="height:250px;"></textarea>
 <div align="center"><input type="submit" class="btn btn-primary" id="btn1" value="保存" onclick="return sub();"></div>
 </form>
 

@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
@@ -28,17 +29,17 @@ public class OverseaConfig implements Serializable {/**
 //海外配置订阅表
 	
 	private int id;//id
-	private Date addTime;//添加时间
+	private String addTime;//添加时间
 	private String childTitle;//子标题
 	private String content;//内容
 	private int sortColum;//排序值
 	private String description;//描述
-	private Date endDate;//结束时间
+	private String endDate;//结束时间
 	private String overseaIcon;//图标
-	private Date startDate;//开始时间
+	private String startDate;//开始时间
 	private int status;//状态
 	private String title;//标题
-	private Date updTime;//修改时间
+	private String updTime;//修改时间
 	private String userType;//用户群体
 	private Set<OverseaConfigSubscribe> overseaConfigSubscribes = new HashSet<>();//海外配置订阅表
 
@@ -56,7 +57,8 @@ public class OverseaConfig implements Serializable {/**
 
 
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
+	//@Column(unique=true, nullable=false)
 	public int getId() {
 		return this.id;
 	}
@@ -65,12 +67,12 @@ public class OverseaConfig implements Serializable {/**
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
-	public Date getAddTime() {
+	//@Temporal(TemporalType.TIMESTAMP)
+	public String getAddTime() {
 		return this.addTime;
 	}
 
-	public void setAddTime(Date addTime) {
+	public void setAddTime(String addTime) {
 		this.addTime = addTime;
 	}
 
@@ -105,13 +107,13 @@ public class OverseaConfig implements Serializable {/**
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="end_date")
-	public Date getEndDate() {
+	public String getEndDate() {
 		return this.endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 
@@ -126,13 +128,13 @@ public class OverseaConfig implements Serializable {/**
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="start_date")
-	public Date getStartDate() {
+	public String getStartDate() {
 		return this.startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
@@ -156,12 +158,12 @@ public class OverseaConfig implements Serializable {/**
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
-	public Date getUpdTime() {
+	//@Temporal(TemporalType.TIMESTAMP)
+	public String getUpdTime() {
 		return this.updTime;
 	}
 
-	public void setUpdTime(Date updTime) {
+	public void setUpdTime(String updTime) {
 		this.updTime = updTime;
 	}
 

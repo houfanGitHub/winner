@@ -46,20 +46,24 @@ public class Yx_FinanceProductFunds_Dao {
 		}
 		return hql;
 	}
+	//修改前查询
 	public FinanceProductFunds listEdit(int id){
 		Session session=getSession();
 		FinanceProductFunds fs=(FinanceProductFunds)session.get(FinanceProductFunds.class, id);
 		return fs;
 	}
+	//未签署里面的超链接查看
 	public FinanceProductSubscribe listchakan(int id){
 		Session session=getSession();
 		FinanceProductSubscribe fe=(FinanceProductSubscribe)session.get(FinanceProductSubscribe.class, id);
 		return fe;
 	}
+	//私募股权类添加
 	public void saveFinanceProductFunds(FinanceProductFunds financeProductFunds){
 		Session session=getSession();
 		session.save(financeProductFunds);
 	}
+	//未签署查询
 	public List<FinanceProductSubscribe> listWdl(int id){
 		Session session=getSession();
 		String hql="from FinanceProductSubscribe where product_id="+id;
@@ -82,6 +86,16 @@ public class Yx_FinanceProductFunds_Dao {
 	public void updateqssb(FinanceProductSubscribe fe){
 		Session session=getSession();
 		session.update(fe);
+	}
+	//私募股权类修改
+	public void updateFinanceProductFunds(FinanceProductFunds financeProductFunds){
+		Session session=getSession();
+		session.update(financeProductFunds);
+	}
+	//签署合同
+	public void saveSign(FinanceProductSubscribe financeProductSubscribe){
+		Session session=getSession();
+		session.save(financeProductSubscribe);
 	}
 
 }

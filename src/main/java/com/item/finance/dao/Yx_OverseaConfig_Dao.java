@@ -44,7 +44,7 @@ public class Yx_OverseaConfig_Dao {
 	//保存
 	public void saveOverseaConfig(OverseaConfig overseaConfig){
 		Session session=getSession();
-		session.update(overseaConfig);
+		session.save(overseaConfig);
 	}
 
 }

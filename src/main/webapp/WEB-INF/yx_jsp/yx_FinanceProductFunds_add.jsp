@@ -95,7 +95,7 @@
 <td width="35%"><input type="text" name="productManagerDesc"class="form-control" placeholder="请输入文本">
 </td><td></td></tr>
 <tr><td width="15%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基金经理头像:</td>
-<td width="35%"><input type="file" name="productManagerPic"class="form-control" placeholder="请输入文本">
+<td width="35%"><input type="file" name="file_name"class="form-control" placeholder="请输入文本">
 </td><td></td></tr>
 </table>
 

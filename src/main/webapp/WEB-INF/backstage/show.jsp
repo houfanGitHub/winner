@@ -270,6 +270,7 @@
 						<li><a href="#" class="dropdown-toggle"><i
 								class="icon-desktop"></i><span class="menu-text"> 理财管理 </span><b
 								class="arrow icon-angle-down"></b></a>
+							<!-- 产品中心-------------------------------------------------------------------- -->
 							<ul class="submenu" id="Sort_link_0">
 								<li class="home" style="height: 36px;"><a
 									href="javascript:void(0)" name="/winner/yx/list" title="固收类"
@@ -281,8 +282,8 @@
 								<li class="home" style="height: 36px;"><a
 									href="javascript:void(0)" name="/winner/yx3/list3" title="海外配置"
 									class="iframeurl"><i class="icon-double-angle-right"></i>海外配置</a></li>
-
 							</ul></li>
+							<!-- --------------------------------------------------------------------------------- -->
 						<li><a href="http://www.erdangjiade.com/"
 							class="dropdown-toggle"><i class="icon-picture "></i><span
 								class="menu-text"> 钱包管理 </span><b class="arrow icon-angle-down"></b></a>

@@ -7,18 +7,22 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.item.finance.bean.Member;
 import com.item.finance.bean.Subject;
 import com.item.finance.bean.SubjectBbinPurchaseRecord;
 import com.item.finance.bean.SubjectFile;
+import com.item.finance.bean.SubjectFolder;
 import com.item.finance.services.Yx_Subject_Service;
 
 
@@ -48,21 +52,26 @@ public class Yx_Subject_Controller {
     public String toSubject(){
     	return "WEB-INF/yx_jsp/yx_subject_add";
     }
-    
+    //添加
     @RequestMapping("/saveSubject")
 public String saveSubject(Subject subject,@RequestParam("file_name")
-MultipartFile file_name,HttpServletRequest request,HttpSession session,SubjectFile subjectFile)throws IOException{
-    	//System.out.println(subject.getName()+","+subject.getComment()+","+subject.getProjectDetails()+","+subject.getSafetyControl());
+MultipartFile file_name,HttpServletRequest request,HttpSession session,SubjectFile subjectFile
+,SubjectFolder subjectFolder)throws IOException{
     	SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmssssss");
-    	subject.setCreateDate(new Date());
-    	subject.setUpdateDate(new Date());
+    	SimpleDateFormat sd2=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    	subjectFolder.setCreateDate(sd2.format(new Date()));
+    	subjectFolder.setUpdateDate(sd2.format(new Date()));
+    	subject.setCreateDate(sd2.format(new Date()));
+    	subject.setUpdateDate(sd2.format(new Date()));
     	subject.setSerialNumber("YJ"+sdf.format(new Date()));
+    	subject.setSubjectFolder(subjectFolder);//
+    	subjectFile.setSubjectFolder(subjectFolder);//
+    	this.yx_Subject_Service.saveSubjectFolder(subjectFolder);
     	this.yx_Subject_Service.saveSubject(subject);
     	System.out.println("文件名"+file_name.getOriginalFilename());
     	session.setAttribute("filename",file_name.getOriginalFilename());
     	String type=file_name.getOriginalFilename().substring(file_name.getOriginalFilename().indexOf("."));
 		Date date=new Date();
-		
 		SimpleDateFormat sdf2=new SimpleDateFormat("yyyyMMdd");
 		//System.out.println(sdf.format(date));
 		String filenameTime=sdf.format(date)+type;
@@ -77,9 +86,10 @@ MultipartFile file_name,HttpServletRequest request,HttpSession session,SubjectFi
 		//System.out.println(subjectFile.getFileName()+","+subjectFile.getPath());
 		subjectFile.setFileName(filenameTime);
 		subjectFile.setPath(path+sdf2.format(date));
-		subjectFile.setCreateDate(new Date());
+		subjectFile.setOriginalName(filenameTime+path);
+		subjectFile.setCreateDate(sd2.format(new Date()));
+		subjectFile.setUpdateDate(sd2.format(new Date()));
 		this.yx_Subject_Service.saveSubjectFile(subjectFile);
-    	
 	return "redirect:/yx/list";
 }
 
@@ -104,63 +114,44 @@ MultipartFile file_name,HttpServletRequest request,HttpSession session,SubjectFi
     	Map map=new HashMap<>();
     	Subject subject=this.yx_Subject_Service.selectGetById(id);
     	List<Subject> list=yx_Subject_Service.list(map);
+    	//SubjectFile subjectFile=this.yx_Subject_Service.selectSubjectFile(id2);
     	session.setAttribute("subject", subject);
+    	//session.setAttribute("subjectFile", subjectFile);
 		session.setAttribute("list", list);
 	  return "WEB-INF/yx_jsp/yx_subject_editshow";
   }
     //修改
-    @RequestMapping("/updateSubject/{id}")
-    public String updateSubject(@PathVariable("id")int id,
-    @RequestParam("file_name")MultipartFile file_name,
-    HttpServletRequest request,HttpSession session,SubjectFile subjectFile) throws IOException{
-    	Subject subject2=this.yx_Subject_Service.selectGetById(id);
-    	yx_Subject_Service.updateSubject(subject2);
-    	session.setAttribute("filename",file_name.getOriginalFilename());
-    	String type=file_name.getOriginalFilename().substring(file_name.getOriginalFilename().indexOf("."));
-		Date date=new Date();
+    @RequestMapping("/updateSubject")//@RequestParam("file_name")MultipartFile file_name,
+    public String updateSubject(Subject subject,
+    HttpServletRequest request,HttpSession session,SubjectFile subjectFile,SubjectFolder subjectFolder
+    		) throws IOException{
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmssssss");
 		SimpleDateFormat sdf2=new SimpleDateFormat("yyyyMMdd");
-		//System.out.println(sdf.format(date));
-		String filenameTime=sdf.format(date)+type;
-    	String path=request.getRealPath("/upload/");//String path=request.getSession().getServletContext().getRealPath("/upload/");
-    	File newfile=new File(path,filenameTime);
-    	if(!newfile.exists()){
+		SimpleDateFormat sdf3=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    	subjectFolder.setCreateDate(sdf3.format(new Date()));
+    	subjectFolder.setUpdateDate(sdf3.format(new Date()));
+    	subject.setCreateDate(sdf3.format(new Date()));
+    	subject.setUpdateDate(sdf3.format(new Date()));
+    	yx_Subject_Service.updateSubject(subject);
+    	//session.setAttribute("filename",file_name.getOriginalFilename());
+    	//String type=file_name.getOriginalFilename().substring(file_name.getOriginalFilename().indexOf("."));
+		Date date=new Date();
+
+		//String filenameTime=sdf.format(date)+type;
+    	String path=request.getRealPath("/upload/");
+    //File newfile=new File(path,filenameTime);
+    /*	if(!newfile.exists()){
 			newfile.createNewFile();
 		}
-		file_name.transferTo(newfile);
+		file_name.transferTo(newfile);*/
+		/*subjectFile.setCreateDate(sdf3.format(new Date()));
+		subjectFile.setUpdateDate(sdf3.format(new Date()));
 		subjectFile.setPath(path+sdf2.format(date));
-		subjectFile.setFileName(filenameTime);
-    	System.out.println("id:"+id+",产品速览"+subject2.getComment()+",项目详情"+subject2.getProjectDetails()+",安全保障"+subject2.getSafetyControl()+"名字:"+subject2.getName());
-    	System.out.println("文件名"+file_name.getOriginalFilename());
-    	yx_Subject_Service.updateSubjectFile(subjectFile);
+		subjectFile.setFileName(filenameTime);*/
+    	//yx_Subject_Service.updateSubjectFile(subjectFile);
     	return "redirect:/yx/list";
     }
     
-    /*  @RequestMapping("/uploadFile")
-    public String uploadFile(@RequestParam("file_name")
-    MultipartFile file_name,HttpServletRequest request,HttpSession session,SubjectFile subjectFile)throws IOException{
-    	System.out.println("文件名"+file_name.getOriginalFilename());
-    	session.setAttribute("filename",file_name.getOriginalFilename());
-    	String type=file_name.getOriginalFilename().substring(file_name.getOriginalFilename().indexOf("."));
-		Date date=new Date();
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmssssss");
-		SimpleDateFormat sdf2=new SimpleDateFormat("yyyyMMdd");
-		//System.out.println(sdf.format(date));
-		String filenameTime=sdf.format(date)+type;
-    	String path=request.getRealPath("/upload/");//String path=request.getSession().getServletContext().getRealPath("/upload/");
-    	File newfile=new File(path,filenameTime);
-    	if(!newfile.exists()){
-			newfile.createNewFile();
-		}
-		file_name.transferTo(newfile);
-		session.setAttribute("filenameTime",filenameTime);
-		session.setAttribute("path",path);
-		//System.out.println(subjectFile.getFileName()+","+subjectFile.getPath());
-		subjectFile.setFileName(filenameTime);
-		subjectFile.setPath(path+sdf2.format(date));
-		subjectFile.setCreateDate(new Date());
-		this.yx_Subject_Service.saveSubjectFile(subjectFile);
-    	return "redirect:/yx/list";
-    }*/
+    
 }    
     

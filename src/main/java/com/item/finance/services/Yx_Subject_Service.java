@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.item.finance.bean.Subject;
 import com.item.finance.bean.SubjectBbinPurchaseRecord;
 import com.item.finance.bean.SubjectFile;
+import com.item.finance.bean.SubjectFolder;
 import com.item.finance.dao.Yx_Subject_Dao;
 @Service
 @Transactional
@@ -38,6 +39,10 @@ public class Yx_Subject_Service implements ItemServiceImpl<Subject> {
     public Subject selectGetById(int id){
     	return this.yx_Subject_Dao.selectSubject(id);
     } 
+    //修改上传前的查询
+    public SubjectFile selectSubjectFile(int id){
+    	return this.yx_Subject_Dao.selectSubjectFile(id);
+    } 
    
     public void delete(Subject subject){
     	this.yx_Subject_Dao.deleteSubject(subject);
@@ -48,8 +53,15 @@ public class Yx_Subject_Service implements ItemServiceImpl<Subject> {
     }
     //修改上传
     public void updateSubjectFile(SubjectFile subjectFile){
-    	this.yx_Subject_Dao.updateSubject(subjectFile);
+    	this.yx_Subject_Dao.updateSubjectFile(subjectFile);
     }
+    //添加SubjectFolder表
+    public void saveSubjectFolder(SubjectFolder subjectFolder){
+    	this.yx_Subject_Dao.saveSubjectFolder(subjectFolder);
+    }
+    
+    
+    
     
 	@Override
 	public List<Subject> list() {
