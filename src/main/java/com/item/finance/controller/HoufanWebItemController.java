@@ -1,12 +1,14 @@
 package com.item.finance.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -15,6 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngineConfiguration;
+import org.activiti.engine.ProcessEngines;
+import org.activiti.engine.repository.ProcessDefinition;
+import org.activiti.engine.runtime.ProcessInstance;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
@@ -37,6 +44,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.config.AlipayConfig;
+import com.item.finance.avtivity.DeoploymentProcessDefinition;
 import com.item.finance.bean.Member;
 import com.item.finance.bean.MemberAccount;
 import com.item.finance.bean.MemberBankcard;
@@ -67,6 +75,8 @@ public class HoufanWebItemController {
 	private MemberDepositRecordService memberDepositRecordService;
 	@Autowired
 	private MemberAccountService memberAccountService;
+	@Autowired
+	private DeoploymentProcessDefinition deoploymentProcessDefinition;
 
 	//充值
 	@RequestMapping("/accountRecharge")
@@ -195,13 +205,13 @@ public class HoufanWebItemController {
 		*/
 		if(signVerified) {//验证成功
 			//商户订单号
-			String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
+//			String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
 		
 			//支付宝交易号
-			String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
+//			String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
 		
 			//交易状态
-			String trade_status = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"),"UTF-8");
+			String trade_status = new String(request.getParameter("trade_status").getBytes("UTF-8"),"UTF-8");
 			
 			if(trade_status.equals("TRADE_FINISHED")){
 				//判断该笔订单是否在商户网站中已经做过处理
@@ -273,6 +283,123 @@ public class HoufanWebItemController {
 	@RequestMapping("/withdraw")
 	public String withdraw(){
 		return "WEB-INF/myself/withdrawals";
+	}
+	
+	//设置提款密码
+	@RequestMapping("/insertDrawMoney")
+	@ResponseBody
+	public boolean insertDrawMoney(String password,HttpSession session){
+		//获取当前用户信息
+		Member member = (Member)session.getAttribute("memberinfo");
+		//添加提款密码
+		member.setWithdrawPassword(password);
+		//修改当前用用户信息
+		try {
+			memberService.update(member);
+			System.out.println("添加用户提款密码成功");
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			//添加用户提款密码失败
+			System.out.println("添加用户提款密码失败");
+		}
+		return false;
+	}
+	
+	//提款申请
+	@RequestMapping("/drawMoneyApplyFor")
+	@ResponseBody
+	public String drawMoneyApplyFor(String withdrawAmount,String withdrawPW,String bankCard,HttpSession session){
+		System.out.println("提款申请>>>withdrawAmount:"+withdrawAmount+",withdrawPW:"+withdrawPW+",bankCard:"+bankCard);
+		//查询提款密码是否正确
+		Member member = (Member) session.getAttribute("memberinfo");
+		if(withdrawPW.equals(member.getWithdrawPassword())){
+			try {
+				//----------------activiti工作流
+				//部署流程定义
+				ProcessEngine processEngine = ProcessEngineConfiguration.createProcessEngineConfigurationFromResource("activiti.cfg.xml").buildProcessEngine();
+//			    ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+			    System.out.println("部署流程定义:processEngine = "+ processEngine);
+			    deoploymentProcessDefinition.getDeployment(processEngine);
+			    //启动流程实例
+			    ProcessInstance pi = deoploymentProcessDefinition.startProcessInstance(processEngine,member.getMemberName());
+			    //查询任务通过流程实例id 
+			   String id = deoploymentProcessDefinition.findHistoryTask(processEngine, pi.getId());
+			    //设置流程变量
+			    if(id!=null){
+			    	deoploymentProcessDefinition.setProcessVariables(processEngine,id, member.getMemberName(), withdrawAmount, bankCard);
+			    }
+			    return "yes";
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "提款申请失败";
+			}
+		}else{
+			System.out.println("提款密码错误");
+			return "提款密码错误";
+		}
+	}
+	
+	//查看历史任务
+	@RequestMapping("/selectFlowState")
+	@ResponseBody
+	public List<Map<String,String>> selectFlowState(HttpSession session){
+		Member member = (Member) session.getAttribute("memberinfo");
+		ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+		//查询已完成的历史任务
+		List<String> list = deoploymentProcessDefinition.historyTaskList(processEngine, member.getMemberName());
+		//通过id 查询流程变量
+		List<Map<String,String>> listMaps = deoploymentProcessDefinition.getProcessVariables(processEngine, list);
+		return listMaps;
+	}
+	
+	/**
+	 * 查看流程图
+	 * @throws Exception 
+	 */
+	@RequestMapping("/viewImage")
+	public String viewImage(String deploymentId,String imageName,HttpServletResponse response) throws Exception{
+		System.out.println("viewImage : deploymentId = "+deploymentId+",imageName = "+imageName);
+		ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+		InputStream  in = processEngine.getRepositoryService().getResourceAsStream(deploymentId,imageName);
+        try {
+            OutputStream out = response.getOutputStream();
+            // 把图片的输入流程写入resp的输出流中
+            byte[] b = new byte[1024];
+            for (int len = -1; (len= in.read(b))!=-1; ) {
+                out.write(b, 0, len);
+            }
+            // 关闭流
+            out.close();
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+	}
+	
+	/**
+	 * 查看当前流程图（查看当前活动节点，并使用红色的框标注）
+	 */
+	@RequestMapping("/showImg/{id}")
+	public String showImg(@PathVariable(value="id")String id,HttpServletResponse resp,Map<String,Object> map) throws IOException{
+		ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+		//根据流程id查询流程图
+		ProcessDefinition processDefinition = deoploymentProcessDefinition.viewPic(processEngine, id);
+		map.put("deploymentId", processDefinition.getDeploymentId());
+		map.put("resourceName", processDefinition.getDiagramResourceName());
+		
+//		System.out.println("deploymentId = "+processDefinition.getDeploymentId());
+//		System.out.println("resourceName = "+processDefinition.getResourceName());
+//		System.out.println("DiagramResourceName = "+processDefinition.getDiagramResourceName());
+//		System.out.println("name = "+processDefinition.getName());
+//		System.out.println("Key = "+processDefinition.getKey());
+		
+		/**二：查看当前活动，获取当期活动对应的坐标x,y,width,height，将4个值存放到Map<String,Object>中*/
+		Map<String, Object> maps = deoploymentProcessDefinition.findCoordingByTask(processEngine,id);
+		map.put("acs", maps);
+		System.out.println("acs>>Maps>> = "+maps.toString());
+		return "WEB-INF/myself/image";
 	}
 	
 	//账户充值
@@ -423,6 +550,13 @@ public class HoufanWebItemController {
 		return "redirect:/itemweb/toLogin";
 	} 
 
+	/**
+	 * 后台用户登录
+	 * @param name
+	 * @param password
+	 * @param attributes
+	 * @return
+	 */
 	@RequestMapping("/backstageUserLogin")
 	public String backstageUserLogin(@RequestParam("name") String name,
 			@RequestParam("password") String password,RedirectAttributes attributes) {

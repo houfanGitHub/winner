@@ -36,9 +36,9 @@ public class MemberService implements ItemServiceImpl<Member> {
 	}
 
 	@Override
-	public void update(Member t) {
+	public void update(Member member) {
 		// TODO Auto-generated method stub
-		
+		memberDao.update(member);
 	}
 
 	@Override

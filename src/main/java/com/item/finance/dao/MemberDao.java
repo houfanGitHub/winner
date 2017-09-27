@@ -1,7 +1,5 @@
 package com.item.finance.dao;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +25,12 @@ public class MemberDao {
 		String hql = "from Member where name = '"+name+"'";
 		Member member = (Member) session.createQuery(hql).list().get(0);
 		return member;
+	}
+
+	public void update(Member member) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		session.update(member);
 	}
 	
 }

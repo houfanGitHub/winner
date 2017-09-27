@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -34,6 +35,7 @@ public class UserRole  {
 	private BigInteger sourceId;	//源ID
 	private byte sourceType;	// 源型类别
 	private Date updateDate; 	//修改时间
+	private Set<UserRoleRelation> userRoleRelations = new HashSet<>();
 	private Set<RolePermissionRelation> rolePermissionRelations = new HashSet<>();
 
 	public UserRole() {
@@ -162,6 +164,15 @@ public class UserRole  {
 		this.rolePermissionRelations = rolePermissionRelations;
 	}
 
+	@OneToMany(mappedBy="userRole"/*,fetch=FetchType.EAGER*/)
+	public Set<UserRoleRelation> getUserRoleRelations() {
+		return userRoleRelations;
+	}
+
+
+	public void setUserRoleRelations(Set<UserRoleRelation> userRoleRelations) {
+		this.userRoleRelations = userRoleRelations;
+	}
 
 	@Override
 	public String toString() {

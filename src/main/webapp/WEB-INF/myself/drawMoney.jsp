@@ -20,7 +20,8 @@
 	<link href="/winner/files/common.css" rel="stylesheet">
 	<link href="/winner/files/jw.css" rel="stylesheet">
     <link href="/winner/files/iconfont.css" rel="stylesheet">
-    <script src="/winner/files/hm.js"></script><script src="/winner/files/jquery.js"></script>
+    <script src="/winner/files/hm.js"></script>
+    <script src="/winner/files/jquery.js"></script>
     <script src="/winner/files/bootstrap.js"></script>
 	<script type="text/javascript" src="/winner/files/area.js"></script>
 	<script type="text/javascript" src="/winner/files/location.js"></script>
@@ -41,9 +42,6 @@
 			}
 		})
 	})
-//	$(document).ready(function() {
-//		showLocation();
-//	});
 	var baseContext = "";
     </script>
     <style>
@@ -66,47 +64,6 @@
 	margin-bottom: 40px;
 }
 
-/*.myBankCards {*/
-	/**/
-/*}*/
-
-/*.myBankCards .card {*/
-	/*float: left;*/
-	/*width: 180px;*/
-	/*border: 1px solid #eaeaea;*/
-	/*padding: 5px;*/
-	/*position: relative;*/
-	/*margin-left: 35px;*/
-	/*margin-bottom: 20px;*/
-/*}*/
-
-/*.myBankCards .card .banklogo {*/
-	/*width: 150px;*/
-	/*height: 45px;*/
-/*}*/
-
-/*.myBankCards .card img {*/
-	/*width: 150px;*/
-	/*margin-left: 10px;*/
-/*}*/
-
-/*.myBankCards .card .cardno {*/
-	/*margin-top: 5px;*/
-	/*margin-left: 15px;*/
-/*}*/
-
-/*.myBankCards .card .btns {*/
-	/*position: absolute;*/
-	/*right: 1px;*/
-	/*bottom: 1px;*/
-	/*display: none;*/
-/*}*/
-
-/*.myBankCards .card .btns a {*/
-	/*background: #d7d7d7;*/
-	/*color: #9b8888;*/
-	/*text-decoration: none;*/
-/*}*/
 </style>
 </head>
 <body>
@@ -180,15 +137,14 @@
 </script><table height="160" class="peopleInfo" width="970" border="0" cellspacing="0" cellpadding="0">
     <tbody><tr>
         <td align="left" valign="middle" class="info">
-            <a href="http://pro.ying158.com/account/security">
+            <a href="#">
                 <div class="img"><img src="/winner/files/userPic.jpg"></div>
-                <h2>userName，<span>您好!</span></h2>
+                <h2>${memberinfo.name }，<span>您好!</span></h2>
             </a>
             <div class="safe">账户安全&nbsp;&nbsp;<span class="scroll"><em style="width:75%"></em></span></div>
             <ul class="listIco iconfont">
                 <li class="active"><a href="http://pro.ying158.com/account/withdraw#1"></a><em></em></li>
                 <li class="active"><a href="http://pro.ying158.com/account/withdraw#1"></a><em></em></li>
-                <!-- <li class=""><a href="#1">&#xe61f;</a><em>&#xe61b;</em></li> -->
                 <li class="active"><a href="http://pro.ying158.com/account/withdraw#1"></a><em></em></li>                                
                 <li class=""><a href="http://pro.ying158.com/account/withdraw#1"></a><em></em></li>
             </ul>
@@ -200,7 +156,14 @@
 </tbody></table>
 <div class="countBox">
     <ul>
-        <li><h2>0</h2><p>账户可用余额(元)<a href="javascript:;" class="iconfont"><span>账户可用余额</span><i></i></a></p></li>
+        <li>
+        <h2>
+        <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.useableBalance}</c:forEach>
+        </c:if>
+        </h2>
+        <p>账户可用余额(元)<a href="javascript:;" class="iconfont"><span>账户可用余额</span><i></i></a></p></li>
         <li><h2>0</h2><p>账户总资产(元)<a href="javascript:;" class="iconfont"><span>可用余额+投资金额+累计收益</span><i></i></a></p></li>
         <li><h2 style="color:#9d8440">0</h2><p>投资金额(元)<a href="javascript:;" class="iconfont"><span>投资中资金</span><i></i></a></p></li>
         <li><h2 style="color:#9d8440">0</h2><p>累计收益(元)<a href="javascript:;" class="iconfont"><span>累计收益</span><i></i></a></p></li>
@@ -235,7 +198,7 @@
         	<div class="tbConBox">
                 <div class="tab">
                     <a class="select" href="javascript:;">我要提款</a>
-                    <a href="javascript:;">提款记录</a>                    
+                    <a href="javascript:showAppleFor();" id="state">申请流程状态</a>                    
                 </div>
                 <div id="conBox">
                     <div class="box" style="display:block">
@@ -247,8 +210,10 @@
                           </tr>
 							<tr>
 								<td align="right"> 提款银行卡： </td>
-								<td><strong>工商银行-6023375624952649233</strong>
-									<input type="hidden" id="withdrawBankCard" value="6023375624952649233"></td>
+								<td><strong>
+								<c:forEach items="${memberinfo.memberBankcards }" var="memberBankcard">${memberBankcard.type }-${memberBankcard.cardNo }
+									<input type="hidden" id="withdrawBankCard" value="${memberBankcard.cardNo }">
+								</c:forEach></strong></td>
 							</tr>
                           <tr>
                             <td align="right">提款金额：</td>
@@ -258,9 +223,14 @@
                           <tr>
                             <td align="right"> 提款密码：</td>
                             <td>
- &nbsp;
-								<a href="javascript:;" onclick="$(&#39;#setWithdrawPWModel&#39;).modal(); return false;">设置提款密码</a>
-							&nbsp;
+                            <c:if test="${!empty memberinfo.withdrawPassword }">
+                           		 <input type="text" name="withdrawPassword" id="withdrawPassword">
+                           	</c:if>
+                           	<c:if test="${empty memberinfo.withdrawPassword }">
+                           		 &nbsp;
+	                            <a href="javascript:;" onclick="$(&#39;#setWithdrawPWModel&#39;).modal(); return false;">设置提款密码</a>
+								&nbsp;
+                           	</c:if>
                             </td>
                           </tr>
                           <tr>
@@ -271,19 +241,20 @@
                     </div>
                     <div class="box">                    	
 
-<meta name="keywords" content="盈+，盈，社区金融，O2O社区金融，社区金融O2O，O2O，互联网+社区金融，O2O连锁，社区门店，首家社区金融，社区金融服务，综合金融，互联网金融，体验中心，普惠金融，金融创新，社区化，普惠化，全渠道化，互联网线上平台，O2O交易，全国首家，盈十，金融衍生品，固收类理财，私募基金，股权基金，股指期货，玩转股指，商品期货，国际期货，外盘，A50，沪深300，中证500，上证50">
-<meta name="description" content="盈+——全国首家互联网金融交流体验中心，与您共盈，给财富做加法。">
-<link href="http://pro.ying158.com/resources/web/images/icon.ico" type="image/x-icon" rel="shortcut icon">
-
 <div class="ajaxContainer">
-	<table class="tzlist" width="100%" border="1" bordercolor="#e9e9e9" cellspacing="0" cellpadding="0">
-		<tbody><tr>
-			<th width="20%">时间</th>
-			<th width="30%">订单号</th>
-			<th width="20%">金额</th>
-			<th width="10%">状态</th>
-		</tr>
-	</tbody></table>
+
+	<table class="tzlist" id="tab" width="100%" border="1" bordercolor="#e9e9e9" cellspacing="0" cellpadding="0">
+		<thead>
+	      <tr>
+	        <th width="10%">流程id</th>
+			<th width="25%">银行卡号</th>
+			<th width="10%">取款金额</th>
+			<th width="10%">申请人</th>
+			<th width="10%">查看状态</th>
+	      </tr>
+	   </thead>
+		<tbody id="tbody-result"></tbody>
+	</table>
 
 
 </div>
@@ -292,6 +263,25 @@
 		$.get(url, 'json', function(data) {
 			$(".ajaxContainer").empty();
 			$(".ajaxContainer").append(data);
+		});
+	}
+	
+	function showAppleFor(){
+		$.post("/winner/itemweb/selectFlowState",function(msg){
+// 			for(var i=0;i<msg.length;i++){
+// 				alert(msg[i].processInstanceId);
+// 			}
+			var str = "";  
+//              alert(msg);
+             for (i in msg) {  
+                 str += "<tr>" +  
+                 "<td>" + msg[i].processInstanceId + "</td>" +  
+                 "<td>" + msg[i].bankCard + "</td>" +  
+                 "<td>" + msg[i].withdrawAmount + "</td>" +  
+                 "<td>" + msg[i].memberID + "</td>" + 
+                 "<td><a target='_blank' href=/winner/itemweb/showImg/"+msg[i].processInstanceId+">查看流程图</a></td></tr>";  
+             }  
+             $("#tbody-result").append(str);
 		});
 	}
 </script>                    </div>
@@ -476,24 +466,6 @@
 				</div>
 			</div>
 </div>
-<!--<div id="delBankCardModel" class="modal fade infoModal" role="dialog">-->
-	<!--<div class="modal-dialog">-->
-		<!--<div class="modal-content" style="border-radius: 0px;">-->
-			<!--<div class="modal-header">-->
-				<!--<span>删除银行卡</span>-->
-				<!--<button type="button" class="close" data-dismiss="modal" ><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>-->
-			<!--</div>-->
-			<!--<div class="modal-body text-center">-->
-				<!--<p>您确定要删除此银行卡?</p>-->
-				<!--<input type="hidden" id="wannaDelBankCardId" val="">-->
-			<!--</div>-->
-			<!--<div class="modal-footer">-->
-				<!--<button type="button" class="btn btn-success" onclick="delBankCard();">确定</button>-->
-				<!--<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">取消</button>-->
-			<!--</div>-->
-		<!--</div>-->
-	<!--</div>-->
-<!--</div>-->
 
 <script type="text/javascript">
 	$("#setWithdrawPWResultModel").on('hidden.bs.modal', function () { window.location.reload(); });
@@ -545,12 +517,12 @@
 			type : "POST", 
 			dataType : "json", 
 			async : true,
-			url : '/account/withdraw/setwithdrawpwd', 
+			url : '/winner/itemweb/insertDrawMoney', 
 			data : {
 				password : withdrawPw		
 			},
 			success : function(resp) {
-				if (resp.code == 0) {
+				if (resp.code) {
 					$("#setwithdrawError").html("设置提款密码成功");
 				} else {
 					$("#setwithdrawError").html(resp.msg);
@@ -564,7 +536,7 @@
 	$("#withdrawConfirm").click(function () {
 		var bankCard = $("#withdrawBankCard").val();
 		var withdrawAmount = $("#withdrawAmount").val();
-		var withdrawPW = $("#withdrawPW").val();
+		var withdrawPW = $("#withdrawPassword").val();
 		if ($.trim(withdrawAmount) == "") {
 			$("#withdrawError").html("请填写提款金额");
 			$("#withdrawErrorModal").modal();
@@ -593,139 +565,29 @@
 		}
 		$("#withdrawConfirm").addClass("disabled");
 
-		$.ajax({
-			type : "POST",
-			dataType : "json",
-			async : true,
-			url : '/account/withdraw/submitWithdraw',
-			data : {
-				amount : withdrawAmount,
-				withdrawalPassword:withdrawPW,
+		$.post(
+			"/winner/itemweb/drawMoneyApplyFor",
+			{
+				withdrawAmount : withdrawAmount,
+				withdrawPW:withdrawPW,
 				bankCard: bankCard
-
 			},
-			success : function(resp) {
-
-				if (resp.code == 0) {
+			function(falg) {
+				if (falg == 'yes') {
 					$("#withdrawError").html("提款申请提交成功");
 					$("#withdrawErrorModal").modal();
 					$("#withdrawErrorModal").on('hide.bs.modal', function () {
 						window.location.reload();
 					});
 					setTimeout(function () { $("#withdrawErrorModal").modal('hide'); }, 3000);
+// 					$("#state").click();
 				} else {
-					$("#withdrawError").html(resp.msg);
+					$("#withdrawError").html(falg);
 					$("#withdrawErrorModal").modal();
 				}
 				$("#withdrawConfirm").removeClass("disabled");
-			}
+			});
 		});
-
-	});
-	
-	//绑定银行卡
-//    $("#bankCardConfirm").click(function () {
-//        var bankCard = $("#bankCardNum").val();
-//        var bankCardConfirm = $("#bankCardNumConfirm").val();
-//        var type = $("#type").val();
-//        var loc_province = $("#loc_province").find("option:selected").text();
-//        var loc_city = $("#loc_city").find("option:selected").text();
-//        var loc_town = $("#loc_town").find("option:selected").text();
-//        var cardaddress=loc_province+"-"+loc_city+"-"+loc_town;
-//        var cardaddress1 = $("#cardaddress1").val();
-//        if(loc_province=="省份"){
-//        	$("#withdrawError").html("请选择省份");
-//            $("#withdrawErrorModal").modal();
-//            return;
-//        }
-//        if(loc_city=="地级市"){
-//        	$("#withdrawError").html("请选择地级市");
-//            $("#withdrawErrorModal").modal();
-//            return;
-//        }
-//        if (bankCard == "" || bankCard == undefined) {
-//            $("#withdrawError").html("请输入银行卡号");
-//            $("#withdrawErrorModal").modal();
-//            return;
-//        }
-//
-//        if (bankCardConfirm == "" || bankCardConfirm == undefined) {
-//            $("#withdrawError").html("请再次输入银行卡号");
-//            $("#withdrawErrorModal").modal();
-//            return;
-//        }
-//        if (bankCardConfirm != bankCard) {
-//            $("#withdrawError").html("两次输入的银行卡号不一致");
-//            $("#withdrawErrorModal").modal();
-//            return;
-//        }
-//        var userName = $("#username").val();
-//
-//        $("#bankCardConfirm").addClass("disabled");
-//		$.ajax({
-//			type : "POST",
-//			dataType : "json",
-//			async : true,
-//			url : '/account/withdraw/addBankCard',
-//			data : {
-//				userName : userName,
-//				bankCard: bankCard,
-//				type:type,
-//				cardaddress:cardaddress+"-"+cardaddress1
-//			},
-//			success : function(resp) {
-//				if (resp.code == 0) {
-//					window.location.href = baseContext + "/account/withdraw?tabIndex=2";
-//				} else {
-//					 $("#withdrawError").html(resp.msg);
-//			         $("#withdrawErrorModal").modal();
-//				}
-//
-//			}
-//		});
-//
-//    });
-	
-
-
-//    $(".myBankCards .card").mouseover(function () {
-//        $(this).find(".btns").show();
-//    });
-//
-//    $(".myBankCards .card").mouseout(function () {
-//        $(this).find(".btns").hide();
-//    });
-//
-//    function confimDelBankCard(bankId){
-//    	$("#wannaDelBankCardId").val(bankId);
-//    	$("#delBankCardModel").modal();
-//    }
-//    function delBankCard(){
-//    	var bankId = $("#wannaDelBankCardId").val();
-//		$.ajax({
-//			type : "POST",
-//			dataType : "json",
-//			async : true,
-//			url : '/account/withdraw/delBankCard',
-//			data : {
-//				id : bankId
-//			},
-//			success : function(resp) {
-//				if (resp.code == 0) {
-//					window.location.href = baseContext + "/account/withdraw?tabIndex=2";
-//				} else {
-//
-//				}
-//			}
-//		});
-//
-//    	$("#delBankCardModel").modal("hide");
-//    }
-//
-//	var tabIndex="0";
-//	if(tabIndex=="2"){
-//		$("#bankMgrTab").click();
-//	}
 </script>
 
 

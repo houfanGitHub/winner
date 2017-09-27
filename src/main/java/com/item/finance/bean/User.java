@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -148,22 +149,23 @@ public class User  {
 		this.userName = userName;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", createDate=" + createDate + ", delFlag="
-				+ delFlag + ", identity=" + identity + ", mobile_Phone="
-				+ mobile_Phone + ", name=" + name + ", password=" + password
-				+ ", salt=" + salt + ", status=" + status + ", updateDate="
-				+ updateDate + ", userName=" + userName + "]";
-	}
-
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
 	public Set<UserRoleRelation> getUserRoleRelations() {
 		return userRoleRelations;
 	}
 
 	public void setUserRoleRelations(Set<UserRoleRelation> userRoleRelations) {
 		this.userRoleRelations = userRoleRelations;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", createDate=" + createDate + ", delFlag="
+				+ delFlag + ", identity=" + identity + ", mobile_Phone="
+				+ mobile_Phone + ", name=" + name + ", password=" + password
+				+ ", salt=" + salt + ", status=" + status + ", updateDate="
+				+ updateDate + ", userName=" + userName
+				+ ", userRoleRelations=" + userRoleRelations + "]";
 	}
 
 }

@@ -169,7 +169,9 @@
         <groupId>com.fasterxml.jackson.core</groupId>    
         <artifactId>jackson-databind</artifactId>    
         <version>2.7.0</version>    
-    </dependency> 
+    </dependency>
+
+     
 	<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
 <dependency>
     <groupId>commons-codec</groupId>
@@ -228,5 +230,25 @@
 	<artifactId>alipay-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 </dependency>
+
+<!-- https://mvnrepository.com/artifact/org.activiti/activiti-engine -->
+<dependency>
+    <groupId>org.activiti</groupId>
+    <artifactId>activiti-engine</artifactId>
+    <version>5.22.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.activiti/activiti-spring -->
+<dependency>
+    <groupId>org.activiti</groupId>
+    <artifactId>activiti-spring</artifactId>
+    <version>5.22.0</version>
+</dependency>
+    
+    <dependency>  
+            <groupId>com.fasterxml.jackson.core</groupId>  
+            <artifactId>jackson-annotations</artifactId>  
+            <version>2.7.0</version>  
+        </dependency> 
 	</dependencies>	
 </project>
