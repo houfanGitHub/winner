@@ -42,12 +42,12 @@ public class Ss_AwardRecordController {
 		map.put("qinvitationCode", qinvitationCode);  //邀请码
 		map.put("qinvitedCode", qinvitedCode); //被邀请码
 		List<AwardRecord>listawardrecord=ss_AwardRecordService.listAwardRecord(map);//显示信息
-		List<MemberAccount>listmemacc=ss_AwardRecordService.listmema();  //投资金额
+		
 		
 		//model.addAttribute("listawardrecord", listawardrecord);
-		//model.addAttribute("listmemacc", listmemacc);
+	
 		session.setAttribute("listawardrecord", listawardrecord);  //显示信息
-		session.setAttribute("listmemacc", listmemacc);   //投资金额
+		
 		
 	/*	//模糊查询
 		model.addAttribute("qmemberName",qmemberName);

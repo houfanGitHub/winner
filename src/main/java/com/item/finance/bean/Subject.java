@@ -28,7 +28,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="subject")
 @NamedQuery(name="Subject.findAll", query="SELECT s FROM Subject s")
-public class Subject  {
+public class Subject  {  //主题表
 	
 
 	private static final long serialVersionUID = 1L;
@@ -60,7 +60,7 @@ public class Subject  {
 	private byte status; //标的状态
 	private byte type; //标的类型
 	private Date updateDate; //更新日期
-	private BigDecimal yearRate; //年化率
+	private Double yearRate; //年化率
 	//private long yearEarnings;//年化收益
 	private SubjectFolder subjectFolder;//附件归属表
 	private Set<SubjectBbinPurchaseRecord> subjectBbinPurchaseRecords = new HashSet<>();//体验金购买标的表
@@ -378,10 +378,10 @@ public class Subject  {
 
 
 	@Column(name="year_rate", precision=10, scale=4)
-	public BigDecimal getYearRate() {
+	public double getYearRate() {
 		return this.yearRate;
 	}
-	public void setYearRate(BigDecimal yearRate) {
+	public void setYearRate(Double yearRate) {
 		this.yearRate = yearRate;
 	}
 

@@ -4,7 +4,7 @@ public class Ss_Sumsubject {  //已投金额
 	
 	private String subject_id;
 	private String sumamount; //金额
-	private String sumpaytimes;  //次数
+	//private String sumpaytimes;  //次数
 	public String getSubject_id() {
 		return subject_id;
 	}
@@ -17,13 +17,13 @@ public class Ss_Sumsubject {  //已投金额
 	public void setSumamount(String sumamount) {
 		this.sumamount = sumamount;
 	}
-	public String getSumpaytimes() {
+	/*public String getSumpaytimes() {
 		return sumpaytimes;
 	}
 	public void setSumpaytimes(String sumpaytimes) {
 		this.sumpaytimes = sumpaytimes;
 	}
-	
+	*/
 	
 
 }

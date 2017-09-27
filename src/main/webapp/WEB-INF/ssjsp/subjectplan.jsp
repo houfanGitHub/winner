@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -84,22 +85,24 @@
    <c:if test="${listsubject.type == '2'}" ><font color="blue">P2P车贷</font></c:if>
  </td>
 <td>${listsubject.name}</td>   <!--标的名称 -->
-<td>￥${listsubject.amount*listsubject.bought}</td>  <!-- 标的总金额 -->
+<td>￥${listsubject.amount*listsubject.bought}元</td>  <!-- 标的总金额 -->
 
-<!-- 已投金额 --><!-- <fmt:formatNumber/>标签用来格式化数字  百分比   货币     pattern:指定一个自定义的格式化模式用与输出-->
-<!--<td> 
+<!-- 已投金额 -->
+<td> 
 <c:forEach items="${listsumsubject}" var="listsum">
 	<c:if test="${listsubject.id==listsum.subject_id }">
-	￥<fmt:formatNumber type="number" value="${listsum.sumamount }" pattern="0.0" ></fmt:formatNumber> 元
+	￥${listsum.sumamount}元
+	<!--￥<fmt:formatNumber type="number" value="${listsum.sumamount}"  maxFractionDigits="2"></fmt:formatNumber>元</font>-->
 	</c:if>
-	</c:forEach></td> -->
+	
+	</c:forEach></td> 
 							
-  <td>￥${listsubject.floorAmount}元</td>   <!-- 已投金额 -->  
+  <!--<td>￥${listsubject.floorAmount}元</td>   <!-- 已投金额 -->  
 <td>${listsubject.bought}人</td>  <!-- 已投人数  已购人数 -->
 <td>${listsubject.period}天</td> <!-- 标的期限    标的周期 -->
-<!-- 年化收益 -->
-<td><fmt:formatNumber type="number" value="${listsubject.yearRate}" pattern="0"></fmt:formatNumber>%</td>
-<!--  <td>${listsubject.yearRate}%</td>     <!-- 年化收益 -->
+
+  <td>${listsubject.yearRate}%</td>     <!-- 年化收益 -->
+<!--<td><fmt:formatNumber type="number" value="${listsubject.yearRate}"  maxFractionDigits="2"></fmt:formatNumber></font>%</td>-->
     <!-- 标的状态-->
     <td>
     <c:if test="${listsubject.status == '0'}"><font color="red">未发布</font></c:if>

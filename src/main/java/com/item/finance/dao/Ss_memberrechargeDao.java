@@ -1,14 +1,20 @@
 package com.item.finance.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import javax.print.DocFlavor.STRING;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.item.finance.bean.Member;
+import com.item.finance.bean.MemberBankcard;
 import com.item.finance.bean.MemberDepositRecord;
+import com.item.finance.bean.SubjectBbinPurchaseRecord;
 
 @Component
 public class Ss_memberrechargeDao {
@@ -25,6 +31,19 @@ public class Ss_memberrechargeDao {
 		Session session=getSession();
 		MemberDepositRecord memberDepositRecord=(MemberDepositRecord)session.get(MemberDepositRecord.class, id);
 		return memberDepositRecord;
+	}
+	public List<MemberDepositRecord> getmemberdeposit(String id){
+		Session session=getSession();
+		//MemberDepositRecord 表中有一member_id 是与member中的id  相对应的  可通过member中的id 取到相应的值
+		String hql="from MemberDepositRecord as memberdeposit where memberdeposit.member.id= "+id;
+				List<MemberDepositRecord>listmemberdeposit=session.createQuery(hql).list();
+				return listmemberdeposit;
+	}
+	
+	public Member getmemberid(String id){
+		Session session=getSession();
+		Member member=(Member)session.get(Member.class, id);
+		return member;
 	}
 	
 	//显示
@@ -60,12 +79,26 @@ public class Ss_memberrechargeDao {
 		}
 		
 		if(date1!=null && !"".equals(date1)){  //订单时间1 开始时间
-			hql=hql+" and create_date>='"+date1+"'";
+			hql=hql+" and createDate>='"+date1+"'";
 		}
 		if(date2!=null && !"".equals(date2)){  //订单时间2  结束时间
-			hql=hql+" and create_date<='"+date2+"'";
+			hql=hql+" and createDate<='"+date2+"'";
 		}
 		return hql;
 	}
-
+	/*
+	//更新订单处理
+	public void updatememberdeposit(String  id){
+		Session session=getSession();
+		MemberDepositRecord memberDepositRecord=(MemberDepositRecord)session.get(MemberDepositRecord.class, id);
+		memberDepositRecord.setStatus((byte) 1);    //订单状态    强转byte型  0 充值失败   2.充值成功
+		session.update(memberDepositRecord);
+	} */
+	//更新操作
+	public void updatestatus(MemberDepositRecord memberDepositRecord){
+		Session session=getSession();
+		Date date=new Date();
+		memberDepositRecord.setUpdateDate(date);
+		session.update(memberDepositRecord);
+	}
 }

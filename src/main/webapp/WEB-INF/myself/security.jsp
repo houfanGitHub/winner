@@ -62,42 +62,42 @@
         <div class="row">
             <ul class="topNav">
                 <li>
-                    <a class="item first" href="http://www.ying158.com/home">
+                    <a class="item first" href="/winner/index.jsp">
                         首页
                     </a>
                 </li>
                 <li>
-                    <a class="item" href="http://www.ying158.com/home/kcenter">
+                    <a class="item" href="/winner/itemweb/experience">
                         网上体验中心
                     </a>
                 </li>
                 <li class="item">
-                    <a class="item" href="http://pro.ying158.com/subject">
+                    <a class="item" href="/winner/itemweb/products">
                         产品中心
                     </a>
                 </li>
                 <li>
-                    <a class="item" href="http://www.ying158.com/Home/NewsCenter">
+                    <a class="item" href="/winner/itemweb/news">
                         新闻中心
                     </a>
                 </li>
                 <li>
-                    <a class="item" href="http://pro.ying158.com/mobileappdownload">
+                    <a class="item" href="/winner/itemweb/download">
                       下载中心
                     </a>
                 </li>
                 <li>
-                    <a class="item " href="http://www.ying158.com/Home/Help">
+                    <a class="item " href="/winner/itemweb/business">
                         盈+商学院
                     </a>
                 </li>
                 <li>
-                    <a class="item" href="http://ying158.com/UserGuide/TradingSoftware">
+                    <a class="item" href="/winner/itemweb/research">
                         投研中心
                     </a>
                 </li>
                 <li>
-                    <a class="item last" href="http://pro.ying158.com/account/trades/profit/records">
+                    <a class="item last" href="/winner/itemweb/myself">
                         我的加法库
                     </a>
                 </li>
@@ -125,7 +125,7 @@
         <td align="left" valign="middle" class="info">
             <a href="http://pro.ying158.com/account/security">
                 <div class="img"><img src="/winner/files/userPic.jpg"></div>
-                <h2>userName，<span>您好!</span></h2>
+                <h2>${memberinfo.name }，<span>您好!</span></h2>
             </a>
             <div class="safe">账户安全&nbsp;&nbsp;<span class="scroll"><em style="width:75%"></em></span></div>
             <ul class="listIco iconfont">
@@ -137,7 +137,7 @@
             </ul>
         </td>
         <td align="right">
-            <a href="http://pro.ying158.com/web/logout" class="loginOut"><span class="iconfont"></span>安全退出</a>
+            <a href="/winner/index.jsp" class="loginOut"><span class="iconfont"></span>安全退出</a>
         </td>
     </tr>
 </tbody></table>
@@ -153,21 +153,28 @@
     <a href="http://pro.ying158.com/account/withdraw" class="tk">提款</a>
 </div>    <div class="proMain clearfix">
 <div class="adminLeft">
-    <h2>我的投资</h2>
+     <h2>我的投资</h2>
     <ul>
-        <li><a id="member_center_menu_invests" href="http://pro.ying158.com/account/touZiList"><em class="iconfont red"></em>投资记录</a></li>
-        <li><a id="member_center_menu_profit_record" href="http://pro.ying158.com/account/trades/profit/records"><em class="iconfont red"></em>收益记录</a></li>
-        <li><a id="member_center_menu_deposit_record" href="http://pro.ying158.com/account/deposit/records"><em class="iconfont red"></em>充值记录</a></li>
-        <li><a id="member_center_menu_withdraw_record" href="http://pro.ying158.com/account/withdraw/records"><em class="iconfont red"></em>提款记录</a></li>
-        <li><a id="member_center_menu_bbinInfo_record" href="http://pro.ying158.com/account/bbinInfo/records"><em class="iconfont red"></em>体验金记录</a></li>
+        <li><a id="member_center_menu_invests" 
+        href="/winner/itemweb/invests"><em class="iconfont red"></em>投资记录</a></li>
+        <li><a id="member_center_menu_profit_record"
+        href="/winner/itemweb/myself" class="select"><em class="iconfont red"></em>收益记录</a></li>
+        <li><a id="member_center_menu_deposit_record"
+         href="/winner/itemweb/rechargeRecords"><em class="iconfont red"></em>充值记录</a></li>
+        <li><a id="member_center_menu_withdraw_record"
+         href="/winner/itemweb/withdraw"><em class="iconfont red"></em>提款记录</a></li>
+        <li><a id="member_center_menu_bbinInfo_record"
+         href="/winner/itemweb/experienceGold"><em class="iconfont red"></em>体验金记录</a></li>
     </ul>
-    <h2>我的账户</h2>
-    <ul>
-        <li><a id="member_center_menu_deposit" href="http://pro.ying158.com/account/deposit"><em class="iconfont"></em>账户充值</a></li>
-        <li><a id="member_center_menu_security" href="http://pro.ying158.com/account/security"><em class="iconfont"></em>安全信息</a></li>
-        <li><a id="member_center_menu_withdraw" href="http://pro.ying158.com/account/withdraw"><em class="iconfont"></em>我要提款</a></li>
-        <li><a id="member_center_menu_financial" href="http://pro.ying158.com/account/financial"><em class="iconfont"></em>我是理财师</a></li>
-    </ul>
+   <h2>我的账户</h2>
+			<ul>
+				<li><a id="member_center_menu_deposit"
+					href="/winner/itemweb/deposit"><em class="iconfont"></em>账户充值</a></li>
+				<li><a id="member_center_menu_security" 
+				href="/winner/itemweb/security"><em class="iconfont"></em>安全信息</a></li>
+				<li><a id="member_center_menu_withdraw" 
+				href="/winner/itemweb/drawMoney"><em class="iconfont"></em>我要提款</a></li>
+			</ul>
 </div>
 <script>
   var menu_item="";

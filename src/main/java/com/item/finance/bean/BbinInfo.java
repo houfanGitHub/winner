@@ -12,14 +12,14 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name="bbin_info")
-public class BbinInfo  {
-	private String id;
-	private BigDecimal amont;
-	private Date createDate;
-	private BigInteger status;
-	private Date updateDate;
-	private Member member;
+@Table(name="bbin_info")  
+public class BbinInfo  {  //体验金信息表
+	private String id;  //主键
+	private BigDecimal amont;  //金额
+	private Date createDate;  //创建时间
+	private BigInteger status;  //状态（0：是）',
+	private Date updateDate;  //修改时间
+	private Member member;     //会员表
 
 	public BbinInfo() {
 	}

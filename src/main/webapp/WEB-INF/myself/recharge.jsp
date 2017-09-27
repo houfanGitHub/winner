@@ -135,7 +135,7 @@
 						<li class="active"><a href="#"></a><em></em></li>
 						<li class=""><a href="#"></a><em></em></li>
 					</ul></td>
-				<td align="right"><a href="http://pro.ying158.com/web/logout"
+				<td align="right"><a href="/winner/index.jsp"
 					class="loginOut"><span class="iconfont"></span>安全退出</a></td>
 			</tr>
 		</tbody>
@@ -170,26 +170,25 @@
 		<div class="adminLeft">
 			<h2>我的投资</h2>
 			<ul>
-				<li><a id="member_center_menu_invests" href="#"><em
+				<li><a id="member_center_menu_invests" href="/winner/itemweb/invests"><em
 						class="iconfont red"></em>投资记录</a></li>
-				<li><a id="member_center_menu_profit_record" href="#"><em
+				<li><a id="member_center_menu_profit_record" href="/winner/itemweb/myself"><em
 						class="iconfont red"></em>收益记录</a></li>
-				<li><a id="member_center_menu_deposit_record" href="#"><em
+				<li><a id="member_center_menu_deposit_record" href="/winner/itemweb/rechargeRecords"><em
 						class="iconfont red"></em>充值记录</a></li>
-				<li><a id="member_center_menu_withdraw_record" href="#"><em
+				<li><a id="member_center_menu_withdraw_record" href="/winner/itemweb/withdraw"><em
 						class="iconfont red"></em>提款记录</a></li>
-				<li><a id="member_center_menu_bbinInfo_record" href="#"><em
+				<li><a id="member_center_menu_bbinInfo_record" href="/winner/itemweb/experienceGold"><em
 						class="iconfont red"></em>体验金记录</a></li>
 			</ul>
 			<h2>我的账户</h2>
 			<ul>
 				<li><a id="member_center_menu_deposit"
 					href="/winner/itemweb/deposit"><em class="iconfont"></em>账户充值</a></li>
-				<li><a id="#" href="#"><em class="iconfont"></em>安全信息</a></li>
-				<li><a id="#" href="#"><em class="iconfont"></em>我要提款</a></li>
-				<li><a id="#" href="http://pro.ying158.com/account/financial">
-						<em class="iconfont"></em>我是理财师
-				</a></li>
+				<li><a id="member_center_menu_security" 
+				href="/winner/itemweb/security"><em class="iconfont"></em>安全信息</a></li>
+				<li><a id="member_center_menu_withdraw" 
+				href="/winner/itemweb/drawMoney"><em class="iconfont"></em>我要提款</a></li>
 			</ul>
 		</div>
 

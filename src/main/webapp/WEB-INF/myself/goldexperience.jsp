@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -15,7 +16,7 @@
     <meta name="viewport" content="width=device-width,maximum-scale=1.0,user-scalable=yes">
 	<meta name="Keywords" content="股指体验交易，股指单手交易，股指多手交易">
 	<meta name="description" content="申请实盘交易账户，直接进行实盘交易。">
-	<title>充值记录-会员中心-盈+</title>
+	<title>体验金记录-会员中心-盈+</title>
 	<link href="http://www.ying158.com/images/icon.ico" type="image/x-icon" rel="shortcut icon">
 	<link href="/winner/files/common.css" rel="stylesheet">
 	<link href="/winner/files/jw.css" rel="stylesheet">
@@ -132,7 +133,7 @@
         <li><a id="member_center_menu_deposit_record"
          href="/winner/itemweb/rechargeRecords" class="select"><em class="iconfont red"></em>充值记录</a></li>
         <li><a id="member_center_menu_withdraw_record"
-         href="/winner/itemweb/withdraw"><em class="iconfont red"></em>提款记录</a></li>
+         href="/winner/itemweb/withdraw"><em class="iconfont red"></em>提款记录</a></li>
         <li><a id="member_center_menu_bbinInfo_record" 
         href="/winner/itemweb/experienceGold"><em class="iconfont red"></em>体验金记录</a></li>
     </ul>
@@ -154,40 +155,67 @@
         <div class="admin-right">
         	<div class="tbConBox">
                 <div class="tab">
-                    <a class="select" href="javascript:;">充值记录</a>
+                    <a class="select" href="javascript:;">体验金记录</a>
                 </div>
                 <div id="conBox">
                     <div class="box" style="display:block">
-
-
+                     <div class="remind"><h4><strong><span style="color:#827E76">体验金余额(元)：</span><span
+                            style="color:#9d8440">												<!-- 立即使用  跳的是产品中心 -->
+                            <c:if test="${empty listbb.amont}"><font color="burlywood">8888</font>&nbsp;&nbsp;<a href="#">立即使用</a></c:if>
+                            <c:if test="${!empty listbb.amont}"><font color="burlywood">0</font><br><hr/><br>
+         
 <meta name="keywords" content="盈+，盈，社区金融，O2O社区金融，社区金融O2O，O2O，互联网+社区金融，O2O连锁，社区门店，首家社区金融，社区金融服务，综合金融，互联网金融，体验中心，普惠金融，金融创新，社区化，普惠化，全渠道化，互联网线上平台，O2O交易，全国首家，盈十，金融衍生品，固收类理财，私募基金，股权基金，股指期货，玩转股指，商品期货，国际期货，外盘，A50，沪深300，中证500，上证50">
 <meta name="description" content="盈+——全国首家互联网金融交流体验中心，与您共盈，给财富做加法。">
 <link href="http://pro.ying158.com/resources/web/images/icon.ico" type="image/x-icon" rel="shortcut icon">
 
 <div class="ajaxContainer">
 	<table class="tzlist" width="100%" border="1" bordercolor="#e9e9e9" cellspacing="0" cellpadding="0">
-		<tbody><tr align="center">
-			<th width="30%"><font color="black">订单号</font></th>
-			<th width="20%"><font color="black">金额</font></th>
-			<th width="20%"><font color="black">状态</font></th>
-			<th width="30%"><font color="black">时间</font></th>
-		</tr>
-		<c:forEach items="${listmemberdepo}" var="listmemberdepo">
-		<tr align="center" bgcolor="white">
-		<td><font color="black">${listmemberdepo.serialNumber}</font></td>
-		<td><font color="red">￥${listmemberdepo.amount}</font></td>
-		<!-- 状态 -->
-<td>
-<c:if test="${listmemberdepo.status == '0' }"><font color="red">充值失败</font></c:if>
-	<c:if test="${listmemberdepo.status== '1' }"><font color="blue">充值成功</font></c:if>
-	</td>
-		<td><font color="black">${listmemberdepo.createDate}</font></td>
-		</tr>
-		</c:forEach>
+		<tbody>
+		<tr align="center" bgcolor="white" height="20">
+				<td width="15%"><h4>标的名称</h4></td>
+				<td width="35%"><font color="burlywood"><h4>${listjectbbr.subject.name}</h4></font></td>
+				<td width="15%"><h4>状态</h4></td>
+				<td width="35%">
+				  <c:if test="${listjectbbr.ispayment == '0'}"><font color="burlywood"><h4>待还款</h4></font></c:if>	
+                  <c:if test="${listjectbbr.ispayment == '1'}"><font color="burlywood"><h4>已还款</h4></font></c:if>		
+			</td>
+			</tr>
+			
+			<tr align="center" bgcolor="white" height="20">
+				<td width="15%"><h4>金额</h4></td><!--体验金金额-->
+				<td width="35%"><font color="burlywood"><h4>${listbb.amont}</h4></font></td>
+				<td width="15%"><h4>期限</h4></td><!-- period 主题表 subject的周期 -->
+				<td width="35%"><font color="burlywood"><h4>${listjectbbr.subject.period}天</h4></font></td>
+			</tr>
+		
+		<tr align="center" bgcolor="white" height="20">
+				<td width="15%"><h4>收益方式</h4></td>
+				<td width="35%"><font color="burlywood"><h4>一次性还本付息</h4></font></td>
+				<td width="15%"><h4>年化收益率</h4></td>
+				<td width="35%"><font color="burlywood"><h4>${listjectbbr.subject.yearRate}%</h4></font></td>
+			</tr>
+		
+		
+		<tr align="center" bgcolor="white" height="20">
+				<td width="15%"><h4>计息日</h4></td>
+				<td width="35%"><font color="burlywood"><h4>${listbb.createDate}</h4></font></td>
+				<td width="15%"><h4>预期收益1111</h4></td>
+				<td width="35%"><font color="burlywood"><h4>1111</h4></font></td>
+			</tr>
+			
+			<tr align="center" bgcolor="white" height="20">
+				<td width="15%"><h4>结束日</h4></td>
+				<td width="35%"><font color="burlywood"><h4>2222</h4></font></td>
+				<td width="15%"><h4>已获收益</h4></td>
+				<td width="35%"><font color="burlywood"><h4>3333</h4></font></td>
+			</tr>
+		
 	</tbody></table>
 
-
 </div>
+  </c:if>
+      </span>&nbsp;&nbsp;&nbsp;&nbsp;
+ </strong></h4></div>
 <script type="text/javascript">
 	function getJsonInfo(url) {
 		$.get(url, 'json', function(data) {

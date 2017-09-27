@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -15,7 +16,7 @@
     <meta name="viewport" content="width=device-width,maximum-scale=1.0,user-scalable=yes">
 	<meta name="Keywords" content="股指体验交易，股指单手交易，股指多手交易">
 	<meta name="description" content="申请实盘交易账户，直接进行实盘交易。">
-	<title>充值记录-会员中心-盈+</title>
+	<title>投资记录-会员中心-盈+</title>
 	<link href="http://www.ying158.com/images/icon.ico" type="image/x-icon" rel="shortcut icon">
 	<link href="/winner/files/common.css" rel="stylesheet">
 	<link href="/winner/files/jw.css" rel="stylesheet">
@@ -99,11 +100,11 @@
             </a>
             <div class="safe">账户安全&nbsp;&nbsp;<span class="scroll"><em style="width:75%"></em></span></div>
             <ul class="listIco iconfont">
-                <li class="active"><a href="http://pro.ying158.com/account/deposit/records#1"></a><em></em></li>
-                <li class="active"><a href="http://pro.ying158.com/account/deposit/records#1"></a><em></em></li>
+                <li class="active"><a href="http://pro.ying158.com/account/withdraw/records#1"></a><em></em></li>
+                <li class="active"><a href="http://pro.ying158.com/account/withdraw/records#1"></a><em></em></li>
                 <!-- <li class=""><a href="#1">&#xe61f;</a><em>&#xe61b;</em></li> -->
-                <li class="active"><a href="http://pro.ying158.com/account/deposit/records#1"></a><em></em></li>                                
-                <li class=""><a href="http://pro.ying158.com/account/deposit/records#1"></a><em></em></li>
+                <li class="active"><a href="http://pro.ying158.com/account/withdraw/records#1"></a><em></em></li>                                
+                <li class=""><a href="http://pro.ying158.com/account/withdraw/records#1"></a><em></em></li>
             </ul>
         </td>
         <td align="right">
@@ -127,14 +128,14 @@
     <ul>
         <li><a id="member_center_menu_invests" 
         href="/winner/itemweb/invests"><em class="iconfont red"></em>投资记录</a></li>
-        <li><a id="member_center_menu_profit_record" 
-        href="/winner/itemweb/myself"><em class="iconfont red"></em>收益记录</a></li>
+        <li><a id="member_center_menu_profit_record"
+         href="/winner/itemweb/myself"><em class="iconfont red"></em>收益记录</a></li>
         <li><a id="member_center_menu_deposit_record"
-         href="/winner/itemweb/rechargeRecords" class="select"><em class="iconfont red"></em>充值记录</a></li>
-        <li><a id="member_center_menu_withdraw_record"
-         href="/winner/itemweb/withdraw"><em class="iconfont red"></em>提款记录</a></li>
-        <li><a id="member_center_menu_bbinInfo_record" 
-        href="/winner/itemweb/experienceGold"><em class="iconfont red"></em>体验金记录</a></li>
+         href="/winner/itemweb/rechargeRecords"><em class="iconfont red"></em>充值记录</a></li>
+        <li><a id="member_center_menu_withdraw_record" 
+        href="/winner/itemweb/withdraw" class="select"><em class="iconfont red"></em>提款记录</a></li>
+        <li><a id="member_center_menu_bbinInfo_record"
+         href="/winner/itemweb/experienceGold"><em class="iconfont red"></em>体验金记录</a></li>
     </ul>
    <h2>我的账户</h2>
 			<ul>
@@ -147,14 +148,14 @@
 			</ul>
 </div>
 <script>
-  var menu_item="member_center_menu_deposit_record";
+  var menu_item="member_center_menu_withdraw_record";
  $("#"+menu_item).addClass("select");
 </script>
 
         <div class="admin-right">
         	<div class="tbConBox">
                 <div class="tab">
-                    <a class="select" href="javascript:;">充值记录</a>
+                    <a class="select" href="javascript:;">投资记录</a>
                 </div>
                 <div id="conBox">
                     <div class="box" style="display:block">
@@ -166,25 +167,43 @@
 
 <div class="ajaxContainer">
 	<table class="tzlist" width="100%" border="1" bordercolor="#e9e9e9" cellspacing="0" cellpadding="0">
-		<tbody><tr align="center">
-			<th width="30%"><font color="black">订单号</font></th>
-			<th width="20%"><font color="black">金额</font></th>
-			<th width="20%"><font color="black">状态</font></th>
-			<th width="30%"><font color="black">时间</font></th>
+		<tbody><tr>
+			<th width="30%"><font bgcolor="black">订单编号</font></th>
+			<th width="20%"><font bgcolor="black">标的名称 </font></th>
+			<th width="10%"><font bgcolor="black">预期收益</font></th>
+			<th width="10%"><font bgcolor="black">金额</font></th>
+			<th width="10%"><font bgcolor="black">状态</font></th>
+			<th width="20%"><font bgcolor="black">购买时间</font></th>
 		</tr>
-		<c:forEach items="${listmemberdepo}" var="listmemberdepo">
+		<c:forEach items="${subjectpro}" var="subjectpro">
 		<tr align="center" bgcolor="white">
-		<td><font color="black">${listmemberdepo.serialNumber}</font></td>
-		<td><font color="red">￥${listmemberdepo.amount}</font></td>
-		<!-- 状态 -->
-<td>
-<c:if test="${listmemberdepo.status == '0' }"><font color="red">充值失败</font></c:if>
-	<c:if test="${listmemberdepo.status== '1' }"><font color="blue">充值成功</font></c:if>
-	</td>
-		<td><font color="black">${listmemberdepo.createDate}</font></td>
+		<td>${subjectpro.serialNumber}</td>
+		<td>${subjectpro.subject.name}</td>
+	     <!-- 预期收益 -->
+	     	<!--投资收益    period 周期   -->
+		<td>￥<fmt:formatNumber type="number" value="${((subjectpro.amount*(subjectpro.subject.yearRate/100))/365)*subjectpro.subject.period}"  maxFractionDigits="2"></fmt:formatNumber></font></td>
+		<td><font bgcolor="red">￥${subjectpro.amount}</font></td>
+		<!-- 还款状态 -->
+     <td>
+        <c:if test="${subjectpro.ispayment == '0' }"><font color="red">待还款</font></c:if>	
+       <c:if test="${subjectpro.ispayment == '1' }"><font color="blue">已还款</font></c:if>		
+   </td>
+	<td>${subjectpro. createDate}</td>
 		</tr>
 		</c:forEach>
 	</tbody></table>
+	<br>
+	<table  width="100%" border="1" bordercolor="#e9e9e9" cellspacing="0" cellpadding="0" >
+	<tr bgcolor="white" >
+	<td align="right" colspan="6">总计<font color="#ff503f">
+	
+	${listinvest.suminvest}
+	
+	
+	 </font>笔</td>
+	
+	</tr>
+	</table>
 
 
 </div>
@@ -195,7 +214,65 @@
 			$(".ajaxContainer").append(data);
 		});
 	}
-</script>                             
+</script>  
+ <div class="tab">
+                    <a class="select" href="javascript:;">预约记录</a>
+                </div>
+                <div id="conBox">
+                    <div class="box" style="display:block">
+
+
+<meta name="keywords" content="盈+，盈，社区金融，O2O社区金融，社区金融O2O，O2O，互联网+社区金融，O2O连锁，社区门店，首家社区金融，社区金融服务，综合金融，互联网金融，体验中心，普惠金融，金融创新，社区化，普惠化，全渠道化，互联网线上平台，O2O交易，全国首家，盈十，金融衍生品，固收类理财，私募基金，股权基金，股指期货，玩转股指，商品期货，国际期货，外盘，A50，沪深300，中证500，上证50">
+<meta name="description" content="盈+——全国首家互联网金融交流体验中心，与您共盈，给财富做加法。">
+<link href="http://pro.ying158.com/resources/web/images/icon.ico" type="image/x-icon" rel="shortcut icon">
+
+<div class="ajaxContainer">
+	<table class="tzlist" width="100%" border="1" bordercolor="#e9e9e9" cellspacing="0" cellpadding="0">
+		<tbody><tr>
+		<th width="25%"><font bgcolor="black">订单编号</font></th>
+			<th width="25%"><font bgcolor="black">标的名称</font></th>
+			<th width="10%"><font bgcolor="black">金额 </font></th>
+			<th width="10%"><font bgcolor="black">预期收益</font></th>
+			<th width="10%"><font bgcolor="black">状态</font></th>
+			<th width="20%"><font bgcolor="black">预约时间</font></th>
+			
+		</tr>
+		<c:forEach items="${liSubjectord}" var="liSubjectord">
+		<tr align="center" bgcolor="white">
+		<td>${liSubjectord.serialNumber}</td>
+		<td>${liSubjectord.subject.name}</td>
+		<td><font bgcolor="red">￥${liSubjectord.amount}</font></td>
+		
+	     <!-- 预期收益 -->
+	     	<!--投资收益    period 周期   -->
+		<td>￥<fmt:formatNumber type="number" value="${((liSubjectord.amount*(liSubjectord.subject.yearRate/100))/365)*liSubjectord.subject.period}"  maxFractionDigits="2"></fmt:formatNumber></font></td>
+	
+		<!-- 订单状态 -->
+     <td>
+        <c:if test="${liSubjectord.status == '0' }"><font color="red">未下单</font></c:if>	
+       <c:if test="${liSubjectord.status == '1' }"><font color="blue">已下单</font></c:if>		
+   </td>
+	<td>${liSubjectord.createDate}</td>
+	
+		</tr>
+		</c:forEach>
+	</tbody></table>
+	<br>
+	<table  width="100%" border="1" bordercolor="#e9e9e9" cellspacing="0" cellpadding="0" >
+	<tr bgcolor="white" >
+	<td align="right" colspan="6">总计<font color="#ff503f">
+	
+	${listorder.sumorder}
+	
+	
+	 </font>笔</td>
+	
+	</tr>
+	</table>
+
+
+</div>  
+                         
                     </div>
                 </div>
             </div>
@@ -268,13 +345,13 @@
                             </div>
                         </li>
                         <li>
-                            <a href="http://pro.ying158.com/account/deposit/records" target="_blank" rel="nofollow">
+                            <a href="http://pro.ying158.com/account/withdraw/records" target="_blank" rel="nofollow">
                                 <em class="ico_sns ico_sinawb"></em>
                                 <span class="txt">新浪微博</span>
                             </a>
                         </li>
                         <li>
-                            <a href="http://pro.ying158.com/account/deposit/records" target="_blank" rel="nofollow">
+                            <a href="http://pro.ying158.com/account/withdraw/records" target="_blank" rel="nofollow">
                                 <em class="ico_sns ico_txwb"></em>
                                 <span class="txt">腾讯微博</span>
                             </a>

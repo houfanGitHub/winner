@@ -50,7 +50,7 @@ public class Member  {  //会员表
 	private Set<MemberAccount> memberAccounts = new HashSet<>();
 	private Set<MemberBankcard> memberBankcards = new HashSet<>();
 	private Set<MemberDepositRecord> memberDepositRecords = new HashSet<>();
-	private Set<MemberProfitRecord> memberProfitRecords = new HashSet<>();
+	private Set<MemberProfitRecord> memberProfitRecords = new HashSet<>();  //成员利润表
 	private Set<MemberPucChargeHome> memberPucChargeHomes = new HashSet<>();
 	private Set<MemberPucChargeItem> memberPucChargeItems = new HashSet<>();
 	private Set<MemberTally> memberTallies = new HashSet<>();
@@ -59,6 +59,19 @@ public class Member  {  //会员表
 	private Set<OverseaConfigSubscribe> overseaConfigSubscribes = new HashSet<>();
 	private Set<SubjectBbinPurchaseRecord> subjectBbinPurchaseRecords = new HashSet<>();
 	private Set<SubjectOrderRecord> subjectOrderRecords = new HashSet<>();
+	private Set<AwardRecord> awardRecords=new HashSet<>();  //邀请奖励表
+	
+	
+	@OneToMany(mappedBy="member")
+	public Set<AwardRecord> getAwardRecords() {
+		return awardRecords;
+	}
+
+
+	public void setAwardRecords(Set<AwardRecord> awardRecords) {
+		this.awardRecords = awardRecords;
+	}
+
 
 	public Member() {
 	}

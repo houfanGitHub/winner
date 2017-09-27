@@ -134,7 +134,7 @@ public class HoufanWebItemController {
 	//提款记录
 	@RequestMapping("/withdraw")
 	public String withdraw(){
-		return "WEB-INF/myself/withdrawals";
+		return "redirect:/sushuang1/getmemberwith1";//跳转到controller
 	}
 	
 	//账户充值
@@ -146,7 +146,8 @@ public class HoufanWebItemController {
 //充值记录
 		@RequestMapping("/rechargeRecords")
 		public String rechargeRecords(){
-			return "WEB-INF/myself/rechargeRecords";
+			return "redirect:/sushuang1/getmemberdepo1";//跳转到controller
+			
 		}
 		
 		//安全信息
@@ -159,6 +160,8 @@ public class HoufanWebItemController {
 				@RequestMapping("/drawMoney")
 				public String drawMoney(){
 					return "WEB-INF/myself/drawMoney";
+																	//我没有写参数  
+				//return "redirect:/sushuang1/getmemberwithdraw1";//跳转到 Ss_zhmanagecontroller 方法里
 				}
 				//我是理财师
 				@RequestMapping("/financialPlanner")
@@ -433,10 +436,10 @@ public class HoufanWebItemController {
 		return "WEB-INF/research/research";
 	}
 
-	// 我的加法库
+	// 我的加法库    收益记录
 	@RequestMapping("/myself")
 	public String myself() {
-		return "WEB-INF/myself/myself";
+		return "redirect:/sushuang1/getmemberprofit1"; //跳转到 controller
 	}
 	
 	//忘记密码
@@ -450,4 +453,17 @@ public class HoufanWebItemController {
 	public String toBuyProducts(@PathVariable(value="id")String id){
 		return "WEB-INF/products/buyProducts";
 	}
+	//投资记录
+	@RequestMapping("/invests")
+	public String invests(){
+		return "redirect:/sushuang1/getsubjectpur"; //跳转到 controller
+	}
+	
+		
+	 //体验金记录
+	@RequestMapping("/experienceGold")
+	public String goldexperience(){
+		return "redirect:/sushuang1/getbbin";  //跳转到controller
+	}
+	
 }

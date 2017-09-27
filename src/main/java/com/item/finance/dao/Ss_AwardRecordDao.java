@@ -112,12 +112,5 @@ public class Ss_AwardRecordDao {
 		}
 		
 		
-		//投资金额查询
-		public List<MemberAccount>listma(){
-			Session session=getSession();
-			String hql="from MemberAccount ";
-			List<MemberAccount>listm=session.createQuery(hql).list();
-			return listm;
-		}
 		
 }
