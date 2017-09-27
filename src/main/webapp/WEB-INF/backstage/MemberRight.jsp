@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="/winner/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" src="/winner/ueditor/ueditor.all.min.js"></script>
@@ -11,20 +11,13 @@
 <link href="/winner/backstage/show/bootstrap.min.css" rel="stylesheet"> 
 <script type="text/javascript" src="/winner/backstage/show/bootstrap.min.js"></script>
 <script type="text/javascript" src="/winner/ueditor/lang/zh-cn/zh-cn.js"></script>
-<title>公告修改</title>
+<title>Insert title here</title>
 <script type="text/javascript">
 $(function(){
- $("#example").modal();
- var ue = UE.getEditor('ueditor',{
-  initialFrameWidth:1000,  //初始化编辑器宽度,默认1000
-  initialFrameHeight:200,//初始化编辑器高度,默认320	
-  enterTag : 'br'  
-}); 
-var c = ${p.pushType};
-$("#pushType").val(c);
-});
+	 $("#example").modal();
+	}); 
 function home(){
-	window.location.href="/winner/listPushNotice";
+	window.location.href="/winner/listFeedback"
 }
 </script>
 </head>
@@ -38,27 +31,25 @@ function home(){
 <div class="modal-body">
 <center>
 <form action="/winner/updatePushNotice" method="post">
-<input type="hidden" name="ttime"  id="ttime" value="${p.createDate }"/>
-<input type="hidden" name="id"  value="${p.id}" />
-<input type="hidden" name="status"  value="${p.status}" />
 <table>
 <tr>
-<td><font color="whitesmoke">标题 : </font><input type="text"  name="title" value="${p.title }" /></td>
+<td><font color="whitesmoke">姓名: </font></td><td><font color="whitesmoke">${m.memberName}</font></td>
 </tr>
  <tr> 
- <td><font color="whitesmoke">类别 : </font><select name="pushType" id="pushType" style="width: 177px;"><option value=1>其他</option> <option value=0>公告</option> </select></td>
+ <td><font color="whitesmoke">电话 : </font><td><font color="whitesmoke">${m.mobile_Phone }</font></td>
  </tr>
 <tr>
-<td><font color="whitesmoke">内容:</font>
+<td><font color="whitesmoke">用户名:</font></td><td><font color="whitesmoke">${m.name }</font></td>
 </tr>
-  <tr>
- <td>
-<textarea id="ueditor" type="text/plain" style="width:1024px;height:200px;" name="content" >${p.content }</textarea>
-</td>
- </tr>
+<tr>
+<td><font color="whitesmoke">省份证:</font><td><font color="whitesmoke">${m.identity}</font></td>
+</tr>
+<tr>
+<td><font color="whitesmoke">提款密码:</font><td><font color="whitesmoke">${m.withdrawPassword}</font></td>
+</tr>
 </table>
 <div class="modal-footer">
-<input type="submit" value="提交"  class="btn btn-success"> <a href="#" class="btn" data-dismiss="modal" onclick="home();"><font color="red">关闭</font></a>
+ <a href="#" class="btn" data-dismiss="modal" onclick="home();"><font color="red">关闭</font></a>
 </div>
 </form>
 </center>

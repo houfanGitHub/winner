@@ -1,5 +1,7 @@
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,16 +12,10 @@
 	<meta name="description" content="提供证券、商品期货、金融期货投融资等相关新闻。">
 	<title>新闻中心 - 盈+</title>
 <!-- 	<link href="http://www.ying158.com/Content/images/jw/icon.ico" type="image/x-icon" rel="shortcut icon"> -->
-	<script src="/winner/files/hm.js"></script><script>
-
-		
-	</script>
+	<script src="/winner/files/hm.js"></script>
 	<link href="/winner/files/common" rel="stylesheet">
-
 	<link href="/winner/files/jw.less" rel="stylesheet">
-
 	<script src="/winner/files/jquery"></script>
-
 	<script src="/winner/files/bootstrap"></script>
 
 
@@ -163,6 +159,33 @@
 	</style>
 
 </head>
+<script type="text/javascript">
+function fun(c){
+$("#reports").hide();
+$("#pcontent").show();
+$("#contentText").text(c);
+$("#reportsTab").click(function(){
+$("#pcontent").hide();
+$("#reports").show();
+});
+}
+function newsfun(id){
+var str = new Array();
+str = document.getElementsByName("newsText");
+for(var i=0;i <str.length;i++){
+if(id == i){
+ $("#newsspan").text(str[i].innerText);
+}
+}
+$("#newsDiv").hide();
+$("#newsspan").show();
+$("#oneTwo").hide();
+$("#topNewsTab").click(function(){
+$("#newsspan").hide();
+$("#newsDiv").show();
+});
+}
+</script>
 <body>
 
 	
@@ -242,7 +265,7 @@
                 新闻头条
             </div>
             <div class="blank" style="height:532px;">
-
+  
             </div>
         </div>
         <div class="right">
@@ -251,33 +274,31 @@
                     平台公告
                 </div>
                 <ul class="newsList">
-                    
+     <c:forEach items="${PushNoticelist}"  var="p" >           
 	<li>
-		<a href="http://www.ying158.com/news/19dc50b5-0284-4bed-bbe3-a363739f9e15" target="_blank">2017年春节放假安排</a><span class="time">2017-01-23</span>
+		<a onclick="fun('${p.content}');">${p.title }</a><span class="time">${p.createDate}</span>
 	</li>
-	<li>
-		<a href="http://www.ying158.com/news/e0d2276e-a35f-4b0a-aea7-3473cd800533" target="_blank">重磅推出阳光私募基金-吉威量化套利稳健1号</a><span class="time">2016-04-14</span>
-	</li>
-	<li>
-		<a href="http://www.ying158.com/news/48aefff0-bcdb-45c2-b247-9910896603d2" target="_blank">关于盈+理财平台安全卡管理通告</a><span class="time">2016-01-13</span>
-	</li>
-	<li>
-		<a href="http://www.ying158.com/news/a140c288-f3ed-40b5-8ae1-73c131f87dfa" target="_blank">盈+全球首映</a><span class="time">2015-07-13</span>
-	</li>
-
-	<li>&nbsp;</li>
-	<li>&nbsp;</li>
-	<li>&nbsp;</li>
-	<li>&nbsp;</li>
-	<li>&nbsp;</li>
-	<li>&nbsp;</li>
-
+	</c:forEach> 
 <li>
 	<a onclick="pagation(0)">上一页</a> | <a onclick="pagation(2)">下一页</a>
 </li>
 
                 </ul>
             </div>
+
+
+<div class="content" id="pcontent" style="display: none;">
+                <div class="title">
+                    平台公告
+                </div>      
+
+		<div class="time" id="contentText"></div>
+<ul class="newsList"> 
+<li>
+<a onclick="pagation(0)">上一页</a> | <a onclick="pagation(2)">下一页</a>
+</li> </ul>
+            </div>
+
             <div id="strategy" class="content" style="display: none;">
                 <div class="title">
                     趣味理财
@@ -370,35 +391,23 @@
 				<div class="title">
 					新闻头条
 				</div>
-				<ul class="newsList">
-					
-	<li>
-		<a href="http://www.ying158.com/news/d8dfb77a-0de1-451e-8480-9ec6ab84f0a9" target="_blank">【投资策略】一文看懂量化对冲</a><span class="time">2016-04-15</span>
-	</li>
-	<li>
-		<a href="http://www.ying158.com/news/c91088fc-0a15-4f82-a09d-8990fd43aec0" target="_blank">十年后的中国远超你想象（深度！）</a><span class="time">2016-02-02</span>
-	</li>
-	<li>
-		<a href="http://www.ying158.com/news/265cbb92-479a-4748-b0e3-953f11a99044" target="_blank">唐彬：互联网金融的哲学思考</a><span class="time">2016-02-02</span>
-	</li>
-	<li>
-		<a href="http://www.ying158.com/news/df020c67-be05-43ba-afa9-de8687b5345d" target="_blank">哈佛76年研究结果：只要遇到真爱，人生繁盛的几率就会显著提升</a><span class="time">2016-02-02</span>
-	</li>
-	<li>
-		<a href="http://www.ying158.com/news/0e3982a3-adff-4aaa-a98e-2ad3e64969b8" target="_blank">私人财富重配 波澜壮阔的大牛市或在路上</a><span class="time">2016-02-02</span>
-	</li>
-
-	<li>&nbsp;</li>
-	<li>&nbsp;</li>
-	<li>&nbsp;</li>
-	<li>&nbsp;</li>
-	<li>&nbsp;</li>
-
-<li>
-	<a onclick="pagation(0)">上一页</a> | <a onclick="pagation(2)">下一页</a>
+ 			<ul class="newsList">
+ 			
+ <div id="newsDiv" >
+ <c:forEach items="${newslist}" var="n" varStatus="stat" >
+ <li>  
+	<a onclick="newsfun(${stat.index});">${n.title} 
+	<span style="display: none;" id="newsText" name="newsText">${n.text}</span></a><span class="time">${n.addTime}</span>
 </li>
+ </c:forEach> 
+ </div>
+       <div id="newsspan" style="display: none;"></div>
+<li>
 
-				</ul>
+    <div id="oneTwo">
+	<a onclick="pagation(0)">上一页</a> | <a onclick="pagation(2)">下一页</a>
+	</div>
+</li></ul>
 			</div>
 			<div id="zuixins" class="content" style="display: none;">
 				<div class="title">
@@ -427,7 +436,6 @@
         </div>
     </div>
 </div>
-
 <script>
 
     var cid = "B8C8DD38-0805-4EF4-BFF6-17B835FCA8AA";

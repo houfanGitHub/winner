@@ -124,7 +124,7 @@ session.update(nt);
 }
 //查
 public List<PushNotice> listPushNotice(Map map){
-String hql = "from PushNotice where status = 0 and  0=0 ";
+String hql = "from PushNotice where status = 0  and  0=0";
 hql= getPushNoticeHql(map, hql);
 Session session = sessionFactory.getCurrentSession();
 List<PushNotice> list= session.createQuery(hql).list();

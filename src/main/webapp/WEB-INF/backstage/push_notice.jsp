@@ -14,12 +14,6 @@
 <script type="text/javascript" src="/winner/ueditor/lang/zh-cn/zh-cn.js"></script>
 <title>公告管理</title>
 <style type="text/css">
-img{
- width:auto;
- height:auto;
- max-width:100%;
- max-height:100%;
-}
 .green {
 	color: #e8f0de;
 	border: solid 1px #538312;
@@ -105,11 +99,11 @@ function inserts(){
 	ue.getEditor('content2');
 }
 function fun3(){
-	document.forms[0].action="/winner/listPushNoticeed";
+	document.forms[0].action="/winner/listPushNotice";
 	document.forms[0].submit();
 }
 function status(id){
-window.location.href="/winner/statused/"+id;
+window.location.href="/winner/status/"+id;
 }
 </script>
 </head>
@@ -117,14 +111,14 @@ window.location.href="/winner/statused/"+id;
 <form action="post">
 <table>
 <tr>
-<td><div style="width: 570px;"></div><td><b>你说我进来没？ : </b><input type="text" name="tname" value="${tname}" /><input type="button" value="搜索" onclick="fun3();" class="green"></td>
+<td><div style="width: 570px;"></div><td><b>标题 : </b><input type="text" name="tname" value="${tname}" /><input type="button" value="搜索" onclick="fun3();" class="green"></td>
 </tr>
 </table>
 </form>
 <table class="table table-bordered table-hover" style='table-layout:fixed;' border="1">
 <tr style="border-top: hidden;" class="sbiao"	>
 <td colspan="4" class="sbiao"></td><td align="left" style="border-left: hidden;" class="sbiao"><input class="blue" type="button" data-toggle="modal" href="#example2" onclick="inserts();" value="添加" >
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="/winner/listPushNotice">点击进入已上架公告>></a></td>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="/winner/listPushNoticeed" >点击进入已下架公告>></a></td>
 </tr>
 <tr>
 <th>序号</th><th>类别</th><th>公告标题</th><th>公告时间</th><th>操作</th>
@@ -136,7 +130,7 @@ window.location.href="/winner/statused/"+id;
 <td>${status.index + 1 }</td><td>${p.pushType == '0' ? "公告":"其他"}<td>${p.title}</td><td >${p.createDate}</td>
 <td><input type="button" value="查看" class="green"  data-toggle="modal" href="#example"  onclick="fun( '${p.title}','${p.pushType}','${p.content}')"/>&nbsp
 <input type="button" value="编辑" class="blue" data-toggle="modal" href="#example1" onclick="fun2(${p.id});" />&nbsp
-<input type="button" value="上架" class="red" onclick="status(${p.id});" /></td>
+<input type="button" value="下架" class="red" onclick="status(${p.id});" /></td>
 </tr>
 </c:forEach>
 </table>
