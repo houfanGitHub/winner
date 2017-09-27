@@ -291,7 +291,7 @@
 								class="menu-text"> 学院管理 </span><b class="arrow icon-angle-down"></b></a>
 							<ul class="submenu" id="Sort_link_2">
 								<li class="home" style="height: 36px;"><a
-									href="javascript:void(0)" name="/winner/listNews" title="资讯分类"
+									href="javascript:void(0)" name="/winner/listNewsType" title="资讯分类"
 									class="iframeurl"><i class="icon-double-angle-right"></i>资讯分类</a></li>
 								<li class="home" style="height: 36px;"><a
 									href="javascript:void(0)" name="/winner/listNews" title="资讯管理"
@@ -346,10 +346,10 @@
 								class="menu-text"> 赢+设置 </span><b class="arrow icon-angle-down"></b></a>
 							<ul class="submenu" id="Sort_link_5">
 								<li class="home" style="height: 36px;"><a
-									href="javascript:void(0)" name="Shop_list.html" title="公告管理"
+									href="javascript:void(0)" name="/winner/listPushNotice" title="公告管理"
 									class="iframeurl"><i class="icon-double-angle-right"></i>公告管理</a></li>
 								<li class="home" style="height: 36px;"><a
-									href="javascript:void(0)" name="Shops_Audit.html" title="意见反馈"
+									href="javascript:void(0)" name="/winner/listFeedback" title="意见反馈"
 									class="iframeurl"><i class="icon-double-angle-right"></i>意见反馈<span
 										class="badge badge-danger">5</span></a></li>
 							</ul></li>

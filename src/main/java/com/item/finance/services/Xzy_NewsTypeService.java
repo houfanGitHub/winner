@@ -9,7 +9,7 @@ import com.item.finance.bean.NewsType;
 import com.item.finance.dao.XiezhengyuDao;
 @Service
 @Transactional
-public class NewsTypeService implements ItemServiceImpl<NewsType>{
+public class Xzy_NewsTypeService implements ItemServiceImpl<NewsType>{
 	@Autowired
 	private XiezhengyuDao dao;
 	@Override
@@ -35,14 +35,12 @@ public class NewsTypeService implements ItemServiceImpl<NewsType>{
 
 	@Override
 	public void update(NewsType nt) {
-		// TODO Auto-generated method stub
 	this.dao.updateNewsType(nt);
 	}
 
 	@Override
 	public void delete(NewsType nt) {
 		// TODO Auto-generated method stub
-	this.dao.getNewsType(nt.getId());
 	this.dao.deleteNewsType(nt);
 	}
 }
