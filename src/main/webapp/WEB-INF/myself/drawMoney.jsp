@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+=======
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+>>>>>>> branch 'master' of https://github.com/houfanGitHub/winner.git
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -150,7 +154,7 @@
             </ul>
         </td>
         <td align="right">
-            <a href="http://pro.ying158.com/web/logout" class="loginOut"><span class="iconfont"></span>安全退出</a>
+            <a href="/winner/index.jsp" class="loginOut"><span class="iconfont"></span>安全退出</a>
         </td>
     </tr>
 </tbody></table>
@@ -175,19 +179,26 @@
 <div class="adminLeft">
     <h2>我的投资</h2>
     <ul>
-        <li><a id="member_center_menu_invests" href="http://pro.ying158.com/account/touZiList"><em class="iconfont red"></em>投资记录</a></li>
-        <li><a id="member_center_menu_profit_record" href="http://pro.ying158.com/account/trades/profit/records"><em class="iconfont red"></em>收益记录</a></li>
-        <li><a id="member_center_menu_deposit_record" href="http://pro.ying158.com/account/deposit/records"><em class="iconfont red"></em>充值记录</a></li>
-        <li><a id="member_center_menu_withdraw_record" href="http://pro.ying158.com/account/withdraw/records"><em class="iconfont red"></em>提款记录</a></li>
-        <li><a id="member_center_menu_bbinInfo_record" href="http://pro.ying158.com/account/bbinInfo/records"><em class="iconfont red"></em>体验金记录</a></li>
+        <li><a id="member_center_menu_invests" 
+        href="/winner/itemweb/invests"><em class="iconfont red"></em>投资记录</a></li>
+        <li><a id="member_center_menu_profit_record"
+         href="/winner/itemweb/myself"><em class="iconfont red"></em>收益记录</a></li>
+        <li><a id="member_center_menu_deposit_record"
+         href="/winner/itemweb/rechargeRecords"><em class="iconfont red"></em>充值记录</a></li>
+        <li><a id="member_center_menu_withdraw_record" 
+        href="/winner/itemweb/withdraw" class="select"><em class="iconfont red"></em>提款记录</a></li>
+        <li><a id="member_center_menu_bbinInfo_record"
+         href="/winner/itemweb/experienceGold"><em class="iconfont red"></em>体验金记录</a></li>
     </ul>
     <h2>我的账户</h2>
-    <ul>
-        <li><a id="member_center_menu_deposit" href="http://pro.ying158.com/account/deposit"><em class="iconfont"></em>账户充值</a></li>
-        <li><a id="member_center_menu_security" href="http://pro.ying158.com/account/security"><em class="iconfont"></em>安全信息</a></li>
-        <li><a id="member_center_menu_withdraw" href="http://pro.ying158.com/account/withdraw"><em class="iconfont"></em>我要提款</a></li>
-        <li><a id="member_center_menu_financial" href="http://pro.ying158.com/account/financial"><em class="iconfont"></em>我是理财师</a></li>
-    </ul>
+			<ul>
+				<li><a id="member_center_menu_deposit"
+					href="/winner/itemweb/deposit"><em class="iconfont"></em>账户充值</a></li>
+				<li><a id="member_center_menu_security" 
+				href="/winner/itemweb/security"><em class="iconfont"></em>安全信息</a></li>
+				<li><a id="member_center_menu_withdraw" 
+				href="/winner/itemweb/drawMoney"><em class="iconfont"></em>我要提款</a></li>
+			</ul>
 </div>
 <script>
   var menu_item="";
@@ -255,7 +266,6 @@
 	   </thead>
 		<tbody id="tbody-result"></tbody>
 	</table>
-
 
 </div>
 <script type="text/javascript">

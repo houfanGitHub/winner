@@ -13,7 +13,7 @@ import com.item.finance.dao.XiezhengyuDao;
 
 @Service
 @Transactional
-public class NewsService implements  ItemServiceImpl<News>{
+public class Xzy_NewsService implements  ItemServiceImpl<News>{
 @Autowired
 private XiezhengyuDao dao;
 @Override

@@ -65,11 +65,6 @@ public class Ss_AwardRecordService implements ItemServiceImpl<AwardRecord> {
 	
 	
 	
-	//投资金额
-	public List<MemberAccount>listmema(){
-		return this.ss_AwardRecordDao.listma();
-	}
-	
 	@Override
 	public void save(AwardRecord t) {
 		// TODO Auto-generated method stub

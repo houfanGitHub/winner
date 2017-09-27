@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.item.finance.bean.MemberDepositRecord;
@@ -71,7 +72,24 @@ public class Ss_memberDepositController {
 			
 			return "redirect:/sushuang4/list4";   //重定向到首页
 		}
-	
+		/*
+		  //更新操作  
+				@RequestMapping("/updatememberdepoist4/{id}/")
+				public String updateSubjectmemberdeposit(@PathVariable("id")String id){
+						ss_memberDepositService.updatememberdepoist(id);
+						
+							return "redirect:/sushuang4/list4";//主页面跳转
+							
+						}
+	*/
+
+		//修改是否执行更新操作
+			@RequestMapping("/updatememberdeposit4/{id}")
+			public String updatememberdeposit(@PathVariable("id")String id){
+				ss_memberDepositService.updatememberdeposit(id);
+				return "redirect:/sushuang4/list4";
+			}
+
 
 	
 	

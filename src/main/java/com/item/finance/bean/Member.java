@@ -44,14 +44,14 @@ public class Member  {  //会员表
 	private String withdrawPassword;  //提款密码
 	private Set<AssociatedAccount> associatedAccounts = new HashSet<>();
 	private Set<BbinInfo> bbinInfos = new HashSet<>();
-	private Set<Feedback> feedbacks = new HashSet<>();
+	private Set<Feedback> feedbacks = new HashSet<>();//意见反馈
 	private Set<FinanceProductSubscribe> financeProductSubscribes = new HashSet<>();
 	private Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords = new HashSet<>();
 	private Set<FinancialPlanner> financialPlanners = new HashSet<>();
 	private Set<MemberAccount> memberAccounts = new HashSet<>();
 	private Set<MemberBankcard> memberBankcards = new HashSet<>();
 	private Set<MemberDepositRecord> memberDepositRecords = new HashSet<>();
-	private Set<MemberProfitRecord> memberProfitRecords = new HashSet<>();
+	private Set<MemberProfitRecord> memberProfitRecords = new HashSet<>();  //成员利润表
 	private Set<MemberPucChargeHome> memberPucChargeHomes = new HashSet<>();
 	private Set<MemberPucChargeItem> memberPucChargeItems = new HashSet<>();
 	private Set<MemberTally> memberTallies = new HashSet<>();
@@ -60,6 +60,19 @@ public class Member  {  //会员表
 	private Set<OverseaConfigSubscribe> overseaConfigSubscribes = new HashSet<>();
 	private Set<SubjectBbinPurchaseRecord> subjectBbinPurchaseRecords = new HashSet<>();
 	private Set<SubjectOrderRecord> subjectOrderRecords = new HashSet<>();
+	private Set<AwardRecord> awardRecords=new HashSet<>();  //邀请奖励表
+	
+	
+	@OneToMany(mappedBy="member")
+	public Set<AwardRecord> getAwardRecords() {
+		return awardRecords;
+	}
+
+
+	public void setAwardRecords(Set<AwardRecord> awardRecords) {
+		this.awardRecords = awardRecords;
+	}
+
 
 	public Member() {
 	}

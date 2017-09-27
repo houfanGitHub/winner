@@ -33,13 +33,17 @@ public class Ss_SubjectController {
 		map.put("sname", sname);//名称
 		map.put("sstatus", sstatus);//状态
 		map.put("stype", stype);//类型
-	List<Subject>listsubject=ss_SubjectService.list(map);
-		//List<Ss_Sumsubject>listsumsubject=ss_SubjectService.listsumsub();
+	List<Subject>listsubject=ss_SubjectService.list(map);  //显示
+		List<Ss_Sumsubject>listsumsubject=ss_SubjectService.listsumsub();  //已投金额
+		for (Ss_Sumsubject ss : listsumsubject) {
+			System.out.println("标的id："+ss.getSubject_id()+",标的已投金额："+ss.getSumamount());
+		}
 	
 		//model.addAttribute("listsubject", listsubject);
 	session.setAttribute("listsubject", listsubject);
 	//model.addAttribute("listsumsubject", listsumsubject);
-		
+session.setAttribute("listsumsubject", listsumsubject);
+	
 	/*	//模糊查询
 		model.addAttribute("sname", sname);
 		model.addAttribute("sstatus", sstatus);
@@ -50,7 +54,7 @@ public class Ss_SubjectController {
 	session.setAttribute("stype", stype);
 	
 
-		
+		System.out.println("111111111111");
 		return "WEB-INF/ssjsp/subjectplan"; //跳转
 		
 	}
@@ -61,13 +65,13 @@ public class Ss_SubjectController {
 		session.removeAttribute("sstatus");
 		session.removeAttribute("stype");
 		
-		
+		//return null;
 		return "redirect:/sushuang8/list8";   //重定向到首页
 	}
 	
 	//体验金购买列表
 		@RequestMapping("/listsubjectbbin8/{id}")
-		public String listSubjectbbin(@PathVariable("id")String id,Model model){
+		public String listSubjectbbin(@PathVariable("id")int id,Model model){
 			List<SubjectBbinPurchaseRecord> listsubjectbb = ss_SubjectService.listSubjectbb(id);
 			model.addAttribute("listsubjectbb", listsubjectbb);
 			return "WEB-INF/ssjsp/subjectbbinpur"; //跳转
@@ -75,7 +79,7 @@ public class Ss_SubjectController {
 		
 		  //体验金还款   (怕重复不好分辨  这里用subject_id 代替id)
 		@RequestMapping("/updatesubjectbbin8/{id}/{subject_id}")
-		public String updateSubject_bbin(@PathVariable("id")String id,@PathVariable("subject_id")String subject_id){
+		public String updateSubject_bbin(@PathVariable("id")int id,@PathVariable("subject_id")String subject_id){
 				ss_SubjectService.updatesubjectb(id);
 				
 					return "redirect:/sushuang8/listsubjectbbin8/"+subject_id;//重定向页面跳转

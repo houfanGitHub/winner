@@ -65,7 +65,7 @@ public class Ss_SubjectDao {
 	
 	
 	//体验金付息列表        传参  返回集合中对应的数据       通过id 找到相关信息
-	public  List<SubjectBbinPurchaseRecord>listsubjectbbin(String id){
+	public  List<SubjectBbinPurchaseRecord>listsubjectbbin(int id){
 		Session session=getSession();
 		//SubjectBbinPurchaseRecord 表中有一subject_id 是与subject中的id  相对应的  可通过subject中的id 取到相应的值
 		String hql="from SubjectBbinPurchaseRecord as subjectbbinp where subjectbbinp.subject.id="+id;
@@ -74,7 +74,7 @@ public class Ss_SubjectDao {
 	}
 	
 	//体验金列表  还款功能
-	public void updatesubjectbbinp(String id){
+	public void updatesubjectbbinp(int id){
 		Session session=getSession();
 		SubjectBbinPurchaseRecord subjectbbin=(SubjectBbinPurchaseRecord)session.get(SubjectBbinPurchaseRecord.class, id);
 		subjectbbin.setIspayment((byte) 1);    //是否还款    强转byte型
@@ -103,8 +103,8 @@ public class Ss_SubjectDao {
 	//已投金额       sql语句查询    需要创建实体类   
 	public List<Ss_Sumsubject>listsumsubject(){
 		Session session=getSession();
-		//金额 * 次数              先在SubjectPurchaseRecord标的购买表中  查询 总金额   总次数       然后  金额* 次数                                                                                                                                                                                                
-		String sql="select s.subject_id,s.sumamount*s.sumpaytimes from (select spr.subject_id,SUM(spr.amount)as sumamount,SUM(spr.payInterestTimes)as sumpaytimes from SubjectPurchaseRecord spr GROUP BY spr.subject_id asc) as s;";
+		//金额 * 次数              先在SubjectPurchaseRecord标的购买表中  查询 总金额   总次数       然后  金额* 次数         表 字段 必须是数据库中的表 字段                                                                                                                                                                                          
+		String sql="select s.subject_id,s.sumamount*s.sumpaytimes  from (select spr.subject_id,SUM(spr.amount)as sumamount,SUM(spr.pay_interest_times)as sumpaytimes from subject_purchase_record spr GROUP BY spr.subject_id asc) as s left JOIN subject as sub ON s.subject_id=sub.id;";
 		List list=session.createSQLQuery(sql).list();//list不指定泛型   list为object类型
 		List<Ss_Sumsubject>sumsubject=new ArrayList<>();
 		for (int i = 0; i < list.size(); i++) {
@@ -112,7 +112,7 @@ public class Ss_SubjectDao {
 			Ss_Sumsubject ss=new Ss_Sumsubject();//实例化Ss_Sumsubject对象
 			ss.setSubject_id(obj[0].toString());
 			ss.setSumamount(obj[1].toString());//把object数组中的数据转换为Ss_Sumsubject对象   下表更具上面sql语句来判断 第一个为0  第二个为1,第三个为2
-			ss.setSumpaytimes(obj[2].toString());
+			//ss.setSumpaytimes(obj[2].toString());
 			sumsubject.add(ss);//将转换后的数据添加进Ss_Sumsubject集合中去
 		}
 		return sumsubject;

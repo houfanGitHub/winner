@@ -5,6 +5,8 @@ import javax.persistence.*;
 import java.math.BigInteger;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -14,22 +16,23 @@ import java.util.Date;
 @Entity
 @Table(name="subject_purchase_record")
 @NamedQuery(name="SubjectPurchaseRecord.findAll", query="SELECT s FROM SubjectPurchaseRecord s")
-public class SubjectPurchaseRecord  {
+public class SubjectPurchaseRecord  {//标的购买表
 	private static final long serialVersionUID = 1L;
 	private String id;
-	private BigDecimal amount;
-	private String bonusInfo;
-	private Date createDate;
-	private String dealIp;
-	private byte delflag;
-	private BigDecimal interest;
-	private byte ispayment;
-	private int lastProfitDay;
-	private BigInteger memberId;
-	private int payInterestTimes;
-	private String serialNumber;
-	private BigInteger subjectId;
-	private Date updateDate;
+	private Double amount;  //购买金额
+	private String bonusInfo;  //红包金额信息（app端实际投资额度+红包额度）
+	private Date createDate;   //创建时间
+	private String dealIp;  //交易ip
+	private byte delflag; //是否删除
+	private Double interest;  //结算利息
+	private byte ispayment;   //是否还款  //是否还款   （0.待还款   ，1.已还款）
+	private int lastProfitDay;  //最后计息日
+	private Member member;  //会员表
+	private int payInterestTimes;  //购买次数
+	private String serialNumber;  //流水号
+	private Subject subject;  //主题表
+	private Date updateDate;  //修改时间
+	private Set<MemberProfitRecord> memberProfitRecords = new HashSet<>();
 
 	public SubjectPurchaseRecord() {
 		
@@ -48,11 +51,11 @@ public class SubjectPurchaseRecord  {
 
 
 	@Column(precision=10, scale=4)
-	public BigDecimal getAmount() {
+	public Double getAmount() {
 		return this.amount;
 	}
 
-	public void setAmount(BigDecimal amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 
@@ -98,11 +101,11 @@ public class SubjectPurchaseRecord  {
 
 
 	@Column(precision=10, scale=4)
-	public BigDecimal getInterest() {
+	public Double getInterest() {
 		return this.interest;
 	}
 
-	public void setInterest(BigDecimal interest) {
+	public void setInterest(Double interest) {
 		this.interest = interest;
 	}
 
@@ -125,7 +128,7 @@ public class SubjectPurchaseRecord  {
 		this.lastProfitDay = lastProfitDay;
 	}
 
-
+/*
 	@Column(name="member_id")
 	public BigInteger getMemberId() {
 		return this.memberId;
@@ -135,11 +138,25 @@ public class SubjectPurchaseRecord  {
 		this.memberId = memberId;
 	}
 
-
+*/
+	
+	
 	@Column(name="pay_interest_times")
 	public int getPayInterestTimes() {
 		return this.payInterestTimes;
 	}
+	
+	@ManyToOne
+	@JoinColumn(name="member_id")
+	public Member getMember() {
+		return member;
+	}
+
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
 
 	public void setPayInterestTimes(int payInterestTimes) {
 		this.payInterestTimes = payInterestTimes;
@@ -154,26 +171,40 @@ public class SubjectPurchaseRecord  {
 	public void setSerialNumber(String serialNumber) {
 		this.serialNumber = serialNumber;
 	}
-
-
-	@Column(name="subject_id")
-	public BigInteger getSubjectId() {
-		return this.subjectId;
-	}
-
-	public void setSubjectId(BigInteger subjectId) {
-		this.subjectId = subjectId;
-	}
-
-
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="update_date", nullable=false)
 	public Date getUpdateDate() {
 		return this.updateDate;
 	}
+	@ManyToOne
+	@JoinColumn(name="subject_id")
+	public Subject getSubject() {
+		return subject;
+	}
+
+
+	public void setSubject(Subject subject) {
+		this.subject = subject;
+	}
+
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@OneToMany(mappedBy="subjectPurchaseRecord")
+	public Set<MemberProfitRecord> getMemberProfitRecords() {
+		return memberProfitRecords;
+	}
+
+
+	public void setMemberProfitRecords(Set<MemberProfitRecord> memberProfitRecords) {
+		this.memberProfitRecords = memberProfitRecords;
 	}
 
 }

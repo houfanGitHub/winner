@@ -63,7 +63,7 @@ class="table table-striped table-condensed table-condensed table-hover table-bor
 <td>姓名</td>
 <td>邀请码</td>
 <td>被邀请码</td>
-<td>投资金额</td>
+<td>投资金额</td>  <!-- 投资金额 没有算 -->
 <td>奖励类型</td>
 
 <td>奖励状态</td>
@@ -75,11 +75,11 @@ class="table table-striped table-condensed table-condensed table-hover table-bor
 <c:forEach items="${listawardrecord}" var="listawardrecord" varStatus="stat">
 <tr align="center" bgcolor="white">
 <td>${stat.index+1 }</td>
-<td>${listawardrecord.member.mobile_Phone }</td>   <!-- 手机号 -->
+<td>${listawardrecord.member.mobile_Phone}</td>   <!-- 手机号 -->
 <td>${listawardrecord.member.memberName }</td> <!-- 姓名 -->
 <td>${listawardrecord.member.invitationCode}</td>  <!-- 邀请码 -->
 <td>${listawardrecord.member.invitedCode}</td>       <!-- 被邀请码-->
-<td>${listawardrecord.amount}</td>
+<td>￥${listawardrecord.amount}元</td>
   
 
 

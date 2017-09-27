@@ -15,17 +15,17 @@ import java.util.Date;
  */
 @Entity
 @Table(name="subject_order_record")
-public class SubjectOrderRecord  {
-	private String id;
-	private BigDecimal amount;
-	private Date createDate;
-	private byte dealType;
-	private byte delflag;
-	private String serialNumber;
-	private byte status;
-	private Date updateDate;
-	private Member member;
-	private Subject subject;
+public class SubjectOrderRecord  {  //标 的 订单表
+	private String id;   //主键
+	private BigDecimal amount;  //订单金额
+	private Date createDate;  //创建时间
+	private byte dealType;   //交易类型
+	private byte delflag;  //是否删除
+	private String serialNumber;  //流水号
+	private byte status;  //订单状态
+	private Date updateDate;  //更新时间
+	private Member member;  //会员表
+	private Subject subject; //主题表
 
 	public SubjectOrderRecord() {
 	}

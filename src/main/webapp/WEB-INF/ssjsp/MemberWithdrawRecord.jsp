@@ -136,11 +136,11 @@ class="table table-striped table-condensed table-condensed table-hover table-bor
    </div><!-- /.modal -->
     <script type="text/javascript">
  		function mymodal(id){ 			
- 			alert("11111111111");
+ 		//	alert("11111111111");
  			$("#myModal").modal("show");
- 			alert("222222");
+ 			//alert("222222");
  			$("#btn").click(function(){
- 				alert("333333");
+ 			//	alert("333333");
  				location="/winner/sushuang5/updatememberwithdraw5/"+id;
  			});
  			

@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="member_bankcards")
-public class MemberBankcard  {
+public class MemberBankcard  { //绑卡表
 	private String id;	//ID
 	private String cardNo;	//卡号',
 	private String cardaddress;	//开户银行所在地

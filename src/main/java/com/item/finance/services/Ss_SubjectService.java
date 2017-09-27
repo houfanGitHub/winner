@@ -39,11 +39,11 @@ public class Ss_SubjectService  implements ItemServiceImpl<Subject>{
 	}
 	
 	//体验金付息  id
-	public  List<SubjectBbinPurchaseRecord>listSubjectbb(String id){
+	public  List<SubjectBbinPurchaseRecord>listSubjectbb(int id){
 		return this.ss_SubjectDao.listsubjectbbin(id);
 	}
 	//体验金 还款功能
-	public void updatesubjectb(String id){
+	public void updatesubjectb(int id){
 		this.ss_SubjectDao.updatesubjectbbinp(id);
 	}
 	

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib  prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,25 +34,25 @@
 			</tr>
 			<tr height="20" bgcolor="white">
 				<td width="15%"><font color="black">用户名</font></td>
-				<td width="35%">${member.name }</td>
+				<td width="35%">${member.name}</td>
 				<td width="15%"><font color="black">手机号</font></td>
-				<td width="35%">${member.mobile_Phone }</td>
+				<td width="35%">${member.mobile_Phone}</td>
 			</tr>
 			<tr height="20" bgcolor="white">
 				<td><font color="black">真实姓名</font></td>
-				<td>${member.memberName }</td>
+				<td>${member.memberName}</td>
 				<td><font color="black">身份证</font></td>
-				<td>${member.identity }</td>
+				<td>${member.identity}</td>
 			</tr>
 			<tr height="20" bgcolor="white">
 				<td><font color="black">邀请码</font></td>
-				<td>${member.invitationCode }</td>
+				<td>${member.invitationCode}</td>
 				<td><font color="black">被邀请码</font></td>
-				<td>${member.invitedCode }</td>
+				<td>${member.invitedCode}</td>
 			</tr>
 			<tr height="20" bgcolor="white">
 				<td><font color="black">添加时间</font></td>
-				<td colspan="3">${member.createDate }</td>
+				<td colspan="3">${member.createDate}</td>
 				
 			</tr>
 			<tr height="20" >
@@ -60,77 +61,89 @@
 			</tr>
 			<tr height="20" >
 				<td  colspan="4" align="center" bgcolor="#737373"></td>
+				
+			</tr>
+		</table>
+		
+		<br>
+		<table width="100%" bgcolor="blue" cellspacing="1" border="0" class="table table-bordered">
+			<tr height="20">
+				<td  colspan="10" align="center" bgcolor="#AFD9EE">资金信息</td>
+				
+			</tr>
+			<tr align="center" bgcolor="white">
+				<td><font color="black">真实姓名</font></td>
+              <td><font color="black">可用余额</font></td>
+                 <td><font color="black">冻结金额</font></td>
+               <td><font color="black">累计收益</font></td>
+              <td><font color="black">投资总额</font></td>
+              <td><font color="black">红包金额</font></td>
+              <td><font color="black">体验金</font></td>
+            
+           
+           </tr>
+           <c:forEach items="${memberAccount}" var="acc" varStatus="stat">
+           <tr align="center" bgcolor="white">
+             <td><font color="black">${acc.member.memberName}</font></td>
+			<td><font color="black">${acc.useableBalance}</font></td>
+			<td><font color="black">${acc.imusealeBalance}</font></td>
+			<td><font color="black">${acc.totalProfit}</font></td>
+			<td><font color="black">${acc.investAmount}</font></td>
+		    <td><font color="black">${acc.bonusAmount}</font></td>
+	        <td><font color="black">${acc.bbinAmount}</font></td>
+		
+		</tr>
+           </c:forEach>
+
+
+			<tr height="20" >
+				<td  colspan="10" align="center" bgcolor="white"></td>
+				
+			</tr>
+			<tr height="20" >
+				<td  colspan="10" align="center" bgcolor="#737373"></td>
+				
+			</tr>
+		</table>
+	
+		
+		<table width="100%" bgcolor="blue" cellspacing="1" border="0" class="table table-bordered">
+			<tr height="20">
+				<td  colspan="10" align="center" bgcolor="#AFD9EE">理财师信息</td>
+				
+			</tr>
+			<tr align="center" bgcolor="white">
+				<td><font color="black">真实姓名</font></td>
+              <td><font color="black">机构名称</font></td>
+                 <td><font color="black">邮寄地址</font></td>
+               <td><font color="black">添加时间</font></td>
+              
+           
+           </tr>
+           <c:forEach items="${financialPlanner}" var="fina" varStatus="stat">
+           <tr align="center" bgcolor="white">
+             <td><font color="black">${fina.name}</font></td>
+			<td><font color="black">${fina.orgname}</font></td>
+			<td><font color="black">${fina.address}</font></td>
+			
+			<td><font color="black">${fina.createDate}</font></td>
+		
+	
+		
+		</tr>
+           </c:forEach>
+
+
+			<tr height="20" >
+				<td  colspan="10" align="center" bgcolor="white"></td>
+				
+			</tr>
+			<tr height="20" >
+				<td  colspan="10" align="center" bgcolor="#737373"></td>
 				
 			</tr>
 		</table>
 		<br>
-		<table width="100%" bgcolor="blue" cellspacing="1" border="0" class="table table-bordered">
-			<tr height="20">
-				<td  colspan="4" align="center" bgcolor="#AFD9EE">资金信息</td>
-				
-			</tr>
-			<tr height="20" bgcolor="white">
-				<td width="15%" ><font color="black">真实姓名</font></td>
-				<td colspan="3" >${memberAccount.member.memberName }  </td>
-				
-			</tr>
-			<tr height="20" bgcolor="white">
-				<td width="10%"><font color="black">可用余额</font></td>
-				<td width="40%" >${memberAccount.useableBalance }  </td>
-				<td width="10%"><font color="black">冻结金额</font></td>
-				<td width="40%"> ${memberAccount.imusealeBalance} </td>
-			</tr>
-			<tr height="20" bgcolor="white">
-				<td><font color="black">累计收益</font></td>
-				<td> ${memberAccount.totalProfit } </td>
-				<td><font color="black">投资总额</font></td>
-				<td> ${memberAccount.investAmount } </td>
-			</tr>
-			<tr height="20" bgcolor="white">
-				<td><font color="black">红包金额</font></td>
-				<td>${memberAccount.bonusAmount } </td>
-				<td><font color="black">体验金</font></td>
-				<td> ${memberAccount.bbinAmount}</td>
-			</tr>
-			
-			<tr height="20" >
-				<td  colspan="4" align="center" bgcolor="white"></td>
-				
-			</tr>
-			<tr height="20" >
-				<td  colspan="4" align="center" bgcolor="#737373"></td>
-				
-			</tr>
-		</table>
-		<br>
-		<table width="100%" bgcolor="blue" cellspacing="1" border="0" class="table table-bordered">
-			<tr height="20">
-				<td  colspan="4" align="center" bgcolor="#AFD9EE">理财师信息</td>
-				
-			</tr>
-			
-			<tr height="20" bgcolor="white">
-				<td width="10%"><font color="black">真实姓名</font></td>
-				<td width="40%">${financialPlanner.name }  </td>
-				<td width="10%"><font color="black">机构名称</font></td>
-				<td width="40%"> ${financialPlanner.orgname} </td>
-			</tr>
-			<tr height="20" bgcolor="white">
-				<td><font color="black">邮寄地址</font></td>
-				<td> ${financialPlanner.address } </td>
-				<td><font color="black">添加时间</font></td>
-				<td> ${financialPlanner.createDate } </td>
-			</tr>
-			
-			<tr height="20" >
-				<td  colspan="4" align="center" bgcolor="white"></td>
-				
-			</tr>
-			<tr height="20" >
-				<td  colspan="4" align="center" bgcolor="#737373"></td>
-				
-			</tr>
-		</table>
 		<br>
 		<table width="100%" bgcolor="blue" cellspacing="1" border="0" class="table table-bordered">
 			<tr height="20">
@@ -149,19 +162,19 @@
            </tr>
            <c:forEach items="${listspr}" var="listspr" varStatus="stat">
            <tr align="center" bgcolor="white">
-             <td><font color="black">${stat.index+1 }</font></td>
-			<td><font color="black">${listspr.id }</font></td>
-			<td><font color="black">${listspr.amount }</font></td>
+             <td><font color="black">${stat.index+1}</font></td>
+			<td><font color="black">${listspr.id}</font></td>
+			<td><font color="black">${listspr.amount}</font></td>
 			<td><font color="black">
 			
 			<c:if test="${listspr.subject.status == '0'}"><font color="red">未发布</font></c:if>
       <c:if test="${listspr.subject.status == '1'}"><font color="blue">募集中</font></c:if>
        <c:if test="${llistspr.subject.status == '2'}"><font color="black">募集结束</font></c:if>
        </font></td>
-			<td><font color="black">${listspr.subject.name }</font></td>
+			<td><font color="black">${listspr.subject.name}</font></td>
 		
-	
-		<td>11111</td>
+			<!--投资收益    period 周期   -->
+		<td>￥<fmt:formatNumber type="number" value="${((listspr.amount*(listspr.subject.yearRate/100))/365)*listspr.subject.period}"  maxFractionDigits="2"></fmt:formatNumber></font></td>
 		 <td><font color="black">${listspr.createDate}</font></td>
 		</tr>
            </c:forEach>
@@ -194,7 +207,7 @@
            </tr>
            <c:forEach items="${memberWithdrawRecord}" var="withdrawr" varStatus="stat">
            <tr align="center" bgcolor="white">
-           <td>${stat.index+1 }  </td>
+           <td>${stat.index+1}  </td>
            <td> ${withdrawr.id} </td>
            <td> ${withdrawr.amount} </td>
            
@@ -241,15 +254,15 @@
            <tr align="center" bgcolor="white">
            <td> ${stat.index+1 } </td>
            
-           <td> ${depositre.id } </td>
-           <td> ${depositre.amount } </td>
+           <td> ${depositre.id} </td>
+           <td> ${depositre.amount} </td>
            <td><!-- 充值状态 -->
             <c:if test="${depositre.status=='0' }"><font color="red">充值失败</font></c:if>
             <c:if test="${depositre.status== '1'}"><font color="green">充值成功</font></c:if>
            </td>
-           <td> ${depositre.payChannelName }  </td>
-           <td> ${depositre.payChannelOrderNo }  </td>
-           <td> ${depositre.createDate }  </td>
+           <td> ${depositre.payChannelName}  </td>
+           <td> ${depositre.payChannelOrderNo}  </td>
+           <td> ${depositre.createDate}  </td>
            </tr>
            </c:forEach>
 
@@ -279,15 +292,15 @@
                <td><font color="black">交易时间</font></td>
            
            </tr>
-           <c:forEach items="${memberTradeRecord }" var="tradere" varStatus="stat">
+           <c:forEach items="${memberTradeRecord}" var="tradere" varStatus="stat">
            <tr align="center" bgcolor="white">
-           <td>${stat.index+1 }  </td>
-           <td> ${tradere.id } </td>
-           <td> ${tradere.amount }  </td>
-           <td> ${tradere.tradeStatus }  </td>
-           <td> ${tradere.tradeType }  </td>
-           <td> ${tradere.tradeName }  </td>
-           <td> ${tradere.fundFlow}  </td>
+           <td>${stat.index+1}  </td>
+           <td> ${tradere.id} </td>
+           <td> ${tradere.amount}  </td>
+           <td> ${tradere.tradeStatus}  </td>
+           <td> ${tradere.tradeType}  </td>
+           <td> ${tradere.tradeName}  </td>
+           <td> ${tradere.createDate}  </td>
            </tr>
            </c:forEach>
 

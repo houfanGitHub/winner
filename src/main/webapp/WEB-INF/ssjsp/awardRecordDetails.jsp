@@ -54,7 +54,7 @@ class="table table-striped table-condensed table-condensed table-hover table-bor
 			<c:if test="${listawrd.type == '0' }"><font color="blue">注册奖励</font></c:if>
 			<c:if test="${listawrd.type == '1' }"><font color="blue">投资奖励</font></c:if>
 		</td>
-       <td>${listawrd.amount }</td>
+       <td>￥${listawrd.amount }元</td>
        <td>${listawrd.addTime }</td>
        <td>${member.invitationCode }</td>
        

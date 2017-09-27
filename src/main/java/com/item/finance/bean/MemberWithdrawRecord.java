@@ -14,9 +14,9 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name="member_withdraw_record")
+@Table(name="member_withdraw_record")  //提现记录表
 public class MemberWithdrawRecord  {
-	private String id;  
+	private String id;     //主键
 	private BigDecimal amount; //提现金额
 	private String bankCard;  //卡号
 	private String bankName;  //银行名称

@@ -73,17 +73,18 @@
 <td>${listdeposit.serialNumber}</td>  <!-- 订单编号  流水号 -->
 <td>${listdeposit.member.mobile_Phone}</td>  <!-- 手机号 -->
 <td>${listdeposit.amount}</td>   <!-- 订单金额 -->
-
+<!-- 订单状态 -->
 <td><c:if test="${listdeposit.status == '0' }"><font color="red">充值失败</font></c:if>
 	<c:if test="${listdeposit.status== '1' }"><font color="blue">充值成功</font></c:if></td>    <!-- 订单状态-->
 <td>${listdeposit.payChannelName}</td>   <!-- 充值渠道 -->
 <td>${listdeposit.payChannelOrderNo}</td>  <!-- 富友手机充值订单 -->
 <td>${listdeposit.createDate}</td>     <!-- 订单时间 -->
 <td><c:if test="${listdeposit.status == '0' }">
-<input  class="btn btn-primary" type="button" id="btn" value="更新订单">
+ <!--<input  class="btn btn-primary" type="button" id="btn" value="更新订单">-->
+ <a href="/winner/sushuang4/updatememberdeposit4/${listdeposit.id }" class="btn btn-primary" type="button" >更新订单</a>  
 </c:if>
 	<c:if test="${listdeposit.status == '1' }">
-<font color="red">充值成功</font>
+<font color="blue">充值成功</font>
 </c:if>
 	
 </td>
