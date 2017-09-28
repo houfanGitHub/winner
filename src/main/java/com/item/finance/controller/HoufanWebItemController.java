@@ -49,10 +49,12 @@ import com.item.finance.bean.Member;
 import com.item.finance.bean.MemberAccount;
 import com.item.finance.bean.MemberBankcard;
 import com.item.finance.bean.MemberDepositRecord;
+import com.item.finance.bean.MemberWithdrawRecord;
 import com.item.finance.services.MemberAccountService;
 import com.item.finance.services.MemberBankcardService;
 import com.item.finance.services.MemberDepositRecordService;
 import com.item.finance.services.MemberService;
+import com.item.finance.services.MemberWithdrawRecordService;
 import com.item.finance.services.UserRoleRelationService;
 import com.item.finance.services.UserRoleService;
 import com.item.finance.services.UserService;
@@ -77,6 +79,8 @@ public class HoufanWebItemController {
 	private MemberAccountService memberAccountService;
 	@Autowired
 	private DeoploymentProcessDefinition deoploymentProcessDefinition;
+	@Autowired
+	private MemberWithdrawRecordService memberWithdrawRecordService;
 
 	//充值
 	@RequestMapping("/accountRecharge")
@@ -322,14 +326,23 @@ public class HoufanWebItemController {
 			    System.out.println("部署流程定义:processEngine = "+ processEngine);
 			    deoploymentProcessDefinition.getDeployment(processEngine);
 			    //启动流程实例
-			    ProcessInstance pi = deoploymentProcessDefinition.startProcessInstance(processEngine,member.getMemberName());
+			    ProcessInstance pi = deoploymentProcessDefinition.startProcessInstance(processEngine,member.getName());
 			    //查询任务通过流程实例id 
 			   String id = deoploymentProcessDefinition.findHistoryTask(processEngine, pi.getId());
-			    //设置流程变量
+			  //添加提款记录
+        		//查询个人账户信息
+        		MemberBankcard  memberBankcard = memberBankcardService.selectGetByMemberId(member.getId());
+        		//流水号
+        		String randomPayNumber = getRandomPayName();
+        		MemberWithdrawRecord memberWithdrawRecord = 
+        				//提现金额 银行卡号 银行名称 开户银行所在地 打款通道 创建时间 是否删除 流水号 提现状态 修改时间 用户信息
+        				new MemberWithdrawRecord(withdrawAmount, bankCard, memberBankcard.getType(), memberBankcard.getCardaddress(), "FUIOU", new Date(), (byte)0, randomPayNumber, (byte)0, new Date(), member);
+			    memberWithdrawRecordService.save(memberWithdrawRecord);
+			  //设置流程变量
 			    if(id!=null){
-			    	deoploymentProcessDefinition.setProcessVariables(processEngine,id, member.getMemberName(), withdrawAmount, bankCard);
+			    	deoploymentProcessDefinition.setProcessVariables(processEngine,id, member.getName(), withdrawAmount, bankCard,randomPayNumber);
 			    }
-			    return "yes";
+        		return "yes";
 			} catch (Exception e) {
 				e.printStackTrace();
 				return "提款申请失败";
@@ -347,7 +360,7 @@ public class HoufanWebItemController {
 		Member member = (Member) session.getAttribute("memberinfo");
 		ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 		//查询已完成的历史任务
-		List<String> list = deoploymentProcessDefinition.historyTaskList(processEngine, member.getMemberName());
+		List<String> list = deoploymentProcessDefinition.historyTaskList(processEngine, member.getName());
 		//通过id 查询流程变量
 		List<Map<String,String>> listMaps = deoploymentProcessDefinition.getProcessVariables(processEngine, list);
 		return listMaps;

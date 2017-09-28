@@ -48,6 +48,7 @@ public class Member  {  //会员表
 //	private Set<FinanceProductSubscribe> financeProductSubscribes = new HashSet<>();
 //	private Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords = new HashSet<>();
 //	private Set<FinancialPlanner> financialPlanners = new HashSet<>();
+
 	private Set<MemberAccount> memberAccounts = new HashSet<>();
 	private Set<MemberBankcard> memberBankcards = new HashSet<>();
 //	private Set<MemberDepositRecord> memberDepositRecords = new HashSet<>();

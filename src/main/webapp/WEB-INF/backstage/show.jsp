@@ -367,7 +367,7 @@
 										class="icon-double-angle-right"></i>角色设置</a></li>
 								<li class="home" style="height: 36px;"><a
 									href="javascript:void(0)" name="/winner/system/toActivitiReply"
-									id="userRole" title="角色设置" class="iframeurl"><i
+									id="tk" title="角色设置" class="iframeurl"><i
 										class="icon-double-angle-right"></i>提款审批</a></li>
 								<li class="home" style="height: 36px;"><a
 									href="javascript:void(0)" name="/winner/system/toPasswords"
