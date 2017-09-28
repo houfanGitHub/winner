@@ -26,10 +26,17 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayFundTransToaccountTransferRequest;
 import com.alipay.api.response.AlipayFundTransToaccountTransferResponse;
 import com.item.finance.avtivity.DeoploymentProcessDefinition;
+import com.item.finance.bean.Member;
+import com.item.finance.bean.MemberAccount;
+import com.item.finance.bean.MemberBankcard;
+import com.item.finance.bean.MemberWithdrawRecord;
 import com.item.finance.bean.User;
 import com.item.finance.bean.UserRole;
 import com.item.finance.bean.UserRoleRelation;
 import com.item.finance.services.MemberAccountService;
+import com.item.finance.services.MemberBankcardService;
+import com.item.finance.services.MemberService;
+import com.item.finance.services.MemberWithdrawRecordService;
 import com.item.finance.services.RolePermissionRelationService;
 import com.item.finance.services.UserRoleRelationService;
 import com.item.finance.services.UserRoleService;
@@ -51,6 +58,12 @@ public class HoufanItemSystemController {
 	private DeoploymentProcessDefinition deoploymentProcessDefinition;
 	@Autowired
 	private MemberAccountService memberAccountService;
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private MemberWithdrawRecordService memberWithdrawRecordService;
+	@Autowired
+	private MemberBankcardService memberBankcardService;
 	
 	/**
 	 * 后台审核流程
@@ -75,7 +88,7 @@ public class HoufanItemSystemController {
 	
 	@RequestMapping("/getThrough")
 	@ResponseBody
-	public boolean getThrough(String id,String bankCard,String withdrawAmount,String memberID){
+	public boolean getThrough(String id,String bankCard,String withdrawAmount,String memberID,String randomPayNumber){
 		try {
 			ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 			//流程通过
@@ -134,8 +147,20 @@ public class HoufanItemSystemController {
 			        	AlipayFundTransToaccountTransferResponse response = alipayClient.execute(request);
 			        	if(response.isSuccess()){
 			        	System.out.println("调用成功");
-			        	//添加提款记录
-//			        	memberAccountService.update(memberAccount);
+			        	//修改账户余额
+			        		//查询用户id
+			        		Member member = memberService.selectGetByName(memberID);
+			        		//查询用户余额
+			        		MemberAccount memberAccount = memberAccountService.selectGetByMemberId(member.getId());
+			        		//修改
+			        		memberAccount.setUseableBalance(Double.valueOf(memberAccount.getUseableBalance())-Double.valueOf(withdrawAmount));
+			        		memberAccountService.update(memberAccount);
+			        	//修改提款记录(修改为已完成)
+			        		//根据流水号查询正在审核的申请
+			        		MemberWithdrawRecord memberWithdrawRecord = memberWithdrawRecordService.selectGetByRandomPayNumber(randomPayNumber);
+			        		//修改
+			        		memberWithdrawRecord.setStatus((byte)1);
+			        		memberWithdrawRecordService.update(memberWithdrawRecord);
 			        	} else {
 			        	System.out.println("调用失败");
 			        	}

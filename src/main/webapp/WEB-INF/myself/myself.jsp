@@ -17,7 +17,6 @@
 	<meta name="Keywords" content="股指体验交易，股指单手交易，股指多手交易">
 	<meta name="description" content="申请实盘交易账户，直接进行实盘交易。">
 	<title>收益记录-会员中心-盈+</title>
-	<link href="http://www.ying158.com/images/icon.ico" type="image/x-icon" rel="shortcut icon">
 	<link href="/winner/files/common.css" rel="stylesheet">
 	<link href="/winner/files/jw.css" rel="stylesheet">
     <link href="/winner/files/iconfont.css" rel="stylesheet">

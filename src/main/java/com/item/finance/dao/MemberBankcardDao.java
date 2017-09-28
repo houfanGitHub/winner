@@ -19,4 +19,12 @@ public class MemberBankcardDao {
 		session.save(memberBankcard);
 	}
 
+	public MemberBankcard selectGetByMemberId(String id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from MemberBankcard where member_id = "+id;
+		MemberBankcard memberBankcard = (MemberBankcard) session.createQuery(hql).list().get(0);
+		return memberBankcard;
+	}
+
 }

@@ -17,7 +17,7 @@ import java.util.Date;
 @Table(name="member_withdraw_record")  //提现记录表
 public class MemberWithdrawRecord  {
 	private String id;     //主键
-	private BigDecimal amount; //提现金额
+	private String amount; //提现金额
 	private String bankCard;  //卡号
 	private String bankName;  //银行名称
 	private String cardaddress;  //开户所在地
@@ -33,8 +33,27 @@ public class MemberWithdrawRecord  {
 	}
 
 
+	public MemberWithdrawRecord(String amount, String bankCard,
+			String bankName, String cardaddress, String channelName,
+			Date createDate, byte delFlag, String serialNumber, byte status,
+			Date updateDate, Member member) {
+		super();
+		this.amount = amount;
+		this.bankCard = bankCard;
+		this.bankName = bankName;
+		this.cardaddress = cardaddress;
+		this.channelName = channelName;
+		this.createDate = createDate;
+		this.delFlag = delFlag;
+		this.serialNumber = serialNumber;
+		this.status = status;
+		this.updateDate = updateDate;
+		this.member = member;
+	}
+
+
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public String getId() {
 		return this.id;
 	}
@@ -45,11 +64,11 @@ public class MemberWithdrawRecord  {
 
 
 	@Column(nullable=false, precision=10, scale=2)
-	public BigDecimal getAmount() {
+	public String getAmount() {
 		return this.amount;
 	}
 
-	public void setAmount(BigDecimal amount) {
+	public void setAmount(String amount) {
 		this.amount = amount;
 	}
 
