@@ -107,7 +107,6 @@ public class Ss_zhmanagerController {
 //			System.out.println("标的周期："+s.getSubject().getPeriod());
 //			
 //		}
-//		System.out.println("11111111111111111");
 /*	     Date date = new Date();
 		double day = 0;//天数
 		double earnings = 0;//投资收益(earnings)
@@ -182,7 +181,9 @@ public class Ss_zhmanagerController {
 			System.out.println("订单号："+m.getSerialNumber()+",金额："+m.getAmount());
 			
 		}
-		model.addAttribute("listprofit", listprofit); 
+		List<MemberAccount>memberAccount=this.ss_zhmanagerService.getmemberaccountid(id);//资金信息表
+		model.addAttribute("memberAccount", memberAccount);
+		model.addAttribute("listprofit", listprofit);
 		return "WEB-INF/myself/myself";  //页面跳转  
 		
 	}
@@ -201,6 +202,8 @@ public class Ss_zhmanagerController {
 			System.out.println("订单号："+me.getSerialNumber()+",金额："+me.getAmount());
 		}
 		System.out.println("44444444444444");
+		List<MemberAccount>memberAccount=this.ss_zhmanagerService.getmemberaccountid(id);//资金信息表
+		model.addAttribute("memberAccount", memberAccount);
 		model.addAttribute("listmemberdepo", listmemberdepo);
 		return "WEB-INF/myself/rechargeRecords";//页面跳转
 		
@@ -220,7 +223,8 @@ public class Ss_zhmanagerController {
 			System.out.println("订单号："+mem.getSerialNumber()+",金额："+mem.getAmount());
 			
 		}
-		
+		List<MemberAccount>memberAccount=this.ss_zhmanagerService.getmemberaccountid(id);//资金信息表
+		model.addAttribute("memberAccount", memberAccount);
 		model.addAttribute("listmemberwith", listmemberwith);
 		System.out.println("6666666666666666");
 		return "WEB-INF/myself/withdrawals"; //页面跳转
@@ -253,6 +257,8 @@ public class Ss_zhmanagerController {
 		Ss_sumorder listorder=this.ss_zhmanagerService.getlistorder(id); //预约几笔数据
 		System.out.println("数据2="+listorder.getSumorder());
 		
+		List<MemberAccount>memberAccount=this.ss_zhmanagerService.getmemberaccountid(id);//资金信息表
+		model.addAttribute("memberAccount", memberAccount);
 		model.addAttribute("subjectpro", subjectpro); //投资记录表
 		model.addAttribute("listinvest", listinvest);  //投资几笔数据
 		model.addAttribute("liSubjectord", liSubjectord); //预约记录   订单表
@@ -288,7 +294,8 @@ public class Ss_zhmanagerController {
 			
 		}*/
 	
-		
+		List<MemberAccount>memberAccount=this.ss_zhmanagerService.getmemberaccountid(id);//资金信息表
+		model.addAttribute("memberAccount", memberAccount);
 			
 		model.addAttribute("listbb", listbb); //体验金
 		model.addAttribute("listjectbbr", listjectbbr);//体验金购买标 的表

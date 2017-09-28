@@ -297,7 +297,10 @@
            <td>${stat.index+1}  </td>
            <td> ${tradere.id} </td>
            <td> ${tradere.amount}  </td>
-           <td> ${tradere.tradeStatus}  </td>
+           <td><!-- 交易状态 -->
+            <c:if test="${tradere.tradeStatus=='0' }"><font color="red">充值失败</font></c:if>
+            <c:if test="${tradere.tradeStatus== '1'}"><font color="green">充值成功</font></c:if>
+           </td>
            <td> ${tradere.tradeType}  </td>
            <td> ${tradere.tradeName}  </td>
            <td> ${tradere.createDate}  </td>

@@ -17,7 +17,6 @@
 	<meta name="Keywords" content="股指体验交易，股指单手交易，股指多手交易">
 	<meta name="description" content="申请实盘交易账户，直接进行实盘交易。">
 	<title>体验金记录-会员中心-盈+</title>
-	<link href="http://www.ying158.com/images/icon.ico" type="image/x-icon" rel="shortcut icon">
 	<link href="/winner/files/common.css" rel="stylesheet">
 	<link href="/winner/files/jw.css" rel="stylesheet">
     <link href="/winner/files/iconfont.css" rel="stylesheet">
@@ -94,7 +93,7 @@
 </script><table height="160" class="peopleInfo" width="970" border="0" cellspacing="0" cellpadding="0">
     <tbody><tr>
         <td align="left" valign="middle" class="info">
-            <a href="http://pro.ying158.com/account/security">
+            <a href="/winner/itemweb/security">
                 <div class="img"><img src="/winner/files/userPic.jpg"></div>
                 <h2>${memberinfo.name }，<span>您好!</span></h2>
             </a>
@@ -108,20 +107,46 @@
             </ul>
         </td>
         <td align="right">
-            <a href="/winner/index.jsp" class="loginOut"><span class="iconfont"></span>安全退出</a>
+            <a href="/winner/itemweb/webMemberLogout"  class="loginOut"><span class="iconfont"></span>安全退出</a>
         </td>
     </tr>
 </tbody></table>
 <div class="countBox">
     <ul>
-        <li><h2>0</h2><p>账户可用余额(元)<a href="javascript:;" class="iconfont"><span>账户可用余额</span><i></i></a></p></li>
-        <li><h2>0</h2><p>账户总资产(元)<a href="javascript:;" class="iconfont"><span>可用余额+投资金额+累计收益</span><i></i></a></p></li>
-        <li><h2 style="color:#9d8440">0</h2><p>投资金额(元)<a href="javascript:;" class="iconfont"><span>投资中资金</span><i></i></a></p></li>
-        <li><h2 style="color:#9d8440">0</h2><p>累计收益(元)<a href="javascript:;" class="iconfont"><span>累计收益</span><i></i></a></p></li>
-        <li><h2 style="color:#9d8440">0</h2><p>冻结金额(元)<a href="javascript:;" class="iconfont"><span>提现冻结金额</span><i></i></a></p></li>
+        <li><h2>
+        <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.useableBalance}</c:forEach>
+        </c:if>
+        </h2>
+        <p>账户可用余额(元)<a href="javascript:;" class="iconfont"><span>账户可用余额</span><i></i></a></p></li>
+        <li><h2>
+         <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.useableBalance+memberAccount.investAmount+memberAccount.totalProfit}</c:forEach>
+        </c:if>
+        </h2><p>账户总资产(元)<a href="javascript:;" class="iconfont"><span>可用余额+投资金额+累计收益</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">
+         <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.investAmount}</c:forEach>
+        </c:if>
+        </h2><p>投资金额(元)<a href="javascript:;" class="iconfont"><span>投资中资金</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">
+		 <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.totalProfit}</c:forEach>
+        </c:if>
+        </h2><p>累计收益(元)<a href="javascript:;" class="iconfont"><span>累计收益</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">
+        <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.imusealeBalance}</c:forEach>
+        </c:if>
+        </h2><p>冻结金额(元)<a href="javascript:;" class="iconfont"><span>提现冻结金额</span><i></i></a></p></li>
     </ul>
-    <a href="http://pro.ying158.com/account/deposit" class="cz">充值</a>
-    <a href="http://pro.ying158.com/account/withdraw" class="tk">提款</a>
+    <a href="/winner/itemweb/deposit" class="cz">充值</a>
+    <a href="/winner/itemweb/drawMoney" class="tk">提款</a>
 </div>    <div class="proMain clearfix">
 <div class="adminLeft">
     <h2>我的投资</h2>
@@ -161,7 +186,7 @@
                     <div class="box" style="display:block">
                      <div class="remind"><h4><strong><span style="color:#827E76">体验金余额(元)：</span><span
                             style="color:#9d8440">												<!-- 立即使用  跳的是产品中心 -->
-                            <c:if test="${empty listbb.amont}"><font color="burlywood">8888</font>&nbsp;&nbsp;<a href="#">立即使用</a></c:if>
+                            <c:if test="${empty listbb.amont}"><font color="burlywood">8888</font>&nbsp;&nbsp;<a href="/winner/itemweb/products">立即使用</a></c:if>
                             <c:if test="${!empty listbb.amont}"><font color="burlywood">0</font><br><hr/><br>
          
 <meta name="keywords" content="盈+，盈，社区金融，O2O社区金融，社区金融O2O，O2O，互联网+社区金融，O2O连锁，社区门店，首家社区金融，社区金融服务，综合金融，互联网金融，体验中心，普惠金融，金融创新，社区化，普惠化，全渠道化，互联网线上平台，O2O交易，全国首家，盈十，金融衍生品，固收类理财，私募基金，股权基金，股指期货，玩转股指，商品期货，国际期货，外盘，A50，沪深300，中证500，上证50">

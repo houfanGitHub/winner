@@ -9,8 +9,6 @@
 <meta name="viewport"
 	content="width=device-width,maximum-scale=1.0,user-scalable=yes">
 <title>绑卡管理-盈+</title>
-<link href="http://pro.ying158.com/resources/web/images/icon.ico"
-	type="image/x-icon" rel="shortcut icon">
 <link href="/winner/files/common.css" rel="stylesheet">
 <link href="/winner/files/jw.css" rel="stylesheet">
 <link href="/winner/files/iconfont.css" rel="stylesheet">
@@ -120,7 +118,7 @@
 		<tbody>
 			<tr>
 				<td align="left" valign="middle" class="info"><a
-					href="http://pro.ying158.com/account/security">
+					href="/winner/itemweb/security">
 						<div class="img">
 							<img src="/winner/files/userPic.jpg">
 						</div>
@@ -135,13 +133,13 @@
 						<li class="active"><a href="#"></a><em></em></li>
 						<li class=""><a href="#"></a><em></em></li>
 					</ul></td>
-				<td align="right"><a href="/winner/index.jsp"
+				<td align="right"><a href="/winner/itemweb/webMemberLogout" 
 					class="loginOut"><span class="iconfont"></span>安全退出</a></td>
 			</tr>
 		</tbody>
 	</table>
 	<div class="countBox">
-    <ul>
+     <ul>
         <li><h2>
         <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
         <c:if test="${!empty memberinfo.memberAccounts }">
@@ -149,13 +147,33 @@
         </c:if>
         </h2>
         <p>账户可用余额(元)<a href="javascript:;" class="iconfont"><span>账户可用余额</span><i></i></a></p></li>
-        <li><h2>0</h2><p>账户总资产(元)<a href="javascript:;" class="iconfont"><span>可用余额+投资金额+累计收益</span><i></i></a></p></li>
-        <li><h2 style="color:#9d8440">0</h2><p>投资金额(元)<a href="javascript:;" class="iconfont"><span>投资中资金</span><i></i></a></p></li>
-        <li><h2 style="color:#9d8440">0</h2><p>累计收益(元)<a href="javascript:;" class="iconfont"><span>累计收益</span><i></i></a></p></li>
-        <li><h2 style="color:#9d8440">0</h2><p>冻结金额(元)<a href="javascript:;" class="iconfont"><span>提现冻结金额</span><i></i></a></p></li>
+        <li><h2>
+         <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.useableBalance+memberAccount.investAmount+memberAccount.totalProfit}</c:forEach>
+        </c:if>
+        </h2><p>账户总资产(元)<a href="javascript:;" class="iconfont"><span>可用余额+投资金额+累计收益</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">
+         <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.investAmount}</c:forEach>
+        </c:if>
+        </h2><p>投资金额(元)<a href="javascript:;" class="iconfont"><span>投资中资金</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">
+		 <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.totalProfit}</c:forEach>
+        </c:if>
+        </h2><p>累计收益(元)<a href="javascript:;" class="iconfont"><span>累计收益</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">
+        <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.imusealeBalance}</c:forEach>
+        </c:if>
+        </h2><p>冻结金额(元)<a href="javascript:;" class="iconfont"><span>提现冻结金额</span><i></i></a></p></li>
     </ul>
-    <a href="http://pro.ying158.com/account/deposit" class="cz">充值</a>
-    <a href="http://pro.ying158.com/account/withdraw" class="tk">提款</a>
+    <a href="/winner/itemweb/deposit" class="cz">充值</a>
+    <a href="/winner/itemweb/drawMoney" class="tk">提款</a>
 </div>
 	<div class="proMain clearfix">
 		<div class="adminLeft">
