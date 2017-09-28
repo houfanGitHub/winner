@@ -1,10 +1,17 @@
 package com.item.finance.bean;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.math.BigInteger;
 import java.math.BigDecimal;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -13,20 +20,20 @@ import java.util.Date;
  */
 @Entity
 @Table(name="member_profit_record")
-public class MemberProfitRecord  {
-	private String id;
-	private BigDecimal amount;
-	private String comment;
-	private Date createDate;
-	private byte delflag;
-	private byte profitDay;
-	private byte profitMonth;
-	private short profitYear;
-	private String serialNumber;
-	private byte type;
-	private Date updateDate;
-	private Member member;
-	private SubjectBbinPurchaseRecord subjectBbinPurchaseRecord;
+public class MemberProfitRecord  {//成员利润记录表
+	private String id;  //主键
+	private BigDecimal amount;  //金额
+	private String comment;   //备注
+	private Date createDate;  //创建时间
+	private byte delflag;  //是否删除
+	private byte profitDay; //计息日
+	private byte profitMonth;  //计息月
+	private short profitYear;  //计息年
+	private String serialNumber;  //流水号
+	private byte type;  //类型
+	private Date updateDate; //修改时间
+	private Member member;  //会员表
+	private SubjectPurchaseRecord subjectPurchaseRecord;
 
 	public MemberProfitRecord() {
 	}
@@ -154,16 +161,16 @@ public class MemberProfitRecord  {
 		this.member = member;
 	}
 
-
 	//bi-directional many-to-one association to SubjectBbinPurchaseRecord
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="purchase_id", nullable=false)
-	public SubjectBbinPurchaseRecord getSubjectBbinPurchaseRecord() {
-		return this.subjectBbinPurchaseRecord;
+	public SubjectPurchaseRecord getSubjectPurchaseRecord() {
+		return subjectPurchaseRecord;
 	}
 
-	public void setSubjectBbinPurchaseRecord(SubjectBbinPurchaseRecord subjectBbinPurchaseRecord) {
-		this.subjectBbinPurchaseRecord = subjectBbinPurchaseRecord;
+
+	public void setSubjectPurchaseRecord(SubjectPurchaseRecord subjectPurchaseRecord) {
+		this.subjectPurchaseRecord = subjectPurchaseRecord;
 	}
 
 }

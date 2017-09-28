@@ -124,7 +124,7 @@ function upload(file){
 <body>
 <form  method="post">
 <table class="table table-bordered table-hover" style='table-layout:fixed;' border="1">
-<center><span><b>咨询标题:</b><input type="text"  name="stitle"  value="${stitle}" /></span>&nbsp&nbsp&nbsp&nbsp<span> <b>咨询类别:</b><input type="text" name="stname"  value="${stname}" /></span><span><input type="button" class="green" value="搜索" onclick="funtwo();"></span></center>
+<center><span><b>咨询类型:</b><input type="text"  name="stitle"  value="${stitle}" /></span>&nbsp&nbsp&nbsp&nbsp<span> <b>咨询标题:</b><input type="text" name="stname"  value="${stname}" /></span><span><input type="button" class="green" value="搜索" onclick="funtwo();"></span></center>
 </form>
 <div align="right"><a data-toggle="modal" href="#example" onclick="fun();">添加 </a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 <tr style="height:8px">

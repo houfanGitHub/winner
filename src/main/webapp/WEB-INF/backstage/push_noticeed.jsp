@@ -89,7 +89,8 @@ $(function(){
 	var ue = UE.getEditor('content',{
 	    initialFrameWidth:1000,  //初始化编辑器宽度,默认1000
 	    initialFrameHeight:200,//初始化编辑器高度,默认320
-	    readonly:true	
+	    readonly:true,
+	    enterTag : 'br'  
 		});
 	    ue.getEditor('content');
 });

@@ -17,7 +17,8 @@ $(function(){
  $("#example").modal();
  var ue = UE.getEditor('ueditor',{
   initialFrameWidth:1000,  //初始化编辑器宽度,默认1000
-  initialFrameHeight:200  //初始化编辑器高度,默认320	
+  initialFrameHeight:200,//初始化编辑器高度,默认320	
+  enterTag : 'br'  
 }); 
 var c = ${p.pushType};
 $("#pushType").val(c);

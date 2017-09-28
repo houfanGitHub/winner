@@ -1,10 +1,17 @@
 package com.item.finance.bean;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.math.BigInteger;
-import java.math.BigDecimal;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -15,23 +22,40 @@ import java.util.Date;
 @Table(name="member_account")
 public class MemberAccount  {
 	private String id;
-	private BigDecimal bbinAmount;  //体验金
-	private BigDecimal bonusAmount;   //红包金额
+	private Double bbinAmount;  //体验金
+	private Double bonusAmount;   //红包金额
 	private Date createDate;   //创建时间
 	private byte delflag;  //是否删除
-	private BigDecimal imusealeBalance;  //冻结金额
-	private BigDecimal investAmount;  //投资金额
-	private BigDecimal totalProfit;  //累计收益
+	private Double imusealeBalance;  //冻结金额
+	private Double investAmount;  //投资金额
+	private Double totalProfit;  //累计收益
 	private Date updateDate;  //修改时间
-	private BigDecimal useableBalance;  //可用余额
+	private Double useableBalance;  //可用余额
 	private Member member;
 
 	public MemberAccount() {
 	}
 
+	public MemberAccount(Double bbinAmount, Double bonusAmount,
+			Date createDate, byte delflag, Double imusealeBalance,
+			Double investAmount, Double totalProfit, Date updateDate,
+			Double useableBalance, Member member) {
+		super();
+		this.bbinAmount = bbinAmount;
+		this.bonusAmount = bonusAmount;
+		this.createDate = createDate;
+		this.delflag = delflag;
+		this.imusealeBalance = imusealeBalance;
+		this.investAmount = investAmount;
+		this.totalProfit = totalProfit;
+		this.updateDate = updateDate;
+		this.useableBalance = useableBalance;
+		this.member = member;
+	}
+
 
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public String getId() {
 		return this.id;
 	}
@@ -42,21 +66,21 @@ public class MemberAccount  {
 
 
 	@Column(name="bbin_amount", precision=10, scale=4)
-	public BigDecimal getBbinAmount() {
+	public Double getBbinAmount() {
 		return this.bbinAmount;
 	}
 
-	public void setBbinAmount(BigDecimal bbinAmount) {
+	public void setBbinAmount(Double bbinAmount) {
 		this.bbinAmount = bbinAmount;
 	}
 
 
 	@Column(name="bonus_amount", precision=10, scale=4)
-	public BigDecimal getBonusAmount() {
+	public Double getBonusAmount() {
 		return this.bonusAmount;
 	}
 
-	public void setBonusAmount(BigDecimal bonusAmount) {
+	public void setBonusAmount(Double bonusAmount) {
 		this.bonusAmount = bonusAmount;
 	}
 
@@ -82,31 +106,31 @@ public class MemberAccount  {
 
 
 	@Column(name="imuseale_balance", precision=10, scale=4)
-	public BigDecimal getImusealeBalance() {
+	public Double getImusealeBalance() {
 		return this.imusealeBalance;
 	}
 
-	public void setImusealeBalance(BigDecimal imusealeBalance) {
+	public void setImusealeBalance(Double imusealeBalance) {
 		this.imusealeBalance = imusealeBalance;
 	}
 
 
 	@Column(name="invest_amount", precision=10, scale=4)
-	public BigDecimal getInvestAmount() {
+	public Double getInvestAmount() {
 		return this.investAmount;
 	}
 
-	public void setInvestAmount(BigDecimal investAmount) {
+	public void setInvestAmount(Double investAmount) {
 		this.investAmount = investAmount;
 	}
 
 
 	@Column(name="total_profit", precision=10, scale=4)
-	public BigDecimal getTotalProfit() {
+	public Double getTotalProfit() {
 		return this.totalProfit;
 	}
 
-	public void setTotalProfit(BigDecimal totalProfit) {
+	public void setTotalProfit(Double totalProfit) {
 		this.totalProfit = totalProfit;
 	}
 
@@ -123,18 +147,18 @@ public class MemberAccount  {
 
 
 	@Column(name="useable_balance", precision=10, scale=4)
-	public BigDecimal getUseableBalance() {
+	public Double getUseableBalance() {
 		return this.useableBalance;
 	}
 
-	public void setUseableBalance(BigDecimal useableBalance) {
+	public void setUseableBalance(Double useableBalance) {
 		this.useableBalance = useableBalance;
 	}
 
 
 	//bi-directional many-to-one association to Member
-	@ManyToOne
-	@JoinColumn(name="member_id")
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="member_id",unique=true)
 	public Member getMember() {
 		return this.member;
 	}

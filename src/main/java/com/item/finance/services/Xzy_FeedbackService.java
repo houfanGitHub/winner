@@ -18,7 +18,6 @@ public class Xzy_FeedbackService implements ItemServiceImpl<Member>{
 private XiezhengyuDao dao;
 	@Override
 	public Member selectGetById(String id) {
-		// TODO Auto-generated method stub
 		Member m = this.dao.getMember(id);
 		return m;
 	}

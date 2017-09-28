@@ -20,8 +20,10 @@ $(function() {
 		password2=$(".password2");
 		//用户名
 		youname=$(".youname");
+		//真实姓名
+		membername=$(".membername");
 		//邀请码
-		invitationCode=$(".invitationCode");
+		invitedCode=$(".invitedCode");
 		//qq
 	//	qqAccount=$(".qqAccount");
 		//图形验证码
@@ -37,11 +39,11 @@ $(function() {
 			}
 		});
 		//真实姓名格式验证
-		username.keyup(function() {
-			if ((/^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$/.test(youname.val()))) {
+		membername.keyup(function() {
+			if ((/^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$/.test(membername.val()))) {
 				
-				youname.removeAttr("style");
-				youname.next(".errorInfo").html("").hide();
+				membername.removeAttr("style");
+				membername.next(".errorInfo").html("").hide();
 				return;
 			}
 		});

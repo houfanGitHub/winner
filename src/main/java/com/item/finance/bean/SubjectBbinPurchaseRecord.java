@@ -1,7 +1,9 @@
 package com.item.finance.bean;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigInteger;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -20,15 +22,14 @@ public class SubjectBbinPurchaseRecord  {
 	private Date createDate;//创建时间
 	private String dealIp;
 	private String delflag;//是否删除
-	private BigDecimal interest;
+	private BigDecimal interest; //结算利息
 	private byte ispayment;//是否还款
-	private int lastProfitDay;
+	private int lastProfitDay;   //最后计息日
 	private int payInterestTimes;//支付时间
-	private String serialNumber;
-	private Date updateDate;
-	private Set<MemberProfitRecord> memberProfitRecords;
+	private String serialNumber;//流水号
+	private Date updateDate;  //修改时间
 	private Member member;//(用户基本表)
-	private Subject subject;
+	private Subject subject; //主题表
 	
 	public SubjectBbinPurchaseRecord() {
 	}
@@ -152,33 +153,8 @@ public class SubjectBbinPurchaseRecord  {
 	}
 
 
-	//bi-directional many-to-one association to MemberProfitRecord
-	@OneToMany(mappedBy="subjectBbinPurchaseRecord")
-	public Set<MemberProfitRecord> getMemberProfitRecords() {
-		return this.memberProfitRecords;
-	}
-
-	public void setMemberProfitRecords(Set<MemberProfitRecord> memberProfitRecords) {
-		this.memberProfitRecords = memberProfitRecords;
-	}
-
-	public MemberProfitRecord addMemberProfitRecord(MemberProfitRecord memberProfitRecord) {
-		getMemberProfitRecords().add(memberProfitRecord);
-		memberProfitRecord.setSubjectBbinPurchaseRecord(this);
-
-		return memberProfitRecord;
-	}
-
-	public MemberProfitRecord removeMemberProfitRecord(MemberProfitRecord memberProfitRecord) {
-		getMemberProfitRecords().remove(memberProfitRecord);
-		memberProfitRecord.setSubjectBbinPurchaseRecord(null);
-
-		return memberProfitRecord;
-	}
-
-
 	//bi-directional many-to-one association to Member
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="member_id")
 	public Member getMember() {
 		return this.member;

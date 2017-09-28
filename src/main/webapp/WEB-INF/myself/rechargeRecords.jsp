@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -94,7 +96,7 @@
         <td align="left" valign="middle" class="info">
             <a href="http://pro.ying158.com/account/security">
                 <div class="img"><img src="/winner/files/userPic.jpg"></div>
-                <h2>userName，<span>您好!</span></h2>
+                <h2>${memberinfo.name }，<span>您好!</span></h2>
             </a>
             <div class="safe">账户安全&nbsp;&nbsp;<span class="scroll"><em style="width:75%"></em></span></div>
             <ul class="listIco iconfont">
@@ -106,13 +108,19 @@
             </ul>
         </td>
         <td align="right">
-            <a href="http://pro.ying158.com/web/logout" class="loginOut"><span class="iconfont"></span>安全退出</a>
+            <a href="/winner/index.jsp" class="loginOut"><span class="iconfont"></span>安全退出</a>
         </td>
     </tr>
 </tbody></table>
 <div class="countBox">
     <ul>
-        <li><h2>0</h2><p>账户可用余额(元)<a href="javascript:;" class="iconfont"><span>账户可用余额</span><i></i></a></p></li>
+        <li><h2>
+        <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.useableBalance}</c:forEach>
+        </c:if>
+        </h2>
+        <p>账户可用余额(元)<a href="javascript:;" class="iconfont"><span>账户可用余额</span><i></i></a></p></li>
         <li><h2>0</h2><p>账户总资产(元)<a href="javascript:;" class="iconfont"><span>可用余额+投资金额+累计收益</span><i></i></a></p></li>
         <li><h2 style="color:#9d8440">0</h2><p>投资金额(元)<a href="javascript:;" class="iconfont"><span>投资中资金</span><i></i></a></p></li>
         <li><h2 style="color:#9d8440">0</h2><p>累计收益(元)<a href="javascript:;" class="iconfont"><span>累计收益</span><i></i></a></p></li>
@@ -124,19 +132,26 @@
 <div class="adminLeft">
     <h2>我的投资</h2>
     <ul>
-        <li><a id="member_center_menu_invests" href="http://pro.ying158.com/account/touZiList"><em class="iconfont red"></em>投资记录</a></li>
-        <li><a id="member_center_menu_profit_record" href="http://pro.ying158.com/account/trades/profit/records"><em class="iconfont red"></em>收益记录</a></li>
-        <li><a id="member_center_menu_deposit_record" href="http://pro.ying158.com/account/deposit/records" class="select"><em class="iconfont red"></em>充值记录</a></li>
-        <li><a id="member_center_menu_withdraw_record" href="http://pro.ying158.com/account/withdraw/records"><em class="iconfont red"></em>提款记录</a></li>
-        <li><a id="member_center_menu_bbinInfo_record" href="http://pro.ying158.com/account/bbinInfo/records"><em class="iconfont red"></em>体验金记录</a></li>
+        <li><a id="member_center_menu_invests" 
+        href="/winner/itemweb/invests"><em class="iconfont red"></em>投资记录</a></li>
+        <li><a id="member_center_menu_profit_record" 
+        href="/winner/itemweb/myself"><em class="iconfont red"></em>收益记录</a></li>
+        <li><a id="member_center_menu_deposit_record"
+         href="/winner/itemweb/rechargeRecords" class="select"><em class="iconfont red"></em>充值记录</a></li>
+        <li><a id="member_center_menu_withdraw_record"
+         href="/winner/itemweb/withdraw"><em class="iconfont red"></em>提款记录</a></li>
+        <li><a id="member_center_menu_bbinInfo_record" 
+        href="/winner/itemweb/experienceGold"><em class="iconfont red"></em>体验金记录</a></li>
     </ul>
-    <h2>我的账户</h2>
-    <ul>
-        <li><a id="member_center_menu_deposit" href="http://pro.ying158.com/account/deposit"><em class="iconfont"></em>账户充值</a></li>
-        <li><a id="member_center_menu_security" href="http://pro.ying158.com/account/security"><em class="iconfont"></em>安全信息</a></li>
-        <li><a id="member_center_menu_withdraw" href="http://pro.ying158.com/account/withdraw"><em class="iconfont"></em>我要提款</a></li>
-        <li><a id="member_center_menu_financial" href="http://pro.ying158.com/account/financial"><em class="iconfont"></em>我是理财师</a></li>
-    </ul>
+   <h2>我的账户</h2>
+			<ul>
+				<li><a id="member_center_menu_deposit"
+					href="/winner/itemweb/deposit"><em class="iconfont"></em>账户充值</a></li>
+				<li><a id="member_center_menu_security" 
+				href="/winner/itemweb/security"><em class="iconfont"></em>安全信息</a></li>
+				<li><a id="member_center_menu_withdraw" 
+				href="/winner/itemweb/drawMoney"><em class="iconfont"></em>我要提款</a></li>
+			</ul>
 </div>
 <script>
   var menu_item="member_center_menu_deposit_record";
@@ -158,12 +173,24 @@
 
 <div class="ajaxContainer">
 	<table class="tzlist" width="100%" border="1" bordercolor="#e9e9e9" cellspacing="0" cellpadding="0">
-		<tbody><tr>
-			<th width="30%">订单号</th>
-			<th width="20%">金额</th>
-			<th width="20%">状态</th>
-			<th width="30%">时间</th>
+		<tbody><tr align="center">
+			<th width="30%"><font color="black">订单号</font></th>
+			<th width="20%"><font color="black">金额</font></th>
+			<th width="20%"><font color="black">状态</font></th>
+			<th width="30%"><font color="black">时间</font></th>
 		</tr>
+		<c:forEach items="${listmemberdepo}" var="listmemberdepo">
+		<tr align="center" bgcolor="white">
+		<td><font color="black">${listmemberdepo.serialNumber}</font></td>
+		<td><font color="red">￥${listmemberdepo.amount}</font></td>
+		<!-- 状态 -->
+<td>
+<c:if test="${listmemberdepo.status == '0' }"><font color="red">充值失败</font></c:if>
+	<c:if test="${listmemberdepo.status== '1' }"><font color="blue">充值成功</font></c:if>
+	</td>
+		<td><font color="black">${listmemberdepo.createDate}</font></td>
+		</tr>
+		</c:forEach>
 	</tbody></table>
 
 

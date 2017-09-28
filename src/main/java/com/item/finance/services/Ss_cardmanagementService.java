@@ -37,7 +37,7 @@ public class Ss_cardmanagementService implements ItemServiceImpl<MemberBankcard>
 	//解绑
 	public  void updateDelflag(String id){
 		MemberBankcard memberBankcard=ss_cardmanagementDao.getByID(id);
-		memberBankcard.setDelflag((byte) 2);
+		memberBankcard.setDelflag((byte) 2);   //解绑
 		ss_cardmanagementDao.updateDelflag(memberBankcard);
 	}
 

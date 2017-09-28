@@ -116,7 +116,7 @@ public class OverseaConfigSubscribe  {
 
 
 	//bi-directional many-to-one association to OverseaConfig
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="oversea_id")
 	public OverseaConfig getOverseaConfig() {
 		return this.overseaConfig;

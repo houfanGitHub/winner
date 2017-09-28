@@ -27,7 +27,7 @@
             <a target="_parent" href="/winner/itemweb/index"><img src="/winner/files/logo2.png"></a>
         </div>
        <div class="telInfo">
-        <c:if test="${empty userinfo }">
+        <c:if test="${empty memberinfo }">
 	            <img src="/winner/files/400Icon.png">
 	            <div class="detail">
 	                        <a target="_parent" style="font-size:18px;float:right;margin-top:5px;color:#917739;" href="/winner/itemweb/toLogin">登录</a>
@@ -35,11 +35,11 @@
 	                <br>4000-999-158
 	            </div>
         </c:if>
-        <c:if test="${!empty userinfo }">
+        <c:if test="${!empty memberinfo }">
 	            <img src="/winner/files/400Icon.png">
 	            <div class="detail">
 	                <div style="font-size:16px;float:right;margin-top:5px;color:#917739;">
-	                		  欢迎${userinfo.name },<a target="_parent" href="#">[会员中心]</a>,
+	                		  欢迎${memberinfo.name },<a target="_parent" href="#">[会员中心]</a>,
 	                  <a target="_parent" href="/winner/itemweb/webUserLogout">[退出]</a>
 	                  </div>
 	                <br>4000-999-158

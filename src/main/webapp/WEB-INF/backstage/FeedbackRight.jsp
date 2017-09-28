@@ -84,18 +84,10 @@ function fun3(){
 	document.forms[0].action="/winner/listFeedback";
 	document.forms[0].submit();
 }
-function fun(id){
-	$.post(
-			"/winner/getMember/"+id,
-			function(msg){
-	        alert(msg);
-			}
-			)		
-}
 </script>
 </head>
 <body>
-<form action="post">
+<form method="post">
 <table>
 <tr>
 <td><div style="width: 570px;"></div><td><b>反馈人: </b><input type="text" name="tname" value="${tname}" /><input type="button" value="搜索" onclick="fun3();" class="green"></td>
@@ -109,12 +101,9 @@ function fun(id){
 <c:forEach items="${list}" var="f" varStatus="status">
 <input type="hidden" name="id" value="${f.id}" />
 <tr>
-<td>${status.index + 1 }</td><td><a href="#" onMouseOver="fun(${f.member.id});" >${f.member.memberName}</a><td>${f.content}</td><td>${f.createDate}</td>
+<td>${status.index + 1 }</td><td><a href="/winner/getMember/${f.member.id}" onclick="fun(${f.member.id});" >${f.member.memberName}</a><td>${f.content}</td><td>${f.createDate}</td>
 </tr>
 </c:forEach>
 </table>
-<div id="d" >
-士大夫啊手动阀手动阀啊手动阀手动阀啊手动阀手动阀时代发示范点: ${m.name }
-</div>
 </body>
 </html>

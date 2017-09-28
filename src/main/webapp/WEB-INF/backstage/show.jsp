@@ -282,18 +282,7 @@
 								<li class="home" style="height: 36px;"><a
 									href="javascript:void(0)" name="/winner/yx3/list3" title="海外配置"
 									class="iframeurl"><i class="icon-double-angle-right"></i>海外配置</a></li>
-							</ul></li>
-							<!-- --------------------------------------------------------------------------------- -->
-						<li><a href="http://www.erdangjiade.com/"
-							class="dropdown-toggle"><i class="icon-picture "></i><span
-								class="menu-text"> 钱包管理 </span><b class="arrow icon-angle-down"></b></a>
-							<ul class="submenu" id="Sort_link_1">
-								<li class="home" style="height: 36px;"><a
-									href="javascript:void(0)" name="advertising.html"
-									title="钱包缴费记录" class="iframeurl"><i
-										class="icon-double-angle-right"></i>钱包缴费记录</a></li>
-								<!-- 						<li class="home" style="height: 36px;"><a href="javascript:void(0)" name="Sort_ads.html" title="分类管理" class="iframeurl"><i class="icon-double-angle-right"></i>分类管理</a></li> -->
-							</ul></li>
+
 						<li><a href="http://www.erdangjiade.com/"
 							class="dropdown-toggle"><i class="icon-list"></i><span
 								class="menu-text"> 学院管理 </span><b class="arrow icon-angle-down"></b></a>
@@ -314,15 +303,11 @@
 									title="账户管理" class="iframeurl"><i
 										class="icon-double-angle-right"></i>账户管理</a></li>
 								<li class="home" style="height: 36px;"><a
-									href="javascript:void(0)" name="/winner/sushuang2/list2"
-									title="理财师审核" class="iframeurl"><i
-										class="icon-double-angle-right"></i>理财师审核</a></li>
-								<li class="home" style="height: 36px;"><a
 									href="javascript:void(0)" name="/winner/sushuang3/list3"
 									title="绑卡管理" class="iframeurl"><i
 										class="icon-double-angle-right"></i>绑卡管理</a></li>
 								<li class="home" style="height: 36px;"><a
-									href="javascript:void(0)" name="Payment_Configure.html"
+									href="javascript:void(0)" name="/winner/sushuang8/list8"
 									title="付息计划" class="iframeurl"><i
 										class="icon-double-angle-right"></i>付息计划</a></li>
 								<li class="home" style="height: 36px;"><a
@@ -351,6 +336,7 @@
 										class="icon-double-angle-right"></i>用户综合统计</a></li>
 								<!--                     <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="integration.html" title="会员记录管理" class="iframeurl"><i class="icon-double-angle-right"></i>会员记录管理</a></li> -->
 
+
 							</ul></li>
 						<li><a href="http://www.erdangjiade.com/"
 							class="dropdown-toggle"><i class="icon-laptop"></i><span
@@ -376,6 +362,10 @@
 									href="javascript:void(0)" name="/winner/system/roles"
 									id="userRole" title="角色设置" class="iframeurl"><i
 										class="icon-double-angle-right"></i>角色设置</a></li>
+								<li class="home" style="height: 36px;"><a
+									href="javascript:void(0)" name="/winner/system/toActivitiReply"
+									id="userRole" title="角色设置" class="iframeurl"><i
+										class="icon-double-angle-right"></i>提款审批</a></li>
 								<li class="home" style="height: 36px;"><a
 									href="javascript:void(0)" name="/winner/system/toPasswords"
 									title="密码设置" class="iframeurl"><i

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +24,7 @@ public class Ss_cardmanagementController {
 	
 	//显示
 	@RequestMapping("/list3")
-	public String listshow(Model model,String mobile1,String name1,String card1,String qdate1,String qdate2 ){
+	public String listshow( HttpSession session,Model model,String mobile1,String name1,String card1,String qdate1,String qdate2 ){
 		Map map=new HashMap();
 		map.put("mobile1", mobile1);
 		map.put("name1", name1);
@@ -30,14 +32,24 @@ public class Ss_cardmanagementController {
 		map.put("qdate1",qdate1);
 		map.put("qdate2", qdate2);
 		List<MemberBankcard>listbank=ss_cardmanagementService.listshow(map);
-		model.addAttribute("listbank", listbank);
+		//model.addAttribute("listbank", listbank);
+		session.setAttribute("listbank", listbank);
 		
-		//模糊查询存储
+	/*	//模糊查询存储
 		model.addAttribute("mobile1", mobile1); //手机号
 		model.addAttribute("name1", name1);  //帮卡姓名
 		model.addAttribute("card1", card1);   //绑卡卡号
 		model.addAttribute("qdate1", qdate1);  // 注册时间1 开始时间
-		model.addAttribute("qdate2", qdate2);  //注册时间2 结束时间
+		model.addAttribute("qdate2", qdate2);  //注册时间2 结束时间*/
+		
+		session.setAttribute("mobile1", mobile1);
+		session.setAttribute("name1", name1);
+		session.setAttribute("card1", card1);
+		session.setAttribute("qdate1", qdate1);
+		session.setAttribute("qdate2", qdate2);
+		
+		
+		
 		return "WEB-INF/ssjsp/cardmanagement";
 	}
 	
@@ -54,6 +66,18 @@ public class Ss_cardmanagementController {
 		public String updateDelflag(@PathVariable("id")String id){
 			ss_cardmanagementService.updateDelflag(id);
 			return "redirect:/sushuang3/list3";
+		}
+		
+		@RequestMapping("/listcz3")
+		public String listcz(HttpSession session){
+			session.removeAttribute("mobile1");
+			session.removeAttribute("name1");
+			session.removeAttribute("card1");
+			session.removeAttribute("qdate1");
+			session.removeAttribute("qdate2");
+			
+			
+			return "redirect:/sushuang3/list3";   //重定向到首页
 		}
 
 }

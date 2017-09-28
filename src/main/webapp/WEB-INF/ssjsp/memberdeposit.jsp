@@ -28,6 +28,11 @@
 			document.forms[0].action="/winner/sushuang4/list4";
 			document.forms[0].submit();
 		});
+		
+		$("#cz").click(function(){
+			document.forms[0].action="/winner/sushuang4/listcz4";
+			document.forms[0].submit();
+	})
 	});
 </script>
 <body>
@@ -46,7 +51,7 @@
 订单时间：<input type="date" name="date1" value="${date1 }">&nbsp;&nbsp;
 <input type="date" name="date2" value="${date2 }">&nbsp;&nbsp;
 <input  class="btn btn-primary" type="button" id="btn4" value="查询">&nbsp;&nbsp;
-<input class="btn btn-primary" type="reset" value="重置">
+<input class="btn btn-primary" type="reset"  id="cz" value="重置"><br><br>
 <table width="1100" cellspacing="1" border="0" bgcolor="blue" class="table table-striped table-condensed table-condensed table-hover table-bordered">
 <tr bgcolor="white" align="center">
 <td>序号</td>
@@ -68,17 +73,18 @@
 <td>${listdeposit.serialNumber}</td>  <!-- 订单编号  流水号 -->
 <td>${listdeposit.member.mobile_Phone}</td>  <!-- 手机号 -->
 <td>${listdeposit.amount}</td>   <!-- 订单金额 -->
-
+<!-- 订单状态 -->
 <td><c:if test="${listdeposit.status == '0' }"><font color="red">充值失败</font></c:if>
 	<c:if test="${listdeposit.status== '1' }"><font color="blue">充值成功</font></c:if></td>    <!-- 订单状态-->
 <td>${listdeposit.payChannelName}</td>   <!-- 充值渠道 -->
 <td>${listdeposit.payChannelOrderNo}</td>  <!-- 富友手机充值订单 -->
 <td>${listdeposit.createDate}</td>     <!-- 订单时间 -->
 <td><c:if test="${listdeposit.status == '0' }">
-<input  class="btn btn-primary" type="button" id="btn" value="更新订单">
+ <!--<input  class="btn btn-primary" type="button" id="btn" value="更新订单">-->
+ <a href="/winner/sushuang4/updatememberdeposit4/${listdeposit.id }" class="btn btn-primary" type="button" >更新订单</a>  
 </c:if>
 	<c:if test="${listdeposit.status == '1' }">
-<font color="red">充值成功</font>
+<font color="blue">充值成功</font>
 </c:if>
 	
 </td>

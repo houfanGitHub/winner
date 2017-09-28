@@ -1,3 +1,4 @@
+<%@page import="com.item.finance.bean.PushNotice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -160,6 +161,28 @@
 	</style>
 
 </head>
+<script type="text/javascript">
+$(function(){
+	$.post(
+    "/winner/pushshow",
+    function(msg){
+    $("#announcements").append("<marquee id='pushshow' direction='down' onmouseover=this.stop() onmouseout=this.start() scrollamount='4' loop='infinite'>") ;
+    for(var i=0;i< msg.length;i++){
+    $("#pushshow").append("<a onclick=fun('"+msg[i].id +"')>"+msg[i].title+"</a></br>");
+    }
+    $("#announcements").append("</marquee>") ;
+    })
+});
+function fun(id){
+	$.post(
+	"/winner/push/"+id,
+	function(msg){
+		$("#push_content").text(msg.content);
+		$("#push_show").modal('show');
+	}
+	)
+}
+</script>
 <body>
 	
     <div style=" width:1002px; height:94px; margin:0 auto;">
@@ -185,7 +208,7 @@
 						</a>
 					</li>
 					<li>
-						<a class="item" href="/winner/itemweb/news">
+						<a class="item" href="/winner/front">
 							新闻中心
 						</a>
 					</li>
@@ -246,7 +269,7 @@
                 </div>
     </div>
 
-<c:if test="${empty userinfo}">
+<c:if test="${empty memberinfo}">
 	</div>
 	    <div class="login-box">
 	        <div class="block backdrop"></div>
@@ -261,16 +284,15 @@
 </c:if>
 
 <div class="container index">
-    <div class="row">
-        <div class="report">
-            <div class="title">
+    <div class="row" >
+        <div class="report" style="height: 35px;overflow:hidden;">
+            <div class="title" style="height: 35px;">
                 <i class="fa fa-volume-up fa-2"></i>最新公告
             </div>
-            <div class="content" id="announcements">
-                <span id="spanAnnouncements" data-bind="foreach:$data">
+            <div class="content" id="announcements" style="height: 35px;">
+<!--                 <span id="spanAnnouncements" data-bind="foreach:$data">
                     <input type="hidden" data-bind="value:id" value="19dc50b5-0284-4bed-bbe3-a363739f9e15">
                     <span data-bind="text:title+&#39; &#39;+strDate, click: showannouncement" class="" style="cursor:pointer">2017年春节放假安排 [01-23]</span>
-                
                     <input type="hidden" data-bind="value:id" value="e0d2276e-a35f-4b0a-aea7-3473cd800533">
                     <span data-bind="text:title+&#39; &#39;+strDate, click: showannouncement" class="hidden" style="cursor:pointer">重磅推出阳光私募基金-吉威量化套利稳健1号 [04-14]</span>
                 
@@ -279,10 +301,10 @@
                 
                     <input type="hidden" data-bind="value:id" value="a140c288-f3ed-40b5-8ae1-73c131f87dfa">
                     <span data-bind="text:title+&#39; &#39;+strDate, click: showannouncement" class="hidden" style="cursor:pointer">盈+全球首映 [07-13]</span>
-                </span>
-            </div>
-            <a href="http://www.ying158.com/home/newscenter">
-                查看更多&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+                
+                </span> -->
+                </div>
+            <a href="/winner/front">  查看更多&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;
             </a>
         </div>
         <iframe width="972" height="500" scrolling="no" frameborder="0" src="/winner/files/iframeindex.jsp"></iframe>
@@ -837,6 +859,23 @@ var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " 
 		</div>
 	</div>
 </div>
+
+<div class="modal fade" id="push_show">  
+  <div class="modal-dialog">  
+    <div class="modal-content message_align">  
+      <div class="modal-header">  
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>  
+        <h4 class="modal-title">公告内容</h4>  
+      </div>  
+      <div class="modal-body" id="push_content" style="height: 250px;"></div>  
+      <div class="modal-footer">  
+         <input type="hidden" id="url"/>  
+         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>  
+         <a  onclick="urlSubmit()" class="btn btn-success" data-dismiss="modal">确定</a>  
+      </div>
+     </div><!-- /.modal-content -->  
+  </div><!-- /.modal-dialog -->  
+</div><!-- /.modal -->  
 
 <script type="text/javascript">
 	function submitFeedback() {

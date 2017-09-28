@@ -38,29 +38,28 @@ public class Subject  {
 	private String borrowername; //借款人姓名
 	private BigInteger bought; //已购人数
 	private String comment; //产品速览
-	private String createDate; //创建日期
+	private Date createDate; //创建日期
 	private byte delflag; //是否删除
-	private String endDate; //标的结束日期
+	private Date endDate; //标的结束日期
 	private BigInteger experStatus;// 体验金是否可以购买（0：否，1：是）
 	private BigInteger firstId; //始标id
 	private BigDecimal floorAmount; //起投金额
 	private String name;  //标的名称
 	private BigInteger parentId; //父标id
-	//private SubjectFile subjectFile;
 	private BigInteger period; //标的周期
 	private String projectDetails; //项目详情
 	private String purpose; //借款目的
-	private String raiseEnd; //募集结束
-	private String raiseStart; //募集开始
+	private Date raiseEnd; //募集结束
+	private Date raiseStart; //募集开始
 	private byte refundWay; //还款方式
 	private byte safeGuard_way; //保障方式
 	private String safetyControl;//安全保障
 	private String serialNo;//合同号        
 	private String serialNumber; //流水号
-	private String startDate; //标的开始日期
+	private Date startDate; //标的开始日期
 	private byte status; //标的状态
 	private byte type; //标的类型
-	private String updateDate; //更新日期
+	private Date updateDate; //更新日期
 	private BigDecimal yearRate; //年化率
 	//private long yearEarnings;//年化收益
 	private SubjectFolder subjectFolder;//附件归属表
@@ -152,13 +151,13 @@ public class Subject  {
 	}
 
 
-	//@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="create_date")//, nullable=false
-	public String getCreateDate() {
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="create_date", nullable=false)
+	public Date getCreateDate() {
 		return this.createDate;
 	}
 
-	public void setCreateDate(String createDate) {
+	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 
@@ -172,13 +171,13 @@ public class Subject  {
 	}
 
 
-	//@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="end_date")
-	public String getEndDate() {
+	public Date getEndDate() {
 		return this.endDate;
 	}
 
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
@@ -242,7 +241,6 @@ public class Subject  {
 		this.period = period;
 	}
 
-
 	@Lob
 	public String getProjectDetails() {
 		return this.projectDetails;
@@ -263,24 +261,24 @@ public class Subject  {
 	}
 
 
-	//@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="raise_end")
-	public String getRaiseEnd() {
+	public Date getRaiseEnd() {
 		return this.raiseEnd;
 	}
 
-	public void setRaiseEnd(String raiseEnd) {
+	public void setRaiseEnd(Date raiseEnd) {
 		this.raiseEnd = raiseEnd;
 	}
 
 
-	//@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="raise_start")
-	public String getRaiseStart() {
+	public Date getRaiseStart() {
 		return this.raiseStart;
 	}
 
-	public void setRaiseStart(String raiseStart) {
+	public void setRaiseStart(Date raiseStart) {
 		this.raiseStart = raiseStart;
 	}
 
@@ -334,13 +332,13 @@ public class Subject  {
 	}
 
 
-	//@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="start_date")
-	public String getStartDate() {
+	public Date getStartDate() {
 		return this.startDate;
 	}
 
-	public void setStartDate(String startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
@@ -363,13 +361,13 @@ public class Subject  {
 	}
 
 
-	//@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="update_date")//, nullable=false
-	public String getUpdateDate() {
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="update_date", nullable=false)
+	public Date getUpdateDate() {
 		return this.updateDate;
 	}
 
-	public void setUpdateDate(String updateDate) {
+	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
 

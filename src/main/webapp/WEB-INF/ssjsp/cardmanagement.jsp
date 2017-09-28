@@ -29,6 +29,11 @@
 			document.forms[0].action="/winner/sushuang3/list3";
 			document.forms[0].submit();
 		});
+		
+		$("#cz").click(function(){
+			document.forms[0].action="/winner/sushuang3/listcz3";
+			document.forms[0].submit();
+	})
 	});
 </script>
 <body>
@@ -39,7 +44,7 @@
 注册时间：<input type="date" name="qdate1" value="${qdate1  }">&nbsp;&nbsp;
 <input type="date" name="qdate2" align="left" value="${qdate2 }">&nbsp;&nbsp;
 <input  class="btn btn-primary" type="button" id="btn2" value="查  询">&nbsp;&nbsp;
-<input class="btn btn-primary" type="reset" value="重置"><br><br>
+<input class="btn btn-primary" type="reset" id="cz" value="重置"><br><br>
 <table  width="1100" bgcolor="blue" cellspacing="1" border="0" class="table table-bordered">
 <tr align="center" bgcolor="white">
 <td>序号</td>

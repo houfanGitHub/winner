@@ -25,9 +25,10 @@
 			document.forms[0].submit();
 		});
 	
-		//$("#cz").click(function(){
-		//	("#qname").val("");
-	//})
+		$("#cz").click(function(){
+			document.forms[0].action="/winner/sushuang1/listcz1";
+			document.forms[0].submit();
+	})
 	});
 	//清空文本矿的值
 	//$(document).ready(function(){  
@@ -48,7 +49,7 @@
 <input type="date" name="create_date2" align="left" value="${create_date2 }">
 
 <input class="btn btn-primary" type="button" id="btn1" value="查  询">&nbsp;&nbsp;
-<input class="btn btn-primary" type="reset"   id="cz" value="重置">
+<input class="btn btn-primary" type="reset"   id="cz" value="重置"><br><br>
 <!-- <input value="重置" class="btn btn-primary" onClick="" type="reset">  -->
 
 <table class="table table-striped table-condensed table-condensed table-hover table-bordered" 

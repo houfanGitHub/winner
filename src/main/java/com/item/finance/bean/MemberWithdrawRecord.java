@@ -1,7 +1,9 @@
 package com.item.finance.bean;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigInteger;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,9 +14,9 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name="member_withdraw_record")
+@Table(name="member_withdraw_record")  //提现记录表
 public class MemberWithdrawRecord  {
-	private String id;  
+	private String id;     //主键
 	private BigDecimal amount; //提现金额
 	private String bankCard;  //卡号
 	private String bankName;  //银行名称
@@ -144,7 +146,7 @@ public class MemberWithdrawRecord  {
 
 
 	//bi-directional many-to-one association to Member
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="member_id", nullable=false)
 	public Member getMember() {
 		return this.member;

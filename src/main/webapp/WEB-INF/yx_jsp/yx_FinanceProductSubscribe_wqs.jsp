@@ -59,7 +59,7 @@ $("#qssb").click(function(){
 ${f.startDate}</td>
 <td>
 <c:if test="${f.status==2}">
-<a href="/winner/yx2/selectsign/${f.id}/${f.financeProductFunds.period}"  class="btn btn-primary">签署</a>&nbsp;
+<a href="/winner/yx2/selectsign/${f.id}"  class="btn btn-primary">签署</a>&nbsp;
 <a href="/winner/yx2/updatecssb/${f.id}/${id2}" onclick="return confirm('确认签署失败吗?')"  class="btn btn-primary">签署失败</a>
 </c:if>
 <c:if test="${f.status==0}">
@@ -80,6 +80,8 @@ ${f.startDate}</td>
 function fengxian(){
 	window.parent.document.location="/winner/itemweb/index";
 }
+	
+
 </script>
 
 </html>

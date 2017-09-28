@@ -16,7 +16,7 @@ import java.util.Date;
 @Table(name="subject_file")
 public class SubjectFile  {
 	private int id;
-	private String createDate;
+	private Date createDate;
 	private String fileName;
 	private String originalName;//文件名
 	private String path;
@@ -41,13 +41,13 @@ public class SubjectFile  {
 
 	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_date")
-	public String getCreateDate() {
+	public Date getCreateDate() {
 		return this.createDate;
 	}
 
 
-	public void setCreateDate(String string) {
-		this.createDate = string;
+	public void setCreateDate(Date date) {
+		this.createDate = date;
 	}
 
 

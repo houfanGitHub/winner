@@ -1,10 +1,17 @@
 package com.item.finance.bean;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.math.BigInteger;
-import java.math.BigDecimal;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -15,7 +22,7 @@ import java.util.Date;
 @Table(name="member_deposit_record")
 public class MemberDepositRecord  {//充值记录
 	private String id;
-	private BigDecimal amount;  //金额
+	private Double amount;  //金额
 	private Date createDate; //创建时间
 	private byte delFlag;  //删除状态
 	private String payChannelName; //充值渠道名称
@@ -29,8 +36,24 @@ public class MemberDepositRecord  {//充值记录
 	}
 
 
+	public MemberDepositRecord(Double amount, Date createDate,
+			byte delFlag, String payChannelName, String payChannelOrderNo,
+			String serialNumber, byte status, Date updateDate, Member member) {
+		super();
+		this.amount = amount;
+		this.createDate = createDate;
+		this.delFlag = delFlag;
+		this.payChannelName = payChannelName;
+		this.payChannelOrderNo = payChannelOrderNo;
+		this.serialNumber = serialNumber;
+		this.status = status;
+		this.updateDate = updateDate;
+		this.member = member;
+	}
+
+
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public String getId() {
 		return this.id;
 	}
@@ -41,11 +64,11 @@ public class MemberDepositRecord  {//充值记录
 
 
 	@Column(nullable=false, precision=10, scale=2)
-	public BigDecimal getAmount() {
+	public Double getAmount() {
 		return this.amount;
 	}
 
-	public void setAmount(BigDecimal amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 
@@ -122,7 +145,7 @@ public class MemberDepositRecord  {//充值记录
 
 
 	//bi-directional many-to-one association to Member
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="member_id", nullable=false)
 	public Member getMember() {
 		return this.member;

@@ -30,11 +30,9 @@ public class Yx_FinanceProductFunds_Service implements ItemServiceImpl<FinancePr
 	public FinanceProductFunds listEdit(int id){
 		return yx_FinanceProductFunds_Dao.listEdit(id);
 	}
-	//私募股权类添加
 	public void saveFinanceProductFunds(FinanceProductFunds financeProductFunds){
 		this.yx_FinanceProductFunds_Dao.saveFinanceProductFunds(financeProductFunds);
 	}
-	//未签署查询
 	public List<FinanceProductSubscribe> listWqs(int id){
 		return this.yx_FinanceProductFunds_Dao.listWdl(id);
 	}
@@ -47,33 +45,29 @@ public class Yx_FinanceProductFunds_Service implements ItemServiceImpl<FinancePr
 	public void updateqssb(FinanceProductSubscribe fe){
 		 this.yx_FinanceProductFunds_Dao.updateqssb(fe);
 	}
-	//私募股权类修改
-	public void updateFinanceProductFunds(FinanceProductFunds financeProductFunds){
-		 this.yx_FinanceProductFunds_Dao.updateFinanceProductFunds(financeProductFunds);
-	}
-	//已签署
-	public void savesign(FinanceProductSubscribe financeProductSubscribe){
-		this.yx_FinanceProductFunds_Dao.saveSign(financeProductSubscribe);
-	}
-	
-	//查询未签署人数
-	public List<Integer> listCount(){
-		return this.yx_FinanceProductFunds_Dao.listCount();
-	}
-	
-	
-	
+
 	@Override
 	public void save(FinanceProductFunds t) {
+		// TODO Auto-generated method stub
+		
 	}
+
 	@Override
 	public void update(FinanceProductFunds t) {
+		// TODO Auto-generated method stub
+		
 	}
+
 	@Override
 	public void delete(FinanceProductFunds t) {
+		// TODO Auto-generated method stub
+		
 	}
+
 	@Override
 	public List<FinanceProductFunds> list() {
+		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

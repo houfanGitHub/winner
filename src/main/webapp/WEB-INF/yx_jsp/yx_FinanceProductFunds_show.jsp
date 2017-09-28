@@ -31,14 +31,6 @@ $("#tj").click(function(){
  });
 </script>
 
-<script type="text/javascript">
-/* window.onload=function(){
- // var	a=${list2}.size();
-   //for(var i=0;i<${list2}.length();i++){
-		$("#wqs1").val("未签署人");//${list2[i]}
-	//} 
-} */
-</script>
 
 <p><p><p><h4>▶&nbsp;私募/股权类</h4>
 
@@ -91,7 +83,7 @@ $("#tj").click(function(){
 <td>${t.period}</td>
 <td>${t.floorAmount}</td>
 <td>${t.createDate }</td>
-<td><input type="button"  class="btn btn-primary"  id="wqs1" value="未签署人" onclick='wqs(${t.id})'/>
+<td><input type="button"  class="btn btn-primary" value="未签署人" onclick='wqs(${t.id})'/>
 <input type="button"  class="btn btn-primary" value="编辑/查看" onclick='editshow(${t.id})'/>
 </td>
 </c:forEach>

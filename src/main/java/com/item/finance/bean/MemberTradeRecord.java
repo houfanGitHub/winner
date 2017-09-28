@@ -1,7 +1,9 @@
 package com.item.finance.bean;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigInteger;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -13,11 +15,11 @@ import java.util.Date;
  */
 @Entity
 @Table(name="member_trade_record")
-public class MemberTradeRecord  {
+public class MemberTradeRecord  {  //交易记录表
 	private String id;
 	private BigDecimal amount;  //交易金额
 	private String counterpart;//交易对方
-	private Date createDate;
+	private Date createDate;   //交易时间
 	private String extField1;//扩展1
 	private String extField2;//扩张2
 	private String extField3;//扩展3
@@ -27,7 +29,7 @@ public class MemberTradeRecord  {
 	private byte tradeStatus; //交易状态
 	private String tradeType; //交易分类
 	private Date updateDate;//修改时间
-	private Member member;
+	private Member member;   //会员表
 
 	public MemberTradeRecord() {
 	}
@@ -167,7 +169,7 @@ public class MemberTradeRecord  {
 
 
 	//bi-directional many-to-one association to Member
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="member_id", nullable=false)
 	public Member getMember() {
 		return this.member;

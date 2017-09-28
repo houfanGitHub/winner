@@ -20,10 +20,10 @@ import java.util.Set;
 public class FinanceProductSubscribe  {
 	private int id;
 	private String addr;//所在地区
-	private Double amount;//私募购买金额
-	private String comment;//电子签署文档信息(私募合同)
-	private String createDate;//添加时间
-	private String endDate;//结束时间
+	private BigDecimal amount;//私募购买金额
+	private String comment;//电子签署文档信息
+	private Date createDate;//添加时间
+	private Date endDate;//结束时间
 	private BigDecimal interest;//私募结算收益
 	private String name;//姓名
 	private String phone;//联系电话
@@ -31,9 +31,9 @@ public class FinanceProductSubscribe  {
 	private FinanceProductFunds financeProductFunds;//私募/股权类
 	private String riskReveal;//风险揭示书
 	private String signedPhotos;//签署拍照
-	private String startDate;//开始时间
+	private Date startDate;//开始时间
 	private int status;//'是否处理(0:签署拍照|1:已签约|2:审核中|3:签署失败)',
-	private String updateDate;//修改时间
+	private Date updateDate;//修改时间
 	private Member member;//用户基本表
 	//体验金购买标的表
 	private Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords = new HashSet<>();
@@ -75,11 +75,11 @@ public class FinanceProductSubscribe  {
 
 
 	@Column(precision=10, scale=4)
-	public Double getAmount() {
+	public BigDecimal getAmount() {
 		return this.amount;
 	}
 
-	public void setAmount(Double amount) {
+	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 
@@ -94,24 +94,24 @@ public class FinanceProductSubscribe  {
 	}
 
 
-	//@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_date")
-	public String getCreateDate() {
+	public Date getCreateDate() {
 		return this.createDate;
 	}
 
-	public void setCreateDate(String createDate) {
+	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 
 
-	//@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="end_date")
-	public String getEndDate() {
+	public Date getEndDate() {
 		return this.endDate;
 	}
 
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
@@ -176,13 +176,13 @@ public class FinanceProductSubscribe  {
 	}
 
 
-	//@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="start_date")
-	public String getStartDate() {
+	public Date getStartDate() {
 		return this.startDate;
 	}
 
-	public void setStartDate(String startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
@@ -196,13 +196,13 @@ public class FinanceProductSubscribe  {
 	}
 
 
-	//@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="update_date")
-	public String getUpdateDate() {
+	public Date getUpdateDate() {
 		return this.updateDate;
 	}
 
-	public void setUpdateDate(String updateDate) {
+	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
 
