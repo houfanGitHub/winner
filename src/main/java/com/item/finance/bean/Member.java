@@ -49,7 +49,7 @@ public class Member  {  //会员表
 //	private Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords = new HashSet<>();
 //	private Set<FinancialPlanner> financialPlanners = new HashSet<>();
 	private Set<MemberAccount> memberAccounts = new HashSet<>();
-//	private Set<MemberBankcard> memberBankcards = new HashSet<>();
+	private Set<MemberBankcard> memberBankcards = new HashSet<>();
 //	private Set<MemberDepositRecord> memberDepositRecords = new HashSet<>();
 //	private Set<MemberProfitRecord> memberProfitRecords = new HashSet<>();  //成员利润表
 //	private Set<MemberPucChargeHome> memberPucChargeHomes = new HashSet<>();
@@ -346,16 +346,16 @@ public class Member  {  //会员表
 	}
 
 
-//	//bi-directional many-to-one association to MemberBankcard
-//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-//	public Set<MemberBankcard> getMemberBankcards() {
-//		return this.memberBankcards;
-//	}
-//
-//	public void setMemberBankcards(Set<MemberBankcard> memberBankcards) {
-//		this.memberBankcards = memberBankcards;
-//	}
-//
+	//bi-directional many-to-one association to MemberBankcard
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+	public Set<MemberBankcard> getMemberBankcards() {
+		return this.memberBankcards;
+	}
+
+	public void setMemberBankcards(Set<MemberBankcard> memberBankcards) {
+		this.memberBankcards = memberBankcards;
+	}
+
 //	//bi-directional many-to-one association to MemberDepositRecord
 //	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 //	public Set<MemberDepositRecord> getMemberDepositRecords() {

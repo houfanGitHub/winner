@@ -49,9 +49,9 @@ public class Ss_zhManangerDao {
 	//得到 id
 	public Member getId(String id){
 		Session session=getSession();
-		String hql = "from Member";
-		Member member = (Member)session.createQuery(hql).list().get(0);
-//		Member member=(Member)session.get(Member.class, id);
+		//String hql = "from Member";
+		//Member member = (Member)session.createQuery(hql).list().get(0);
+	Member member=(Member)session.get(Member.class, id);
 		return member;
 	}
 	
