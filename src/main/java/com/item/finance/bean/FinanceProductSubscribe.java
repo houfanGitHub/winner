@@ -18,7 +18,7 @@ import java.util.Set;
 @Entity
 @Table(name="finance_product_subscribe")
 public class FinanceProductSubscribe  {
-	private int id;
+	private String id;
 	private String addr;//所在地区
 	private BigDecimal amount;//私募购买金额
 	private String comment;//电子签署文档信息
@@ -32,7 +32,7 @@ public class FinanceProductSubscribe  {
 	private String riskReveal;//风险揭示书
 	private String signedPhotos;//签署拍照
 	private Date startDate;//开始时间
-	private int status;//'是否处理(0:签署拍照|1:已签约|2:审核中|3:签署失败)',
+	private String status;//'是否处理(0:签署拍照|1:已签约|2:审核中|3:签署失败)',
 	private Date updateDate;//修改时间
 	private Member member;//用户基本表
 	//体验金购买标的表
@@ -45,11 +45,11 @@ public class FinanceProductSubscribe  {
 
 	@Id
 	@Column(unique=true, nullable=false)
-	public int getId() {
+	public String getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -187,11 +187,11 @@ public class FinanceProductSubscribe  {
 	}
 
 
-	public int getStatus() {
+	public String getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -220,7 +220,7 @@ public class FinanceProductSubscribe  {
 
 
 	//bi-directional many-to-one association to FinanceProductSubscribeRecord
-	@OneToMany(mappedBy="financeProductSubscribe")
+	@OneToMany(mappedBy="financeProductSubscribe",fetch=FetchType.EAGER)
 	public Set<FinanceProductSubscribeRecord> getFinanceProductSubscribeRecords() {
 		return this.financeProductSubscribeRecords;
 	}

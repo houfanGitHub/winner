@@ -41,6 +41,7 @@ public class Ss_zhManangerDao {
 		Session session=getSession();
 		String hql="from Member where 0=0";
 		hql=gethql(map, hql);
+		System.out.println("账号管理列表显示:hql = "+hql);
 		List<Member>list=session.createQuery(hql).list();
 		return list;
 	}
@@ -48,7 +49,9 @@ public class Ss_zhManangerDao {
 	//得到 id
 	public Member getId(String id){
 		Session session=getSession();
-		Member member=(Member)session.get(Member.class, id);
+		String hql = "from Member";
+		Member member = (Member)session.createQuery(hql).list().get(0);
+//		Member member=(Member)session.get(Member.class, id);
 		return member;
 	}
 	
@@ -141,10 +144,10 @@ public class Ss_zhManangerDao {
 			//MemberWithdrawRecord 表中有一member_id 是与member中的id  相对应的  可通过member中的id 取到相应的值
 			String hql="from MemberWithdrawRecord as memberwith where memberwith.member.id= "+id;
 			List<MemberWithdrawRecord>listmemberwith=session.createQuery(hql).list();
-			for (MemberWithdrawRecord memb : listmemberwith) {
-				System.out.println("订单："+memb.getSerialNumber()+",金额："+memb.getAmount());
-				
-			}
+//			for (MemberWithdrawRecord memb : listmemberwith) {
+//				System.out.println("订单："+memb.getSerialNumber()+",金额："+memb.getAmount());
+//				
+//			}
 			return listmemberwith;
 		}
 		
@@ -155,7 +158,9 @@ public class Ss_zhManangerDao {
 			Session session=getSession();
 			//MemberDepositRecord 表中有一member_id 是与member中的id  相对应的  可通过member中的id 取到相应的值
 			String hql="from MemberDepositRecord as memberdeposit where memberdeposit.member.id= "+id;
-					List<MemberDepositRecord>listmemberdeposit=session.createQuery(hql).list();
+			//创建时间 是倒叙的  
+			//String hql="from MemberDepositRecord as memberdeposit where memberdeposit.member.id= "+id+"and ORDER BY createDate desc";
+					List<MemberDepositRecord>listmemberdeposit=session.createQuery(hql).list();  
 					return listmemberdeposit;
 		}
 		

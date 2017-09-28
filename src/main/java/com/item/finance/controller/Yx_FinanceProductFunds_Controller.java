@@ -107,7 +107,7 @@ public class Yx_FinanceProductFunds_Controller {
 	@RequestMapping("/updatecssb/{id}/{id2}")
 	public String updatecssb(@PathVariable("id")int id,@PathVariable("id2")int id2,FinanceProductSubscribe fe){
 		FinanceProductSubscribe fe2=this.yx_FinanceProductFunds_Service.selectqssb(id);
-		fe2.setStatus(3);
+		fe2.setStatus("3");
 		yx_FinanceProductFunds_Service.updateqssb(fe2);
 		return "redirect:/yx2/listWqs/{id2}";
 	}

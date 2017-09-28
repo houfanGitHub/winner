@@ -172,42 +172,42 @@
 	<table class="tzlist" width="100%" border="1" bordercolor="#e9e9e9" cellspacing="0" cellpadding="0">
 		<tbody>
 		<tr align="center" bgcolor="white" height="20">
-				<td width="15%"><h4>标的名称</h4></td>
-				<td width="35%"><font color="burlywood"><h4>${listjectbbr.subject.name}</h4></font></td>
-				<td width="15%"><h4>状态</h4></td>
+				<td width="15%"><h5>标的名称</h5></td>
+				<td width="35%"><font color="burlywood"><h5>${listjectbbr.subject.name}</h5></font></td>
+				<td width="15%"><h5>状态</h5></td>
 				<td width="35%">
-				  <c:if test="${listjectbbr.ispayment == '0'}"><font color="burlywood"><h4>待还款</h4></font></c:if>	
-                  <c:if test="${listjectbbr.ispayment == '1'}"><font color="burlywood"><h4>已还款</h4></font></c:if>		
+				  <c:if test="${listjectbbr.ispayment == '0'}"><font color="burlywood"><h5>待还款</h5></font></c:if>	
+                  <c:if test="${listjectbbr.ispayment == '1'}"><font color="burlywood"><h5>已还款</h5></font></c:if>		
 			</td>
 			</tr>
 			
 			<tr align="center" bgcolor="white" height="20">
-				<td width="15%"><h4>金额</h4></td><!--体验金金额-->
-				<td width="35%"><font color="burlywood"><h4>${listbb.amont}</h4></font></td>
-				<td width="15%"><h4>期限</h4></td><!-- period 主题表 subject的周期 -->
-				<td width="35%"><font color="burlywood"><h4>${listjectbbr.subject.period}天</h4></font></td>
+				<td width="15%"><h5>金额</h5></td><!--体验金金额-->
+				<td width="35%"><font color="burlywood"><h5>${listbb.amont}</h5></font></td>
+				<td width="15%"><h5>期限</h5></td><!-- period 主题表 subject的周期 -->
+				<td width="35%"><font color="burlywood"><h5>${listjectbbr.subject.period}天</h5></font></td>
 			</tr>
 		
 		<tr align="center" bgcolor="white" height="20">
-				<td width="15%"><h4>收益方式</h4></td>
-				<td width="35%"><font color="burlywood"><h4>一次性还本付息</h4></font></td>
-				<td width="15%"><h4>年化收益率</h4></td>
-				<td width="35%"><font color="burlywood"><h4>${listjectbbr.subject.yearRate}%</h4></font></td>
+				<td width="15%"><h5>收益方式</h5></td>
+				<td width="35%"><font color="burlywood"><h5>一次性还本付息</h5></font></td>
+				<td width="25%"><h5>年化收益率</h5></td>
+				<td width="25%"><font color="burlywood"><h5>${listjectbbr.subject.yearRate}%</h5></font></td>
 			</tr>
 		
 		
 		<tr align="center" bgcolor="white" height="20">
-				<td width="15%"><h4>计息日</h4></td>
-				<td width="35%"><font color="burlywood"><h4>${listbb.createDate}</h4></font></td>
-				<td width="15%"><h4>预期收益1111</h4></td>
-				<td width="35%"><font color="burlywood"><h4>1111</h4></font></td>
+				<td width="15%"><h5>计息日</h5></td>
+				<td width="35%"><font color="burlywood"><h5>${listbb.createDate}</h5></font></td>
+				<td width="25%"><h5>预期收益1111</h5></td>
+				<td width="15%"><font color="burlywood"><h4>1111</h4></font></td>
 			</tr>
 			
 			<tr align="center" bgcolor="white" height="20">
-				<td width="15%"><h4>结束日</h4></td>
-				<td width="35%"><font color="burlywood"><h4>2222</h4></font></td>
-				<td width="15%"><h4>已获收益</h4></td>
-				<td width="35%"><font color="burlywood"><h4>3333</h4></font></td>
+				<td width="15%"><h5>结束日</h5></td>
+				<td width="35%"><font color="burlywood"><h5>2222</h5></font></td>
+				<td width="35%"><h5>已获收益</h4></td>
+				<td width="15%"><font color="burlywood"><h5>3333</h5></font></td>
 			</tr>
 		
 	</tbody></table>

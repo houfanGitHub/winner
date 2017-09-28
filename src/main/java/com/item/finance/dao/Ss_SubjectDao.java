@@ -85,8 +85,10 @@ public class Ss_SubjectDao {
 	public List<SubjectPurchaseRecord> listSubjectpr(String  id){
 		Session session = getSession();
 		//SubjectPurchaseRecord 表中有一subject_id 是与subject中的id  相对应的  可通过subject中的id 取到相应的值
-		String hql = "from SubjectPurchaseRecord as subjectp where subjectp.subject.id="+id;
-		List<SubjectPurchaseRecord> listsubjectp = session.createQuery(hql).list();
+		//String hql = "from SubjectPurchaseRecord as subjectp where subjectp.subject.id="+id;
+		String sql = "select * from subject_purchase_record where subject_id = "+id;
+		List<SubjectPurchaseRecord> listsubjectp = session.createSQLQuery(sql).addEntity(SubjectPurchaseRecord.class).list();
+		//List<SubjectPurchaseRecord> listsubjectp=session.createQuery(hql).list();
 		return listsubjectp;
 	}
 	

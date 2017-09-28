@@ -56,6 +56,9 @@ public class Ss_zhmanagerController {
 		map.put("create_date1", create_date1);//注册时间1开始
 		map.put("create_date2", create_date2);//注册时间2 结束
 		List<Member>listzh=ss_zhmanagerService.list(map);
+		for (Member me : listzh) {
+			System.out.println("aaaa="+me.getName());
+		}
 		//model.addAttribute("listzh", listzh);
 		session.setAttribute("listzh", listzh);
 		
@@ -95,16 +98,16 @@ public class Ss_zhmanagerController {
 	public String getMember(@PathVariable("id")String id,Model model){
 	
 		Member member=this.ss_zhmanagerService.selectGetById(id);  //会员表
-		System.out.println("aaaaa="+member.getId());
+//		System.out.println("aaaaa="+member.getId());
 		 //集合取出来
 		List<MemberAccount>memberAccount=this.ss_zhmanagerService.getmemberaccountid(id);//资金信息表
 		List<FinancialPlanner>financialPlanner=this.ss_zhmanagerService.getfinaid(id);//理财师表
 		List<SubjectPurchaseRecord>listspr=this.ss_zhmanagerService.getlistspr(id); //投资详请
-		for (SubjectPurchaseRecord s : listspr) {
-			System.out.println("标的周期："+s.getSubject().getPeriod());
-			
-		}
-		System.out.println("11111111111111111");
+//		for (SubjectPurchaseRecord s : listspr) {
+//			System.out.println("标的周期："+s.getSubject().getPeriod());
+//			
+//		}
+//		System.out.println("11111111111111111");
 /*	     Date date = new Date();
 		double day = 0;//天数
 		double earnings = 0;//投资收益(earnings)
@@ -143,10 +146,10 @@ public class Ss_zhmanagerController {
 				
 		List<MemberWithdrawRecord> memberWithdrawRecord=this.ss_zhmanagerService.getByIdwith(id);//提现记录表
 		List<MemberDepositRecord> memberDepositRecord=this.ss_zhmanagerService.getbyIddeposit(id);//充值记录表
-		for (MemberDepositRecord mea : memberDepositRecord) {
-			System.out.println("订单号："+mea.getSerialNumber()+",金额："+mea.getAmount());
-			
-		}
+//		for (MemberDepositRecord mea : memberDepositRecord) {
+//			System.out.println("订单号："+mea.getSerialNumber()+",金额："+mea.getAmount());
+//			
+//		}
 		List<MemberTradeRecord> memberTradeRecord=this.ss_zhmanagerService.getbyIdtrade(id);//钱包交易记录表
 		model.addAttribute("member", member);
 		
