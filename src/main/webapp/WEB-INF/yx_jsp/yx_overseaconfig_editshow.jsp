@@ -40,17 +40,67 @@ $(function(){
 	$("#id").val(${overseaConfig.status});
 });
 </script>
-
+<!-- 表单验证部分开始 -->
+<script type="text/javascript">
+function fun(){
+	var  a1=document.form1.title.value;
+	var  a2=document.form1.childTitle.value;
+	var  a3=document.form1.description.value;
+	var  a4=document.form1.userType.value;
+	var  a5=document.form1.sortColum.value;
+	var b1=document.getElementById("title");
+	var b2=document.getElementById("childTitle");
+	var b3=document.getElementById("description");
+	var b4=document.getElementById("userType");
+	var b5=document.getElementById("sortColum");
+	var reg1=/^[0-9a-zA-Z]{2,20}$/;
+	if(!reg1.test(a1)){
+		b1.innerHTML="<img src='/winner/files/text_error.png'><font color=red>借款人姓名验证有误!</font>";
+		return false;
+		}else{
+			b1.innerHTML="<font color=green>借款人格式通过</font>";
+			}
+	var reg2=/^[0-9a-zA-Z]{2,20}$/;
+	if(!reg2.test(a2)){
+		b2.innerHTML="<img src='/winner/files/text_error.png'><font color=red>子标题验证有误!</font>";
+		return false;
+		}else{
+			b2.innerHTML="<font color=green>子标题格式通过</font>";
+			}
+	var reg3=/^[0-9a-zA-Z]{2,20}$/;
+	if(!reg3.test(a3)){
+		b3.innerHTML="<img src='/winner/files/text_error.png'><font color=red>描述验证有误!</font>";
+		return false;
+		}else{
+			b3.innerHTML="<font color=green>描述格式通过</font>";
+			}
+	var reg4=/^[0-9a-zA-Z]{2,20}$/;
+	if(!reg4.test(a4)){
+		b4.innerHTML="<img src='/winner/files/text_error.png'><font color=red>用户群体验证有误!</font>";
+		return false;
+		}else{
+			b4.innerHTML="<font color=green>用户群体格式通过</font>";
+			}
+	var reg5=/^[0-9]{1,10}$/;
+	if(!reg5.test(a5)){
+		b5.innerHTML="<img src='/winner/files/text_error.png'><font color=red>排序值验证有误!</font>";
+		return false;
+		}else{
+			b5.innerHTML="<font color=green>排序值验证通过</font>";
+			}
+}
+</script>
+<!-- 表单验证部分结束-->
 
 <p><p><p><h4>▶&nbsp;海外配置编辑</h4>
 <form action="/winner/yx3/updateOverseaConfig" enctype="multipart/form-data" method="post">
 <input type="hidden" name="id" value="${overseaConfig.id}"/>
 <table width="100%">
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标题:</td><td><input type="text"name="title" class="form-control" size="100" align="top"  value="${overseaConfig.title}"></td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子标题:</td><td><input type="text" name="childTitle" value="${overseaConfig.childTitle}" class="form-control"></td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;描述:</td><td><input type="text" name="description" value="${overseaConfig.description}" class="form-control"></td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户群体:</td><td><input type="text" name="userType" value="${overseaConfig.userType}" class="form-control"></td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;排序值:</td><td><input type="text" name="sortColum" value="${overseaConfig.sortColum}" class="form-control"></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标题:</td><td><input type="text"name="title" class="form-control" size="100" align="top"  value="${overseaConfig.title}"><span id="title"></span></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子标题:</td><td><input type="text" name="childTitle" value="${overseaConfig.childTitle}" class="form-control"><span id="childTitle"></span></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;描述:</td><td><input type="text" name="description" value="${overseaConfig.description}" class="form-control"><span id="description"></span></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户群体:</td><td><input type="text" name="userType" value="${overseaConfig.userType}" class="form-control"><span id="userType"></span></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;排序值:</td><td><input type="text" name="sortColum" value="${overseaConfig.sortColum}" class="form-control"><span id="sortColum"></span></td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态:</td><td>
 <select id="id" class="form-control" name="status">  
 <option value="0">未发布</option>

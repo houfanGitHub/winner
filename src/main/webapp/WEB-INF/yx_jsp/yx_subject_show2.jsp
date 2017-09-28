@@ -12,7 +12,7 @@
  <script type="text/javascript" src="/winner/js/jquery-3.2.0.min.js"></script>
  <script type="text/javascript" src="/winner/backstage/show/bootstrap.min.js"></script>
 <body>
-<table border="1" cellspacing="0" class="table table-condensed table-hover">
+<table border="0" cellspacing="0" class="table table-condensed table-hover">
 <tr height="40" align="center">
 <td>序号</td><td>流水号</td><td>会员姓名</td><td>购买金额</td><td>结算利息</td><td>是否还款</td><td>购买时间</td>
 </tr>

@@ -71,12 +71,12 @@ public class Yx_FinanceProductFunds_Dao {
 	    return list;
 	}
 	//查询条数
-/*	public List<Integer> listCount(){
+	public List<Integer> listCount(){
 		Session session=getSession();
 		String sql="SELECT COUNT(e.product_id) FROM  finance_product_funds f left join  finance_product_subscribe e on f.id=e.product_id GROUP BY f.id";
 	    List<Integer> list=session.createSQLQuery(sql).list();
 	    return list;
-	}*/
+	}
 	public FinanceProductSubscribe selectqssb(int id){
 		Session session=getSession();
 		FinanceProductSubscribe fs=(FinanceProductSubscribe)session.get(FinanceProductSubscribe.class, id);

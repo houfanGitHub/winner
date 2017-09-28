@@ -40,8 +40,16 @@ public class Yx_FinanceProductFunds_Controller {
 		map.put("qname", qname);
 		map.put("qstatus", qstatus);
 		map.put("qtype", qtype);
-		List<FinanceProductFunds> list = yx_FinanceProductFunds_Service
-		.listFinanceProductFunds(map);
+		List<FinanceProductFunds> list = yx_FinanceProductFunds_Service.listFinanceProductFunds(map);
+		List<Integer> list2=yx_FinanceProductFunds_Service.listCount();
+		/*for (Integer counts : list2) {
+			System.out.println(counts);
+		}*/
+	/*	for(int i=0;i<list.size();i++){
+			//System.out.println(list2.get(i));
+			session.setAttribute("count",list2.get(i));
+		}*/
+		session.setAttribute("list2",list2);
 		session.setAttribute("list", list);
 		session.setAttribute("qname", qname);
 		session.setAttribute("qstatus", qstatus);

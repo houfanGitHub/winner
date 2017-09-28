@@ -41,22 +41,22 @@
 <td width="35%" align="right">身份证:&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type="text" value="${fe3.member.identity}"class="form-control" readonly="readonly"></td><td></td>
 </tr>
 <tr>
-<td width="35%" align="right">购买金额:&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type="text"  name="amount" value="${fe3.amount}" onblur="fun(this)"   class="form-control"></td><td></td>
+<td width="35%" align="right">购买金额:&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type="text"  name="amount" value="${fe3.amount}" onblur="fun(this)" required="required"  class="form-control"></td><td></td>
 </tr>
 <tr>
 <td width="35%" align="right">利息收益:&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type="text"  id="interest" class="form-control" readonly="readonly"></td><td></td>
 </tr>
 <tr>
-<td width="35%" align="right">开始时间:&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type="date" name="createDate" class="form-control"></td><td></td>
+<td width="35%" align="right">开始时间:&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type="date" name="createDate" required="required" class="form-control"></td><td></td>
 </tr>
 <tr>
 <td width="35%" align="right">截止时间:&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type="text" value="${endTime}"class="form-control" readonly="readonly"></td><td></td>
 </tr>
 <tr>
-<td width="35%" align="right">私募合同:&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type="file" name="file_name" class="form-control"></td><td></td>
+<td width="35%" align="right">私募合同:&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type="file" name="file_name" required="required" class="form-control"></td><td></td>
 </tr>
 <tr>
-<td width="35%" align="right">风险提示书:&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type="file" name="file_name2" class="form-control"></td><td></td>
+<td width="35%" align="right">风险提示书:&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type="file" name="file_name2" required="required" class="form-control"></td><td></td>
 </tr>
 <tr>
 <td width="35%" align="right"></td><td colspan="2"><input type="submit" class="btn btn-primary" value="签署合同"></td>

@@ -90,7 +90,7 @@ P2P房贷
 </td>
 
 <td>${t.name}</td>
-<td>${t.amount }</td>
+<td>${t.amount*t.bought}</td>
 <td>${t.floorAmount }</td><!-- 已投总金额 -->
 <td>${t.period }</td>
 <td>${t.floorAmount }</td>

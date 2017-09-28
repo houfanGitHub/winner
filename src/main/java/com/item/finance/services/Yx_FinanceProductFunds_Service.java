@@ -56,6 +56,11 @@ public class Yx_FinanceProductFunds_Service implements ItemServiceImpl<FinancePr
 		this.yx_FinanceProductFunds_Dao.saveSign(financeProductSubscribe);
 	}
 	
+	//查询未签署人数
+	public List<Integer> listCount(){
+		return this.yx_FinanceProductFunds_Dao.listCount();
+	}
+	
 	
 	
 	@Override
