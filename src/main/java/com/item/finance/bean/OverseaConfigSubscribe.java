@@ -29,8 +29,10 @@ public class OverseaConfigSubscribe  {
 	}
 
 
+	/*@Id
+	@Column(unique=true, nullable=false)*/
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public int getId() {
 		return this.id;
 	}

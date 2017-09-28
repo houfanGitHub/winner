@@ -20,6 +20,9 @@
     </plugins>  
 </build> 
 
+<!-- <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
+
+
 <!--  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  -->
   
   <!-- jar包 -->
@@ -29,6 +32,8 @@
 	</properties>
 
 	<dependencies>
+	
+	
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -228,7 +233,7 @@
 	<artifactId>alipay-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 </dependency>
-
+ 
 <!-- https://mvnrepository.com/artifact/org.activiti/activiti-engine -->
 <dependency>
     <groupId>org.activiti</groupId>

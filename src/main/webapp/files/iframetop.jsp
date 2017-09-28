@@ -40,7 +40,7 @@
 	            <div class="detail">
 	                <div style="font-size:16px;float:right;margin-top:5px;color:#917739;">
 	                		  欢迎${memberinfo.name },<a target="_parent" href="#">[会员中心]</a>,
-	                  <a target="_parent" href="/winner/itemweb/webUserLogout">[退出]</a>
+	                  <a target="_parent" href="/winner/itemweb/webMemberLogout">[退出]</a>
 	                  </div>
 	                <br>4000-999-158
 	            </div>

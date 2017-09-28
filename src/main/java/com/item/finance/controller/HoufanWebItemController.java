@@ -559,10 +559,12 @@ public class HoufanWebItemController {
 	 * @param attributes
 	 * @return
 	 */
-	@RequestMapping("webUserLogout")
+	@RequestMapping("webMemberLogout")
 	public String webUserLogout(HttpSession session){
 		//清除session
-		session.invalidate();
+		System.out.println("11111111111111");
+		session.removeAttribute("memberinfo");
+//		session.invalidate();
 		return "redirect:/itemweb/toLogin";
 	} 
 

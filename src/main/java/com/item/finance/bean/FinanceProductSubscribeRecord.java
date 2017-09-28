@@ -14,18 +14,18 @@ import java.util.Date;
  */
 @Entity
 @Table(name="finance_product_subscribe_record")
-public class FinanceProductSubscribeRecord  {
+public class FinanceProductSubscribeRecord  {  //金融产品订阅记录表
 	private String id;
-	private Date createDate;
-	private String filed1;
-	private String newPath;
-	private String orgPath;
-	private int status;
-	private BigInteger subscribeId;
-	private String techUserSeal;
-	private Date updateDate;
-	private FinanceProductSubscribe financeProductSubscribe;
-	private Member member;
+	private Date createDate;  //创建时间
+	private String filed1;  //备用字段
+	private String newPath; //新签署文档路径
+	private String orgPath;  //原签署文档路径
+	private String status;   //状态
+	private String subscribeId; //私募预约记录 id	
+	private String techUserSeal; //e签宝个人印章
+	private Date updateDate;  //修改时间
+	private FinanceProductSubscribe financeProductSubscribe;   //理财类基金产品预约记录
+	private Member member;  //会员表
 
 	public FinanceProductSubscribeRecord() {
 	}
@@ -83,21 +83,21 @@ public class FinanceProductSubscribeRecord  {
 	}
 
 
-	public int getStatus() {
+	public String getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
 
 	@Column(name="subscribe_id")
-	public BigInteger getSubscribeId() {
+	public String getSubscribeId() {
 		return this.subscribeId;
 	}
 
-	public void setSubscribeId(BigInteger subscribeId) {
+	public void setSubscribeId(String subscribeId) {
 		this.subscribeId = subscribeId;
 	}
 
@@ -124,7 +124,7 @@ public class FinanceProductSubscribeRecord  {
 
 
 	//bi-directional many-to-one association to FinanceProductSubscribe
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="tech_user_id")
 	public FinanceProductSubscribe getFinanceProductSubscribe() {
 		return this.financeProductSubscribe;

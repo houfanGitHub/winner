@@ -48,7 +48,8 @@ public class Member  {  //会员表
 //	private Set<FinanceProductSubscribe> financeProductSubscribes = new HashSet<>();
 //	private Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords = new HashSet<>();
 //	private Set<FinancialPlanner> financialPlanners = new HashSet<>();
-//	private Set<MemberAccount> memberAccounts = new HashSet<>();
+
+	private Set<MemberAccount> memberAccounts = new HashSet<>();
 	private Set<MemberBankcard> memberBankcards = new HashSet<>();
 //	private Set<MemberDepositRecord> memberDepositRecords = new HashSet<>();
 //	private Set<MemberProfitRecord> memberProfitRecords = new HashSet<>();  //成员利润表
@@ -268,8 +269,8 @@ public class Member  {  //会员表
 		this.withdrawPassword = withdrawPassword;
 	}
 
-//
-//	//bi-directional many-to-one association to AssociatedAccount
+
+	//bi-directional many-to-one association to AssociatedAccount
 //	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 //	public Set<AssociatedAccount> getAssociatedAccounts() {
 //		return this.associatedAccounts;
@@ -335,15 +336,15 @@ public class Member  {  //会员表
 //	}
 //
 //
-//	//bi-directional many-to-one association to MemberAccount
-//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-//	public Set<MemberAccount> getMemberAccounts() {
-//		return this.memberAccounts;
-//	}
-//
-//	public void setMemberAccounts(Set<MemberAccount> memberAccounts) {
-//		this.memberAccounts = memberAccounts;
-//	}
+	//bi-directional many-to-one association to MemberAccount
+	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+	public Set<MemberAccount> getMemberAccounts() {
+		return this.memberAccounts;
+	}
+
+	public void setMemberAccounts(Set<MemberAccount> memberAccounts) {
+		this.memberAccounts = memberAccounts;
+	}
 
 
 	//bi-directional many-to-one association to MemberBankcard
@@ -355,7 +356,7 @@ public class Member  {  //会员表
 	public void setMemberBankcards(Set<MemberBankcard> memberBankcards) {
 		this.memberBankcards = memberBankcards;
 	}
-//
+
 //	//bi-directional many-to-one association to MemberDepositRecord
 //	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 //	public Set<MemberDepositRecord> getMemberDepositRecords() {

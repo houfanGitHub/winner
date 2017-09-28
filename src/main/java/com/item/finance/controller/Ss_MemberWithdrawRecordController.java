@@ -75,16 +75,7 @@ public class Ss_MemberWithdrawRecordController {
 			return "WEB-INF/ssjsp/memberWithdrawRecord_details";   //跳转页面
 		}
 		
-	/*	//模态窗口选择框保存
-		@RequestMapping("/savemodal5")
-		public String savemodal(HttpServletRequest request,Model model){
-			//获取选择框里的值
-			String modalname=request.getParameter("amodal");
-			model.addAttribute("modalname", modalname);
-			return "redirect:/sushuang5/list5";
-		
-		}
-		*/
+	
 		//模态窗口  审核
 		@RequestMapping("/updatememberwithdraw5/{id}")
 		public String updatememberwith(@PathVariable("id")String id,HttpServletRequest request){

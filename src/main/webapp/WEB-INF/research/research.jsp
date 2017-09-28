@@ -723,6 +723,7 @@
                         <div class="contactInfo" style="padding-left:30px;">
 
                             <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank"><img src="/winner/files/qqIcon.png"></a>
+
                             <span class="kefu">在线客服</span><span class="time">08:30 - 21:00</span>
                         </div>
                     </div>

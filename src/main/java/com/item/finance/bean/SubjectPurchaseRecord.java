@@ -15,10 +15,9 @@ import java.util.Set;
  */
 @Entity
 @Table(name="subject_purchase_record")
-@NamedQuery(name="SubjectPurchaseRecord.findAll", query="SELECT s FROM SubjectPurchaseRecord s")
 public class SubjectPurchaseRecord  {//标的购买表
 	private static final long serialVersionUID = 1L;
-	private String id;
+	private int id;
 	private Double amount;  //购买金额
 	private String bonusInfo;  //红包金额信息（app端实际投资额度+红包额度）
 	private Date createDate;   //创建时间
@@ -32,23 +31,16 @@ public class SubjectPurchaseRecord  {//标的购买表
 	private String serialNumber;  //流水号
 	private Subject subject;  //主题表
 	private Date updateDate;  //修改时间
-	private Set<MemberProfitRecord> memberProfitRecords = new HashSet<>();
 
-	public SubjectPurchaseRecord() {
-		
+    @Id
+    @GeneratedValue
+	public int getId() {
+		return id;
 	}
 
-
-	@Id
-	@Column(unique=true, nullable=false)
-	public String getId() {
-		return this.id;
-	}
-
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	@Column(precision=10, scale=4)
 	public Double getAmount() {
@@ -146,7 +138,7 @@ public class SubjectPurchaseRecord  {//标的购买表
 		return this.payInterestTimes;
 	}
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="member_id")
 	public Member getMember() {
 		return member;
@@ -177,7 +169,7 @@ public class SubjectPurchaseRecord  {//标的购买表
 	public Date getUpdateDate() {
 		return this.updateDate;
 	}
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="subject_id")
 	public Subject getSubject() {
 		return subject;
@@ -196,15 +188,4 @@ public class SubjectPurchaseRecord  {//标的购买表
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	@OneToMany(mappedBy="subjectPurchaseRecord")
-	public Set<MemberProfitRecord> getMemberProfitRecords() {
-		return memberProfitRecords;
-	}
-
-
-	public void setMemberProfitRecords(Set<MemberProfitRecord> memberProfitRecords) {
-		this.memberProfitRecords = memberProfitRecords;
-	}
-
 }
