@@ -14,8 +14,8 @@ import java.util.Set;
 @Table(name="subject_folder")
 public class SubjectFolder  {
 	private int id;
-	private Date createDate;
-	private Date updateDate;
+	private String createDate;
+	private String updateDate;
 	private Set<Subject> subjects;
 	private Set<SubjectFile> subjectFiles;
 
@@ -24,7 +24,8 @@ public class SubjectFolder  {
 
 
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
+	//@Column(unique=true, nullable=false)
 	public int getId() {
 		return id;
 	}
@@ -34,27 +35,25 @@ public class SubjectFolder  {
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_date")
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return this.createDate;
 	}
 
 
-
-
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="update_date")
-	public Date getUpdateDate() {
+	public String getUpdateDate() {
 		return this.updateDate;
 	}
 
-	public void setUpdateDate(Date updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 
@@ -85,7 +84,7 @@ public class SubjectFolder  {
 
 
 	//bi-directional many-to-one association to SubjectFile
-	@OneToMany(mappedBy="subjectFolder")
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="subjectFolder")
 	public Set<SubjectFile> getSubjectFiles() {
 		return this.subjectFiles;
 	}
