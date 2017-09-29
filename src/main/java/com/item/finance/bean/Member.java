@@ -42,36 +42,36 @@ public class Member  {  //会员表
 	private String weiBoAccount; //微博账号关联
 	private String weixinAccount;  //微信账号关联
 	private String withdrawPassword;  //提款密码
-	private Set<AssociatedAccount> associatedAccounts = new HashSet<>();
-	private Set<BbinInfo> bbinInfos = new HashSet<>();
-	private Set<Feedback> feedbacks = new HashSet<>();//意见反馈
-	private Set<FinanceProductSubscribe> financeProductSubscribes = new HashSet<>();
-	private Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords = new HashSet<>();
-	private Set<FinancialPlanner> financialPlanners = new HashSet<>();
+//	private Set<AssociatedAccount> associatedAccounts = new HashSet<>();
+//	private Set<BbinInfo> bbinInfos = new HashSet<>();
+//	private Set<Feedback> feedbacks = new HashSet<>();//意见反馈
+//	private Set<FinanceProductSubscribe> financeProductSubscribes = new HashSet<>();
+//	private Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords = new HashSet<>();
+//	private Set<FinancialPlanner> financialPlanners = new HashSet<>();
 	private Set<MemberAccount> memberAccounts = new HashSet<>();
 	private Set<MemberBankcard> memberBankcards = new HashSet<>();
-	private Set<MemberDepositRecord> memberDepositRecords = new HashSet<>();
-	private Set<MemberProfitRecord> memberProfitRecords = new HashSet<>();  //成员利润表
-	private Set<MemberPucChargeHome> memberPucChargeHomes = new HashSet<>();
-	private Set<MemberPucChargeItem> memberPucChargeItems = new HashSet<>();
-	private Set<MemberTally> memberTallies = new HashSet<>();
-	private Set<MemberTradeRecord> memberTradeRecords = new HashSet<>();
-	private Set<MemberWithdrawRecord> memberWithdrawRecords = new HashSet<>();
-	private Set<OverseaConfigSubscribe> overseaConfigSubscribes = new HashSet<>();
-	private Set<SubjectBbinPurchaseRecord> subjectBbinPurchaseRecords = new HashSet<>();
-	private Set<SubjectOrderRecord> subjectOrderRecords = new HashSet<>();
-	private Set<AwardRecord> awardRecords=new HashSet<>();  //邀请奖励表
+//	private Set<MemberDepositRecord> memberDepositRecords = new HashSet<>();
+//	private Set<MemberProfitRecord> memberProfitRecords = new HashSet<>();  //成员利润表
+//	private Set<MemberPucChargeHome> memberPucChargeHomes = new HashSet<>();
+//	private Set<MemberPucChargeItem> memberPucChargeItems = new HashSet<>();
+//	private Set<MemberTally> memberTallies = new HashSet<>();
+//	private Set<MemberTradeRecord> memberTradeRecords = new HashSet<>();
+//	private Set<MemberWithdrawRecord> memberWithdrawRecords = new HashSet<>();
+//	private Set<OverseaConfigSubscribe> overseaConfigSubscribes = new HashSet<>();
+//	private Set<SubjectBbinPurchaseRecord> subjectBbinPurchaseRecords = new HashSet<>();
+//	private Set<SubjectOrderRecord> subjectOrderRecords = new HashSet<>();
+//	private Set<AwardRecord> awardRecords=new HashSet<>();  //邀请奖励表
 	
 	
-	@OneToMany(mappedBy="member")
-	public Set<AwardRecord> getAwardRecords() {
-		return awardRecords;
-	}
-
-
-	public void setAwardRecords(Set<AwardRecord> awardRecords) {
-		this.awardRecords = awardRecords;
-	}
+//	@OneToMany(mappedBy="member")
+//	public Set<AwardRecord> getAwardRecords() {
+//		return awardRecords;
+//	}
+//
+//
+//	public void setAwardRecords(Set<AwardRecord> awardRecords) {
+//		this.awardRecords = awardRecords;
+//	}
 
 
 	public Member() {
@@ -269,73 +269,73 @@ public class Member  {  //会员表
 	}
 
 
-	//bi-directional many-to-one association to AssociatedAccount
-	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-	public Set<AssociatedAccount> getAssociatedAccounts() {
-		return this.associatedAccounts;
-	}
-
-	public void setAssociatedAccounts(Set<AssociatedAccount> associatedAccounts) {
-		this.associatedAccounts = associatedAccounts;
-	}
-
-
-	//bi-directional many-to-one association to BbinInfo
-	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-	public Set<BbinInfo> getBbinInfos() {
-		return this.bbinInfos;
-	}
-
-	public void setBbinInfos(Set<BbinInfo> bbinInfos) {
-		this.bbinInfos = bbinInfos;
-	}
-
-
-	//bi-directional many-to-one association to Feedback
-	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-	public Set<Feedback> getFeedbacks() {
-		return this.feedbacks;
-	}
-
-	public void setFeedbacks(Set<Feedback> feedbacks) {
-		this.feedbacks = feedbacks;
-	}
-
-
-	//bi-directional many-to-one association to FinanceProductSubscribe
-	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-	public Set<FinanceProductSubscribe> getFinanceProductSubscribes() {
-		return this.financeProductSubscribes;
-	}
-
-	public void setFinanceProductSubscribes(Set<FinanceProductSubscribe> financeProductSubscribes) {
-		this.financeProductSubscribes = financeProductSubscribes;
-	}
-
-
-	//bi-directional many-to-one association to FinanceProductSubscribeRecord
-	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-	public Set<FinanceProductSubscribeRecord> getFinanceProductSubscribeRecords() {
-		return this.financeProductSubscribeRecords;
-	}
-
-	public void setFinanceProductSubscribeRecords(Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords) {
-		this.financeProductSubscribeRecords = financeProductSubscribeRecords;
-	}
-
-
-	//bi-directional many-to-one association to FinancialPlanner
-	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-	public Set<FinancialPlanner> getFinancialPlanners() {
-		return this.financialPlanners;
-	}
-
-	public void setFinancialPlanners(Set<FinancialPlanner> financialPlanners) {
-		this.financialPlanners = financialPlanners;
-	}
-
-
-	//bi-directional many-to-one association to MemberAccount
+//	//bi-directional many-to-one association to AssociatedAccount
+//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+//	public Set<AssociatedAccount> getAssociatedAccounts() {
+//		return this.associatedAccounts;
+//	}
+//
+//	public void setAssociatedAccounts(Set<AssociatedAccount> associatedAccounts) {
+//		this.associatedAccounts = associatedAccounts;
+//	}
+//
+//
+//	//bi-directional many-to-one association to BbinInfo
+//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+//	public Set<BbinInfo> getBbinInfos() {
+//		return this.bbinInfos;
+//	}
+//
+//	public void setBbinInfos(Set<BbinInfo> bbinInfos) {
+//		this.bbinInfos = bbinInfos;
+//	}
+//
+//
+//	//bi-directional many-to-one association to Feedback
+//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+//	public Set<Feedback> getFeedbacks() {
+//		return this.feedbacks;
+//	}
+//
+//	public void setFeedbacks(Set<Feedback> feedbacks) {
+//		this.feedbacks = feedbacks;
+//	}
+//
+//
+//	//bi-directional many-to-one association to FinanceProductSubscribe
+//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+//	public Set<FinanceProductSubscribe> getFinanceProductSubscribes() {
+//		return this.financeProductSubscribes;
+//	}
+//
+//	public void setFinanceProductSubscribes(Set<FinanceProductSubscribe> financeProductSubscribes) {
+//		this.financeProductSubscribes = financeProductSubscribes;
+//	}
+//
+//
+//	//bi-directional many-to-one association to FinanceProductSubscribeRecord
+//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+//	public Set<FinanceProductSubscribeRecord> getFinanceProductSubscribeRecords() {
+//		return this.financeProductSubscribeRecords;
+//	}
+//
+//	public void setFinanceProductSubscribeRecords(Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords) {
+//		this.financeProductSubscribeRecords = financeProductSubscribeRecords;
+//	}
+//
+//
+//	//bi-directional many-to-one association to FinancialPlanner
+//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+//	public Set<FinancialPlanner> getFinancialPlanners() {
+//		return this.financialPlanners;
+//	}
+//
+//	public void setFinancialPlanners(Set<FinancialPlanner> financialPlanners) {
+//		this.financialPlanners = financialPlanners;
+//	}
+//
+//
+	/*bi-directional many-to-one association to MemberAccount*/
 	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
 	public Set<MemberAccount> getMemberAccounts() {
 		return this.memberAccounts;
@@ -355,142 +355,142 @@ public class Member  {  //会员表
 	public void setMemberBankcards(Set<MemberBankcard> memberBankcards) {
 		this.memberBankcards = memberBankcards;
 	}
-
-	//bi-directional many-to-one association to MemberDepositRecord
-	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-	public Set<MemberDepositRecord> getMemberDepositRecords() {
-		return this.memberDepositRecords;
-	}
-
-	public void setMemberDepositRecords(Set<MemberDepositRecord> memberDepositRecords) {
-		this.memberDepositRecords = memberDepositRecords;
-	}
-
-	//bi-directional many-to-one association to MemberProfitRecord
-	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-	public Set<MemberProfitRecord> getMemberProfitRecords() {
-		return this.memberProfitRecords;
-	}
-
-	public void setMemberProfitRecords(Set<MemberProfitRecord> memberProfitRecords) {
-		this.memberProfitRecords = memberProfitRecords;
-	}
-
-	//bi-directional many-to-one association to MemberPucChargeHome
-	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-	public Set<MemberPucChargeHome> getMemberPucChargeHomes() {
-		return this.memberPucChargeHomes;
-	}
-
-	public void setMemberPucChargeHomes(Set<MemberPucChargeHome> memberPucChargeHomes) {
-		this.memberPucChargeHomes = memberPucChargeHomes;
-	}
-
-	//bi-directional many-to-one association to MemberPucChargeItem
-	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-	public Set<MemberPucChargeItem> getMemberPucChargeItems() {
-		return this.memberPucChargeItems;
-	}
-
-	public void setMemberPucChargeItems(Set<MemberPucChargeItem> memberPucChargeItems) {
-		this.memberPucChargeItems = memberPucChargeItems;
-	}
-
-	//bi-directional many-to-one association to MemberTally
-	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-	public Set<MemberTally> getMemberTallies() {
-		return this.memberTallies;
-	}
-
-	public void setMemberTallies(Set<MemberTally> memberTallies) {
-		this.memberTallies = memberTallies;
-	}
-
-
-	//bi-directional many-to-one association to MemberTradeRecord
-	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-	public Set<MemberTradeRecord> getMemberTradeRecords() {
-		return this.memberTradeRecords;
-	}
-
-	public void setMemberTradeRecords(Set<MemberTradeRecord> memberTradeRecords) {
-		this.memberTradeRecords = memberTradeRecords;
-	}
-
-
-	//bi-directional many-to-one association to MemberWithdrawRecord
-	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-	public Set<MemberWithdrawRecord> getMemberWithdrawRecords() {
-		return this.memberWithdrawRecords;
-	}
-
-	public void setMemberWithdrawRecords(Set<MemberWithdrawRecord> memberWithdrawRecords) {
-		this.memberWithdrawRecords = memberWithdrawRecords;
-	}
-
-
-	//bi-directional many-to-one association to OverseaConfigSubscribe
-	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-	public Set<OverseaConfigSubscribe> getOverseaConfigSubscribes() {
-		return this.overseaConfigSubscribes;
-	}
-
-	public void setOverseaConfigSubscribes(Set<OverseaConfigSubscribe> overseaConfigSubscribes) {
-		this.overseaConfigSubscribes = overseaConfigSubscribes;
-	}
-
-
-	//bi-directional many-to-one association to SubjectBbinPurchaseRecord
-	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-	public Set<SubjectBbinPurchaseRecord> getSubjectBbinPurchaseRecords() {
-		return this.subjectBbinPurchaseRecords;
-	}
-
-	public void setSubjectBbinPurchaseRecords(Set<SubjectBbinPurchaseRecord> subjectBbinPurchaseRecords) {
-		this.subjectBbinPurchaseRecords = subjectBbinPurchaseRecords;
-	}
-
-
-	//bi-directional many-to-one association to SubjectOrderRecord
-	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
-	public Set<SubjectOrderRecord> getSubjectOrderRecords() {
-		return this.subjectOrderRecords;
-	}
-
-	public void setSubjectOrderRecords(Set<SubjectOrderRecord> subjectOrderRecords) {
-		this.subjectOrderRecords = subjectOrderRecords;
-	}
-
-
-	@Override
-	public String toString() {
-		return "Member [id=" + id + ", createDate=" + createDate + ", delFlag="
-				+ delFlag + ", headid=" + headid + ", identity=" + identity
-				+ ", invitationCode=" + invitationCode + ", invitedCode="
-				+ invitedCode + ", memberName=" + memberName
-				+ ", mobile_Phone=" + mobile_Phone + ", name=" + name
-				+ ", password=" + password + ", qqAccount=" + qqAccount
-				+ ", qqNumber=" + qqNumber + ", salt=" + salt + ", status="
-				+ status + ", updateDate=" + updateDate + ", weiBoAccount="
-				+ weiBoAccount + ", weixinAccount=" + weixinAccount
-				+ ", withdrawPassword=" + withdrawPassword
-				+ ", associatedAccounts=" + associatedAccounts + ", bbinInfos="
-				+ bbinInfos + ", feedbacks=" + feedbacks
-				+ ", financeProductSubscribes=" + financeProductSubscribes
-				+ ", financeProductSubscribeRecords="
-				+ financeProductSubscribeRecords + ", financialPlanners="
-				+ financialPlanners + ", memberAccounts=" + memberAccounts
-				+ ", memberBankcards=" + memberBankcards
-				+ ", memberDepositRecords=" + memberDepositRecords
-				+ ", memberProfitRecords=" + memberProfitRecords
-				+ ", memberPucChargeHomes=" + memberPucChargeHomes
-				+ ", memberPucChargeItems=" + memberPucChargeItems
-				+ ", memberTallies=" + memberTallies + ", memberTradeRecords="
-				+ memberTradeRecords + ", memberWithdrawRecords="
-				+ memberWithdrawRecords + ", overseaConfigSubscribes="
-				+ overseaConfigSubscribes + ", subjectBbinPurchaseRecords="
-				+ subjectBbinPurchaseRecords + ", subjectOrderRecords="
-				+ subjectOrderRecords + "]";
-	}
+//
+//	//bi-directional many-to-one association to MemberDepositRecord
+//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+//	public Set<MemberDepositRecord> getMemberDepositRecords() {
+//		return this.memberDepositRecords;
+//	}
+//
+//	public void setMemberDepositRecords(Set<MemberDepositRecord> memberDepositRecords) {
+//		this.memberDepositRecords = memberDepositRecords;
+//	}
+//
+//	//bi-directional many-to-one association to MemberProfitRecord
+//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+//	public Set<MemberProfitRecord> getMemberProfitRecords() {
+//		return this.memberProfitRecords;
+//	}
+//
+//	public void setMemberProfitRecords(Set<MemberProfitRecord> memberProfitRecords) {
+//		this.memberProfitRecords = memberProfitRecords;
+//	}
+//
+//	//bi-directional many-to-one association to MemberPucChargeHome
+//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+//	public Set<MemberPucChargeHome> getMemberPucChargeHomes() {
+//		return this.memberPucChargeHomes;
+//	}
+//
+//	public void setMemberPucChargeHomes(Set<MemberPucChargeHome> memberPucChargeHomes) {
+//		this.memberPucChargeHomes = memberPucChargeHomes;
+//	}
+//
+//	//bi-directional many-to-one association to MemberPucChargeItem
+//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+//	public Set<MemberPucChargeItem> getMemberPucChargeItems() {
+//		return this.memberPucChargeItems;
+//	}
+//
+//	public void setMemberPucChargeItems(Set<MemberPucChargeItem> memberPucChargeItems) {
+//		this.memberPucChargeItems = memberPucChargeItems;
+//	}
+//
+//	//bi-directional many-to-one association to MemberTally
+//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+//	public Set<MemberTally> getMemberTallies() {
+//		return this.memberTallies;
+//	}
+//
+//	public void setMemberTallies(Set<MemberTally> memberTallies) {
+//		this.memberTallies = memberTallies;
+//	}
+//
+//
+//	//bi-directional many-to-one association to MemberTradeRecord
+//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+//	public Set<MemberTradeRecord> getMemberTradeRecords() {
+//		return this.memberTradeRecords;
+//	}
+//
+//	public void setMemberTradeRecords(Set<MemberTradeRecord> memberTradeRecords) {
+//		this.memberTradeRecords = memberTradeRecords;
+//	}
+//
+//
+//	//bi-directional many-to-one association to MemberWithdrawRecord
+//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+//	public Set<MemberWithdrawRecord> getMemberWithdrawRecords() {
+//		return this.memberWithdrawRecords;
+//	}
+//
+//	public void setMemberWithdrawRecords(Set<MemberWithdrawRecord> memberWithdrawRecords) {
+//		this.memberWithdrawRecords = memberWithdrawRecords;
+//	}
+//
+//
+//	//bi-directional many-to-one association to OverseaConfigSubscribe
+//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+//	public Set<OverseaConfigSubscribe> getOverseaConfigSubscribes() {
+//		return this.overseaConfigSubscribes;
+//	}
+//
+//	public void setOverseaConfigSubscribes(Set<OverseaConfigSubscribe> overseaConfigSubscribes) {
+//		this.overseaConfigSubscribes = overseaConfigSubscribes;
+//	}
+//
+//
+//	//bi-directional many-to-one association to SubjectBbinPurchaseRecord
+//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+//	public Set<SubjectBbinPurchaseRecord> getSubjectBbinPurchaseRecords() {
+//		return this.subjectBbinPurchaseRecords;
+//	}
+//
+//	public void setSubjectBbinPurchaseRecords(Set<SubjectBbinPurchaseRecord> subjectBbinPurchaseRecords) {
+//		this.subjectBbinPurchaseRecords = subjectBbinPurchaseRecords;
+//	}
+//
+//
+//	//bi-directional many-to-one association to SubjectOrderRecord
+//	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+//	public Set<SubjectOrderRecord> getSubjectOrderRecords() {
+//		return this.subjectOrderRecords;
+//	}
+//
+//	public void setSubjectOrderRecords(Set<SubjectOrderRecord> subjectOrderRecords) {
+//		this.subjectOrderRecords = subjectOrderRecords;
+//	}
+//
+//
+//	@Override
+//	public String toString() {
+//		return "Member [id=" + id + ", createDate=" + createDate + ", delFlag="
+//				+ delFlag + ", headid=" + headid + ", identity=" + identity
+//				+ ", invitationCode=" + invitationCode + ", invitedCode="
+//				+ invitedCode + ", memberName=" + memberName
+//				+ ", mobile_Phone=" + mobile_Phone + ", name=" + name
+//				+ ", password=" + password + ", qqAccount=" + qqAccount
+//				+ ", qqNumber=" + qqNumber + ", salt=" + salt + ", status="
+//				+ status + ", updateDate=" + updateDate + ", weiBoAccount="
+//				+ weiBoAccount + ", weixinAccount=" + weixinAccount
+//				+ ", withdrawPassword=" + withdrawPassword
+//				+ ", associatedAccounts=" + associatedAccounts + ", bbinInfos="
+//				+ bbinInfos + ", feedbacks=" + feedbacks
+//				+ ", financeProductSubscribes=" + financeProductSubscribes
+//				+ ", financeProductSubscribeRecords="
+//				+ financeProductSubscribeRecords + ", financialPlanners="
+//				+ financialPlanners + ", memberAccounts=" + memberAccounts
+//				+ ", memberBankcards=" + memberBankcards
+//				+ ", memberDepositRecords=" + memberDepositRecords
+//				+ ", memberProfitRecords=" + memberProfitRecords
+//				+ ", memberPucChargeHomes=" + memberPucChargeHomes
+//				+ ", memberPucChargeItems=" + memberPucChargeItems
+//				+ ", memberTallies=" + memberTallies + ", memberTradeRecords="
+//				+ memberTradeRecords + ", memberWithdrawRecords="
+//				+ memberWithdrawRecords + ", overseaConfigSubscribes="
+//				+ overseaConfigSubscribes + ", subjectBbinPurchaseRecords="
+//				+ subjectBbinPurchaseRecords + ", subjectOrderRecords="
+////				+ subjectOrderRecords + "]";
+//	}
 
 }
