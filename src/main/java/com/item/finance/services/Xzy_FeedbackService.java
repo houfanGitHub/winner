@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.item.finance.bean.Feedback;
 import com.item.finance.bean.Member;
+import com.item.finance.bean.SubjectFile;
 import com.item.finance.dao.XiezhengyuDao;
 @Service
 @Transactional
@@ -21,7 +22,9 @@ private XiezhengyuDao dao;
 		Member m = this.dao.getMember(id);
 		return m;
 	}
-
+    public SubjectFile selectSubjectFile(int id){
+    	return this.dao.getSubjectFile(id);
+    }
 	@Override
 	public List<Member> list() {
 		// TODO Auto-generated method stub
@@ -31,10 +34,14 @@ private XiezhengyuDao dao;
 	List<Feedback> list = this.dao.listFeedback(map);
 	return list;
 	}
+	public void saveFeed(Feedback f) {
+		// TODO Auto-generated method stub
+	this.dao.saveFeedback(f);
+	}
 	@Override
 	public void save(Member t) {
 		// TODO Auto-generated method stub
-		
+	
 	}
 
 	@Override

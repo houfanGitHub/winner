@@ -1,23 +1,23 @@
-<%@page import="com.item.finance.bean.PushNotice"%>
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta charset="utf-8">
-	<title>盈+理财-首页 - 盈+</title>
-	<link href="http://www.ying158.com/Content/images/jw/icon.ico" type="image/x-icon" rel="shortcut icon">
-	<script src="/winner/files/hm.js"></script><script src="/winner/files/hm(1).js"></script><script>
-
-		
-	</script>
+	
+	<meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,maximum-scale=1.0,user-scalable=yes">
+	<meta name="Keywords" content="股指配资，股票配资，股指期货，沪深300">
+	<meta name="description" content="提供证券、商品期货、金融期货投融资等相关新闻。">
+	<title>新闻中心 - 盈+</title>
+<!-- 	<link href="http://www.ying158.com/Content/images/jw/icon.ico" type="image/x-icon" rel="shortcut icon"> -->
+	<script src="/winner/files/hm.js"></script>
+	<script type="text/javascript" src="/winner/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="/winner/ueditor/ueditor.all.min.js"></script>
 	<link href="/winner/files/common" rel="stylesheet">
-
 	<link href="/winner/files/jw.less" rel="stylesheet">
-
 	<script src="/winner/files/jquery"></script>
-
 	<script src="/winner/files/bootstrap"></script>
 
 
@@ -27,11 +27,6 @@
 			padding: 0;
 			list-style: none;
 		}
-
-		img {
-			border: 0;
-		}
-
 		.rides-cs {
 			font-size: 12px;
 			background: #29a7e2;
@@ -158,32 +153,66 @@
 	li.active a {
 		color: white;
 	}
+	
+ img{
+ width:auto;
+ height:auto;
+ max-width:100%;
+ max-height:100%;
+}
+.green {
+	color: #e8f0de;
+	border: solid 1px #538312;
+	background: #64991e;
+	background: -webkit-gradient(linear, left top, left bottom, from(#7db72f), to(#4e7d0e));
+	background: -moz-linear-gradient(top,  #7db72f,  #4e7d0e);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#7db72f', endColorstr='#4e7d0e');
+}
+.green:hover {
+	background: #538018;
+	background: -webkit-gradient(linear, left top, left bottom, from(#6b9d28), to(#436b0c));
+	background: -moz-linear-gradient(top,  #6b9d28,  #436b0c);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b9d28', endColorstr='#436b0c');
+}
+.green:active {
+	color: #a9c08c;
+	background: -webkit-gradient(linear, left top, left bottom, from(#4e7d0e), to(#7db72f));
+	background: -moz-linear-gradient(top,  #4e7d0e,  #7db72f);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e7d0e', endColorstr='#7db72f');
+}
 	</style>
 
 </head>
-<script type="text/javascript">
-$(function(){
-	$.post(
-    "/winner/pushshow",
-    function(msg){
-    $("#announcements").append("<marquee id='pushshow' direction='down' onmouseover=this.stop() onmouseout=this.start() scrollamount='3' loop='infinite'>") ;
-    for(var i=0;i< msg.length;i++){
-    $("#pushshow").append("<a onclick=fun('"+msg[i].id +"')>"+msg[i].title+"</a></br>");
-    }
-    $("#announcements").append("</marquee>") ;
-    })
-});
-function fun(id){
-	$.post(
-	"/winner/push/"+id,
-	function(msg){
-		$("#push_content").text(msg.content);
-		$("#push_show").modal('show');
+<script type="text/javascript">	
+$(function(){	
+	var ue = UE.getEditor('content',{
+	    initialFrameWidth:975,  //初始化编辑器宽度,默认1000
+	    initialFrameHeight:200,//初始化编辑器高度,默认320
+		});
+	var id= new Array();
+	var szhu= new Array();
+	id = document.getElementsByName("imgid");
+	
+	for(var i=0;i<id.length;i++){
+	if(szhu[i] = id[i].innerText){
+	   var	a= document.getElementsByName("tt")[i];
+		a.innerHTML='<img id=tp'+i+' />';	
 	}
-	)
-}
+	}
+	$.post(
+			"/winner/imgs/"+szhu,
+			function(msg){
+            for(var i=0;i<msg.length;i++){
+            	if(msg[i].id == szhu[i]){
+            	$("#tp"+i+"").attr('src',msg[i].path+"/"+msg[i].fileName); 
+            	}
+            }
+			}
+			)
+});
 </script>
 <body>
+
 	
     <div style=" width:1002px; height:94px; margin:0 auto;">
         <iframe src="/winner/files/iframetop.jsp" scrolling="no" frameborder="0" width="1002" height="94"></iframe>
@@ -243,362 +272,137 @@ function fun(id){
 	<div class="main">
 		
 
-<!-- Chang URLs to wherever Video.js files will be hosted -->
-<link href="/winner/files/video-js.css" rel="stylesheet" type="text/css">
-<!-- video.js must be in the <head> for older IEs to work. -->
-<script src="/winner/files/video.js"></script>
-<!-- Unless using the CDN hosted version, update the URL to the Flash SWF -->
+
+<div class="container helpCenter">
+  <div align="center"><h2  style="color: #9D843F ">意见反馈</h2></div>
+ <div>
+ <table border="1" bgcolor="#EFF4FB">
+ <c:forEach items="${feedbacklist}" var="f">
+ <div style="display: none;" name="imgid" >${f.member.headid }</div>
+  <tr>
+ <td colspan="2" align="right">${f.createDate}</td>
+ </tr>
+ <tr bgcolor="#EFF4FB">
+ <td bgcolor="#EFF4FB"><div class="p"> 名称： ${f.member.name}</div><div style="height: 100px;width:100px;" name="tt"></td>
+ <td width="1000px;" bgcolor="#ECECEC"><span style="width: 80px;">&nbsp&nbsp&nbsp&nbsp</span> ${f.content}</td>
+ </tr>
+ </c:forEach>
+ </table>
+</div>
+ <form  method="post">
+ <b>${memberinfo.name} 请发表你的建议：</b>
+ <br><br><div><script  name="content"  id="content" type="text/plain" style="width:1024px;height:500px;"></script></div></br></br>
+ <div align="center"> 
+ <input type="button"  value="发表" class="green" style="height: 30px;width: 100px;"   onclick="saveFeed(${memberinfo.id});" />
+ </div>
+ </form>
+</div>
+<div class="modal fade" id="fkui">  
+  <div class="modal-dialog">  
+    <div class="modal-content message_align">  
+      <div class="modal-header">  
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>  
+        <h4 class="modal-title">提示信息</h4>  
+      </div>  
+      <div class="modal-body">
+        <p>请您登陆后反馈</p>  
+      </div>  
+      <div class="modal-footer">  
+         <input type="hidden" id="url"/>  
+         <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>  
+      </div>
+     </div><!-- /.modal-content -->  
+  </div><!-- /.modal-dialog -->  
+</div><!-- /.modal --> 
 <script>
-    videojs.options.flash.swf = "video-js.swf";
- </script> 
 
-<div class="indexBanner">
-    
+    var cid = "B8C8DD38-0805-4EF4-BFF6-17B835FCA8AA";
+    var container = "#reports";
 
-<div id="homebanner" class="carousel slide" data-ride="carousel">
+   
 
-
-    <ol class="carousel-indicators">
-            <li data-target="#homebanner" data-slide-to="0" class=" active"></li>
-    </ol>
-
-    <div class="carousel-inner" role="listbox">
-                <div class=" item active">
-                    <img src="/winner/files/banner2.jpg" alt="[]">
-                    
-                </div>
-    </div>
-
-<c:if test="${empty memberinfo}">
-	</div>
-	    <div class="login-box">
-	        <div class="block backdrop"></div>
-	        <div class="block" style=" height:280px;">
-	            <p style="margin-top:20px; line-height:50px; font-size:20px; text-align:center; color:#fff;"><span style="color:#917739;">欢迎</span>盈主到来</p>
-	            <p style="margin-bottom:15px; line-height:50px; font-size:20px; text-align:center; color:#fff;">现在开始<span style="color:#917739;">您的财富</span> 之旅吧</p>
-	            <a style="float:none; margin:0 auto; margin-left:15px;    display: inline-block;margin-bottom: 10px;" href="/winner/itemweb/toLogin"><img src="/winner/files/ying_index_login_btn.png"></a>
-	            <a style="float:none; margin:0 auto; margin-left:15px; margin-top:10px;" href="/winner/itemweb/toRegistration"><img src="/winner/files/ying_index_reg_btn.png"></a>
-	        </div>
-	    </div>
-	</div>
-</c:if>
-
-<div class="container index">
-    <div class="row" >
-        <div class="report" style="height: 35px;overflow:hidden;">
-            <div class="title" style="height: 35px;">
-                <i class="fa fa-volume-up fa-2"></i>最新公告
-            </div>
-            <div class="content" id="announcements" style="height: 35px;">
-<!--                 <span id="spanAnnouncements" data-bind="foreach:$data">
-                    <input type="hidden" data-bind="value:id" value="19dc50b5-0284-4bed-bbe3-a363739f9e15">
-                    <span data-bind="text:title+&#39; &#39;+strDate, click: showannouncement" class="" style="cursor:pointer">2017年春节放假安排 [01-23]</span>
-                    <input type="hidden" data-bind="value:id" value="e0d2276e-a35f-4b0a-aea7-3473cd800533">
-                    <span data-bind="text:title+&#39; &#39;+strDate, click: showannouncement" class="hidden" style="cursor:pointer">重磅推出阳光私募基金-吉威量化套利稳健1号 [04-14]</span>
-                
-                    <input type="hidden" data-bind="value:id" value="48aefff0-bcdb-45c2-b247-9910896603d2">
-                    <span data-bind="text:title+&#39; &#39;+strDate, click: showannouncement" class="hidden" style="cursor:pointer">关于盈+理财平台安全卡管理通告 [01-13]</span>
-                
-                    <input type="hidden" data-bind="value:id" value="a140c288-f3ed-40b5-8ae1-73c131f87dfa">
-                    <span data-bind="text:title+&#39; &#39;+strDate, click: showannouncement" class="hidden" style="cursor:pointer">盈+全球首映 [07-13]</span>
-                
-                </span> -->
-                </div>
-            <a href="/winner/feedback">  意见反馈&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;
-            </a>
-        </div>
-        <iframe width="972" height="500" scrolling="no" frameborder="0" src="/winner/files/iframeindex.jsp"></iframe>
-        <div class=" download apply">
-            <div class="title">
-                <img src="/winner/files/applyLeft.png">合作商风采<img src="/winner/files/applyRight.png">
-            </div>
-            <div id="introMarquee">
-                <div id="marqueeContainer">
-                    <ul id="articleImgs" class="unstyled" style="  background-color: #917739;padding-top: 10px;">
-                        <li>
-                            <img src="/winner/files/hezuo1.jpg" name="hezuo1Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo2.jpg" name="hezuo2Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo3.jpg" name="hezuo3Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo4.jpg" name="hezuo4Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo5.jpg" name="hezuo5Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo6.jpg" name="hezuo6Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo7.jpg" name="hezuo7Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo8.jpg" name="hezuo8Big.jpg">
-                        </li>
-                    </ul>
-                    <ul id="articleImgs2" class="unstyled" style="background-color: #917739; padding-top: 10px;margin-left: -5px;">
-                        <li>
-                            <img src="/winner/files/hezuo1.jpg" name="hezuo1Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo2.jpg" name="hezuo2Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo3.jpg" name="hezuo3Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo4.jpg" name="hezuo4Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo5.jpg" name="hezuo5Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo6.jpg" name="hezuo6Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo7.jpg" name="hezuo7Big.jpg">
-                        </li>
-                        <li>
-                            <img src="/winner/files/hezuo8.jpg" name="hezuo8Big.jpg">
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-
-
-
-<div id="announcementModal" class="modal fade infoModal">
-    <div class="modal-dialog">
-        <div class="modal-content" data-bind="if: $data"></div>
-    </div>
-</div>
-
-<div class="modal fade myModal" id="bigImg" role="dialog">
-    <div class="modal-dialog modal-sm" style="width: 1200px;">
-        <div class="modal-content">
-            <div class="modal-header" style="padding-top:10px;padding-bottom:10px;">
-                <span>合作商风采</span>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
-            </div>
-            <div class="modal-body" style="text-align: center;">
-                <img id="theBigImg" src="">
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade errorInfo infoModal" id="closePositionDialog" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content" style="border-radius: 0px;width:400px;">
-            <div class="modal-header">
-                <span>温馨提示</span>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-                <div id="errorMsg"></div><br>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="bottomAd" style="position:fixed; bottom:0px; margin:0 auto;">
-    <script type="text/javascript">
-        function hide() {
-            $(".bottomAd").hide();
-        }
-    </script>
-    <img src="http://ying158.com/images/yingjia.png" border="0" usemap="#Map">
-    <map name="Map" id="Map">
-        <area shape="rect" coords="1420,23,1445,48" href="javascript:hide();">
-    </map>
-</div>
-
-            <script src="/winner/files/knockout-3.2.0.js"></script>
-            <script>
-    $("#marqueeContainer img").click(function () {
-        var bigImg = $(this).attr("name");
-        var url = "/Content/images/jw/" + bigImg;
-        $("#bigImg #theBigImg").attr("src", url);
-        $("#bigImg").modal();
-    });
-
-    (function () {
-        var raf = window.requestAnimationFrame || function _raf(f) { return setTimeout(f, 16.6); }
-        var caf = window.cancelAnimationFrame || function _caf(f) { return clearTimeout(f); }
-        var tick = function () {
-            var ticks = {};
-            var _tick = function _tick(name, newTick) {
-                if (!ticks[name] || !newTick) {
-                    ticks[name] = newTick;
-                }
-                lastTick = ticks[name];
-                ticks[name] = newTick;
-                return newTick - lastTick;
-            };
-            return _tick;
-        }();
-
-        var speed = 33.333333;
-        var tab = document.getElementById("introMarquee");
-        var tab1 = document.getElementById("articleImgs");
-        var tab2 = document.getElementById("articleImgs2");
-        tab2.innerHTML = tab1.innerHTML;
-        $("#articleImgs2 img").click(function () {
-            var bigImg = $(this).attr("name");
-            var url = "/Content/images/jw/" + bigImg;
-            $("#bigImg #theBigImg").attr("src", url);
-            $("#bigImg").modal();
-        });
-        var offsetWidth1 = tab1.offsetWidth;
-        var offsetLeft2 = tab2.offsetLeft;
-        var scrollLeft = 0;
-        var MyMar;
-        function Marquee(time) {
-            t = tick("introMarquee", time || new Date());
-            MyMar = raf(Marquee);
-
-            if (scrollLeft >= offsetLeft2) {
-                scrollLeft = scrollLeft % offsetLeft2;
-            }
-            scrollLeft += (1 / speed) * t;
-            tab.scrollLeft = scrollLeft;
-        }
-        var MyMar = raf(Marquee, speed);
-        tab.onmouseover = function () { caf(MyMar); tick("introMarquee", null); };
-        tab.onmouseout = function () { MyMar = raf(Marquee, speed); };
-        var currentLeft = 0;
+    $(document).ready(function () {
+        var url = window.location.href.toLowerCase();
+        if (url.indexOf("strategy") >= 0) {
+          
+            $("#strategyTab").click();
+        } else if (url.indexOf("reports") >= 0) {
+         
+            $("#reportsTab").click();
+        } else if (url.indexOf("lastest") >= 0) {
         
-    })();
-
-    var loginFromPage = function () {
-        var phone = $("#phone").val();
-        var password = $("#password").val();
-        if ($.trim(phone) == "") {
-            $("#phone").focus();
-            return;
+            $("#lastestTab").click();
         }
-        if ($.trim(password) == "") {
-            $("#password").focus();
-            return;
+        else if (url.indexOf("zuixin") >= 0) {
+
+        	$("#zuixinsTab").click();
         }
-        $(".loginBtn").addClass("disabled");
-        $.post("/api/authentication/signIn", { login: phone, password: password }, function (data) {
-            if (data.isAuthenticated) {
-                window.location.href = '/account/UserCenter';
-            } else {
-                $(".loginInfo #loginFail").html(data.errorMessage);
-                $(".loginInfo").modal();
-                $(".loginBtn").removeClass("disabled");
-            }
-        });
-    }
+        else if (url.indexOf("topNews") >= 0) {
 
-    function login() {
-
-        var phone = $.trim($("#phoneNum").val());
-        if (phone == "") {
-            $("#infosResult").html("请输入您的手机号码");
-            $("#infoUser").modal();
-            $("#phoneNum").focus();
-            return false;
+        	$("#topNewsTab").click();
         }
-
-        var pwd = $.trim($("#pwd").val());
-
-        if (pwd == "") {
-            $("#infosResult").html("请输入登录密码");
-            $("#infoUser").modal();
-            $("#pwd").focus();
-            return false;
-        }
-
-        $(".loginBtn").addClass("disabled");
-        $.post("/api/authentication/signIn", { login: phone, password: pwd }, function (data) {
-            if (data.isAuthenticated) {
-                if (data.returnUrl) {
-                    window.location.href = data.returnUrl;
-                } else {
-                    window.location.href = '/account/UserCenter';
-                }
-            } else {
-                $("#loginError").html(data.errorMessage);
-                $("#loginError").show();
-                $(".loginBtn").removeClass("disabled");
-            }
-        });
-    }
-    var counter = 1;
-    var announceTimer = function () {
-        return setInterval(function () {
-            var length = $("#spanAnnouncements > span").length;
-            if (length) {
-
-                $("#spanAnnouncements > span").each(function (i, e) {
-                    if (i == counter % length) {
-                        $(this).removeClass("hidden");
-                    } else {
-                        $(this).addClass("hidden");
-
-                    }
-                });
-                counter++;
-                if (counter == length) counter = 0;
-            }
-
-        }, 2000);
-    };
-
-    var timerId = announceTimer();
-    var announcements = ko.observableArray();
-    var announcement = ko.observable();
-    var showannouncement = function (an) {
-        announcement(an);
-        $('#announcementModal').modal('show');
-    }
-    $(function () {
-
-        ko.applyBindings(announcements, document.getElementById("announcements"));
-        ko.applyBindings(announcement, document.getElementById("announcementModal"));
-
-        $.get("/api/article/articleByCategory/b8c8dd38-0805-4ef4-bff6-17b835fca8aa/5", "", function (rel) {
-
-            $.each(rel, function (i, v) {
-                if (v.title.length > 32) {
-                    v.title = v.title.substring(0, 30) + '...';
-                }
-            });
-            announcements(rel);
-        });
-
     });
 
-
-
-    var notReady = function () {
-        $("#closePositionDialog #errorMsg").html("<h4>即将推出，敬请期待！</h4>");
-        $("#closePositionDialog").modal();
+    function pagation(pageIndex) {
+        $.get("/allnews/" + cid + "/10/" + pageIndex, function (rel) {
+            $(container).find("ul.newsList").html(rel);
+        });
     }
 
-</script>
-<script>
-    var _hmt = _hmt || [];
-    (function () {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?3a07c2531807d298ad88175fa22f9413";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
 
+    $(".helpCenter .left").on("click", ".item", function () {
 
+        var className = $(this).attr("class");
+        if (className.indexOf("active") >= 0) {
+            return;
+        } else {
+            var idName = $(this).attr("name");
+            $(".helpCenter .left .item").removeClass("active");
+            $(this).addClass("active");
+            $(".content").hide();
+            var height = "";
+            switch (idName) {
+                case "strategy":
+                    $("#strategy").show();
+                    cid = "60573482-BDDC-445B-8557-3EF264552977";
+                    container = "#strategy";
+                    height = $("#strategy").css("height");
+                    break;
+                case "reports":
+                    $("#reports").show();
+                    cid = "B8C8DD38-0805-4EF4-BFF6-17B835FCA8AA";
+                    container = "#reports";
+                    height = $("#reports").css("height");
+                    break;
+                case "lastest":
+                    $("#lastest").show();
+                    cid = "DEF1B712-29AE-42E5-9A35-A5D163D6F384";
+                    container = "#lastest";
+                    height = $("#lastest").css("height");
+                    break;
+            	case "topNews":
+            		$("#topNews").show();
+            		cid = "C121BC77-2E19-4419-8B47-F4D568A3B34C";
+            		container = "#topNews";
+            		height = $("#topNews").css("height");
+            		break;
+            	case "zuixins":
+            		$("#zuixins").show();
+            		cid = "EE2E7057-881C-46B5-92AC-E9CE5D2E0FF8";
+            		container = "#zuixins";
+            		height = $("#zuixins").css("height");
+            		break;
+                default:
+                    break;
+            }
+
+            height = height.split("px")[0];
+            var blankHeight = (height - 120) + "px";
+            $(".blank").css("height", blankHeight);
+
+        }
+    });
+</script>
 
 		<div class="container index">
 			<div class="row">
@@ -743,8 +547,7 @@ function fun(id){
                 <script type="text/javascript">
 var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
                     document.write(unescape("%3Cspan id='cnzz_stat_icon_1255940205'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1255940205%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-                </script>
-                <span id="cnzz_stat_icon_1255940205"><a href="http://www.cnzz.com/stat/website.php?web_id=1255940205" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="/winner/files/pic1.gif"></a></span><script src="/winner/files/z_stat.php" type="text/javascript"></script><script src="/winner/files/core.php" charset="utf-8" type="text/javascript"></script>
+                </script><span id="cnzz_stat_icon_1255940205"><a href="http://www.cnzz.com/stat/website.php?web_id=1255940205" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="/winner/files/pic1.gif"></a></span><script src="/winner/files/z_stat.php" type="text/javascript"></script><script src="/winner/files/core.php" charset="utf-8" type="text/javascript"></script>
 				Copyright © 2010 - 2015 www.ying158.com All Rights Reserverd 杭州吉威投资管理有限公司 版权所有<br>
 				浙ICP备14030807号-3 杭州市江干区钱江新城迪凯银座19F 4000-999-158
 			</div>
@@ -860,23 +663,6 @@ var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " 
 	</div>
 </div>
 
-<div class="modal fade" id="push_show">  
-  <div class="modal-dialog">  
-    <div class="modal-content message_align">  
-      <div class="modal-header">  
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>  
-        <h4 class="modal-title">公告内容</h4>  
-      </div>  
-      <div class="modal-body" id="push_content" style="height: 250px;"></div>  
-      <div class="modal-footer">  
-         <input type="hidden" id="url"/>  
-         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>  
-         <a  onclick="urlSubmit()" class="btn btn-success" data-dismiss="modal">确定</a>  
-      </div>
-     </div><!-- /.modal-content -->  
-  </div><!-- /.modal-dialog -->  
-</div><!-- /.modal -->  
-
 <script type="text/javascript">
 	function submitFeedback() {
 		var type = $('#feedbackForm #MsgType').val();
@@ -983,13 +769,21 @@ var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " 
 
 
 		});
-
-
-
 		var gotoTop = function () {
 			$("html,body").animate({ scrollTop: 0 }, 1000);
 		}
+     
+		function saveFeed(id){
+			 if(id != null){
+				document.forms[0].action="/winner/saveFeed/"+id;
+				document.forms[0].submit();
+			}else{
+			$("#fkui").modal('show');
+			} 
+			}
+	</script>
 
- 	</script> 
+
+
 </body>
 </html>

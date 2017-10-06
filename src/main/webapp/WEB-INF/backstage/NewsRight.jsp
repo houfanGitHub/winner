@@ -124,21 +124,21 @@ function upload(file){
 <body>
 <form  method="post">
 <table class="table table-bordered table-hover" style='table-layout:fixed;' border="1">
-<center><span><b>咨询类型:</b><input type="text"  name="stitle"  value="${stitle}" /></span>&nbsp&nbsp&nbsp&nbsp<span> <b>咨询标题:</b><input type="text" name="stname"  value="${stname}" /></span><span><input type="button" class="green" value="搜索" onclick="funtwo();"></span></center>
+<center><span><b>咨询标题:</b><input type="text"  name="stitle"  value="${stitle}" /></span>&nbsp&nbsp&nbsp&nbsp<span> <b>咨询类型:</b><input type="text" name="stname" value="${stname}" /></span><span><input type="button" class="green" value="搜索" onclick="funtwo();"></span></center>
 </form>
 <div align="right"><a data-toggle="modal" href="#example" onclick="fun();">添加 </a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
 <tr style="height:8px">
-<th>序号</th><th>咨询类型:</th><th>标题</th><th>副标题</th><th>简介</th><th>作者</th><th>内容</th><th>是否审核</th><th>是否置顶</th><th>是否推荐</th>
-<th style="width:100px;">添加时间</th><th>添加人ID</th><th>标签</th><th>链接地址</th><th>点击数量</th><th>封面图片</th><th>来源</th><th>附件地址</th>
-<th>SEO描述</th><th>SEO关键字</th><th>SEO标题</th><th>修改ID</th><th style="width:100px;">修改时间</th><th>操作</th>
+<th style="width: 50px;">序号</th><th style="width: 300px;">标题:</th><th>类型</th><!-- <th>副标题</th><th>简介</th> <th>作者</th>--><th>内容</th><th style="width: 80px;">是否审核</th><th>是否置顶</th><th>是否推荐</th>
+<th style="width:100px;">添加时间</th><th>添加人ID</th><!-- <th>标签</th><th>链接地址</th> --><th>点击数量</th><th>封面图片</th><!-- <th>来源</th><th>附件地址</th>
+<th>SEO描述</th><th>SEO关键字</th><th>SEO标题</th>--><th>修改人ID</th> <th style="width:100px;">修改时间</th><th>操作</th>
 </tr>
 <c:forEach items="${list}" var="n">
 <tr>
-<td>${n.id }</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.title }</td> <td>${n.newsType.name}</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.subTitle}</td>
-<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.info }</td><td>${n.author}</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><div style="width: 20px;height: 15px">${n.text}</div></td>
-<td>${n.audit}</td><td>${n.placTop}</td><td>${n.recommend }</td><td>${n.addTime }</td><td>${n.addId}</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.label }</td>
-<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.link}</td><td>${n.clickNumber }</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><div style="width: 200px;height:80px;"><img src= "/winner/${n.cPhoto}" /></div></td><td>${n.source}</td>
-<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.filelink }</td><td>${n.seoDes}</td><td>${n.seoKey }</td><td>${n.seoTitle}</td><td>${n.updId}</td><td>${n.updTime}</td> 
+<td>${n.id }</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.title }</td> <td>${n.newsType.name}</td><%--<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.subTitle}</td> --%>
+<%-- <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.info }</td><td>${n.author}</td> --%><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><div style="width: 20px;height: 8px">${n.text}</div></td>
+<td>${n.audit == 1 ? '是':'否'}</td><td>${n.placTop == 1 ? '是':'否'}</td><td>${n.recommend == 1 ? '是':'否'}</td><td>${n.addTime }</td><td>${n.addId}</td><%-- <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.label }</td> --%>
+<%-- <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.link}</td> --%><td>${n.clickNumber }</td><td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><div style="width: 200px;height:80px;"><img src= "/winner/${n.cPhoto}" /></div></td><%-- <td>${n.source}</td>
+<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${n.filelink }</td><td>${n.seoDes}</td><td>${n.seoKey }</td> <td>${n.seoTitle}</td>--%><td>${n.updId}</td><td>${n.updTime}</td> 
 <td><input type="button" class="blue" onclick="update(${n.id})" value="修改" />
 <input type="button" class="red" data-toggle="modal" onclick="deletes(${n.id});" value="删除"></td>
 </tr>
