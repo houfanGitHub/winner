@@ -1036,7 +1036,7 @@ public class HoufanWebItemController {
 						subject_purchase_record.setBonusInfo("无");
 						this.frontService.savepurchaserecord(subject_purchase_record);
 						List<SubjectPurchaseRecord> list = this.frontService.listpurchase(Integer.valueOf(subject_id));
-						return "";//成功后跳到个人中心查看
+						return "WEB-INF/myself/invests";//成功后跳到个人中心查看
 					}else{
 						return "WEB-INF/products/buyProducts";//返回购买页面
 					}

@@ -58,7 +58,7 @@ public class Ss_SubjectController {
 		return "WEB-INF/ssjsp/subjectplan"; //跳转
 		
 	}
-	//重置操作
+	/*//重置操作
 	@RequestMapping("/listcz8")
 	public String listcz(HttpSession session){
 		session.removeAttribute("sname");
@@ -67,7 +67,7 @@ public class Ss_SubjectController {
 		
 		//return null;
 		return "redirect:/sushuang8/list8";   //重定向到首页
-	}
+	}*/
 	
 	//体验金购买列表
 		@RequestMapping("/listsubjectbbin8/{id}")

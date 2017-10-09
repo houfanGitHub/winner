@@ -225,7 +225,7 @@
 
 <div class="container">
     <div class="kcenter">
-        <img src="/winner/files/tyzx.png">
+       <img src="/winner/files/tyzx.png">
     </div>
 </div>
 

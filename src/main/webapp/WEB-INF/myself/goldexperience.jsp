@@ -222,7 +222,7 @@
 		<tr align="center" bgcolor="white" height="20">
 				<td width="15%"><h5>计息日</h5></td>
 				<td width="35%"><font color="burlywood"><h5>${listbb.createDate}</h5></font></td>
-				<td width="25%"><h5>预期收益1111</h5></td>
+				<td width="25%"><h5>预期收益</h5></td>
 				<!-- 预期期末收益＝投资本金×预期年化收益率/365×实际存续天数 -->
 				<td width="15%"><font color="burlywood">
 	<h5>￥<fmt:formatNumber type="number" value="${listbb.amont*(listjectbbr.subject.yearRate/365)*listjectbbr.subject.period}"  maxFractionDigits="2"></fmt:formatNumber></font></h5></font></td>

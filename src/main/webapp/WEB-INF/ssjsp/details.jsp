@@ -173,8 +173,8 @@
        </font></td>
 			<td><font color="black">${listspr.subject.name}</font></td>
 		
-			<!--投资收益    period 周期         (( 金额 *(年化率/100))/365)*周期-->
-		<td>￥<fmt:formatNumber type="number" value="${((listspr.amount*(listspr.subject.yearRate/100))/365)*listspr.subject.period}"  maxFractionDigits="2"></fmt:formatNumber></font></td>
+			<!--投资收益    period 周期         (( 金额 *(年化率/365)*周期-->
+		<td>￥<fmt:formatNumber type="number" value="${listspr.amount*(listspr.subject.yearRate/365)*listspr.subject.period}"  maxFractionDigits="2"></fmt:formatNumber></font></td>
 		 <td><font color="black">${listspr.createDate}</font></td>
 		</tr>
            </c:forEach>
