@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -35,6 +37,7 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,15 +52,25 @@ import com.item.finance.bean.Member;
 import com.item.finance.bean.MemberAccount;
 import com.item.finance.bean.MemberBankcard;
 import com.item.finance.bean.MemberDepositRecord;
+import com.item.finance.bean.MemberProfitRecord;
+import com.item.finance.bean.MemberTally;
+import com.item.finance.bean.MemberTradeRecord;
 import com.item.finance.bean.MemberWithdrawRecord;
+import com.item.finance.bean.SubjectPurchaseRecord;
+import com.item.finance.services.FrontService;
+import com.item.finance.bean.News;
+import com.item.finance.bean.PushNotice;
 import com.item.finance.services.MemberAccountService;
 import com.item.finance.services.MemberBankcardService;
 import com.item.finance.services.MemberDepositRecordService;
 import com.item.finance.services.MemberService;
 import com.item.finance.services.MemberWithdrawRecordService;
+import com.item.finance.services.SubjectService;
 import com.item.finance.services.UserRoleRelationService;
 import com.item.finance.services.UserRoleService;
 import com.item.finance.services.UserService;
+import com.item.finance.services.Xzy_NewsService;
+import com.item.finance.services.Xzy_PushNoticeService;
 
 @Controller
 @RequestMapping("/itemweb")
@@ -81,6 +94,14 @@ public class HoufanWebItemController {
 	private DeoploymentProcessDefinition deoploymentProcessDefinition;
 	@Autowired
 	private MemberWithdrawRecordService memberWithdrawRecordService;
+	@Autowired
+	private SubjectService subjectService;
+	@Autowired
+	private FrontService frontService;
+	@Autowired
+	private Xzy_NewsService newsService;
+	@Autowired
+	private Xzy_PushNoticeService PushNoticeService;
 
 	//充值
 	@RequestMapping("/accountRecharge")
@@ -694,13 +715,127 @@ public class HoufanWebItemController {
 
 	// 产品中心
 	@RequestMapping("/products")
-	public String products() {
+	public String products(Model model,HttpServletRequest request) {
+		Map<String,String> map=new HashMap<>();
+		map = initMap(request, map);
+		List<com.item.finance.bean.Subject> subject = subjectService.subject(map);
+		model.addAttribute("subject", subject);
 		return "WEB-INF/products/products";
 	}
+	
+	public Map<String,String> initMap(HttpServletRequest request,Map<String,String> map){
+		String type=request.getParameter("type");
+		String yearRate=request.getParameter("yearRate");
+		String status=request.getParameter("status");
+		String period_start=request.getParameter("period_start");
+		String period_end=request.getParameter("period_end");
+		String flag=request.getParameter("flag");
+		System.out.println("yearRate="+yearRate);
+		map.put("type",type);
+		map.put("yearRate", yearRate);
+		map.put("status", status);
+		map.put("period_start",period_start);
+		map.put("period_end",period_end);
+		map.put("flag", flag);
+		if(type!=null){
+			request.setAttribute("type", type);
+		}
+		if(yearRate!=null){
+			request.setAttribute("yearRate", yearRate);
+		}
+		if(status!=null){
+			request.setAttribute("status", status);
+		}
+		if(period_start!=null){
+			request.setAttribute("period_start",period_start);
+		}
+		if(period_end!=null){
+			request.setAttribute("period_end",period_end);
+		}
+		if(flag!=null){
+			request.setAttribute("flag",flag);
+		}
+		return map; 
+	}
+	
+	@RequestMapping("/queryType")
+    public String queryType(@RequestParam(required=false,value="type")
+    String type,@RequestParam(required=false,value="yearRate")
+    String yearRate,@RequestParam(required=false,value="status")String status,
+    @RequestParam(required=false,value="days")String days,Model model,HttpSession re){
+		System.out.println(status);
+    	if("-1".equals(type)){
+    		re.setAttribute("type", null);
+    		type=null;
+    	}
+    	if("-1".equals(status)){
+    		re.setAttribute("status", null);
+    		status=null;
+    	}
+    	if("-1".equals(yearRate)){
+    		re.setAttribute("yearRate", null);
+    		yearRate=null;
+    	}
+    	if("-1".equals(days)){
+    		re.setAttribute("days", null);
+    		days=null;
+    	}
+    	if(re.getAttribute("type")!=null&&type==null){
+    		type=(String) re.getAttribute("type");
+    	}
+    	if(re.getAttribute("yearRate")!=null&&yearRate==null){
+    		yearRate=(String) re.getAttribute("yearRate");
+    	}
+    	if(re.getAttribute("status")!=null&&status==null){
+    		status=(String) re.getAttribute("status");
+    	}
+    	if(re.getAttribute("days")!=null&&days==null){
+    		days=(String) re.getAttribute("days");
+    	}
+    	String hql="from Subject where 0=0";
+    	if(type!=null){
+    		hql+= " and type like'%"+type+"%'";
+    		re.setAttribute("type", type);
+    	}
+    	if(yearRate!=null){
+    		hql+= " and yearRate >="+yearRate;
+    		re.setAttribute("yearRate", yearRate);
+    	}
+    	if(status!=null){
+    		hql+= " and status like'%"+status+"%'";
+    		re.setAttribute("status", status);
+    	}
+    	if(days!=null){
+    		String xday="";
+    		if(days.equals("1")){
+    			xday=" and period<=15";
+   	    	}else if(days.equals("2")){
+   	    		xday=" and 30>period and period>=15";	
+   	    	}else if(days.equals("3")){
+   	    		xday=" and 180>period and period>=30";	
+   		    }else if(days.equals("4")){
+   		    	xday=" and 365>period and period>=180";	
+   		    }else if(days.equals("5")){
+   		    	xday=" and period>=365";	
+   		    	}
+    		hql+=xday;
+    		re.setAttribute("days", days); 
+    	}
+    	System.out.println("hql:"+hql);
+   	 List<com.item.finance.bean.Subject> list=subjectService.query(hql);
+   	model.addAttribute("subject", list);
+    	return "WEB-INF/products/products";
+    }
 
 	// 新闻中心
 	@RequestMapping("/news")
-	public String news() {
+	public String news(Map<String,Object> map) {
+		//查询公告
+		List<PushNotice> PushNoticelist = this.PushNoticeService.listPushNotice(map);
+		map.put("PushNoticelist", PushNoticelist);
+		//查询新闻
+	    List<News> newslist= this.newsService.listNews(map);
+	    map.put("newslist", newslist);
 		return "WEB-INF/news/news";
 	}
 
@@ -734,11 +869,178 @@ public class HoufanWebItemController {
 		return "WEB-INF/forgetPassword/forgetPassword";
 	}
 	
-	//到产品购买页面
-	@RequestMapping("/toBuyProducts/{id}")
-	public String toBuyProducts(@PathVariable(value="id")String id){
-		return "WEB-INF/products/buyProducts";
-	}
+	//跳到购买固收页面
+			@RequestMapping("/buyproduct")
+			public String  buyproduct(int id,Model model,HttpSession session) {
+				System.out.println("标的id="+id);
+				Map map=new HashMap<>();
+				Object obj=session.getAttribute("memberinfo");
+				if(obj!=null){
+				//然后要查询数据到前台显示
+				List<com.item.finance.bean.Subject> subject=subjectService.subject(id);
+				com.item.finance.bean.Subject sub=subjectService.getById(id);
+				model.addAttribute("subject", subject);
+				model.addAttribute("sub", sub);
+				//显示出账户余额
+				//先取出登录时的会员id
+				if(obj!=null){
+					Member member=(Member)obj;
+					String member_id=member.getId();
+					System.out.println("member_id="+member_id);
+					MemberAccount memberaccount=frontService.memberAccount(member_id);
+					System.out.println("可用account="+memberaccount.getUseableBalance());
+					model.addAttribute("memberaccount", memberaccount);
+					// 判断有没有绑卡
+					//member_bankcards(成员银联表)和member通过memberId 关联
+					MemberBankcard memberbankcards=frontService.getBankcardsById(member_id);
+					model.addAttribute("memberbankcards", memberbankcards);
+					//跳转到购买页面
+					return "WEB-INF/products/buyProducts";
+					}
+				}
+				//跳转到前台登录
+				return "redirect:/itemweb/toLogin";
+			}
+			
+			//购买
+			@RequestMapping("/buy")
+			public String buy(String subject_id,String amountYuE,String mytext,Model model,HttpSession session,
+					MemberProfitRecord member_profit_record,MemberTradeRecord member_trade_record,MemberTally member_tally,
+					SubjectPurchaseRecord subject_purchase_record){
+				
+					//从session中获取member信息
+					Object obj=session.getAttribute("member");
+					if(obj!=null){
+						Member member=(Member)obj;
+						String member_id=member.getId();
+						String sysDate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+						String sysDateAndRandom=new SimpleDateFormat("yyyMMddHHmmss").format(new Date())+(int)(Math.random()*9)+(int)(Math.random()*9);  
+						Calendar now=Calendar.getInstance();
+						
+						//subject表
+						System.out.println("subject_id="+subject_id);
+						com.item.finance.bean.Subject subject=this.frontService.getSubjectById(Integer.parseInt(subject_id));
+						System.out.println(subject_id+"  newid");
+						subject.setBought(subject.getBought()+1);//购买人数+1
+						subject.setAmount(subject.getAmount()+Integer.parseInt(mytext));
+						System.out.println("mytext="+mytext);
+						System.out.println("amount="+subject.getAmount());
+						this.frontService.updatesubject(subject);
+						subject=this.frontService.getSubjectById(Integer.valueOf(subject_id));
+						//结算利息
+						double interest=((((Integer.parseInt(mytext)*(subject.getYearRate()+1))/100)/365)*(subject.getPeriod()));
+						
+						//成员账户表
+						MemberAccount member_account=this.frontService.memberAccount(member_id);
+						member_account.setUseableBalance(Double.parseDouble(amountYuE)-Double.parseDouble(mytext));
+						System.out.println("可用余额:"+member_account.getUseableBalance());
+						try {
+							member_account.setUpdateDate(new SimpleDateFormat("yyyy-MM-dd HH:ss:mm").parse(sysDate));
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						member_account.setInvestAmount(Double.parseDouble(mytext)+member_account.getInvestAmount());
+						member_account.setMember(member);
+						this.frontService.updateaccount(member_account);
+						
+						
+						//成员利润表
+						member_profit_record.setMember(member);
+						member_profit_record.setSubjectPurchaseRecord(subject_purchase_record);
+//						member_profit_record.setSubject(subject);
+						member_profit_record.setSerialNumber(sysDateAndRandom);
+						member_profit_record.setType((byte)0);
+						member_profit_record.setAmount(interest);
+						member_profit_record.setDelflag((byte)0);
+						try {
+							member_profit_record.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:ss:mm").parse(sysDate));
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						try {
+							member_profit_record.setUpdateDate(new SimpleDateFormat("yyyy-MM-dd HH:ss:mm").parse(sysDate));
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						member_profit_record.setComment(subject.getName());
+						member_profit_record.setProfitYear((short) now.get(Calendar.YEAR));
+						member_profit_record.setProfitMonth((byte) now.get(Calendar.MONTH+1));
+						member_profit_record.setProfitDay((byte) now.get(Calendar.DAY_OF_MONTH));
+						this.frontService.saveprofit(member_profit_record);
+						
+						//交易记录表
+						member_trade_record.setMember(member);
+						member_trade_record.setTradeNo(sysDateAndRandom);
+						member_trade_record.setTradeName("购买:"+subject.getName());
+						member_trade_record.setCounterpart("孔明理财公司");
+						member_trade_record.setAmount(Integer.parseInt(mytext));
+						member_trade_record.setTradeType(subject.getName());
+						member_trade_record.setFundFlow((byte) 0);
+						member_trade_record.setTradeStatus((byte) 0);
+						try {
+							member_trade_record.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						try {
+							member_trade_record.setUpdateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						member_trade_record.setExtField1("扩展一");
+						member_trade_record.setExtField2("扩展一");
+						member_trade_record.setExtField3("扩展一");
+						this.frontService.savetraderecord(member_trade_record);
+						
+						
+						//记账表
+						member_tally.setMember(member);
+						member_tally.setId(1);
+						member_tally.setTypeName("A标");
+						member_tally.setAmount(Integer.parseInt(mytext));
+						try {
+							member_tally.setPayDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
+						} catch (ParseException e) {
+							e.printStackTrace();
+						}
+						try {
+							member_tally.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
+						} catch (ParseException e) {
+							e.printStackTrace();
+						}
+						this.frontService.savetally(member_tally);
+						
+						//标的购买表
+						subject_purchase_record.setSubject(subject);
+						subject_purchase_record.setMember(member);
+						subject_purchase_record.setSerialNumber(sysDate);
+						
+						subject_purchase_record.setAmount(Double.parseDouble(mytext));
+						subject_purchase_record.setDealIp("127.0.0.1");
+						subject_purchase_record.setDelflag((byte) 0);
+						try {
+							subject_purchase_record.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						try {
+							subject_purchase_record.setUpdateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						subject_purchase_record.setInterest(interest);
+						subject_purchase_record.setIspayment((byte) 1);
+						subject_purchase_record.setPayInterestTimes(1);
+						subject_purchase_record.setLastProfitDay(Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(new Date())));
+						subject_purchase_record.setBonusInfo("无");
+						this.frontService.savepurchaserecord(subject_purchase_record);
+						List<SubjectPurchaseRecord> list = this.frontService.listpurchase(Integer.valueOf(subject_id));
+						return "";//成功后跳到个人中心查看
+					}else{
+						return "WEB-INF/products/buyProducts";//返回购买页面
+					}
+			}
 	//投资记录
 	@RequestMapping("/invests")
 	public String invests(){

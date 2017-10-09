@@ -1,6 +1,5 @@
 package com.item.finance.bean;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -22,7 +21,7 @@ import javax.persistence.TemporalType;
 @Table(name="member_profit_record")
 public class MemberProfitRecord  {//成员利润记录表
 	private String id;  //主键
-	private BigDecimal amount;  //金额
+	private double amount;  //金额
 	private String comment;   //备注
 	private Date createDate;  //创建时间
 	private byte delflag;  //是否删除
@@ -51,11 +50,11 @@ public class MemberProfitRecord  {//成员利润记录表
 
 
 	@Column(precision=10, scale=4)
-	public BigDecimal getAmount() {
+	public double getAmount() {
 		return this.amount;
 	}
 
-	public void setAmount(BigDecimal amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 

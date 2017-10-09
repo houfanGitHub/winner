@@ -3,6 +3,7 @@ package com.item.finance.controller;
 import java.io.File;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,7 @@ import com.item.finance.bean.Member;
 import com.item.finance.bean.News;
 import com.item.finance.bean.NewsType;
 import com.item.finance.bean.PushNotice;
+import com.item.finance.bean.SubjectFile;
 import com.item.finance.services.Xzy_FeedbackService;
 import com.item.finance.services.Xzy_NewsService;
 import com.item.finance.services.Xzy_NewsTypeService;
@@ -63,12 +65,13 @@ public class XiezhengyuController {
 	// 添加/saveNews",
 	// 上传
 	@RequestMapping("/saveNews")
-	public String saveNews(News n, int tid, HttpServletRequest request, @RequestParam("file") MultipartFile file)
+	public String saveNews(News n, int tid, HttpServletRequest request, @RequestParam("file") MultipartFile file,HttpSession session)
 			throws Exception {
+	   Member m = (Member) session.getAttribute("memberinfo");
 		n.setAddTime(new Date());
 		NewsType type = this.newsTypeService.selectGetById(String.valueOf(tid));
 		n.setNewsType(type);
-		n.setAddId(1);
+		n.setAddId(Integer.valueOf(m.getId()));
 		n.setClickNumber(1);
 		n.setAddTime(new Date());
 		// 获取上传文件名称
@@ -106,8 +109,9 @@ public class XiezhengyuController {
 
 	// 修改
 	@RequestMapping("/updateNews")
-	public String update(News n, HttpServletRequest request, @RequestParam("file") MultipartFile file, int tid)
+	public String update(News n, HttpServletRequest request, @RequestParam("file") MultipartFile file, int tid,HttpSession session)
 			throws Exception {
+		Member m = (Member) session.getAttribute("memberinfo");
 		if (!file.isEmpty()) {
 			// 获取上传文件名称
 			String filename = file.getOriginalFilename();
@@ -132,7 +136,7 @@ public class XiezhengyuController {
 			n.setAddTime(new Date());
 		}
 		n.setId(Integer.valueOf(request.getParameter("id")));
-		n.setUpdId(2);
+		n.setUpdId(Integer.valueOf(m.getId()));
 		n.setUpdTime(new Date());
 		NewsType type = this.newsTypeService.selectGetById(String.valueOf(tid));
 		n.setNewsType(type);
@@ -293,15 +297,18 @@ public class XiezhengyuController {
 		return "WEB-INF/backstage/MemberRight";
 	}
 //-----------------------------------------------------------------前台-----------------------------------------------------------------
-@RequestMapping("/front")
-public String front(Map<String,Object> map) {
-	//查询公告
-	List<PushNotice> PushNoticelist = this.PushNoticeService.listPushNotice(map);
-	map.put("PushNoticelist", PushNoticelist);
-	//查询新闻
-    List<News> newslist= this.newsService.listNews(map);
-    map.put("newslist", newslist);
-	return "WEB-INF/news/news";
+@RequestMapping("/feedback")
+public String front(Map<String,Object> map,HttpSession session) {
+	//查询意见反馈
+	List<Feedback> feedbacklist = this.feedbackService.listFeedback(map);
+	map.put("feedbacklist", feedbacklist);
+	Member  m = (Member) session.getAttribute("memberinfo");
+	if(m!= null){
+	map.put("ok", "ok");
+	}else{
+	map.put("no", "no");	
+	}
+	return "WEB-INF/news/feedback";
 }
 @RequestMapping("/pushshow")
 @ResponseBody
@@ -319,5 +326,25 @@ public PushNotice newsText(@PathVariable("id")String id,Map<String,Object> map) 
     PushNotice push = this.PushNoticeService.selectGetById(id);
 	map.put("push",push);
 	return push;
+}
+@RequestMapping("/imgs/{id}")
+@ResponseBody
+public List<SubjectFile> imgs(@PathVariable("id")String[] id){
+List<SubjectFile> list = new ArrayList<>();
+for(int i=0;i<id.length;i++){
+list.add(this.feedbackService.selectSubjectFile(Integer.valueOf(id[i])));
+}
+return list;
+}
+@RequestMapping("/saveFeed/{id}")
+public String saveFeed(@PathVariable("id")String id,Feedback f){
+Member m= this.feedbackService.selectGetById(id);
+System.out.println(m.getName());
+f.setCreateDate(new Date());
+f.setId(Integer.valueOf(id));
+f.setMember(m);
+this.feedbackService.saveFeed(f);
+System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjf");
+return "redirect:/feedback";	
 }
 }

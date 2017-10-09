@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import java.math.BigInteger;
-import java.math.BigDecimal;
 import java.util.Date;
 
 
@@ -17,7 +16,7 @@ import java.util.Date;
 @Table(name="member_trade_record")
 public class MemberTradeRecord  {  //交易记录表
 	private String id;
-	private BigDecimal amount;  //交易金额
+	private double amount;  //交易金额
 	private String counterpart;//交易对方
 	private Date createDate;   //交易时间
 	private String extField1;//扩展1
@@ -47,11 +46,11 @@ public class MemberTradeRecord  {  //交易记录表
 
 
 	@Column(nullable=false, precision=10, scale=2)
-	public BigDecimal getAmount() {
+	public double getAmount() {
 		return this.amount;
 	}
 
-	public void setAmount(BigDecimal amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
