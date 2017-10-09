@@ -71,7 +71,11 @@ public class XiezhengyuController {
 		n.setAddTime(new Date());
 		NewsType type = this.newsTypeService.selectGetById(String.valueOf(tid));
 		n.setNewsType(type);
-		n.setAddId(Integer.valueOf(m.getId()));
+		if(m ==null){
+			n.setAddId(0);	
+		}else{
+			n.setAddId(Integer.valueOf(m.getId()));	
+		}
 		n.setClickNumber(1);
 		n.setAddTime(new Date());
 		// 获取上传文件名称
@@ -136,7 +140,12 @@ public class XiezhengyuController {
 			n.setAddTime(new Date());
 		}
 		n.setId(Integer.valueOf(request.getParameter("id")));
-		n.setUpdId(Integer.valueOf(m.getId()));
+		if(m == null){
+			n.setUpdId(0);	
+		}else{
+			n.setUpdId(Integer.valueOf(m.getId()));	
+		}
+		
 		n.setUpdTime(new Date());
 		NewsType type = this.newsTypeService.selectGetById(String.valueOf(tid));
 		n.setNewsType(type);
@@ -341,10 +350,9 @@ public String saveFeed(@PathVariable("id")String id,Feedback f){
 Member m= this.feedbackService.selectGetById(id);
 System.out.println(m.getName());
 f.setCreateDate(new Date());
-f.setId(Integer.valueOf(id));
 f.setMember(m);
 this.feedbackService.saveFeed(f);
-System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjf");
-return "redirect:/feedback";	
+System.out.println(f.getId());
+return "forward:/feedback";	
 }
 }
