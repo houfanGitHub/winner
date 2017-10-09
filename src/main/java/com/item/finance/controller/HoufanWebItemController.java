@@ -58,6 +58,8 @@ import com.item.finance.bean.MemberTradeRecord;
 import com.item.finance.bean.MemberWithdrawRecord;
 import com.item.finance.bean.SubjectPurchaseRecord;
 import com.item.finance.services.FrontService;
+import com.item.finance.bean.News;
+import com.item.finance.bean.PushNotice;
 import com.item.finance.services.MemberAccountService;
 import com.item.finance.services.MemberBankcardService;
 import com.item.finance.services.MemberDepositRecordService;
@@ -67,6 +69,8 @@ import com.item.finance.services.SubjectService;
 import com.item.finance.services.UserRoleRelationService;
 import com.item.finance.services.UserRoleService;
 import com.item.finance.services.UserService;
+import com.item.finance.services.Xzy_NewsService;
+import com.item.finance.services.Xzy_PushNoticeService;
 
 @Controller
 @RequestMapping("/itemweb")
@@ -94,6 +98,10 @@ public class HoufanWebItemController {
 	private SubjectService subjectService;
 	@Autowired
 	private FrontService frontService;
+	@Autowired
+	private Xzy_NewsService newsService;
+	@Autowired
+	private Xzy_PushNoticeService PushNoticeService;
 
 	//充值
 	@RequestMapping("/accountRecharge")
@@ -821,7 +829,13 @@ public class HoufanWebItemController {
 
 	// 新闻中心
 	@RequestMapping("/news")
-	public String news() {
+	public String news(Map<String,Object> map) {
+		//查询公告
+		List<PushNotice> PushNoticelist = this.PushNoticeService.listPushNotice(map);
+		map.put("PushNoticelist", PushNoticelist);
+		//查询新闻
+	    List<News> newslist= this.newsService.listNews(map);
+	    map.put("newslist", newslist);
 		return "WEB-INF/news/news";
 	}
 

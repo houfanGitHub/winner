@@ -14,6 +14,7 @@ import com.item.finance.bean.Member;
 import com.item.finance.bean.News;
 import com.item.finance.bean.NewsType;
 import com.item.finance.bean.PushNotice;
+import com.item.finance.bean.SubjectFile;
 
 @Component
 public class XiezhengyuDao {
@@ -42,7 +43,7 @@ session.update(n);
 } 
 //查
 public List<News> listNews(Map map){
-String hql = "from  News as n where 0=0 ";
+String hql = "from  News as n where   0=0 ";
 hql=getNewsHql(map, hql);
 System.out.println(hql);
 Session session = getsesstion();
@@ -176,5 +177,15 @@ public Member getMember(String id){
 Session session = sessionFactory.getCurrentSession();
 Member m = (Member) session.get(Member.class, id);
 return m;
+}
+public void saveFeedback(Feedback f){
+Session session = getsesstion();
+session.save(f);
+}
+/*-----------------------------------------------------------------subject_file-----------------------------------------------------------------------*/
+public SubjectFile getSubjectFile(int id){
+Session session = getsesstion();
+SubjectFile f = (SubjectFile) session.get(SubjectFile.class, id);
+return f;
 }
 }
