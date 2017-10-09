@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.history.HistoricVariableInstance;
@@ -93,6 +92,7 @@ public class DeoploymentProcessDefinition {
 		taskService.setVariable(taskId, "bankCard", bankCard);
 		taskService.setVariable(taskId, "withdrawAmount", withdrawAmount);
 		taskService.setVariable(taskId, "randomPayNumber", randomPayNumber);
+		taskService.setVariable(taskId, "processState", "1");	//审核中
 		System.out.println("设置流程变量成功！");
 		// 完成我任务
 		processEngine.getTaskService().complete(taskId);
@@ -193,12 +193,13 @@ public class DeoploymentProcessDefinition {
 				.taskAssignee(memberName) // 指定办理人
 				.finished() // 查询已完成的任务
 				.list();
+		
 		List<String> list2 = new ArrayList<>();
 		for (HistoricTaskInstance hti : list) {
 			System.out.println("任务ID:hti.getId()" + hti.getId());
 			System.out.println("流程实例ID:hti.getProcessInstanceId()"
 					+ hti.getProcessInstanceId());
-			list2.add(hti.getProcessInstanceId());
+        	list2.add(hti.getProcessInstanceId());
 			System.out.println("班里人：hti.getAssignee()" + hti.getAssignee());
 			System.out
 					.println("创建时间：hti.getCreateTime()" + hti.getCreateTime());

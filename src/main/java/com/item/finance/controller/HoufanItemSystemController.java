@@ -10,6 +10,8 @@ import java.util.Set;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
+import org.activiti.engine.TaskService;
+import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -21,14 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.alipay.api.AlipayClient;
-import com.alipay.api.DefaultAlipayClient;
-import com.alipay.api.request.AlipayFundTransToaccountTransferRequest;
-import com.alipay.api.response.AlipayFundTransToaccountTransferResponse;
 import com.item.finance.avtivity.DeoploymentProcessDefinition;
 import com.item.finance.bean.Member;
 import com.item.finance.bean.MemberAccount;
-import com.item.finance.bean.MemberBankcard;
 import com.item.finance.bean.MemberWithdrawRecord;
 import com.item.finance.bean.User;
 import com.item.finance.bean.UserRole;
@@ -126,27 +123,39 @@ public class HoufanItemSystemController {
 			          
 			        //完成任务的同时，设置流程变量，使用流程变量用来指定完成任务后，下一个连线，对应sequenceFlow.bpmn文件中${message=='不重要'}  
 			        Map<String, Object> variables = new HashMap<String, Object>();  
-			        variables.put("outcome", IsAgree);  
+			        variables.put("outcome", IsAgree); 
+			        variables.put("processState", "2");	//已完成
 			        processEngine.getTaskService()//与正在执行的任务管理相关的Service  
 			                    .complete(taskId,variables); 
-			        if(ename.equals("admin:system")){	//如果会超级管理员 流程结束	完成提款 添加提款记录
-			        	HoufanWebItemController houfanWebItemController = new HoufanWebItemController();
+			        if(ename.equals("admin:system")){	//如果是超级管理员 流程结束	完成提款 添加提款记录
+			        	/**
+			        	* 判断流程是否结束
+			        	*/
+//			        	ProcessInstance pi = processEngine.getRuntimeService().createProcessInstanceQuery()//
+//			        	.processInstanceId(id)//使用流程实例ID查询
+//			        	.singleResult();
+			        	//流程已结束	修改流程状态
+//			        	if(pi==null){
+//			        		TaskService taskService = processEngine.getTaskService();
+//			        		taskService.setVariable(id, "processState", '2');	//已完成
+//			        	}
 			        	
 			        	//alipay转账
-			        	AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipay.com/gateway.do","app_id","your private_key","json","GBK","alipay_public_key","RSA2");
-			        	AlipayFundTransToaccountTransferRequest request = new AlipayFundTransToaccountTransferRequest();
-			        	request.setBizContent("{" +
-			        	"\"out_biz_no\":\""+houfanWebItemController.getRandomPayName()+"\"," +
-			        	"\"payee_type\":\"ALIPAY_LOGONID\"," +
-			        	"\"payee_account\":\"cytjfy1234@sandbox.com\"," +
-			        	"\"amount\":\""+withdrawAmount+"\"," +
-			        	"\"payer_show_name\":\"赢+系统提现\"," +
-			        	"\"payee_real_name\":\""+memberID+"\"," +
-			        	"\"remark\":\"赢+系统,您的财富之友\"" +
-			        	"  }");
-			        	AlipayFundTransToaccountTransferResponse response = alipayClient.execute(request);
-			        	if(response.isSuccess()){
-			        	System.out.println("调用成功");
+//			        	AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
+//			        	AlipayFundTransToaccountTransferRequest request = new AlipayFundTransToaccountTransferRequest();
+//			        	request.setBizContent("{" +
+//			        	"\"out_biz_no\":\""+houfanWebItemController.getRandomPayName()+"\"," +
+//			        	"\"payee_type\":\"ALIPAY_LOGONID\"," +
+//			        	"\"payee_account\":\"cytjfy1234@sandbox.com\"," +
+//			        	"\"amount\":\""+withdrawAmount+"\"," +
+//			        	"\"payer_show_name\":\"赢+系统提现\"," +
+//			        	"\"payee_real_name\":\""+memberID+"\"," +
+//			        	"\"remark\":\"赢+系统,您的财富之友\"" +
+//			        	"  }");
+//			        	System.out.println("alipay转账:"+request.getBizContent());
+//			        	AlipayFundTransToaccountTransferResponse response = alipayClient.execute(request);
+//			        	if(response.isSuccess()){
+//			        	System.out.println("调用成功");
 			        	//修改账户余额
 			        		//查询用户id
 			        		Member member = memberService.selectGetByName(memberID);
@@ -161,9 +170,9 @@ public class HoufanItemSystemController {
 			        		//修改
 			        		memberWithdrawRecord.setStatus((byte)1);
 			        		memberWithdrawRecordService.update(memberWithdrawRecord);
-			        	} else {
-			        	System.out.println("调用失败");
-			        	}
+//			        	} else {
+//			        	System.out.println("调用失败");
+//			        	}
 			        }
 			        
 			        System.out.println("完成任务：任务ID："+taskId); 

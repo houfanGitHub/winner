@@ -257,7 +257,7 @@
 	        <th width="10%">流程id</th>
 			<th width="25%">银行卡号</th>
 			<th width="10%">取款金额</th>
-			<th width="10%">申请人</th>
+			<th width="10%">申请账号</th>
 			<th width="10%">查看状态</th>
 	      </tr>
 	   </thead>
@@ -280,13 +280,23 @@
 // 			}
 			var str = "";  
 //              alert(msg);
-             for (i in msg) {  
-                 str += "<tr>" +  
-                 "<td>" + msg[i].processInstanceId + "</td>" +  
-                 "<td>" + msg[i].bankCard + "</td>" +  
-                 "<td>" + msg[i].withdrawAmount + "</td>" +  
-                 "<td>" + msg[i].memberID + "</td>" + 
-                 "<td><a target='_blank' href=/winner/itemweb/showImg/"+msg[i].processInstanceId+">查看流程图</a></td></tr>";  
+             for (i in msg) {
+            	 if(msg[i].processState=='1'){
+            		 str += "<tr>" +  
+                     "<td>" + msg[i].processInstanceId + "</td>" +  
+                     "<td>" + msg[i].bankCard + "</td>" +  
+                     "<td>" + msg[i].withdrawAmount + "</td>" +  
+                     "<td>" + msg[i].memberID + "</td>" + 
+                     "<td><a target='_blank' href=/winner/itemweb/showImg/"+msg[i].processInstanceId+">审核中</a></td></tr>"; 
+            	 }else if(msg[i].processState=='2'){
+            		 str += "<tr>" +  
+                     "<td>" + msg[i].processInstanceId + "</td>" +  
+                     "<td>" + msg[i].bankCard + "</td>" +  
+                     "<td>" + msg[i].withdrawAmount + "</td>" +  
+                     "<td>" + msg[i].memberID + "</td>" + 
+                     "<td>已完成</td></tr>"; 
+            	 }
+                  
              }  
              $("#tbody-result").append(str);
 		});

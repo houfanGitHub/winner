@@ -1,8 +1,5 @@
 package com.item.finance.bean;
 
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,20 +30,20 @@ public class Subject  {
 
 	private static final long serialVersionUID = 1L;
 	private int id;//主键ID
-	private BigDecimal amount; //标的金额
-	private BigInteger borrowerid;//借款人id
+	private double amount; //标的金额
+	private int borrowerid;//借款人id
 	private String borrowername; //借款人姓名
-	private BigInteger bought; //已购人数
+	private int bought; //已购人数
 	private String comment; //产品速览
 	private Date createDate; //创建日期
 	private byte delflag; //是否删除
 	private Date endDate; //标的结束日期
-	private BigInteger experStatus;// 体验金是否可以购买（0：否，1：是）
-	private BigInteger firstId; //始标id
-	private BigDecimal floorAmount; //起投金额
+	private int experStatus;// 体验金是否可以购买（0：否，1：是）
+	private int firstId; //始标id
+	private double floorAmount; //起投金额
 	private String name;  //标的名称
-	private BigInteger parentId; //父标id
-	private BigInteger period; //标的周期
+	private int parentId; //父标id
+	private int period; //标的周期
 	private String projectDetails; //项目详情
 	private String purpose; //借款目的
 	private Date raiseEnd; //募集结束
@@ -60,7 +57,7 @@ public class Subject  {
 	private byte status; //标的状态
 	private byte type; //标的类型
 	private Date updateDate; //更新日期
-	private BigDecimal yearRate; //年化率
+	private double yearRate; //年化率
 	//private long yearEarnings;//年化收益
 	private SubjectFolder subjectFolder;//附件归属表
 	private Set<SubjectBbinPurchaseRecord> subjectBbinPurchaseRecords = new HashSet<>();//体验金购买标的表
@@ -85,10 +82,10 @@ public class Subject  {
 
 	public long getYearEarnings() {
 		//收益=本金*年利率/365*天数
-				BigDecimal a=this.getFloorAmount();//本金
-				BigDecimal b=this.getYearRate();//年化率
-				BigDecimal c=this.getPeriod();//天数
-				BigDecimal d=BigDecimal.valueOf(365);
+				double a=this.getFloorAmount();//本金
+				double b=this.getYearRate();//年化率
+				double c=this.getPeriod();//天数
+				double d=double.valueOf(365);
 				DecimalFormat dbf=new DecimalFormat("0.00");
 				String yearEarnings1=dbf.format(a.add(b).divide(d).multiply(c));
 				 yearEarnings=Long.valueOf(yearEarnings1);
@@ -104,20 +101,20 @@ public class Subject  {
 
 
 	@Column(precision=10, scale=2)
-	public BigDecimal getAmount() {
+	public double getAmount() {
 		return this.amount;
 	}
 
-	public void setAmount(BigDecimal amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
 
-	public BigInteger getBorrowerid() {
+	public int getBorrowerid() {
 		return this.borrowerid;
 	}
 
-	public void setBorrowerid(BigInteger borrowerid) {
+	public void setBorrowerid(int borrowerid) {
 		this.borrowerid = borrowerid;
 	}
 
@@ -132,11 +129,11 @@ public class Subject  {
 	}
 
 
-	public BigInteger getBought() {
+	public int getBought() {
 		return this.bought;
 	}
 
-	public void setBought(BigInteger bought) {
+	public void setBought(int bought) {
 		this.bought = bought;
 	}
 
@@ -183,31 +180,31 @@ public class Subject  {
 
 
 	@Column(name="exper_status")
-	public BigInteger getExperStatus() {
+	public int getExperStatus() {
 		return this.experStatus;
 	}
 
-	public void setExperStatus(BigInteger experStatus) {
+	public void setExperStatus(int experStatus) {
 		this.experStatus = experStatus;
 	}
 
 
 	@Column(name="first_id")
-	public BigInteger getFirstId() {
+	public int getFirstId() {
 		return this.firstId;
 	}
 
-	public void setFirstId(BigInteger firstId) {
+	public void setFirstId(int firstId) {
 		this.firstId = firstId;
 	}
 
 
 	@Column(name="floor_amount", precision=10, scale=4)
-	public BigDecimal getFloorAmount() {
+	public double getFloorAmount() {
 		return this.floorAmount;
 	}
 
-	public void setFloorAmount(BigDecimal floorAmount) {
+	public void setFloorAmount(double floorAmount) {
 		this.floorAmount = floorAmount;
 	}
 
@@ -223,21 +220,21 @@ public class Subject  {
 
 
 	@Column(name="parent_id")
-	public BigInteger getParentId() {
+	public int getParentId() {
 		return this.parentId;
 	}
 
-	public void setParentId(BigInteger parentId) {
+	public void setParentId(int parentId) {
 		this.parentId = parentId;
 	}
 
-	public BigInteger getPeriod() {
+	public int getPeriod() {
 		return period;
 	}
 
 
 
-	public void setPeriod(BigInteger period) {
+	public void setPeriod(int period) {
 		this.period = period;
 	}
 
@@ -373,10 +370,10 @@ public class Subject  {
 
 
 	@Column(name="year_rate", precision=10, scale=4)
-	public BigDecimal getYearRate() {
+	public double getYearRate() {
 		return this.yearRate;
 	}
-	public void setYearRate(BigDecimal yearRate) {
+	public void setYearRate(double yearRate) {
 		this.yearRate = yearRate;
 	}
 
