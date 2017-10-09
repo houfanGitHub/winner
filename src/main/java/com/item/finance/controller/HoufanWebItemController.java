@@ -725,7 +725,7 @@ public class HoufanWebItemController {
 	// 我的加法库    收益记录
 	@RequestMapping("/myself")
 	public String myself() {
-		return "redirect:/sushuang1/getmemberprofit1"; //跳转到 controller
+		return "redirect:/sushuang1/asd"; //跳转到 controller
 	}
 	
 	//忘记密码

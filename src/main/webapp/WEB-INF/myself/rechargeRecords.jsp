@@ -119,12 +119,12 @@
         </c:if>
         </h2>
         <p>账户可用余额(元)<a href="javascript:;" class="iconfont"><span>账户可用余额</span><i></i></a></p></li>
-        <li><h2>
-         <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+         <li><h2>
+          <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
         <c:if test="${!empty memberinfo.memberAccounts }">
         <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.useableBalance+memberAccount.investAmount+memberAccount.totalProfit}</c:forEach>
         </c:if>
-        </h2><p>账户总资产(元)<a href="javascript:;" class="iconfont"><span>可用余额+投资金额+累计收益</span><i></i></a></p></li>
+         </h2><p>账户总资产(元)<a href="javascript:;" class="iconfont"><span>可用余额+投资金额+累计收益</span><i></i></a></p></li>
         <li><h2 style="color:#9d8440">
          <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
         <c:if test="${!empty memberinfo.memberAccounts }">

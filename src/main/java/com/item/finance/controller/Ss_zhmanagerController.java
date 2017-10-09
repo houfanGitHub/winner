@@ -59,28 +59,28 @@ public class Ss_zhmanagerController {
 		for (Member me : listzh) {
 			System.out.println("aaaa="+me.getName());
 		}
-		//model.addAttribute("listzh", listzh);
-		session.setAttribute("listzh", listzh);
+		model.addAttribute("listzh", listzh);
+	//	session.setAttribute("listzh", listzh);
 		
-		session.setAttribute("qname1", qname1);
+	/*	session.setAttribute("qname1", qname1);
 		session.setAttribute("mobile", mobile);
 		session.setAttribute("qname2", qname2);
 		session.setAttribute("invit", invit);
 		session.setAttribute("create_date1", create_date1);
-		session.setAttribute("create_date2", create_date2);
+		session.setAttribute("create_date2", create_date2);*/
 		
 		
-		/*//模糊查询
+		//模糊查询
 		model.addAttribute("qname1", qname1);
 		model.addAttribute("mobile", mobile);
 		model.addAttribute("qname2", qname2);
 		model.addAttribute("invit", invit);
 		model.addAttribute("create_date1", create_date1);
-		model.addAttribute("create_date2", create_date2);*/
+		model.addAttribute("create_date2", create_date2);
 		
 		return "WEB-INF/ssjsp/zhmanager";
 	}
-	//重置操作
+	/*//重置操作
 	@RequestMapping("/listcz1")
 	public String listcz(HttpSession session){
 		session.removeAttribute("qname1");
@@ -91,7 +91,7 @@ public class Ss_zhmanagerController {
 		session.removeAttribute("create_date2");
 		
 		return "redirect:/sushuang1/list1";   //重定向到首页
-	}
+	}*/
 	
 	//得到id  传值     model 保存  传值
 	@RequestMapping("/getmemberId/{id}")
@@ -169,6 +169,16 @@ public class Ss_zhmanagerController {
 		return "WEB-INF/ssjsp/details";   //跳转页面
 	}
 	
+	@RequestMapping("/asd")
+	public String getmemberId(HttpSession session){
+		//String  id=((Member)session.getAttribute("memberinfo")).getId();
+		if (session.getAttribute("memberinfo") == null) {
+			return "redirect:/itemweb/toLogin";  
+			
+		}else {
+			return "redirect:/sushuang1/getmemberprofit1"; 
+		}
+	}
 	//前台个人 收益记录    成员利润
 	@RequestMapping("/getmemberprofit1")  //memberinfo信息  是存在session里的
 	public String getMemberprofit(Model model,HttpSession session){
@@ -212,7 +222,7 @@ public class Ss_zhmanagerController {
 	//前台 个人 提款记录   直接从 service里面 拿出来
 	@RequestMapping("/getmemberwith1")
 	public String getmemberwith(Model model,HttpSession session){
-		System.out.println("555555555555555");
+	//	System.out.println("555555555555555");
 		String id=((Member)session.getAttribute("memberinfo")).getId();//得到 id 在下面可以带到list集合方法里
 		String name=((Member)session.getAttribute("memberinfo")).getName();
 		System.out.println("id="+id);
@@ -226,7 +236,7 @@ public class Ss_zhmanagerController {
 		List<MemberAccount>memberAccount=this.ss_zhmanagerService.getmemberaccountid(id);//资金信息表
 		model.addAttribute("memberAccount", memberAccount);
 		model.addAttribute("listmemberwith", listmemberwith);
-		System.out.println("6666666666666666");
+	//	System.out.println("6666666666666666");
 		return "WEB-INF/myself/withdrawals"; //页面跳转
 		
 	}
@@ -234,7 +244,7 @@ public class Ss_zhmanagerController {
 	//前台 个人投资记录  直接从service里面拿出来
 	@RequestMapping("/getsubjectpur")
 	public String getsubjectpur(HttpSession session,Model model){
-		System.out.println("77777777777777");
+	//	System.out.println("77777777777777");
 		String id=((Member)session.getAttribute("memberinfo")).getId();//得到 id 在下面可以带到list集合方法里
 		String name=((Member)session.getAttribute("memberinfo")).getName();
 		System.out.println("id="+id);
@@ -263,7 +273,7 @@ public class Ss_zhmanagerController {
 		model.addAttribute("listinvest", listinvest);  //投资几笔数据
 		model.addAttribute("liSubjectord", liSubjectord); //预约记录   订单表
 		model.addAttribute("listorder", listorder);  //预约几笔数据
-		System.out.println("888888888888888888888");
+	//   System.out.println("888888888888888888888");
 		return "WEB-INF/myself/invests"; //页面跳转
 	
 	}
@@ -282,52 +292,16 @@ public class Ss_zhmanagerController {
 		//SubjectBbinPurchaseRecord  //体验金购买标 的表
 		SubjectBbinPurchaseRecord listjectbbr=this.ss_zhmanagerService.getsubjectbbinpurBYid(id);
 				//System.out.println("id="+listjectbbr.getId());
-	/*	List<MemberProfitRecord>listprofit=ss_zhmanagerService.getmeberpro(id);//收益  成员利润表
-		for (MemberProfitRecord m : listprofit) {
-			System.out.println("订单号："+m.getSerialNumber()+",金额："+m.getAmount());
-			
-		}*/
-	/*	List<SubjectPurchaseRecord> subjectpro=ss_zhmanagerService.getlistspr(id);//投资记录表
-		System.out.println("aaaaaaaaaaa="+subjectpro.size());
-		for (SubjectPurchaseRecord su : subjectpro) {
-			System.out.println("订单编号："+su.getSerialNumber()+",金额："+su.getAmount());
-			
-		}*/
 	
 		List<MemberAccount>memberAccount=this.ss_zhmanagerService.getmemberaccountid(id);//资金信息表
 		model.addAttribute("memberAccount", memberAccount);
 			
 		model.addAttribute("listbb", listbb); //体验金
 		model.addAttribute("listjectbbr", listjectbbr);//体验金购买标 的表
-		//model.addAttribute("listprofit", listprofit); //成员利润表
-		//model.addAttribute("subjectpro", subjectpro);//投资记录
-		System.out.println("1010101010101");
 		return "WEB-INF/myself/goldexperience"; //页面跳转 
 	
 	}
 	
-	//提款 记录 跳转到  我要提款 界面
-	//前台 个人 提款记录   直接从 service里面 拿出来
-	/*	@RequestMapping("/getmemberwithdraw1")
-		public String getmemberwithdraw(Model model,HttpSession session){
-			System.out.println("121212121212");
-			String id=((Member)session.getAttribute("memberinfo")).getId();//得到 id 在下面可以带到list集合方法里
-			String name=((Member)session.getAttribute("memberinfo")).getName();
-			System.out.println("id="+id);
-			System.out.println("name="+name);
-																			//id  是上面得到的 string类型得id
-			List<MemberWithdrawRecord> listmemberwithdraw=ss_zhmanagerService.getByIdwith(id);//提款（提现）记录表
-			for (MemberWithdrawRecord mem : listmemberwithdraw) {
-				System.out.println("订单号："+mem.getSerialNumber()+",金额："+mem.getAmount());
-				
-			}
-			
-			model.addAttribute("listmemberwithdraw", listmemberwithdraw);
-			System.out.println("131313131313");
-			return "WEB-INF/myself/recharge"; //页面跳转
-			
-		}*/
-		
 	
 
 }

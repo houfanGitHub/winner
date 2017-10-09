@@ -42,31 +42,29 @@ public class Ss_AwardRecordController {
 		map.put("qinvitationCode", qinvitationCode);  //邀请码
 		map.put("qinvitedCode", qinvitedCode); //被邀请码
 		List<AwardRecord>listawardrecord=ss_AwardRecordService.listAwardRecord(map);//显示信息
-		
-		
-		//model.addAttribute("listawardrecord", listawardrecord);
+		model.addAttribute("listawardrecord", listawardrecord);
 	
-		session.setAttribute("listawardrecord", listawardrecord);  //显示信息
+		//session.setAttribute("listawardrecord", listawardrecord);  //显示信息
 		
 		
-	/*	//模糊查询
+		//模糊查询
 		model.addAttribute("qmemberName",qmemberName);
 		model.addAttribute("qmobile_Phone",qmobile_Phone);
 		model.addAttribute("qtype",qtype);
 		model.addAttribute("qisAward",qisAward);
 		model.addAttribute("qinvitationCode",qinvitationCode);
-		model.addAttribute("qinvitedCode",qinvitedCode);  */
-		
+		model.addAttribute("qinvitedCode",qinvitedCode);  
+	/*	
 		session.setAttribute("qmemberName", qmemberName);  
 		session.setAttribute("qmobile_Phone", qmobile_Phone);  
 		session.setAttribute("qtype", qtype);  
 		session.setAttribute("qisAward", qisAward);  
 		session.setAttribute("qinvitationCode", qinvitationCode);  
-		session.setAttribute("qinvitedCode", qinvitedCode);  	
+		session.setAttribute("qinvitedCode", qinvitedCode);  	*/
 		return "WEB-INF/ssjsp/awardRecord";  //跳转页面
 	}
 	
-	
+/*	
 	//重置操作
 		@RequestMapping("/listcz6")
 		public String listcz(HttpSession session){
@@ -78,7 +76,7 @@ public class Ss_AwardRecordController {
 			session.removeAttribute("qinvitedCode");
 			
 			return "redirect:/sushuang6/list6";   //重定向到首页
-		}
+		}*/
 	/*
 	//奖励记录  传两个参数 避免重复   用byinvitingid代替    通过两个id 找到个人奖励记录信息    和 被邀请人信息
 		@RequestMapping("/awardrecord6/{id}/{byinvitingid}")

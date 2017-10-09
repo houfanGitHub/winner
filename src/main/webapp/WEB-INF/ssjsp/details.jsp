@@ -173,7 +173,7 @@
        </font></td>
 			<td><font color="black">${listspr.subject.name}</font></td>
 		
-			<!--投资收益    period 周期   -->
+			<!--投资收益    period 周期         (( 金额 *(年化率/100))/365)*周期-->
 		<td>￥<fmt:formatNumber type="number" value="${((listspr.amount*(listspr.subject.yearRate/100))/365)*listspr.subject.period}"  maxFractionDigits="2"></fmt:formatNumber></font></td>
 		 <td><font color="black">${listspr.createDate}</font></td>
 		</tr>
@@ -298,8 +298,8 @@
            <td> ${tradere.id} </td>
            <td> ${tradere.amount}  </td>
            <td><!-- 交易状态 -->
-            <c:if test="${tradere.tradeStatus=='0' }"><font color="red">充值失败</font></c:if>
-            <c:if test="${tradere.tradeStatus== '1'}"><font color="green">充值成功</font></c:if>
+            <c:if test="${tradere.tradeStatus=='0' }"><font color="red">交易失败</font></c:if>
+            <c:if test="${tradere.tradeStatus== '2'}"><font color="green">交易成功</font></c:if>
            </td>
            <td> ${tradere.tradeType}  </td>
            <td> ${tradere.tradeName}  </td>

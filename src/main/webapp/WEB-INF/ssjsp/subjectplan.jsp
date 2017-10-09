@@ -29,9 +29,10 @@
 			document.forms[0].submit();
 		});
 		$("#cz").click(function(){
-			document.forms[0].action="/winner/sushuang8/listcz8";
-			document.forms[0].submit();
-	})
+ 			//document.forms[0].action="/winner/sushuang1/listcz1";
+			//document.forms[0].submit();
+			$("input").val('');
+ 	})
 	
 	});
 </script>
@@ -52,9 +53,11 @@
 <option value="1">P2P房贷</option>
 <option value="2">P2P车贷</option>
 </select>&nbsp;&nbsp;&nbsp;&nbsp;
-
-<input  class="btn btn-primary" type="button" id="btn8" value="查询">&nbsp;&nbsp;
-<input class="btn btn-primary" type="reset"  id="cz"value="重置"><br><br>
+<a href="#" class="btn btn-primary" type="button"  id="btn8">查询</a>&nbsp;&nbsp;
+<a href="#" class="btn btn-primary" type="reset" id="cz">重置</a>&nbsp;&nbsp;<br><br>
+<!-- <input  class="btn btn-primary" type="button" id="btn8" value="查询">&nbsp;&nbsp; -->
+<!-- <input class="btn btn-primary" type="reset"  id="cz"value="重置"><br><br> -->
+</form>
 <table width="1100" cellspacing="1" border="0" bgcolor="blue" class="table table-striped table-condensed table-condensed table-hover table-bordered">
 <tr bgcolor="white" align="center">
 <td>序号</td>
@@ -101,8 +104,8 @@
 <td>${listsubject.bought}人</td>  <!-- 已投人数  已购人数 -->
 <td>${listsubject.period}天</td> <!-- 标的期限    标的周期 -->
 
-  <td>${listsubject.yearRate}%</td>     <!-- 年化收益 -->
-<!--<td><fmt:formatNumber type="number" value="${listsubject.yearRate}"  maxFractionDigits="2"></fmt:formatNumber></font>%</td>-->
+ <!-- <td>${listsubject.yearRate}%</td>     <!-- 年化收益 -->
+<td><fmt:formatNumber type="number" value="${listsubject.yearRate}"  maxFractionDigits="2"></fmt:formatNumber></font>%</td>
     <!-- 标的状态-->
     <td>
     <c:if test="${listsubject.status == '0'}"><font color="red">未发布</font></c:if>
@@ -127,6 +130,6 @@
 </tr>
 </c:forEach>
 </table>
-</form>
+
 </body>
 </html>

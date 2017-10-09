@@ -27,8 +27,9 @@
 		});
 		
 		$("#cz").click(function(){
-			document.forms[0].action="/winner/sushuang6/listcz6";
-			document.forms[0].submit();
+ 			//document.forms[0].action="/winner/sushuang1/listcz1";
+			//document.forms[0].submit();
+			$("input").val('');
 	})
 	
 	});
@@ -50,10 +51,12 @@
 <br><br>
 邀请码：<input type="text" name="qinvitationCode" value="${qinvitationCode }">&nbsp;&nbsp;
 被邀请码：<input type="text" name="qinvitedCode" value="${qinvitedCode }">&nbsp;&nbsp;
-<input class="btn btn-primary" type="button" value="查询" id="btn6">
+<a href="#" class="btn btn-primary" type="button"  id="btn6">查询</a>&nbsp;&nbsp;
+<a href="#" class="btn btn-primary" type="reset" id="cz">重置</a>&nbsp;&nbsp;
+<!-- <input class="btn btn-primary" type="button" value="查询" id="btn6"> -->
 
-<input  class="btn btn-primary"  type="reset"  id="cz" value="重置">
-<br><br>
+<!-- <input  class="btn btn-primary"  type="reset"  id="cz" value="重置"> -->
+<br><br></form>
 
 <table width="1100" bgcolor="blue" cellspacing="1" border="0"  
 class="table table-striped table-condensed table-condensed table-hover table-bordered">
@@ -82,8 +85,6 @@ class="table table-striped table-condensed table-condensed table-hover table-bor
 <td>￥${listawardrecord.amount}元</td>
   
 
-
-
     <!-- 奖励类型 -->  
 <td><c:if test="${listawardrecord.type  == '0' }"><font color="blue">注册奖励</font></c:if>
 	<c:if test="${listawardrecord.type == '1' }"><font color="green">投资奖励</font></c:if>
@@ -106,6 +107,6 @@ class="table table-striped table-condensed table-condensed table-hover table-bor
 </tr>
 </c:forEach>
 </table>
-</form>
+
 </body>
 </html>

@@ -147,12 +147,12 @@
         </c:if>
         </h2>
         <p>账户可用余额(元)<a href="javascript:;" class="iconfont"><span>账户可用余额</span><i></i></a></p></li>
-        <li><h2>
-         <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+         <li><h2>
+          <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
         <c:if test="${!empty memberinfo.memberAccounts }">
         <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.useableBalance+memberAccount.investAmount+memberAccount.totalProfit}</c:forEach>
         </c:if>
-        </h2><p>账户总资产(元)<a href="javascript:;" class="iconfont"><span>可用余额+投资金额+累计收益</span><i></i></a></p></li>
+         </h2><p>账户总资产(元)<a href="javascript:;" class="iconfont"><span>可用余额+投资金额+累计收益</span><i></i></a></p></li>
         <li><h2 style="color:#9d8440">
          <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
         <c:if test="${!empty memberinfo.memberAccounts }">
@@ -193,7 +193,7 @@
 			<h2>我的账户</h2>
 			<ul>
 				<li><a id="member_center_menu_deposit"
-					href="/winner/itemweb/deposit"><em class="iconfont"></em>账户充值</a></li>
+					href="/winner/itemweb/deposit"  class="select"><em class="iconfont"></em>账户充值</a></li>
 				<li><a id="member_center_menu_security" 
 				href="/winner/itemweb/security"><em class="iconfont"></em>安全信息</a></li>
 				<li><a id="member_center_menu_withdraw" 

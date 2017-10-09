@@ -31,20 +31,24 @@
 		});
 		
 		$("#cz").click(function(){
-			document.forms[0].action="/winner/sushuang3/listcz3";
-			document.forms[0].submit();
-	})
+ 			//document.forms[0].action="/winner/sushuang1/listcz1";
+			//document.forms[0].submit();
+			$("input").val('');
+ 	})
 	});
 </script>
 <body>
 <form action="" method="post">
 手机号：<input type="text" name="mobile1" value="${mobile1 }">&nbsp;&nbsp;
 绑卡姓名：<input type="text" name="name1" value="${name1 }">&nbsp;&nbsp;
-绑卡卡号：<input type="text" name="card1 " value="${card1  }"><br><br>
-注册时间：<input type="date" name="qdate1" value="${qdate1  }">&nbsp;&nbsp;
+绑卡卡号：<input type="text" name="card1 " value="${card1}"><br><br>
+注册时间：<input type="date" name="qdate1" value="${qdate1}">&nbsp;&nbsp;
 <input type="date" name="qdate2" align="left" value="${qdate2 }">&nbsp;&nbsp;
-<input  class="btn btn-primary" type="button" id="btn2" value="查  询">&nbsp;&nbsp;
-<input class="btn btn-primary" type="reset" id="cz" value="重置"><br><br>
+<a href="#" class="btn btn-primary" type="button"  id="btn2">查询</a>&nbsp;&nbsp;
+<a href="#" class="btn btn-primary" type="reset" id="cz">重置</a>&nbsp;&nbsp;<br><br>
+<!-- <input  class="btn btn-primary" type="button" id="btn2" value="查  询">&nbsp;&nbsp; -->
+<!-- <input class="btn btn-primary" type="reset" id="cz" value="重置"><br><br> -->
+</form>
 <table  width="1100" bgcolor="blue" cellspacing="1" border="0" class="table table-bordered">
 <tr align="center" bgcolor="white">
 <td>序号</td>
@@ -87,6 +91,6 @@
 </tr>
 </c:forEach>
 </table>
-</form>
+
 </body>
 </html>
