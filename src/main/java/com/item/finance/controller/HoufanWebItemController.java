@@ -42,7 +42,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.internal.util.AlipaySignature;
@@ -56,10 +55,10 @@ import com.item.finance.bean.MemberProfitRecord;
 import com.item.finance.bean.MemberTally;
 import com.item.finance.bean.MemberTradeRecord;
 import com.item.finance.bean.MemberWithdrawRecord;
-import com.item.finance.bean.SubjectPurchaseRecord;
-import com.item.finance.services.FrontService;
 import com.item.finance.bean.News;
 import com.item.finance.bean.PushNotice;
+import com.item.finance.bean.SubjectPurchaseRecord;
+import com.item.finance.services.FrontService;
 import com.item.finance.services.MemberAccountService;
 import com.item.finance.services.MemberBankcardService;
 import com.item.finance.services.MemberDepositRecordService;
@@ -524,41 +523,6 @@ public class HoufanWebItemController {
 		return "redirect:/itemweb/toLogin";
 	}
 
-	public void login(String name, String password,RedirectAttributes attributes) {
-		//退出当前的用户
-		allUserLogout();
-		Subject subject = SecurityUtils.getSubject();
-		UsernamePasswordToken token = new UsernamePasswordToken(name, password);
-		try {
-			subject.login(token);
-			Session session = subject.getSession();
-//			System.out.println("sessionId:"+session.getId());
-//			System.out.println("sessionHost:"+session.getHost());
-//			System.out.println("sessionTimeout:"+session.getTimeout());
-			//查询用户的信息
-			session.setAttribute("userinfo", userService.getUserByUserName(name));
-		}catch(UnknownAccountException uae){
-            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,未知账户");  
-            attributes.addFlashAttribute("errorMsg", "未知账户！"); 
-        }catch(IncorrectCredentialsException ice){  
-            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,错误的凭证");  
-            attributes.addFlashAttribute("errorMsg", "密码不正确");  
-        }catch(LockedAccountException lae){  
-            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,账户已锁定");  
-            attributes.addFlashAttribute("errorMsg", "账户已锁定");  
-        }catch(ExcessiveAttemptsException eae){  
-            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,错误次数过多");  
-            attributes.addFlashAttribute("errorMsg", "用户名或密码错误次数过多");  
-        }catch(AuthenticationException ae){  
-            //通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景  
-            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,堆栈轨迹如下");  
-            ae.printStackTrace();  
-            attributes.addFlashAttribute("errorMsg", "用户名或密码不正确");  
-        }  catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	/**
 	 * 退出 返回到后台登陆页面
 	 * 
@@ -597,9 +561,47 @@ public class HoufanWebItemController {
 	 */
 	@RequestMapping("/backstageUserLogin")
 	public String backstageUserLogin(@RequestParam("name") String name,
-			@RequestParam("password") String password,RedirectAttributes attributes) {
-		login(name, password,attributes);
-		return "redirect:/itemweb/backstage";
+			@RequestParam("password") String password,Map<String,Object> map) {
+		//退出当前的用户
+				allUserLogout();
+				Subject subject = SecurityUtils.getSubject();
+				UsernamePasswordToken token = new UsernamePasswordToken(name, password);
+				try {
+					subject.login(token);		
+					Session session = subject.getSession();
+//					System.out.println("sessionId:"+session.getId());
+//					System.out.println("sessionHost:"+session.getHost());
+//					System.out.println("sessionTimeout:"+session.getTimeout());
+					session.setAttribute("userinfo", userService.getUserByUserName(name));
+				}catch(UnknownAccountException uae){
+		            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,未知账户");  
+		            map.put("errorMsg", "未知账户！"); 
+		            return "WEB-INF/backstage/login";
+		        }catch(IncorrectCredentialsException ice){  
+		            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,错误的凭证");  
+		            map.put("errorMsg", "密码不正确");  
+		            return "WEB-INF/backstage/login";
+		        }catch(LockedAccountException lae){  
+		            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,账户已锁定");  
+		            map.put("errorMsg", "账户已锁定");  
+		            return "WEB-INF/backstage/login";
+		        }catch(ExcessiveAttemptsException eae){  
+		            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,错误次数过多");  
+		            map.put("errorsMsg", "用户名或密码错误次数过多");  
+		            return "WEB-INF/backstage/login";
+		        }catch(AuthenticationException ae){  
+		            //通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景  
+		            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,堆栈轨迹如下");  
+		            ae.printStackTrace();  
+		            map.put("errorMsg", "用户名或密码不正确");  
+		            return "WEB-INF/backstage/login";
+		        }  catch (Exception e) {
+					e.printStackTrace();
+				} finally{
+					map.put("name", name);
+					map.put("password", password);
+				}
+		return "WEB-INF/backstage/show";
 	}
 	
 	//随机生成邀请码
@@ -697,7 +699,9 @@ public class HoufanWebItemController {
 
 	// 后台登陆页面
 	@RequestMapping("/backstageLogin")
-	public String backstageLogin() {
+	public String backstageLogin(Map<String,Object> map) {
+		map.put("name", "");
+		map.put("password", "");
 		return "WEB-INF/backstage/login";
 	}
 
@@ -873,7 +877,6 @@ public class HoufanWebItemController {
 			@RequestMapping("/buyproduct")
 			public String  buyproduct(int id,Model model,HttpSession session) {
 				System.out.println("标的id="+id);
-				Map map=new HashMap<>();
 				Object obj=session.getAttribute("memberinfo");
 				if(obj!=null){
 				//然后要查询数据到前台显示
@@ -973,7 +976,7 @@ public class HoufanWebItemController {
 						member_trade_record.setMember(member);
 						member_trade_record.setTradeNo(sysDateAndRandom);
 						member_trade_record.setTradeName("购买:"+subject.getName());
-						member_trade_record.setCounterpart("孔明理财公司");
+						member_trade_record.setCounterpart("赢+理财公司");
 						member_trade_record.setAmount(Integer.parseInt(mytext));
 						member_trade_record.setTradeType(subject.getName());
 						member_trade_record.setFundFlow((byte) 0);
@@ -1035,7 +1038,7 @@ public class HoufanWebItemController {
 						subject_purchase_record.setLastProfitDay(Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(new Date())));
 						subject_purchase_record.setBonusInfo("无");
 						this.frontService.savepurchaserecord(subject_purchase_record);
-						List<SubjectPurchaseRecord> list = this.frontService.listpurchase(Integer.valueOf(subject_id));
+//						List<SubjectPurchaseRecord> list = this.frontService.listpurchase(Integer.valueOf(subject_id));
 						return "";//成功后跳到个人中心查看
 					}else{
 						return "WEB-INF/products/buyProducts";//返回购买页面
