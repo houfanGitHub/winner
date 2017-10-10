@@ -670,8 +670,8 @@ $("#newsDiv").show();
 var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
                     document.write(unescape("%3Cspan id='cnzz_stat_icon_1255940205'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1255940205%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
                 </script><span id="cnzz_stat_icon_1255940205"><a href="http://www.cnzz.com/stat/website.php?web_id=1255940205" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="/winner/files/pic1.gif"></a></span><script src="/winner/files/z_stat.php" type="text/javascript"></script><script src="/winner/files/core.php" charset="utf-8" type="text/javascript"></script>
-				Copyright © 2010 - 2015 www.ying158.com All Rights Reserverd 杭州吉威投资管理有限公司 版权所有<br>
-				浙ICP备14030807号-3 杭州市江干区钱江新城迪凯银座19F 4000-999-158
+				Copyright © 2010 - 2015 www..com All Rights Reserverd 襄阳市赢+理财股份有限公司 版权所有<br>
+				鄂ICP备14030807号-3 襄阳市江干区钱江新城迪凯银座19F 4000-999-158
 			</div>
 		</div>
 	</div>

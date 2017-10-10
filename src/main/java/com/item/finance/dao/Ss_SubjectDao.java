@@ -95,7 +95,7 @@ public class Ss_SubjectDao {
 	//付息列表显示 中的 还款功能
 	public void updatesubjectp(String  id){
 		Session session=getSession();
-		SubjectPurchaseRecord subjectpp=(SubjectPurchaseRecord)session.get(SubjectPurchaseRecord.class, id);
+		SubjectPurchaseRecord subjectpp=(SubjectPurchaseRecord)session.get(SubjectPurchaseRecord.class, Integer.valueOf(id));
 		subjectpp.setIspayment((byte) 1);  //是否还款
 		Date date=new Date();
 		subjectpp.setUpdateDate(date);  //修改时间

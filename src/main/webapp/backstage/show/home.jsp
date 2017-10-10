@@ -7,6 +7,8 @@
 <title>欢迎界面</title>
 </head>
 <body>
-
+	<div style="width:100%;height:100%">
+		<img src="/winner/backstage/images/login_13.jpg" width="100%" height="100%">
+	</div>
 </body>
 </html>

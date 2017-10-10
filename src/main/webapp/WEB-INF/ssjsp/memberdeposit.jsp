@@ -44,7 +44,7 @@
 手机号：<input type="text" name="mobile2" value="${mobile2 }">&nbsp;&nbsp;
 订单状态：
 <select name="status2" id="status2">
- <option value="${status2 }" >${status2 }</option>
+ <!--<option value="${status2 }" >${status2 }</option>   -->
 <option value="" selected="selected">请选择</option>
 <option value="0">充值失败</option>
 <option value="1">充值成功</option>

@@ -131,7 +131,7 @@ public class Ss_zhManangerDao {
 		public List<SubjectPurchaseRecord> listSubjectpur(String id){
 			Session session = getSession();
 			//SubjectPurchaseRecord 表中有一member_id 是与member中的id  相对应的  可通过member中的id 取到相应的值
-			String hql = "from SubjectPurchaseRecord  subjectp where subjectp.member.id="+id;
+			String hql = "from SubjectPurchaseRecord  subjectp where subjectp.member.id="+id+" order by createDate desc";
 			List<SubjectPurchaseRecord> listsubjectp = session.createQuery(hql).list();
 			
 			return listsubjectp;
@@ -142,7 +142,7 @@ public class Ss_zhManangerDao {
 		public  List<MemberWithdrawRecord> getmemberwithdraw(String id){
 			Session session=getSession();
 			//MemberWithdrawRecord 表中有一member_id 是与member中的id  相对应的  可通过member中的id 取到相应的值
-			String hql="from MemberWithdrawRecord as memberwith where memberwith.member.id= "+id;
+			String hql="from MemberWithdrawRecord as memberwith where memberwith.member.id= "+id+" order by createDate desc";
 			List<MemberWithdrawRecord>listmemberwith=session.createQuery(hql).list();
 //			for (MemberWithdrawRecord memb : listmemberwith) {
 //				System.out.println("订单："+memb.getSerialNumber()+",金额："+memb.getAmount());
@@ -176,7 +176,7 @@ public class Ss_zhManangerDao {
 		//前台个人 查询收益记录    成员利润表
 	public List<MemberProfitRecord> getmemberprofit(String id){
 		Session session=getSession();
-		String hql="from MemberProfitRecord memberprofit where memberprofit.member.id="+id;
+		String hql="from MemberProfitRecord memberprofit where memberprofit.member.id="+id+" order by createDate desc";
 		List<MemberProfitRecord> listmemberprofit = session.createQuery(hql).list();
 		for (MemberProfitRecord memberProfitRecord : listmemberprofit) {
 			System.out.println("订单："+memberProfitRecord.getSerialNumber()+"，金额："+memberProfitRecord.getAmount());

@@ -206,7 +206,7 @@
 		<td>${subjectpro.subject.name}</td>
 	     <!-- 预期收益 -->
 	     	<!--投资收益    period 周期   -->
-		<td>￥<fmt:formatNumber type="number" value="${((subjectpro.amount*(subjectpro.subject.yearRate/100))/365)*subjectpro.subject.period}"  maxFractionDigits="2"></fmt:formatNumber></font></td>
+		<td>￥<fmt:formatNumber type="number" value="${(subjectpro.amount*subjectpro.subject.yearRate/365)*subjectpro.subject.period}"  maxFractionDigits="2"></fmt:formatNumber></font></td>
 		<td><font bgcolor="red">￥${subjectpro.amount}</font></td>
 		<!-- 还款状态 -->
      <td>
@@ -240,17 +240,17 @@
 		});
 	}
 </script>  
- <div class="tab">
+  <!-- <div class="tab">
                     <a class="select" href="javascript:;">预约记录</a>
                 </div>
                 <div id="conBox">
-                    <div class="box" style="display:block">
+                    <div class="box" style="display:block"> -->
 
 
 <meta name="keywords" content="盈+，盈，社区金融，O2O社区金融，社区金融O2O，O2O，互联网+社区金融，O2O连锁，社区门店，首家社区金融，社区金融服务，综合金融，互联网金融，体验中心，普惠金融，金融创新，社区化，普惠化，全渠道化，互联网线上平台，O2O交易，全国首家，盈十，金融衍生品，固收类理财，私募基金，股权基金，股指期货，玩转股指，商品期货，国际期货，外盘，A50，沪深300，中证500，上证50">
 <meta name="description" content="盈+——全国首家互联网金融交流体验中心，与您共盈，给财富做加法。">
 <link href="http://pro.ying158.com/resources/web/images/icon.ico" type="image/x-icon" rel="shortcut icon">
-
+<!-- 
 <div class="ajaxContainer">
 	<table class="tzlist" width="100%" border="1" bordercolor="#e9e9e9" cellspacing="0" cellpadding="0">
 		<tbody><tr>
@@ -266,14 +266,14 @@
 		<tr align="center" bgcolor="white">
 		<td>${liSubjectord.serialNumber}</td>
 		<td>${liSubjectord.subject.name}</td>
-		<td><font bgcolor="red">￥${liSubjectord.amount}</font></td>
+		<td><font bgcolor="red">￥${liSubjectord.amount}</font></td>  -->
 		
 	     <!-- 预期收益 -->
 	     	<!--投资收益    period 周期   -->
-		<td>￥<fmt:formatNumber type="number" value="${((liSubjectord.amount*(liSubjectord.subject.yearRate/100))/365)*liSubjectord.subject.period}"  maxFractionDigits="2"></fmt:formatNumber></font></td>
-	
+		<!-- <td>￥<fmt:formatNumber type="number" value="${((liSubjectord.amount*(liSubjectord.subject.yearRate/100))/365)*liSubjectord.subject.period}"  maxFractionDigits="2"></fmt:formatNumber></font></td>
+	 -->
 		<!-- 订单状态 -->
-     <td>
+  <!--     <td>
         <c:if test="${liSubjectord.status == '0' }"><font color="red">未下单</font></c:if>	
        <c:if test="${liSubjectord.status == '1' }"><font color="blue">已下单</font></c:if>		
    </td>
@@ -296,10 +296,10 @@
 	</table>
 
 
-</div>  
+</div>   -->
                          
-                    </div>
-                </div>
+                <!--   </div>
+                </div>  -->
             </div>
         </div>
     </div>
@@ -401,8 +401,8 @@
 	<div class="foot3">
 		<div class="container">
 			<div class="row">
-				Copyright © 2010 - 2015 www.ying158.com All Rights Reserverd 杭州吉威投资管理有限公司 版权所有<br>
-				浙ICP备14030807号-3 杭州市江干区钱江新城迪凯银座19F 4000-999-158
+				Copyright © 2010 - 2015 www..com All Rights Reserverd 襄阳市赢+理财股份有限公司 版权所有<br>
+				鄂ICP备14030807号-3 襄阳市江干区钱江新城迪凯银座19F 4000-999-158
 			</div>
 		</div>
 	</div>
