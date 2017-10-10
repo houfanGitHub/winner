@@ -26,33 +26,35 @@ public class Ss_MemberWithdrawRecordController {
 	private Ss_MemberWithdrawRecordService ss_MemberWithdrawRecordService;
 	
 	@RequestMapping("/list5")
-	public String listshow( HttpSession session,Model model,String aname,String aphone ,String anumber,String astatu,String adate ){
+	public String listshow( HttpSession session,Model model,String aname,String aphone ,String anumber,String astatu,String adate1,String adate2 ){
 		Map map=new HashMap();
 		map.put("aname", aname);   //姓名
 		map.put("aphone", aphone);  //手机号
 		map.put("anumber", anumber);  //绑卡卡号
 		map.put("astatu", astatu);  //状态
-		map.put("adate", adate);   //提现时间
+		map.put("adate1", adate1);   //提现时间
+		map.put("adate2", adate2);   //提现时间
 		List<MemberWithdrawRecord>listwithdrawrecord=ss_MemberWithdrawRecordService.list(map);
-		//model.addAttribute("listwithdrawrecord", listwithdrawrecord);
-		session.setAttribute("listwithdrawrecord", listwithdrawrecord);
+		model.addAttribute("listwithdrawrecord", listwithdrawrecord);
+		//session.setAttribute("listwithdrawrecord", listwithdrawrecord);
 		
-	/*	//模糊查询
+		//模糊查询
 		model.addAttribute("aname", aname); 
 		model.addAttribute("aphone", aphone);
 		model.addAttribute("anumber", anumber);
 		model.addAttribute("astatu", astatu);
-		model.addAttribute("adate", adate); */
+		model.addAttribute("adate1", adate1); 
+		model.addAttribute("adate2", adate2); 
 		
-		session.setAttribute("aname", aname);
+		/*session.setAttribute("aname", aname);
 		session.setAttribute("aphone", aphone);
 		session.setAttribute("anumber", anumber);
 		session.setAttribute("astatu", astatu);
-		session.setAttribute("adate", adate);
+		session.setAttribute("adate", adate);*/
 		
 		return "WEB-INF/ssjsp/MemberWithdrawRecord";
 	}
-	
+/*	
 	//重置操作
 		@RequestMapping("/listcz5")
 		public String listcz(HttpSession session){
@@ -65,7 +67,7 @@ public class Ss_MemberWithdrawRecordController {
 			
 			return "redirect:/sushuang5/list5";   //重定向到首页
 		}
-	
+	*/
 	
 	//得到id  传值     model 保存  传值
 		@RequestMapping("/getmemberWithId/{id}")

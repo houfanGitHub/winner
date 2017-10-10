@@ -48,7 +48,7 @@ public class Subject  {
 	private String purpose; //借款目的
 	private Date raiseEnd; //募集结束
 	private Date raiseStart; //募集开始
-	private byte refundWay; //还款方式
+	private byte refundWay; //还款方式  (0 分期还本付息    ； 1 一次性还本付息)
 	private byte safeGuard_way; //保障方式
 	private String safetyControl;//安全保障
 	private String serialNo;//合同号        

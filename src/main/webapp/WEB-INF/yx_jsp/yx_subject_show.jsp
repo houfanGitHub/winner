@@ -24,10 +24,11 @@ $("#btn1").click(function(){//跳转到添加方法
 	document.forms[0].submit();
 });
 
-$("#cz").click(function(){//重置
+$("#cz").click(function(){
 	document.forms[0].action="/winner/yx/listcz";
 	document.forms[0].submit();
-});
+	
+})
 
  });
 </script>
@@ -66,10 +67,17 @@ function editshow(id){
 </select>
 </td>
 <td></td>  
-<td align="center"><input type="button" id="cx" class="btn btn-primary"  value="查询"></td><td align="center"><input type="button" class="btn btn-primary" id="cz"  value="重置"/></td>
-<td><input type="button" class="btn btn-primary" id="btn1" value="新增"/></td>
+<td align="center">
+<!-- <input type="button" id="cx" class="btn btn-primary"  value="查询"></td><td align="center"><input type="button" class="btn btn-primary" id="cz"  value="重置"/></td>
+<td><input type="button" class="btn btn-primary" id="btn1" value="新增"/>   -->
+<a href="#" class="btn btn-primary" type="button"  id="cx">查询</a>&nbsp;&nbsp;
+<a href="#" class="btn btn-primary" type="reset" id="cz">重置</a>&nbsp;&nbsp;
+</td>
 </tr>
-<tr class="info" align="center">
+</table>
+</form>
+<table border="0" class="table table-condensed table-hover">
+<tr  align="center">
 <td>序号</td><td>ID</td><td>合同编号</td><td>类型</td><td>名称</td><td>标的总金额</td><td>已投总金额</td><td>投资期限</td><td>起投金额</td><td>年化收益</td><td>状态</td><td>可使用体验金</td><td>添加时间</td><td>操作</td>
 </tr>
 <c:forEach items="${list}" var="t" varStatus="stat">
@@ -113,7 +121,7 @@ P2P房贷
 </tr>
 </c:forEach>
 </table>
-</form>
+
 
 
 </body>

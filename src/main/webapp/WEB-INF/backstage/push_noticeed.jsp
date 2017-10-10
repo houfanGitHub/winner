@@ -117,7 +117,7 @@ window.location.href="/winner/statused/"+id;
 <form action="post">
 <table>
 <tr>
-<td><div style="width: 570px;"></div><td><b>你说我进来没？ : </b><input type="text" name="tname" value="${tname}" /><input type="button" value="搜索" onclick="fun3();" class="green"></td>
+<td><div style="width: 570px;"></div><td><b>标题 : </b><input type="text" name="tname" value="${tname}" /><input type="button" value="搜索" onclick="fun3();" class="green"></td>
 </tr>
 </table>
 </form>

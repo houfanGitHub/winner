@@ -544,7 +544,7 @@ public class HoufanWebItemController {
 	 * @param attributes
 	 * @return
 	 */
-	@RequestMapping("webMemberLogout")
+	@RequestMapping("/webMemberLogout")
 	public String webUserLogout(HttpSession session){
 		//清除session
 		session.removeAttribute("memberinfo");
@@ -864,7 +864,7 @@ public class HoufanWebItemController {
 	// 我的加法库    收益记录
 	@RequestMapping("/myself")
 	public String myself() {
-		return "redirect:/sushuang1/getmemberprofit1"; //跳转到 controller
+		return "redirect:/sushuang1/asd"; //跳转到 controller
 	}
 	
 	//忘记密码
@@ -1038,8 +1038,7 @@ public class HoufanWebItemController {
 						subject_purchase_record.setLastProfitDay(Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(new Date())));
 						subject_purchase_record.setBonusInfo("无");
 						this.frontService.savepurchaserecord(subject_purchase_record);
-//						List<SubjectPurchaseRecord> list = this.frontService.listpurchase(Integer.valueOf(subject_id));
-						return "";//成功后跳到个人中心查看
+						return "WEB-INF/myself/invests";//成功后跳到个人中心查看
 					}else{
 						return "WEB-INF/products/buyProducts";//返回购买页面
 					}

@@ -47,7 +47,8 @@ public class Ss_MemberWithdrawRecordDao {
 			String aphone =(String)map.get("aphone");//手机号
 			String anumber=(String)map.get("anumber");//绑卡卡号
 			String astatu=(String)map.get("astatu");//状态
-			String adate=(String)map.get("adate");  //提现时间
+			String adate1=(String)map.get("adate1");  //提现时间
+			String adate2=(String)map.get("adate2");  //提现时间
 			
 			if(aname!=null && !"".equals(aname)){ //姓名
 				hql=hql+" and  memberwith .member.memberName like '%"+aname+"%'";
@@ -57,15 +58,18 @@ public class Ss_MemberWithdrawRecordDao {
 			}
 			
 			if(anumber!=null && !"".equals(anumber)){ //绑卡卡号
-				hql=hql+" and bankCard like '%"+anumber+"%'";
+				hql=hql+" and bankCard="+anumber;
 			}
 			
 			if(astatu!=null && !"".equals(astatu)){ //订单状态
 				hql=hql+" and status= "+astatu;
 			}
 			
-			if(adate!=null && !"".equals(adate)){  //提现时间
-				hql=hql+" and createDate="+adate;
+			if(adate1!=null && !"".equals(adate1)){  //提现时间1  开始时间
+				hql=hql+" and createDate>='"+adate1+"'";
+			}
+			if(adate2!=null && !"".equals(adate2)){  //体现时间2  结束时间
+				hql=hql+" and createDate<='"+adate2+"'";
 			}
 		
 			return hql;

@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="member_account")
-public class MemberAccount  {
+public class MemberAccount  { //资金详情 信息表
 	private String id;
 	private Double bbinAmount;  //体验金
 	private Double bonusAmount;   //红包金额
@@ -31,7 +31,7 @@ public class MemberAccount  {
 	private Double totalProfit;  //累计收益
 	private Date updateDate;  //修改时间
 	private Double useableBalance;  //可用余额
-	private Member member;
+	private Member member; //会员表
 
 	public MemberAccount() {
 	}

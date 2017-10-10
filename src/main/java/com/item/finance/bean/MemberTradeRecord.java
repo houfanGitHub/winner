@@ -25,7 +25,7 @@ public class MemberTradeRecord  {  //交易记录表
 	private byte fundFlow;  //资金流向(0:流出1:流入)',
 	private String tradeName;  //交易名称
 	private String tradeNo;  //交易号
-	private byte tradeStatus; //交易状态
+	private byte tradeStatus; //交易状态( 0 交易失败    2 交易成功)
 	private String tradeType; //交易分类
 	private Date updateDate;//修改时间
 	private Member member;   //会员表

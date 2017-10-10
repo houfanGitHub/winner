@@ -193,7 +193,7 @@
 				&nbsp;
 			</div>
 			<div class="rInput loginChoose">
-				我已经注册，现在就<a href="http://pro.ying158.com/web/login">登录</a>
+				我已经注册，现在就<a href="/winner/itemweb/toLogin">登录</a>
 			</div>
 		</div>
 	</div>

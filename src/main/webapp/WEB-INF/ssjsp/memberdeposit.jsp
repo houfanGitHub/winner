@@ -30,9 +30,11 @@
 		});
 		
 		$("#cz").click(function(){
-			document.forms[0].action="/winner/sushuang4/listcz4";
-			document.forms[0].submit();
-	})
+ 			//document.forms[0].action="/winner/sushuang1/listcz1";
+			//document.forms[0].submit();
+			$("input").val('');
+ 	})
+	
 	});
 </script>
 <body>
@@ -50,8 +52,11 @@
 富友订单：<input type="text" name="payChannelName2" value="${payChannelName2 }">&nbsp;&nbsp;
 订单时间：<input type="date" name="date1" value="${date1 }">&nbsp;&nbsp;
 <input type="date" name="date2" value="${date2 }">&nbsp;&nbsp;
-<input  class="btn btn-primary" type="button" id="btn4" value="查询">&nbsp;&nbsp;
-<input class="btn btn-primary" type="reset"  id="cz" value="重置"><br><br>
+<a href="#" class="btn btn-primary" type="button"  id="btn4">查询</a>&nbsp;&nbsp;
+<a href="#" class="btn btn-primary" type="reset" id="cz">重置</a>&nbsp;&nbsp;<br><br>
+<!-- <input  class="btn btn-primary" type="button" id="btn4" value="查询">&nbsp;&nbsp; -->
+<!-- <input class="btn btn-primary" type="reset"  id="cz" value="重置"><br><br> -->
+</form>
 <table width="1100" cellspacing="1" border="0" bgcolor="blue" class="table table-striped table-condensed table-condensed table-hover table-bordered">
 <tr bgcolor="white" align="center">
 <td>序号</td>
@@ -92,7 +97,7 @@
 </tr>
 </c:forEach>
 </table>
-</form>
+
 
 </body>
 </html>

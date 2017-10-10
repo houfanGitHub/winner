@@ -30,8 +30,9 @@
 		});
 		
 		$("#cz").click(function(){
-			document.forms[0].action="/winner/sushuang5/listcz5";
-			document.forms[0].submit();
+ 			//document.forms[0].action="/winner/sushuang1/listcz1";
+			//document.forms[0].submit();
+			$("input").val('');
 	})
 	
 	});
@@ -50,11 +51,15 @@
 <option value="2">打款中</option>
 <option value="3">打款失败</option>
 </select><br><br>
-提现时间：<input   type="date" name="adate" value="${adate }">&nbsp;&nbsp;
-<input class="btn btn-primary" type="button" value="查询" id="btn5">
+提现时间：<input   type="date" name="adate1" value="${adate1 }">&nbsp;&nbsp;
+<input   type="date" name="adate2" value="${adate2 }">&nbsp;&nbsp;
+<a href="#" class="btn btn-primary" type="button"  id="btn5">查询</a>&nbsp;&nbsp;
+<a href="#" class="btn btn-primary" type="reset" id="cz">重置</a>&nbsp;&nbsp;
+<!-- <input class="btn btn-primary" type="button" value="查询" id="btn5"> -->
 
-<input  class="btn btn-primary"  type="reset"   id="cz" value="重置">
-<br><br>
+<!-- <input  class="btn btn-primary"  type="reset"   id="cz" value="重置"> -->
+<br><br></form>
+
 <table width="1100" bgcolor="blue" cellspacing="1" border="0"  
 class="table table-striped table-condensed table-condensed table-hover table-bordered">
 <tr align="center" bgcolor="white">
@@ -105,7 +110,7 @@ class="table table-striped table-condensed table-condensed table-hover table-bor
 </tr>
 </c:forEach>
 </table>
-</form>
+
 
 <!-- bootstrap模态窗口显示 -->
    <div class="modal fade " id="myModal" tabindex="-1" role="dialog" 

@@ -26,11 +26,12 @@
 		});
 	
 		$("#cz").click(function(){
-			document.forms[0].action="/winner/sushuang1/listcz1";
-			document.forms[0].submit();
-	})
+ 			//document.forms[0].action="/winner/sushuang1/listcz1";
+			//document.forms[0].submit();
+			$("input").val('');
+ 	})
 	});
-	//清空文本矿的值
+	//清空文本框的值
 	//$(document).ready(function(){  
 		// $(function(){  
 		//   $('input:reset').click(function(){  
@@ -48,10 +49,12 @@
 注册时间：<input type="date" name="create_date1" value="${create_date1}">&nbsp;&nbsp;
 <input type="date" name="create_date2" align="left" value="${create_date2 }">
 
-<input class="btn btn-primary" type="button" id="btn1" value="查  询">&nbsp;&nbsp;
-<input class="btn btn-primary" type="reset"   id="cz" value="重置"><br><br>
+<a href="#" class="btn btn-primary" type="button"  id="btn1">查询</a>&nbsp;&nbsp;
+<a href="#" class="btn btn-primary" type="reset" id="cz">重置</a>&nbsp;&nbsp;<br><br>
+<!-- <input class="btn btn-primary" type="button" id="btn1" value="查  询">&nbsp;&nbsp; -->
+<!-- <input class="btn btn-primary" type="button"   id="cz" value="重置"><br><br> -->
 <!-- <input value="重置" class="btn btn-primary" onClick="" type="reset">  -->
-
+</form>
 <table class="table table-striped table-condensed table-condensed table-hover table-bordered" 
  width="1100" bgcolor="blue" cellspacing="1" border="0" >
 <tr align="center" bgcolor="white">
@@ -78,7 +81,7 @@
 </tr>
 </c:forEach>
 </table>
-</form>
+
 
 </body>
 </html>
