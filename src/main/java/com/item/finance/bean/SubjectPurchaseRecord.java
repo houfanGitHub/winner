@@ -37,7 +37,32 @@ public class SubjectPurchaseRecord  {//标的购买表
 	private Subject subject;  //主题表
 	private Date updateDate;  //修改时间
 
-    @Id
+    public SubjectPurchaseRecord() {
+		super();
+	}
+
+	public SubjectPurchaseRecord(Double amount, String bonusInfo,
+			Date createDate, String dealIp, byte delflag, Double interest,
+			byte ispayment, int lastProfitDay, Member member,
+			int payInterestTimes, String serialNumber, Subject subject,
+			Date updateDate) {
+		super();
+		this.amount = amount;
+		this.bonusInfo = bonusInfo;
+		this.createDate = createDate;
+		this.dealIp = dealIp;
+		this.delflag = delflag;
+		this.interest = interest;
+		this.ispayment = ispayment;
+		this.lastProfitDay = lastProfitDay;
+		this.member = member;
+		this.payInterestTimes = payInterestTimes;
+		this.serialNumber = serialNumber;
+		this.subject = subject;
+		this.updateDate = updateDate;
+	}
+
+	@Id
     @GeneratedValue
 	public int getId() {
 		return id;

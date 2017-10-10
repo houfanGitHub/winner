@@ -27,20 +27,23 @@
 
 <script type="text/javascript">
 $(function(){
-	$("#btn1").click(function(){ 
-		alert("1111");
+	$("#btn1").click(function(){
+		if($("#mytext").val()>$("#myMoney").text()*1){
+			alert("金额不足,请先充值!");
+			return;
+		}
 		$("#form1").attr("action","/winner/itemweb/buy");
 		$("#form1").submit();
 	});
 	});
 	
-function fun(obj){
-	var amountYuE=$("#amountYuE").val();//账户余额
-	var mytext=obj.value;//输入框输入金额
-	if(parseInt(amountYuE)<parseInt(mytext)){
-		$("#btn1").attr("disabled", true); 
-	}
-}
+// function fun(obj){
+// 	var amountYuE=$("#amountYuE").val();//账户余额
+// 	var mytext=obj.value;//输入框输入金额
+// 	if(parseInt(amountYuE)<parseInt(mytext)){
+// 		$("#btn1").attr("disabled", true); 
+// 	}
+// }
 $(function(){
 	$("#btn1").click(function(){
 		var check=$("#cardHidden").val();//判断是否绑卡了
@@ -143,14 +146,14 @@ $(function(){
 
 <c:forEach items="${subject}" var="s">
     <div class="conTit">
-        <span><a style="color:#9d8440;" href="/FinancingProject/IndexController/product">其他标的</a></span>
+<!--         <span><a style="color:#9d8440;" href="/FinancingProject/IndexController/product">其他标的</a></span> -->
         <h2><em>￥</em>${s.name}</h2>
     </div>
  </c:forEach>
     <table class="conTable" width="100%" border="0" cellspacing="0" cellpadding="0">
         <tbody>
         <c:forEach items="${subject}" var="s">
-        <input type="hidden" name="id" value="${s.id}">
+        <input type="hidden" name="subject_id" value="${s.id}">
         <tr>
             <td class="txtInfo">
                 <div class="txt1">
@@ -204,14 +207,17 @@ $(function(){
                    <c:if test="${empty memberBankcard }">
                     	<input type="hidden" value="nocard" id="cardHidden">
                    </c:if>
-                    <c:if test="${memberBankcard.id>0 }">
+                    <c:if test="${!empty memberinfo }">
                     	<input type="hidden" value="hascard" id="cardHidden">
                     </c:if>
                     <div class="tit">
-                    	<c:if test="${member.id>0 }">
+                    	<c:if test="${!empty memberinfo }">
                     	<span class="fr">
-                    		<input type="hidden" value="${memberAccount.useableBalance }"  id="amountYuE" name="amountYuE">
-	                        ${memberAccount.useableBalance }元&nbsp;&nbsp;<a href="">充值&nbsp;&nbsp;&nbsp;</a>
+<%--                <input type="hidden" value="${memberAccount.useableBalance }"  id="amountYuE" name="amountYuE"> --%>
+	          <span id="myMoney">
+	          <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.useableBalance+memberAccount.investAmount+memberAccount.totalProfit}</c:forEach>
+	          </span>元&nbsp;&nbsp;
+	                    <a href="/winner/itemweb/deposit">充值&nbsp;&nbsp;&nbsp;</a>
 						</span>
                         <h2>账户余额</h2>
                          	<input type="hidden" value="${memberAccount.useableBalance }" id="hiddenLogin">
@@ -226,9 +232,9 @@ $(function(){
                          <input id="mytext" class="txt" name="mytext" placeholder="起投金额100元以上" type="text" onkeyup="fun(this)">
                         <span style="float: right;margin-top: -40px;position: relative; line-height: 40px; padding: 0 10px;color: #f00;" id="addMoney"></span>
                     <p class="preBox">
-                        <input type="checkbox" id="registerRule" class="registerRule" checked="checked"><span class="fl">同意<a href="http://pro.ying158.com/web/syxy" target="_black">《产品协议》</a></span>
-                   		<button id="redPacket">使用红包</button>
-                        <button id="bbinAll">体验金全投</button>
+                        <input type="checkbox" id="registerRule" class="registerRule" checked="checked"><span class="fl">同意《产品协议》</span>
+<!--                    		<button id="redPacket">使用红包</button> -->
+<!--                         <button id="bbinAll">体验金全投</button> -->
                     </p>
                     <button class="submit" id="btn1">确认抢购</button>
                 </div>

@@ -22,8 +22,8 @@
  <div class="gjList clearfix">
         	<ul>
                     <li>
-                        <a class="all" target="_blank" href="#">
-                            <h2 class="tit"><span>募</span>凯丰对冲10号</h2>
+                        <a class="all" target="_blank" href="/winner/itemweb/buyproduct?id=1628">
+                            <h2 class="tit"><span>固</span>理财宝一号11</h2>
                             <span class="fenl">股权</span>
                             <div class="count">
                                 <span class="s1"><b>45.0</b>%</span>
@@ -33,7 +33,7 @@
                                 <span class="s5">/</span>
                             </div>
                             <p class="safe">
-                                起购金额：￥1,000,000.00元<br>
+                                起购金额：￥100.00元<br>
                                 </p>
                             <p class="txt" style="height: 72px;">
 								管理人：深圳市凯丰投资管理有限公司
@@ -41,8 +41,8 @@
                         </a>
                     </li>
                     <li>
-                        <a class="all" target="_blank" href="#">
-                            <h2 class="tit"><span>募</span>凯丰对冲9号</h2>
+                        <a class="all" target="_blank" href="/winner/itemweb/buyproduct?id=1637">
+                            <h2 class="tit"><span>固</span>测试车贷123</h2>
                             <span class="fenl">股权</span>
                             <div class="count">
                                 <span class="s1"><b>45.0</b>%</span>
@@ -52,7 +52,7 @@
                                 <span class="s5">/</span>
                             </div>
                             <p class="safe">
-                                起购金额：￥1,000,000.00元<br>
+                                起购金额：￥100.00元<br>
                                 </p>
                             <p class="txt" style="height: 72px;">
 								管理人：深圳市凯丰投资管理有限公司
@@ -60,21 +60,21 @@
                         </a>
                     </li>
                     <li>
-                        <a class="all" target="_blank" href="#">
-                            <h2 class="tit"><span>募</span>和聚友道专享1号</h2>
-                            <span class="fenl">私募</span>
+                        <a class="all" target="_blank" href="/winner/itemweb/buyproduct?id=1638">
+                            <h2 class="tit"><span>固</span>有缘固收类1</h2>
+                            <span class="fenl">股权</span>
                             <div class="count">
                                 <span class="s1"><b>35.0</b>%</span>
-                                <span class="s2"><b>360</b>天</span>
+                                <span class="s2"><b>34</b>人</span>
                                 <span class="s3">年化收益</span>
-                                <span class="s4">投资期限</span>
+                                <span class="s4">已购人数</span>
                                 <span class="s5">/</span>
                             </div>
                             <p class="safe">
-                                起购金额：￥1,000,000.00元<br>
+                                起购金额：￥100.00元<br>
                                 </p>
                             <p class="txt" style="height: 72px;">
-							精品私募
+							管理人：深圳市凯丰投资管理有限公司
                             </p><p class="abox"><span class="abtn">立即购买</span></p>
                         </a>
                     </li>

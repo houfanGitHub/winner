@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
@@ -56,7 +57,7 @@ public class OverseaConfig implements Serializable {/**
 
 
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public int getId() {
 		return this.id;
 	}

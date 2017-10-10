@@ -1,7 +1,9 @@
 package com.item.finance.bean;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.Set;
 
@@ -29,7 +31,7 @@ public class SmsInterface  {
 
 
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public String getId() {
 		return this.id;
 	}

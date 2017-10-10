@@ -35,7 +35,7 @@ public class SubjectBbinPurchaseRecord  {
 	}
 
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public int getId() {
 		return id;
 	}

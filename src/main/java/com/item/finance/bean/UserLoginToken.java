@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,7 +34,7 @@ public class UserLoginToken  {
 
 
 	@Id
-	@Column(unique=true, nullable=false, length=64)
+	@GeneratedValue
 	public String getToken() {
 		return this.token;
 	}

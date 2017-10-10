@@ -64,6 +64,7 @@ import com.item.finance.services.MemberBankcardService;
 import com.item.finance.services.MemberDepositRecordService;
 import com.item.finance.services.MemberService;
 import com.item.finance.services.MemberWithdrawRecordService;
+import com.item.finance.services.SubjectPurchaseRecordService;
 import com.item.finance.services.SubjectService;
 import com.item.finance.services.UserRoleRelationService;
 import com.item.finance.services.UserRoleService;
@@ -101,6 +102,8 @@ public class HoufanWebItemController {
 	private Xzy_NewsService newsService;
 	@Autowired
 	private Xzy_PushNoticeService PushNoticeService;
+	@Autowired
+	private SubjectPurchaseRecordService subjectPurchaseRecordService;
 
 	//充值
 	@RequestMapping("/accountRecharge")
@@ -907,141 +910,142 @@ public class HoufanWebItemController {
 			
 			//购买
 			@RequestMapping("/buy")
-			public String buy(String subject_id,String amountYuE,String mytext,Model model,HttpSession session,
-					MemberProfitRecord member_profit_record,MemberTradeRecord member_trade_record,MemberTally member_tally,
-					SubjectPurchaseRecord subject_purchase_record){
-				
-					//从session中获取member信息
-					Object obj=session.getAttribute("member");
-					if(obj!=null){
-						Member member=(Member)obj;
-						String member_id=member.getId();
-						String sysDate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-						String sysDateAndRandom=new SimpleDateFormat("yyyMMddHHmmss").format(new Date())+(int)(Math.random()*9)+(int)(Math.random()*9);  
-						Calendar now=Calendar.getInstance();
-						
-						//subject表
-						System.out.println("subject_id="+subject_id);
-						com.item.finance.bean.Subject subject=this.frontService.getSubjectById(Integer.parseInt(subject_id));
-						System.out.println(subject_id+"  newid");
-						subject.setBought(subject.getBought()+1);//购买人数+1
-						subject.setAmount(subject.getAmount()+Integer.parseInt(mytext));
-						System.out.println("mytext="+mytext);
-						System.out.println("amount="+subject.getAmount());
-						this.frontService.updatesubject(subject);
-						subject=this.frontService.getSubjectById(Integer.valueOf(subject_id));
-						//结算利息
-						double interest=((((Integer.parseInt(mytext)*(subject.getYearRate()+1))/100)/365)*(subject.getPeriod()));
-						
-						//成员账户表
-						MemberAccount member_account=this.frontService.memberAccount(member_id);
-						member_account.setUseableBalance(Double.parseDouble(amountYuE)-Double.parseDouble(mytext));
-						System.out.println("可用余额:"+member_account.getUseableBalance());
-						try {
-							member_account.setUpdateDate(new SimpleDateFormat("yyyy-MM-dd HH:ss:mm").parse(sysDate));
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						member_account.setInvestAmount(Double.parseDouble(mytext)+member_account.getInvestAmount());
-						member_account.setMember(member);
-						this.frontService.updateaccount(member_account);
-						
-						
-						//成员利润表
-						member_profit_record.setMember(member);
-						member_profit_record.setSubjectPurchaseRecord(subject_purchase_record);
-//						member_profit_record.setSubject(subject);
-						member_profit_record.setSerialNumber(sysDateAndRandom);
-						member_profit_record.setType((byte)0);
-						member_profit_record.setAmount(interest);
-						member_profit_record.setDelflag((byte)0);
-						try {
-							member_profit_record.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:ss:mm").parse(sysDate));
-							
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						try {
-							member_profit_record.setUpdateDate(new SimpleDateFormat("yyyy-MM-dd HH:ss:mm").parse(sysDate));
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						member_profit_record.setComment(subject.getName());
-						member_profit_record.setProfitYear((short) now.get(Calendar.YEAR));
-						member_profit_record.setProfitMonth((byte) now.get(Calendar.MONTH+1));
-						member_profit_record.setProfitDay((byte) now.get(Calendar.DAY_OF_MONTH));
-						this.frontService.saveprofit(member_profit_record);
-						
-						//交易记录表
-						member_trade_record.setMember(member);
-						member_trade_record.setTradeNo(sysDateAndRandom);
-						member_trade_record.setTradeName("购买:"+subject.getName());
-						member_trade_record.setCounterpart("赢+理财公司");
-						member_trade_record.setAmount(Integer.parseInt(mytext));
-						member_trade_record.setTradeType(subject.getName());
-						member_trade_record.setFundFlow((byte) 0);
-						member_trade_record.setTradeStatus((byte) 0);
-						try {
-							member_trade_record.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						try {
-							member_trade_record.setUpdateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						member_trade_record.setExtField1("扩展一");
-						member_trade_record.setExtField2("扩展一");
-						member_trade_record.setExtField3("扩展一");
-						this.frontService.savetraderecord(member_trade_record);
-						
-						
-						//记账表
-						member_tally.setMember(member);
-						member_tally.setId(1);
-						member_tally.setTypeName("A标");
-						member_tally.setAmount(Integer.parseInt(mytext));
-						try {
-							member_tally.setPayDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
-						} catch (ParseException e) {
-							e.printStackTrace();
-						}
-						try {
-							member_tally.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
-						} catch (ParseException e) {
-							e.printStackTrace();
-						}
-						this.frontService.savetally(member_tally);
-						
-						//标的购买表
-						subject_purchase_record.setSubject(subject);
-						subject_purchase_record.setMember(member);
-						subject_purchase_record.setSerialNumber(sysDate);
-						
-						subject_purchase_record.setAmount(Double.parseDouble(mytext));
-						subject_purchase_record.setDealIp("127.0.0.1");
-						subject_purchase_record.setDelflag((byte) 0);
-						try {
-							subject_purchase_record.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						try {
-							subject_purchase_record.setUpdateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						subject_purchase_record.setInterest(interest);
-						subject_purchase_record.setIspayment((byte) 1);
-						subject_purchase_record.setPayInterestTimes(1);
-						subject_purchase_record.setLastProfitDay(Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(new Date())));
-						subject_purchase_record.setBonusInfo("无");
-						this.frontService.savepurchaserecord(subject_purchase_record);
-						return "WEB-INF/myself/invests";//成功后跳到个人中心查看
-					}else{
-						return "WEB-INF/products/buyProducts";//返回购买页面
+			public String buy(String subject_id,String mytext,HttpSession session){
+				System.out.println("购买产品id : subject_id = "+subject_id);
+				System.out.println("购买金额 : mytext = "+mytext);
+				//从session中获取member信息
+				Member member = (Member) session.getAttribute("memberinfo");
+					String member_id=member.getId();
+					//我的余额
+					double balance = member.getMemberAccounts().iterator().next().getUseableBalance();
+					System.out.println("我的余额 : "+balance);
+					String sysDate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+					String sysDateAndRandom=new SimpleDateFormat("yyyMMddHHmmss").format(new Date())+(int)(Math.random()*9)+(int)(Math.random()*9);  
+					Calendar now=Calendar.getInstance();
+					
+					//subject表
+					System.out.println("subject_id="+subject_id);
+					com.item.finance.bean.Subject subject=this.frontService.getSubjectById(Integer.parseInt(subject_id));
+					System.out.println(subject_id+"  newid");
+					subject.setBought(subject.getBought()+1);//购买人数+1
+					subject.setAmount(subject.getAmount()+Integer.parseInt(mytext));
+					System.out.println("mytext="+mytext);
+					System.out.println("amount="+subject.getAmount());
+					this.frontService.updatesubject(subject);
+					subject=this.frontService.getSubjectById(Integer.valueOf(subject_id));
+					//结算利息
+					double interest=((((Integer.parseInt(mytext)*(subject.getYearRate()+1))/100)/365)*(subject.getPeriod()));
+					
+					//标的购买表
+					SubjectPurchaseRecord subjectPurchaseRecord = new SubjectPurchaseRecord();
+					subjectPurchaseRecord.setSubject(subject);
+					subjectPurchaseRecord.setMember(member);
+					subjectPurchaseRecord.setSerialNumber(sysDate);
+					
+					subjectPurchaseRecord.setAmount((double) Integer.parseInt(mytext));
+					subjectPurchaseRecord.setDealIp("127.0.0.1");
+					subjectPurchaseRecord.setDelflag((byte) 0);
+					try {
+						subjectPurchaseRecord.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
+					try {
+						subjectPurchaseRecord.setUpdateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					subjectPurchaseRecord.setInterest(interest);
+					subjectPurchaseRecord.setIspayment((byte) 1);
+					subjectPurchaseRecord.setPayInterestTimes(1);
+					subjectPurchaseRecord.setLastProfitDay(Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(new Date())));
+					subjectPurchaseRecord.setBonusInfo("无");
+					this.frontService.savepurchaserecord(subjectPurchaseRecord);
+					//成员账户表
+					MemberAccount member_account=this.frontService.memberAccount(member_id);
+					member_account.setUseableBalance(balance-Double.parseDouble(mytext));
+					System.out.println("可用余额:"+member_account.getUseableBalance());
+					try {
+						member_account.setUpdateDate(new SimpleDateFormat("yyyy-MM-dd HH:ss:mm").parse(sysDate));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					member_account.setBbinAmount(Double.parseDouble(mytext)+member_account.getBbinAmount());
+					member_account.setMember(member);
+					this.frontService.updateaccount(member_account);
+					
+					
+					//成员利润表
+					MemberProfitRecord memberProfitRecord = new MemberProfitRecord();
+					memberProfitRecord.setMember(member);
+//					memberProfitRecord.setSubject(subject);
+					memberProfitRecord.setSerialNumber(sysDateAndRandom);
+					memberProfitRecord.setType((byte) 0);
+					memberProfitRecord.setAmount(interest);
+					memberProfitRecord.setDelflag((byte) 0);
+					try {
+						memberProfitRecord.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:ss:mm").parse(sysDate));
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					try {
+						memberProfitRecord.setUpdateDate(new SimpleDateFormat("yyyy-MM-dd HH:ss:mm").parse(sysDate));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					memberProfitRecord.setComment(subject.getName());
+					memberProfitRecord.setProfitYear((short) now.get(Calendar.YEAR));
+					memberProfitRecord.setProfitMonth((byte) now.get(Calendar.MONTH+1));
+					memberProfitRecord.setProfitDay((byte) now.get(Calendar.DAY_OF_MONTH));
+					memberProfitRecord.setSubjectPurchaseRecord(subjectPurchaseRecord);
+					this.frontService.saveprofit(memberProfitRecord);
+					
+					//交易记录表
+					MemberTradeRecord memTradeRecord = new MemberTradeRecord();
+					memTradeRecord.setMember(member);
+					memTradeRecord.setTradeNo(sysDateAndRandom);
+					memTradeRecord.setTradeName("购买:"+subject.getName());
+					memTradeRecord.setCounterpart("孔明理财公司");
+					memTradeRecord.setAmount(Integer.parseInt(mytext));
+					memTradeRecord.setTradeType(subject.getName());
+					memTradeRecord.setFundFlow((byte) 0);
+					memTradeRecord.setTradeStatus((byte) 0);
+					try {
+						memTradeRecord.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					try {
+						memTradeRecord.setUpdateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					memTradeRecord.setExtField1("扩展一");
+					memTradeRecord.setExtField2("扩展一");
+					memTradeRecord.setExtField3("扩展一");
+					this.frontService.savetraderecord(memTradeRecord);
+					
+					
+					//记账表
+					MemberTally memberTally = new MemberTally();
+					memberTally.setMember(member);
+					memberTally.setTypeId(1);
+					memberTally.setTypeName("A标");
+					memberTally.setAmount(Integer.parseInt(mytext));
+					try {
+						memberTally.setPayDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					try {
+						memberTally.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					this.frontService.savetally(memberTally);
+//					List<SubjectPurchaseRecord> list = this.frontService.listpurchase(Integer.valueOf(subject_id));
+					return "redirect:/sushuang1/getsubjectpur";//成功后跳到个人中心查看
 			}
 	//投资记录
 	@RequestMapping("/invests")

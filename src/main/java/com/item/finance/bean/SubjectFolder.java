@@ -25,7 +25,6 @@ public class SubjectFolder  {
 
 	@Id
 	@GeneratedValue
-	//@Column(unique=true, nullable=false)
 	public int getId() {
 		return id;
 	}

@@ -215,11 +215,11 @@
 					</a>
 						<ul
 							class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-							<li><a href="javascript:void(0" name="Systems.html"
-								title="系统设置" class="iframeurl"><i class="icon-cog"></i>网站设置</a></li>
-							<li><a href="javascript:void(0)" name="admin_info.html"
-								title="个人信息" class="iframeurl"><i class="icon-user"></i>个人资料</a></li>
-							<li class="divider"></li>
+<!-- 							<li><a href="javascript:void(0" name="Systems.html" -->
+<!-- 								title="系统设置" class="iframeurl"><i class="icon-cog"></i>网站设置</a></li> -->
+<!-- 							<li><a href="javascript:void(0)" name="admin_info.html" -->
+<!-- 								title="个人信息" class="iframeurl"><i class="icon-user"></i>个人资料</a></li> -->
+<!-- 							<li class="divider"></li> -->
 							<li><a href="javascript:ovid(0)" id="Exit_system"><i
 									class="icon-off"></i>退出</a></li>
 						</ul></li>
@@ -264,9 +264,9 @@
 				<div id="menu_style" class="menu_style" tabindex="5000"
 					style="overflow: hidden; outline: none;">
 					<ul class="nav nav-list" id="nav_list" style="height: 436px;">
-						<li class="home"><a href="javascript:void(0)"
-							name="home.html" class="iframeurl" title=""><i
-								class="icon-home"></i><span class="menu-text"> 系统首页 </span></a></li>
+<!-- 						<li class="home"><a href="javascript:void(0)" -->
+<!-- 							name="home.html" class="iframeurl" title=""><i -->
+<!-- 								class="icon-home"></i><span class="menu-text"> 系统首页 </span></a></li> -->
 						<li><a href="#" class="dropdown-toggle"><i
 								class="icon-desktop"></i><span class="menu-text"> 理财管理 </span><b
 								class="arrow icon-angle-down"></b></a>
@@ -324,20 +324,20 @@
 									title="邀请奖励" class="iframeurl"><i
 										class="icon-double-angle-right"></i>邀请奖励</a></li>
 							</ul></li>
-						<li><a class="dropdown-toggle"><i class="icon-user"></i><span
-								class="menu-text"> 赢+统计 </span><b class="arrow icon-angle-down"></b></a>
-							<ul class="submenu" id="Sort_link_4">
-								<li class="home" style="height: 36px;"><a
-									href="javascript:void(0)" name="user_list.html" title="财务统计"
-									class="iframeurl"><i class="icon-double-angle-right"></i>财务统计</a></li>
-								<li class="home" style="height: 36px;"><a
-									href="javascript:void(0)" name="member-Grading.html"
-									title="用户综合统计" class="iframeurl"><i
-										class="icon-double-angle-right"></i>用户综合统计</a></li>
-								<!--                     <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="integration.html" title="会员记录管理" class="iframeurl"><i class="icon-double-angle-right"></i>会员记录管理</a></li> -->
+<!-- 						<li><a class="dropdown-toggle"><i class="icon-user"></i><span -->
+<!-- 								class="menu-text"> 赢+统计 </span><b class="arrow icon-angle-down"></b></a> -->
+<!-- 							<ul class="submenu" id="Sort_link_4"> -->
+<!-- 								<li class="home" style="height: 36px;"><a -->
+<!-- 									href="javascript:void(0)" name="user_list.html" title="财务统计" -->
+<!-- 									class="iframeurl"><i class="icon-double-angle-right"></i>财务统计</a></li> -->
+<!-- 								<li class="home" style="height: 36px;"><a -->
+<!-- 									href="javascript:void(0)" name="member-Grading.html" -->
+<!-- 									title="用户综合统计" class="iframeurl"><i -->
+<!-- 										class="icon-double-angle-right"></i>用户综合统计</a></li> -->
+<!-- 								                    <li class="home" style="height: 36px;"><a href="javascript:void(0)" name="integration.html" title="会员记录管理" class="iframeurl"><i class="icon-double-angle-right"></i>会员记录管理</a></li> -->
 
 
-							</ul></li>
+<!-- 							</ul></li> -->
 						<li><a class="dropdown-toggle"><i class="icon-laptop"></i><span
 								class="menu-text"> 赢+设置 </span><b class="arrow icon-angle-down"></b></a>
 							<ul class="submenu" id="Sort_link_5">
@@ -415,7 +415,7 @@
 				<iframe id="iframe"
 					style="border: 0px; width: 100%; background-color: rgb(255, 255, 255); height: 469px;"
 					name="iframe" frameborder="0"
-					src="/winner/backstage/show/home.html"> </iframe>
+					src="/winner/backstage/show/home.jsp"> </iframe>
 
 
 				<!-- /.page-content -->
