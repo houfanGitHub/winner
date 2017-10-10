@@ -29,7 +29,7 @@ public class SysBizInstitution  {
 
 
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public int getId() {
 		return this.id;
 	}

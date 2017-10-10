@@ -1,8 +1,10 @@
 package com.item.finance.bean;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -48,7 +50,7 @@ public class News  {
 
 
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public int getId() {
 		return this.id;
 	}

@@ -32,7 +32,7 @@ public class FinanceProductSubscribeRecord  {  //金融产品订阅记录表
 
 
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public String getId() {
 		return this.id;
 	}

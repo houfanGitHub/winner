@@ -166,7 +166,7 @@
     <h2>我的账户</h2>
     <ul>
         <li><a id="member_center_menu_deposit" href="/winner/itemweb/deposit"><em class="iconfont"></em>账户充值</a></li>
-        <li><a id="member_center_menu_security" href="/winner/itemweb/security"><em class="iconfont"></em>安全信息</a></li>
+<!--         <li><a id="member_center_menu_security" href="/winner/itemweb/security"><em class="iconfont"></em>安全信息</a></li> -->
         <li><a id="member_center_menu_withdraw" href="/winner/itemweb/drawMoney"><em class="iconfont"></em>我要提款</a></li>
     </ul>
 </div>

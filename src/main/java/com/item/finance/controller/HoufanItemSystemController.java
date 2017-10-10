@@ -120,24 +120,16 @@ public class HoufanItemSystemController {
 //			        String IsStudent = "";  
 			          
 			        //完成任务的同时，设置流程变量，使用流程变量用来指定完成任务后，下一个连线，对应sequenceFlow.bpmn文件中${message=='不重要'}  
-			        Map<String, Object> variables = new HashMap<String, Object>();  
-			        variables.put("outcome", IsAgree); 
-			        variables.put("processState", "2");	//已完成
-			        processEngine.getTaskService()//与正在执行的任务管理相关的Service  
-			                    .complete(taskId,variables); 
-			        if(ename.equals("admin:system")){	//如果是超级管理员 流程结束	完成提款 添加提款记录
-			        	/**
-			        	* 判断流程是否结束
-			        	*/
-//			        	ProcessInstance pi = processEngine.getRuntimeService().createProcessInstanceQuery()//
-//			        	.processInstanceId(id)//使用流程实例ID查询
-//			        	.singleResult();
-			        	//流程已结束	修改流程状态
-//			        	if(pi==null){
-//			        		TaskService taskService = processEngine.getTaskService();
-//			        		taskService.setVariable(id, "processState", '2');	//已完成
-//			        	}
-			        	
+			        if(!ename.equals("admin:system")){
+			        	processEngine.getTaskService()//与正在执行的任务管理相关的Service  
+			                    	.complete(taskId); 
+			        }else{	//如果是超级管理员 流程结束	完成提款 添加提款记录
+			        	Map<String, Object> variables = new HashMap<String, Object>();  
+				        variables.put("outcome", IsAgree); 
+				        variables.put("processState", "2");	//已完成
+				       // 流程结束
+				        processEngine.getTaskService()//与正在执行的任务管理相关的Service  
+				                    .complete(taskId,variables);
 			        	//alipay转账
 //			        	AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
 //			        	AlipayFundTransToaccountTransferRequest request = new AlipayFundTransToaccountTransferRequest();
@@ -168,9 +160,6 @@ public class HoufanItemSystemController {
 			        		//修改
 			        		memberWithdrawRecord.setStatus((byte)1);
 			        		memberWithdrawRecordService.update(memberWithdrawRecord);
-//			        	} else {
-//			        	System.out.println("调用失败");
-//			        	}
 			        }
 			        
 			        System.out.println("完成任务：任务ID："+taskId); 
@@ -257,7 +246,7 @@ public class HoufanItemSystemController {
 	
 	public User getUser(){
 		//获取用户信息
-		User user = (User) SecurityUtils.getSubject().getSession().getAttribute("currentUser");
+		User user = (User) SecurityUtils.getSubject().getSession().getAttribute("userinfo");
 		return user;
 	}
 	

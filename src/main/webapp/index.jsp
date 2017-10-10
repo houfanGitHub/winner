@@ -414,7 +414,7 @@ function fun(id){
             $(".bottomAd").hide();
         }
     </script>
-    <img src="http://ying158.com/images/yingjia.png" border="0" usemap="#Map">
+<!--     <img src="http://ying158.com/images/yingjia.png" border="0" usemap="#Map"> -->
     <map name="Map" id="Map">
         <area shape="rect" coords="1420,23,1445,48" href="javascript:hide();">
     </map>
@@ -424,7 +424,7 @@ function fun(id){
             <script>
     $("#marqueeContainer img").click(function () {
         var bigImg = $(this).attr("name");
-        var url = "/Content/images/jw/" + bigImg;
+        var url = "/winner/files/" + bigImg;
         $("#bigImg #theBigImg").attr("src", url);
         $("#bigImg").modal();
     });
@@ -763,7 +763,7 @@ var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " 
 					</div>
 					<div>
 						<button class="btn btn-primary" onclick="loginFromModal()" style="padding-left:20px;padding-right:20px;">登录</button>
-						<a class="btn btn-info" href="http://www.ying158.com/Account/Regist" target="blank" style="padding-left:20px;padding-right:20px;margin-left:20px;">注册</a>
+						<a class="btn btn-info" href="" target="blank" style="padding-left:20px;padding-right:20px;margin-left:20px;">注册</a>
 					</div>
 				</div>
 			</div>

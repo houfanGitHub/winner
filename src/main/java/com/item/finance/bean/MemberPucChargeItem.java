@@ -29,7 +29,7 @@ public class MemberPucChargeItem  {
 
 
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public String getId() {
 		return this.id;
 	}

@@ -32,7 +32,7 @@ public class SubjectOrderRecord  {  //标 的 订单表
 
 
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public String getId() {
 		return this.id;
 	}

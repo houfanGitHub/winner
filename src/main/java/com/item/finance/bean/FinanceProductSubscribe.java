@@ -44,9 +44,9 @@ public class FinanceProductSubscribe  {
 
 
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public int getId() {
-		return this.id;
+		return  this.id;
 	}
 
 	public void setId(int id) {

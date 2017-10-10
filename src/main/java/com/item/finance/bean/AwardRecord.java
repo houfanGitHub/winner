@@ -1,7 +1,9 @@
 package com.item.finance.bean;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -39,7 +41,7 @@ public class AwardRecord  {   //奖励记录表
 
 
 	@Id
-	@Column(unique=true, nullable=false)
+	@GeneratedValue
 	public int getId() {
 		return this.id;
 	}
