@@ -47,7 +47,7 @@ function editshow(id){
 <form action="">
 <table border="0" class="table table-condensed table-hover">
 <tr>
-<td colspan="2" align="center"><label>名称</label></td><td colspan="2"><input type="text" id="qname" name="qname" value="${qname}" class="form-control" placeholder="名称"></td>
+<td colspan="2" align="center"><label>名称</label></td><td width="200px;"><input type="text" id="qname" name="qname" value="${qname}" class="form-control" placeholder="名称"></td><td></td>
 <td align="center"><label>状态</label></td>
 <td colspan="2">
 <select class="form-control" name="qstatus" id="qstatus"><option value="">全部</option>
@@ -68,10 +68,15 @@ function editshow(id){
 </td>
 <td></td>  
 <td align="center">
-<!-- <input type="button" id="cx" class="btn btn-primary"  value="查询"></td><td align="center"><input type="button" class="btn btn-primary" id="cz"  value="重置"/></td>
-<td><input type="button" class="btn btn-primary" id="btn1" value="新增"/>   -->
-<a href="#" class="btn btn-primary" type="button"  id="cx">查询</a>&nbsp;&nbsp;
-<a href="#" class="btn btn-primary" type="reset" id="cz">重置</a>&nbsp;&nbsp;
+ <input type="button" id="cx" class="btn btn-primary"  value="查询"></td><td align="center"><input type="button" class="btn btn-primary" id="cz"  value="重置"/></td>
+<td>
+<!-- <a href="#" class="btn btn-primary" type="button"  id="cx">查询</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#" class="btn btn-primary" type="reset" id="cz">重置</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+
+<input type="button" class="btn btn-primary" id="btn1" value="新增"/>  
 </td>
 </tr>
 </table>
@@ -121,8 +126,6 @@ P2P房贷
 </tr>
 </c:forEach>
 </table>
-
-
 
 </body>
 </html>

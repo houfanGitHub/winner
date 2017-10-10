@@ -217,11 +217,11 @@ function fun(){
 <input type="submit" class="btn btn-primary" id="form1" value="保存" >
 </div>
 
-<!-- <p><h3>&nbsp;&nbsp;▶ 标的附件</h3><hr> -->
+ <p><h3>&nbsp;&nbsp;▶ 标的附件</h3><hr> 
 
-&nbsp;&nbsp;&nbsp;<!-- 图片预览 :<span id="preview" ></span> -->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; 图片预览 :<span id="preview" ></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <div style="100px;" align="center">
-<!--  <input type="file" name="file_name"  onchange="preview(this)"  required="required"/>  -->
+  <input type="file" name="file_name"  onchange="preview(this)"  required="required"/>
 </div>
 
 </form>

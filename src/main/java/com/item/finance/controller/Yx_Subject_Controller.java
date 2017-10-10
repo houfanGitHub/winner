@@ -123,7 +123,8 @@ MultipartFile file_name,HttpServletRequest request,HttpSession session,SubjectFi
     @RequestMapping("/updateSubject/{id}")
     public String updateSubject(
     		//@PathVariable("id")int id,
-   // @RequestParam("file_name")MultipartFile file_name,
+    @RequestParam("file_name")MultipartFile file_name,
+    SubjectFile subjectFile,
     HttpServletRequest request,HttpSession session,Subject subject) throws IOException{
 
 		SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -148,6 +149,21 @@ MultipartFile file_name,HttpServletRequest request,HttpSession session,SubjectFi
     	
     	//System.out.println("文件名"+file_name.getOriginalFilename());
     	//yx_Subject_Service.updateSubjectFile(subjectFile);
+    	
+    	
+    	String type=file_name.getOriginalFilename().substring(file_name.getOriginalFilename().indexOf("."));
+		Date date=new Date();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmssssss");
+		//System.out.println(sdf.format(date));
+		String filenameTime=sdf.format(date)+type;
+    	String path=request.getRealPath("/upload/");//String path=request.getSession().getServletContext().getRealPath("/upload/");
+    	File newfile=new File(path,filenameTime);
+    	if(!newfile.exists()){
+			newfile.createNewFile();
+		}
+		file_name.transferTo(newfile);
+		subjectFile.setPath(path);
+		this.yx_Subject_Service.updateSubjectFile(subjectFile);
     	return "redirect:/yx/list";
     }
     
