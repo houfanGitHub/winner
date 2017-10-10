@@ -27,8 +27,8 @@ public class FinanceProductFunds  {
 	private String bankAccount;//'银行账户（支行名称|银行账号|户名）
 	private int buyerCount;//购买人数
 	private String contract;//私募合同
-	private Date createDate;//添加时间
-	private Date endDate;//结束时间
+	private String createDate;//添加时间
+	private String endDate;//结束时间
 	private BigDecimal floorAmount;//起投金额
 	private String investPoints;//投资方向
 	private String name;//名称
@@ -43,13 +43,13 @@ public class FinanceProductFunds  {
 	private String productTopic;//基金专题/关于基金
 	private String ratio;//返佣比例
 	private BigDecimal soldAmount;//已售金额
-	private Date startDate;//开始时间
-	private byte status;//状态(0:未发布，1:募集中，2:已结束
+	private String startDate;//开始时间
+	private String status;//状态(0:未发布，1:募集中，2:已结束
 	private int subscribeCount;//预约人数
 	private String type;//产品类型
-	private Date updateDate;//修改时间
+	private String updateDate;//修改时间
 	private BigDecimal yearRate;//年化率
-	private Integer counts;
+	//private Integer counts;
 	public FinanceProductFunds() {
 	}
 
@@ -64,14 +64,14 @@ public class FinanceProductFunds  {
 	}
 	
 
-	@Column(precision=10, scale=2)
+	/*@Column(precision=10, scale=2)
 	public Integer getCounts() {
 		return counts;
 	}
 
 	public void setCounts(Integer counts) {
 		this.counts = counts;
-	}
+	}*/
 
 	@Column(precision=10, scale=2)
 	public BigDecimal getAmount() {
@@ -115,24 +115,24 @@ public class FinanceProductFunds  {
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_date")
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return this.createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="end_date")
-	public Date getEndDate() {
+	public String getEndDate() {
 		return this.endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 
@@ -147,7 +147,7 @@ public class FinanceProductFunds  {
 	}
 
 
-	@Column(name="invest_points", nullable=false, length=1000)
+	@Column(name="invest_points")//, nullable=false, length=1000
 	public String getInvestPoints() {
 		return this.investPoints;
 	}
@@ -198,7 +198,7 @@ public class FinanceProductFunds  {
 	}
 
 
-	@Column(name="product_manager_desc", nullable=false, length=1000)
+	@Column(name="product_manager_desc")//, nullable=false, length=1000
 	public String getProductManagerDesc() {
 		return this.productManagerDesc;
 	}
@@ -208,7 +208,7 @@ public class FinanceProductFunds  {
 	}
 
 
-	@Column(name="product_manager_name", nullable=false, length=1000)
+	@Column(name="product_manager_name")//, nullable=false, length=1000
 	public String getProductManagerName() {
 		return this.productManagerName;
 	}
@@ -218,7 +218,7 @@ public class FinanceProductFunds  {
 	}
 
 
-	@Column(name="product_manager_pic", nullable=false, length=1000)
+	@Column(name="product_manager_pic")//, nullable=false, length=1000
 	public String getProductManagerPic() {
 		return this.productManagerPic;
 	}
@@ -228,7 +228,7 @@ public class FinanceProductFunds  {
 	}
 
 
-	@Column(name="product_manager_title", nullable=false, length=1000)
+	@Column(name="product_manager_title")//, nullable=false, length=1000
 	public String getProductManagerTitle() {
 		return this.productManagerTitle;
 	}
@@ -280,22 +280,22 @@ public class FinanceProductFunds  {
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="start_date")
-	public Date getStartDate() {
+	public String getStartDate() {
 		return this.startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
 
-	public byte getStatus() {
+	public String getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(byte status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -310,23 +310,22 @@ public class FinanceProductFunds  {
 	}
 
 
-	@Column(nullable=false, length=10)
+	//@Column(nullable=false, length=10)
 	public String getType() {
 		return this.type;
 	}
-
 	public void setType(String type) {
 		this.type = type;
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="update_date")
-	public Date getUpdateDate() {
+	public String getUpdateDate() {
 		return this.updateDate;
 	}
 
-	public void setUpdateDate(Date updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 

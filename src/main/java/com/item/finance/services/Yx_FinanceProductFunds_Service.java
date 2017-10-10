@@ -45,7 +45,16 @@ public class Yx_FinanceProductFunds_Service implements ItemServiceImpl<FinancePr
 	public void updateqssb(FinanceProductSubscribe fe){
 		 this.yx_FinanceProductFunds_Dao.updateqssb(fe);
 	}
-
+	public void	updateFinanceProductFunds(FinanceProductFunds financeProductFunds){
+		this.yx_FinanceProductFunds_Dao.updateFinanceProductFunds(financeProductFunds);
+	}
+	//签署合同
+	public void	updatesign(FinanceProductSubscribe financeProductSubscribe){
+		this.yx_FinanceProductFunds_Dao.updatesign(financeProductSubscribe);
+	}
+	public void	updatesign2(FinanceProductFunds financeProductFunds){
+		this.yx_FinanceProductFunds_Dao.updatesign2(financeProductFunds);
+	}
 	@Override
 	public void save(FinanceProductFunds t) {
 		// TODO Auto-generated method stub

@@ -52,14 +52,14 @@ private Yx_OverseaConfig_Services yx_OverseaConfig_Services;
 		return "WEB-INF/yx_jsp/yx_overseaconfig_editshow";
 	}
 	//修改
-	@RequestMapping("/updateOverseaConfig")
+/*	@RequestMapping("/updateOverseaConfig")
 	public String updateOverseaConfig(
 			OverseaConfig overseaConfig,HttpServletRequest request,HttpSession session) throws IOException{
 		this.yx_OverseaConfig_Services.updateOverseaConfig(overseaConfig);
 		return "redirect:/yx3/list3";
-	}
-/*	@RequestMapping("/updateOverseaConfig")
-	public String updateOverseaConfig(@RequestParam("overseaIcon")MultipartFile file_name,
+	}*/
+	@RequestMapping("/updateOverseaConfig")
+	public String updateOverseaConfig(@RequestParam("fileopload")MultipartFile file_name,
 			OverseaConfig overseaConfig,HttpServletRequest request,HttpSession session) throws IOException{
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmssssss");
     	System.out.println("文件名"+file_name.getOriginalFilename());
@@ -68,6 +68,7 @@ private Yx_OverseaConfig_Services yx_OverseaConfig_Services;
 		Date date=new Date();
 		
 		SimpleDateFormat sdf2=new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat sdf3=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		//System.out.println(sdf.format(date));
 		String filenameTime=sdf.format(date)+type;
     	String path=request.getRealPath("/upload/");//String path=request.getSession().getServletContext().getRealPath("/upload/");
@@ -79,16 +80,17 @@ private Yx_OverseaConfig_Services yx_OverseaConfig_Services;
 		session.setAttribute("filenameTime",filenameTime);
 		session.setAttribute("path",path);
 		overseaConfig.setOverseaIcon(filenameTime);
+		overseaConfig.setAddTime(sdf3.format(new Date()));
 		this.yx_OverseaConfig_Services.updateOverseaConfig(overseaConfig);
 		return "redirect:/yx3/list3";
-	}*/
+	}
 	@RequestMapping("/toOverseaConfig")
 	public String toOverseaConfig(){
 		return "WEB-INF/yx_jsp/yx_overseaconfig_add";
 	}
 	
 	@RequestMapping("/saveOverseaConfig")
-	public String saveOverseaConfig(@RequestParam("overseaIcon")MultipartFile overseaIcon,
+	public String saveOverseaConfig(@RequestParam("fileopload")MultipartFile overseaIcon,
 			OverseaConfig overseaConfig,HttpServletRequest request,HttpSession session) throws IOException{
 		System.out.println(overseaIcon);
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmssssss");

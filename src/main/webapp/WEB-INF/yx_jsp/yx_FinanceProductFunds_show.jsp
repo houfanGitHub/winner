@@ -31,6 +31,24 @@ $("#tj").click(function(){
  });
 </script>
 
+<script type="text/javascript">
+/* window.onload=function(){
+ // var	a=${list2}.size();
+   //for(var i=0;i<${list2}.length();i++){
+		$("#wqs1").val("未签署人");//${list2[i]}
+	//} 
+} */
+$(function(){
+	
+	$("#cz").click(function(){//重置
+		/* document.forms[0].action="/winner/yx/listcz";
+		document.forms[0].submit(); */
+		$("#qname").val("");
+});
+
+});
+</script>
+
 
 <p><p><p><h4>▶&nbsp;私募/股权类</h4>
 
@@ -40,7 +58,7 @@ $("#tj").click(function(){
 <tr>
 <td colspan="2" align="center">
 <label>名称:</label>
-</td><td colspan="2"><input type="text" name="qname" value="${qname}"  class="form-control" placeholder="名称"/></td>
+</td><td colspan="2"><input type="text" name="qname" value="${qname}" id="qname"  class="form-control" placeholder="名称"/></td>
 <td colspan="2"><label>状态:</label></td>
 <td colspan="2" align="center">
 <select class="form-control" name="qstatus" id="qstatus"><option value="">全部</option>
@@ -49,7 +67,7 @@ $("#tj").click(function(){
 <option value="2">已结束</option>
 </select>
 </td>
-<td colspan="2" align="center"><label>类别:</label></td>
+<td  align="center"><label>类别:</label></td>
 <td colspan="2" align="center">
 <select class="form-control" name="qtype">
 <option value="">全部</option>
@@ -57,8 +75,9 @@ $("#tj").click(function(){
 <option value="GUQUAN">股权类</option>
 </select>
 </td>
+<td><input type="button" class="btn btn-primary" id="cx"  value="搜索"/></td>
 <td>
-<input type="button" class="btn btn-primary" id="cx"  value="搜索"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" id="tj" value="新增"/>
+&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" id="cz"  value="重置"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" id="tj" value="新增"/>
 </td>
 </tr>
 
@@ -75,7 +94,10 @@ $("#tj").click(function(){
 <c:if test="${t.type=='SIMU'}">私募类</c:if>
 <c:if test="${t.type=='GUQUAN'}">股权类</c:if>
 </td>
-<td>${t.status}</td>
+<td><c:if test="${t.status==0}">未发布</c:if>
+<c:if test="${t.status==1}">募集中</c:if>
+<c:if test="${t.status==2}">已结束</c:if>
+</td>
 <td>${t.yearRate}</td>
 <td>${t.ratio}</td>
 <td>${t.startDate}</td>
@@ -83,7 +105,7 @@ $("#tj").click(function(){
 <td>${t.period}</td>
 <td>${t.floorAmount}</td>
 <td>${t.createDate }</td>
-<td><input type="button"  class="btn btn-primary" value="未签署人" onclick='wqs(${t.id})'/>
+<td><input type="button"  class="btn btn-primary"  id="wqs1" value="未签署人" onclick='wqs(${t.id})'/>
 <input type="button"  class="btn btn-primary" value="编辑/查看" onclick='editshow(${t.id})'/>
 </td>
 </c:forEach>

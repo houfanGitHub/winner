@@ -24,11 +24,11 @@ $("#btn1").click(function(){//跳转到添加方法
 	document.forms[0].submit();
 });
 
-$("#cz").click(function(){
-	document.forms[0].action="/winner/yx/listcz";
-	document.forms[0].submit();
-	
-})
+$("#cz").click(function(){//重置
+	/* document.forms[0].action="/winner/yx/listcz";
+	document.forms[0].submit(); */
+	$("#qname").val("");
+});
 
  });
 </script>
@@ -99,10 +99,10 @@ P2P房贷
 
 <td>${t.name}</td>
 <td>${t.amount*t.bought}</td>
-<td>${t.floorAmount }</td><!-- 已投总金额 -->
+<td> ${t.floorAmount*t.bought} </td><!-- 已投总金额 -->
 <td>${t.period }</td>
-<td>${t.floorAmount }</td>
-<td>${t.yearRate }</td>
+<td>${t.floorAmount }</td><!-- 起投金额 -->
+<td>${(t.floorAmount*t.yearRate/365)*t.period}</td><!-- 收益=本金*年利率/365*天数 -->
 <td>
 <c:if test="${t.status==0}">未发布</c:if>
 <c:if test="${t.status==1}">募集中</c:if>

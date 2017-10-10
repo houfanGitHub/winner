@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -45,8 +47,9 @@ public class Member  {  //会员表
 //	private Set<AssociatedAccount> associatedAccounts = new HashSet<>();
 //	private Set<BbinInfo> bbinInfos = new HashSet<>();
 //	private Set<Feedback> feedbacks = new HashSet<>();//意见反馈
-//	private Set<FinanceProductSubscribe> financeProductSubscribes = new HashSet<>();
-//	private Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords = new HashSet<>();
+	//private Set<FinanceProductSubscribe> financeProductSubscribes = new HashSet<>();
+	private FinanceProductSubscribe financeProductSubscribe;
+	//	private Set<FinanceProductSubscribeRecord> financeProductSubscribeRecords = new HashSet<>();
 //	private Set<FinancialPlanner> financialPlanners = new HashSet<>();
 
 	private Set<MemberAccount> memberAccounts = new HashSet<>();
@@ -290,6 +293,33 @@ public class Member  {  //会员表
 	public void setMemberBankcards(Set<MemberBankcard> memberBankcards) {
 		this.memberBankcards = memberBankcards;
 	}
+
+/*	@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+	public Set<FinanceProductSubscribe> getFinanceProductSubscribes() {
+		return financeProductSubscribes;
+	}
+	public void setFinanceProductSubscribes(
+			Set<FinanceProductSubscribe> financeProductSubscribes) {
+		this.financeProductSubscribes = financeProductSubscribes;
+	}*/
+
+	//@OneToMany(mappedBy="member",fetch=FetchType.EAGER)
+	@ManyToOne
+	@JoinColumn
+	public FinanceProductSubscribe getFinanceProductSubscribe() {
+		return financeProductSubscribe;
+	}
+	public void setFinanceProductSubscribe(
+			FinanceProductSubscribe financeProductSubscribe) {
+		this.financeProductSubscribe = financeProductSubscribe;
+	}
+
+
+
+
+
+
+	
 
 
 //	//bi-directional many-to-one association to MemberDepositRecord
