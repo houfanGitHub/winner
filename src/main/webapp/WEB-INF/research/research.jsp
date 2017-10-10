@@ -9,7 +9,6 @@
 	<meta name="Keywords" content="股指期货，市场风险，股指期货合约，风控能力，资金银行监管，交易期货公司监管，风控盈+监管，金融投资，安全保证，投资收益，持仓成本价，借款期限，还款方式，借款利率，审核失败，金融推广，佣金结算，推广平台">
 	<meta name="description" content="所谓股指期货，即股票价格指数期货的简称，就是以某种股票指数为基础资产的标准化的期货合约。平台资金由第三方银行监管，股指交易由第三方期货公司监管，盈+全自动风控系统为您保驾护航。在盈+投资的常见问题。盈+投资的帮助中心。盈+金融推广是一种按用户投资赚取佣金的推广平台，您可以通过朋友、QQ、微信、微博、博客、论坛或在自己的网站上进行推广。">
 	<title>投研中心 - 盈+</title>
-	<link href="http://www.ying158.com/Content/images/jw/icon.ico" type="image/x-icon" rel="shortcut icon">
 	<script src="/winner/files/hm.js"></script><script>
 
 		

@@ -39,26 +39,26 @@ public class Ss_SubjectController {
 			System.out.println("标的id："+ss.getSubject_id()+",标的已投金额："+ss.getSumamount());
 		}
 	
-		//model.addAttribute("listsubject", listsubject);
-	session.setAttribute("listsubject", listsubject);
-	//model.addAttribute("listsumsubject", listsumsubject);
-session.setAttribute("listsumsubject", listsumsubject);
+		model.addAttribute("listsubject", listsubject);
+	//session.setAttribute("listsubject", listsubject);
+	model.addAttribute("listsumsubject", listsumsubject);
+//session.setAttribute("listsumsubject", listsumsubject);
 	
-	/*	//模糊查询
+	//模糊查询
 		model.addAttribute("sname", sname);
 		model.addAttribute("sstatus", sstatus);
-		model.addAttribute("stype", stype);  */
+		model.addAttribute("stype", stype);  
 	
-	session.setAttribute("sname", sname);
+	/*session.setAttribute("sname", sname);
 	session.setAttribute("sstatus", sstatus);
-	session.setAttribute("stype", stype);
+	session.setAttribute("stype", stype);*/
 	
 
 		System.out.println("111111111111");
 		return "WEB-INF/ssjsp/subjectplan"; //跳转
 		
 	}
-	//重置操作
+	/*//重置操作
 	@RequestMapping("/listcz8")
 	public String listcz(HttpSession session){
 		session.removeAttribute("sname");
@@ -67,7 +67,7 @@ session.setAttribute("listsumsubject", listsumsubject);
 		
 		//return null;
 		return "redirect:/sushuang8/list8";   //重定向到首页
-	}
+	}*/
 	
 	//体验金购买列表
 		@RequestMapping("/listsubjectbbin8/{id}")

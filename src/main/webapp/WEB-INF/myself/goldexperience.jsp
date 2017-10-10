@@ -8,16 +8,12 @@
     
 <meta name="keywords" content="盈+，盈，社区金融，O2O社区金融，社区金融O2O，O2O，互联网+社区金融，O2O连锁，社区门店，首家社区金融，社区金融服务，综合金融，互联网金融，体验中心，普惠金融，金融创新，社区化，普惠化，全渠道化，互联网线上平台，O2O交易，全国首家，盈十，金融衍生品，固收类理财，私募基金，股权基金，股指期货，玩转股指，商品期货，国际期货，外盘，A50，沪深300，中证500，上证50">
 <meta name="description" content="盈+——全国首家互联网金融交流体验中心，与您共盈，给财富做加法。">
-<link href="http://pro.ying158.com/resources/web/images/icon.ico" type="image/x-icon" rel="shortcut icon">
 
-
-	
 	<meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width,maximum-scale=1.0,user-scalable=yes">
 	<meta name="Keywords" content="股指体验交易，股指单手交易，股指多手交易">
 	<meta name="description" content="申请实盘交易账户，直接进行实盘交易。">
 	<title>体验金记录-会员中心-盈+</title>
-	<link href="http://www.ying158.com/images/icon.ico" type="image/x-icon" rel="shortcut icon">
 	<link href="/winner/files/common.css" rel="stylesheet">
 	<link href="/winner/files/jw.css" rel="stylesheet">
     <link href="/winner/files/iconfont.css" rel="stylesheet">
@@ -94,7 +90,7 @@
 </script><table height="160" class="peopleInfo" width="970" border="0" cellspacing="0" cellpadding="0">
     <tbody><tr>
         <td align="left" valign="middle" class="info">
-            <a href="http://pro.ying158.com/account/security">
+            <a href="/winner/itemweb/security">
                 <div class="img"><img src="/winner/files/userPic.jpg"></div>
                 <h2>${memberinfo.name }，<span>您好!</span></h2>
             </a>
@@ -108,20 +104,46 @@
             </ul>
         </td>
         <td align="right">
-            <a href="/winner/index.jsp" class="loginOut"><span class="iconfont"></span>安全退出</a>
+            <a href="/winner/itemweb/webMemberLogout"  class="loginOut"><span class="iconfont"></span>安全退出</a>
         </td>
     </tr>
 </tbody></table>
 <div class="countBox">
-    <ul>
-        <li><h2>0</h2><p>账户可用余额(元)<a href="javascript:;" class="iconfont"><span>账户可用余额</span><i></i></a></p></li>
-        <li><h2>0</h2><p>账户总资产(元)<a href="javascript:;" class="iconfont"><span>可用余额+投资金额+累计收益</span><i></i></a></p></li>
-        <li><h2 style="color:#9d8440">0</h2><p>投资金额(元)<a href="javascript:;" class="iconfont"><span>投资中资金</span><i></i></a></p></li>
-        <li><h2 style="color:#9d8440">0</h2><p>累计收益(元)<a href="javascript:;" class="iconfont"><span>累计收益</span><i></i></a></p></li>
-        <li><h2 style="color:#9d8440">0</h2><p>冻结金额(元)<a href="javascript:;" class="iconfont"><span>提现冻结金额</span><i></i></a></p></li>
+     <ul>
+        <li><h2>
+        <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.useableBalance}</c:forEach>
+        </c:if>
+        </h2>
+        <p>账户可用余额(元)<a href="javascript:;" class="iconfont"><span>账户可用余额</span><i></i></a></p></li>
+         <li><h2>
+          <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.useableBalance+memberAccount.investAmount+memberAccount.totalProfit}</c:forEach>
+        </c:if>
+         </h2><p>账户总资产(元)<a href="javascript:;" class="iconfont"><span>可用余额+投资金额+累计收益</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">
+         <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.investAmount}</c:forEach>
+        </c:if>
+        </h2><p>投资金额(元)<a href="javascript:;" class="iconfont"><span>投资中资金</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">
+		 <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.totalProfit}</c:forEach>
+        </c:if>
+        </h2><p>累计收益(元)<a href="javascript:;" class="iconfont"><span>累计收益</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">
+        <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.imusealeBalance}</c:forEach>
+        </c:if>
+        </h2><p>冻结金额(元)<a href="javascript:;" class="iconfont"><span>提现冻结金额</span><i></i></a></p></li>
     </ul>
-    <a href="http://pro.ying158.com/account/deposit" class="cz">充值</a>
-    <a href="http://pro.ying158.com/account/withdraw" class="tk">提款</a>
+    <a href="/winner/itemweb/deposit" class="cz">充值</a>
+    <a href="/winner/itemweb/drawMoney" class="tk">提款</a>
 </div>    <div class="proMain clearfix">
 <div class="adminLeft">
     <h2>我的投资</h2>
@@ -131,11 +153,11 @@
         <li><a id="member_center_menu_profit_record" 
         href="/winner/itemweb/myself"><em class="iconfont red"></em>收益记录</a></li>
         <li><a id="member_center_menu_deposit_record"
-         href="/winner/itemweb/rechargeRecords" class="select"><em class="iconfont red"></em>充值记录</a></li>
+         href="/winner/itemweb/rechargeRecords"><em class="iconfont red"></em>充值记录</a></li>
         <li><a id="member_center_menu_withdraw_record"
          href="/winner/itemweb/withdraw"><em class="iconfont red"></em>提款记录</a></li>
         <li><a id="member_center_menu_bbinInfo_record" 
-        href="/winner/itemweb/experienceGold"><em class="iconfont red"></em>体验金记录</a></li>
+        href="/winner/itemweb/experienceGold"  class="select"><em class="iconfont red"></em>体验金记录</a></li>
     </ul>
    <h2>我的账户</h2>
 			<ul>
@@ -161,7 +183,7 @@
                     <div class="box" style="display:block">
                      <div class="remind"><h4><strong><span style="color:#827E76">体验金余额(元)：</span><span
                             style="color:#9d8440">												<!-- 立即使用  跳的是产品中心 -->
-                            <c:if test="${empty listbb.amont}"><font color="burlywood">8888</font>&nbsp;&nbsp;<a href="#">立即使用</a></c:if>
+                            <c:if test="${empty listbb.amont}"><font color="burlywood">8888</font>&nbsp;&nbsp;<a href="/winner/itemweb/products">立即使用</a></c:if>
                             <c:if test="${!empty listbb.amont}"><font color="burlywood">0</font><br><hr/><br>
          
 <meta name="keywords" content="盈+，盈，社区金融，O2O社区金融，社区金融O2O，O2O，互联网+社区金融，O2O连锁，社区门店，首家社区金融，社区金融服务，综合金融，互联网金融，体验中心，普惠金融，金融创新，社区化，普惠化，全渠道化，互联网线上平台，O2O交易，全国首家，盈十，金融衍生品，固收类理财，私募基金，股权基金，股指期货，玩转股指，商品期货，国际期货，外盘，A50，沪深300，中证500，上证50">
@@ -171,7 +193,7 @@
 <div class="ajaxContainer">
 	<table class="tzlist" width="100%" border="1" bordercolor="#e9e9e9" cellspacing="0" cellpadding="0">
 		<tbody>
-		<tr align="center" bgcolor="white" height="20">
+		<tr align="center" bgcolor="white" >
 				<td width="15%"><h5>标的名称</h5></td>
 				<td width="35%"><font color="burlywood"><h5>${listjectbbr.subject.name}</h5></font></td>
 				<td width="15%"><h5>状态</h5></td>
@@ -190,26 +212,30 @@
 		
 		<tr align="center" bgcolor="white" height="20">
 				<td width="15%"><h5>收益方式</h5></td>
-				<td width="35%"><font color="burlywood"><h5>一次性还本付息</h5></font></td>
-				<td width="25%"><h5>年化收益率</h5></td>
-				<td width="25%"><font color="burlywood"><h5>${listjectbbr.subject.yearRate}%</h5></font></td>
-			</tr>
-		
-		
+				<td width="35%"><font color="burlywood"><h5>
+				 <c:if test="${listjectbbr.subject.refundWay =='0'}">分期还本付息</c:if>
+            <c:if test="${listjectbbr.subject.refundWay == '1'}"> 一次性还本付息</c:if>
+				</h5></font></td>
+				<td width="25%"><h5>年化收益率</h5></td>  <!-- <h4>${listjectbbr.subject.yearRate}%</h4> -->
+				<td width="35%"><font color="burlywood"><h5><fmt:formatNumber type="number" value="${listjectbbr.subject.yearRate}"  maxFractionDigits="2"></fmt:formatNumber>%</h5></font></td>
+			
 		<tr align="center" bgcolor="white" height="20">
 				<td width="15%"><h5>计息日</h5></td>
 				<td width="35%"><font color="burlywood"><h5>${listbb.createDate}</h5></font></td>
-				<td width="25%"><h5>预期收益1111</h5></td>
-				<td width="15%"><font color="burlywood"><h4>1111</h4></font></td>
+				<td width="25%"><h5>预期收益</h5></td>
+				<!-- 预期期末收益＝投资本金×预期年化收益率/365×实际存续天数 -->
+				<td width="15%"><font color="burlywood">
+	<h5>￥<fmt:formatNumber type="number" value="${listbb.amont*(listjectbbr.subject.yearRate/365)*listjectbbr.subject.period}"  maxFractionDigits="2"></fmt:formatNumber></font></h5></font></td>
 			</tr>
 			
-			<tr align="center" bgcolor="white" height="20">
+		<!--  	<tr align="center" bgcolor="white" height="20">
 				<td width="15%"><h5>结束日</h5></td>
 				<td width="35%"><font color="burlywood"><h5>2222</h5></font></td>
 				<td width="35%"><h5>已获收益</h4></td>
-				<td width="15%"><font color="burlywood"><h5>3333</h5></font></td>
+				<td width="15%"><font color="burlywood">
+				<h5>3333</h5></font></td>
 			</tr>
-		
+		-->
 	</tbody></table>
 
 </div>

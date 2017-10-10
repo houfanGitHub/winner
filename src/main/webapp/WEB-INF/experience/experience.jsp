@@ -9,7 +9,6 @@
 	<meta name="Keywords">
 	<meta name="description">
 	<title>网上体验中心 - 盈+</title>
-	<link href="http://www.ying158.com/Content/images/jw/icon.ico" type="image/x-icon" rel="shortcut icon">
 	<script src="/winner/files/hm.js"></script><script>
 
 		
@@ -226,7 +225,7 @@
 
 <div class="container">
     <div class="kcenter">
-        <img src="/winner/files/tyzx.png">
+       <img src="/winner/files/tyzx.png">
     </div>
 </div>
 

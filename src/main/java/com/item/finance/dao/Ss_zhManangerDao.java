@@ -157,9 +157,9 @@ public class Ss_zhManangerDao {
 		public List<MemberDepositRecord> getmemberdeposit(String id){
 			Session session=getSession();
 			//MemberDepositRecord 表中有一member_id 是与member中的id  相对应的  可通过member中的id 取到相应的值
-			String hql="from MemberDepositRecord as memberdeposit where memberdeposit.member.id= "+id;
-			//创建时间 是倒叙的  
-			//String hql="from MemberDepositRecord as memberdeposit where memberdeposit.member.id= "+id+"and ORDER BY createDate desc";
+			//String hql="from MemberDepositRecord as memberdeposit where memberdeposit.member.id= "+id;
+			//创建时间 是倒叙的 select * from member_deposit_record as m where m.member_id=45  ORDER BY create_date desc
+			String hql="from MemberDepositRecord as m where m.member.id="+id+" order by createDate desc";
 					List<MemberDepositRecord>listmemberdeposit=session.createQuery(hql).list();  
 					return listmemberdeposit;
 		}

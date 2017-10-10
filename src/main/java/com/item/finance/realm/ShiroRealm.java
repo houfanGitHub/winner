@@ -108,7 +108,7 @@ public class ShiroRealm extends AuthorizingRealm {
 	        		ByteSource credentialsSalt = ByteSource.Util.bytes(username);
 	            	
 	                AuthenticationInfo info =  new SimpleAuthenticationInfo(user.getName(), user.getPassword(), credentialsSalt, getName());  
-	                SecurityUtils.getSubject().getSession().setAttribute("currentUser", user);  
+//	                SecurityUtils.getSubject().getSession().setAttribute("currentUser", user);  
 	                return info;
 	            }  
 	        }  

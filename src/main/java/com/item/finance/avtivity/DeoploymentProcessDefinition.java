@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.history.HistoricVariableInstance;
@@ -44,12 +43,12 @@ public class DeoploymentProcessDefinition {
 	 * 启动流程实例
 	 */
 	public ProcessInstance startProcessInstance(ProcessEngine processEngine,
-			String memberName) {
+			String name) {
 		// 流程定义的key
 		String processDefinitionKey = "drawMoney";
 		// 启动流程实例的同时，设置流程变量，使用流程便令用来指定任务的办理人,对应.bpmn文件中的#{userID}
 		HashMap<String, Object> variables = new HashMap<String, Object>();
-		variables.put("memberID", memberName);
+		variables.put("memberID", name);
 		ProcessInstance pi = processEngine.getRuntimeService()// 与正在执行的流程实例和执行对象相关的Service
 				.startProcessInstanceByKey(processDefinitionKey, variables);// 使用流程定义的key启动流程实例，key对应HelloWorld.bpmn文件中id的属性值，使用key值启动，默认是按照最新版本的流程定义启动
 		System.out.println("流程实例ID:" + pi.getId());
@@ -84,7 +83,7 @@ public class DeoploymentProcessDefinition {
 
 	/** 设置流程变量 */
 	public void setProcessVariables(ProcessEngine processEngine, String id,
-			String memberName, String withdrawAmount, String bankCard) {
+			String memberName, String withdrawAmount, String bankCard,String randomPayNumber) {
 		String taskId = id;// 流程实例ID
 		TaskService taskService = processEngine.getTaskService();// 获取任务的Service，设置和获取流程变量
 
@@ -92,6 +91,8 @@ public class DeoploymentProcessDefinition {
 		// 设置流程变量【基本类型】
 		taskService.setVariable(taskId, "bankCard", bankCard);
 		taskService.setVariable(taskId, "withdrawAmount", withdrawAmount);
+		taskService.setVariable(taskId, "randomPayNumber", randomPayNumber);
+		taskService.setVariable(taskId, "processState", "1");	//审核中
 		System.out.println("设置流程变量成功！");
 		// 完成我任务
 		processEngine.getTaskService().complete(taskId);
@@ -192,12 +193,13 @@ public class DeoploymentProcessDefinition {
 				.taskAssignee(memberName) // 指定办理人
 				.finished() // 查询已完成的任务
 				.list();
+		
 		List<String> list2 = new ArrayList<>();
 		for (HistoricTaskInstance hti : list) {
 			System.out.println("任务ID:hti.getId()" + hti.getId());
 			System.out.println("流程实例ID:hti.getProcessInstanceId()"
 					+ hti.getProcessInstanceId());
-			list2.add(hti.getProcessInstanceId());
+        	list2.add(hti.getProcessInstanceId());
 			System.out.println("班里人：hti.getAssignee()" + hti.getAssignee());
 			System.out
 					.println("创建时间：hti.getCreateTime()" + hti.getCreateTime());

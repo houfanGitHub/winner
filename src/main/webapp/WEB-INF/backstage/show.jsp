@@ -197,7 +197,7 @@
 		</script>
 		<div class="navbar-container" id="navbar-container">
 			<div class="navbar-header pull-left">
-				<a href="http://www.erdangjiade.com/" class="navbar-brand"> <small>
+				<a class="navbar-brand"> <small>
 						<img src="/winner/backstage/show/logo.png" width="210px">
 				</small>
 				</a>
@@ -208,7 +208,7 @@
 			<div class="navbar-header pull-right" role="navigation">
 				<ul class="nav ace-nav">
 					<li class="light-blue"><a data-toggle="dropdown"
-						href="http://www.erdangjiade.com/" class="dropdown-toggle"> <span
+						class="dropdown-toggle"> <span
 							class="time"><em id="time">2017年9月11日9时27分39秒</em></span><span
 							class="user-info"><small>欢迎光临,</small>超级管理员</span> <i
 							class="icon-caret-down"></i>
@@ -235,8 +235,8 @@
 			}
 		</script>
 		<div class="main-container-inner">
-			<a class="menu-toggler" id="menu-toggler"
-				href="http://www.erdangjiade.com/"> <span class="menu-text"></span>
+			<a class="menu-toggler" id="menu-toggler">
+				<span class="menu-text"></span>
 			</a>
 			<div class="sidebar" id="sidebar" style="height: 510px;">
 				<script type="text/javascript">
@@ -286,8 +286,7 @@
 						</ul>
 					</li>
 					<li>
-						<li><a href="http://www.erdangjiade.com/"
-							class="dropdown-toggle"><i class="icon-list"></i><span
+						<li><a class="dropdown-toggle"><i class="icon-list"></i><span
 								class="menu-text"> 学院管理 </span><b class="arrow icon-angle-down"></b></a>
 							<ul class="submenu" id="Sort_link_2">
 								<li class="home" style="height: 36px;"><a
@@ -297,8 +296,7 @@
 									href="javascript:void(0)" name="/winner/listNews" title="资讯管理"
 									class="iframeurl"><i class="icon-double-angle-right"></i>资讯管理</a></li>
 							</ul></li>
-						<li><a href="http://www.erdangjiade.com/"
-							class="dropdown-toggle"><i class="icon-credit-card"></i><span
+						<li><a class="dropdown-toggle"><i class="icon-credit-card"></i><span
 								class="menu-text"> 会员管理 </span><b class="arrow icon-angle-down"></b></a>
 							<ul class="submenu" id="Sort_link_3">
 								<li class="home" style="height: 36px;"><a
@@ -326,8 +324,7 @@
 									title="邀请奖励" class="iframeurl"><i
 										class="icon-double-angle-right"></i>邀请奖励</a></li>
 							</ul></li>
-						<li><a href="http://www.erdangjiade.com/"
-							class="dropdown-toggle"><i class="icon-user"></i><span
+						<li><a class="dropdown-toggle"><i class="icon-user"></i><span
 								class="menu-text"> 赢+统计 </span><b class="arrow icon-angle-down"></b></a>
 							<ul class="submenu" id="Sort_link_4">
 								<li class="home" style="height: 36px;"><a
@@ -341,8 +338,7 @@
 
 
 							</ul></li>
-						<li><a href="http://www.erdangjiade.com/"
-							class="dropdown-toggle"><i class="icon-laptop"></i><span
+						<li><a class="dropdown-toggle"><i class="icon-laptop"></i><span
 								class="menu-text"> 赢+设置 </span><b class="arrow icon-angle-down"></b></a>
 							<ul class="submenu" id="Sort_link_5">
 								<li class="home" style="height: 36px;"><a
@@ -353,8 +349,7 @@
 									class="iframeurl"><i class="icon-double-angle-right"></i>意见反馈<span
 										class="badge badge-danger">5</span></a></li>
 							</ul></li>
-						<li><a href="http://www.erdangjiade.com/"
-							class="dropdown-toggle"><i class="icon-comments-alt"></i><span
+						<li><a class="dropdown-toggle"><i class="icon-comments-alt"></i><span
 								class="menu-text"> 系统设置 </span><b class="arrow icon-angle-down"></b></a>
 							<ul class="submenu" id="Sort_link_6">
 								<li class="home" style="height: 36px;"><a
@@ -367,7 +362,7 @@
 										class="icon-double-angle-right"></i>角色设置</a></li>
 								<li class="home" style="height: 36px;"><a
 									href="javascript:void(0)" name="/winner/system/toActivitiReply"
-									id="userRole" title="角色设置" class="iframeurl"><i
+									id="tk" title="角色设置" class="iframeurl"><i
 										class="icon-double-angle-right"></i>提款审批</a></li>
 								<li class="home" style="height: 36px;"><a
 									href="javascript:void(0)" name="/winner/system/toPasswords"
@@ -443,21 +438,16 @@
 								<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
 							</select>
 							<div class="dropdown dropdown-colorpicker">
-								<a data-toggle="dropdown" class="dropdown-toggle"
-									href="http://www.erdangjiade.com/"><span
+								<a data-toggle="dropdown" class="dropdown-toggle"><span
 									class="btn-colorpicker" style="background-color: #438EB9"></span></a>
 								<ul class="dropdown-menu dropdown-caret">
 									<li><a class="colorpick-btn selected"
-										href="http://www.erdangjiade.com/"
 										style="background-color: #438EB9;" data-color="#438EB9"></a></li>
 									<li><a class="colorpick-btn"
-										href="http://www.erdangjiade.com/"
 										style="background-color: #222A2D;" data-color="#222A2D"></a></li>
 									<li><a class="colorpick-btn"
-										href="http://www.erdangjiade.com/"
 										style="background-color: #C6487E;" data-color="#C6487E"></a></li>
 									<li><a class="colorpick-btn"
-										href="http://www.erdangjiade.com/"
 										style="background-color: #D0D0D0;" data-color="#D0D0D0"></a></li>
 								</ul>
 							</div>

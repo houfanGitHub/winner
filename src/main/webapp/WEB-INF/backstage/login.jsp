@@ -6,6 +6,77 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>赢+官网网站后台登陆平台</title>
 <script type="text/javascript" src="/winner/js/jquery-3.2.0.min.js"></script>
+<script type='text/javascript'>  
+        var code ; //在全局定义验证码    
+        $(function(){
+        	createCode();
+        });
+        function createCode(){  
+            code = "";     
+            var codeLength = 4;//验证码的长度    
+            var checkCode = document.getElementById("code");     
+            var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',    
+            'S','T','U','V','W','X','Y','Z');//随机数    
+            for(var i = 0; i < codeLength; i++) {//循环操作    
+               var index = Math.floor(Math.random()*36);//取得随机数的索引（0~35）    
+               code += random[index];//根据索引取得随机数加到code上    
+           }    
+           checkCode.value = code;//把code值赋给验证码    
+       }
+        $(function(){
+        	if("${name}"!=""&&"${password}"!=""){
+        		$("#name").val("${name}");
+        		$("#password").val("${password}");
+        	}
+        });
+        //校验验证码    
+        function validate(){  
+            var inputCode = document.getElementById("input").value.toUpperCase(); //取得输入的验证码并转化为大写          
+            if(inputCode.length <= 0) { //若输入的验证码长度为0 
+            	$("#uspa").hide();
+            	$("#errorMsg").hide();
+            	$("#yzmError").hide();
+            	$("#yzmNull").show();
+                return false;
+            }else if(inputCode != code ) { //若输入的验证码与产生的验证码不一致时  
+            	$("#uspa").hide();
+            	$("#errorMsg").hide();
+            	$("#yzmNull").hide();
+            	$("#yzmError").show();
+                createCode();//刷新验证码    
+                document.getElementById("input").value = "";//清空文本框 
+                return false;
+            } 
+            return true;
+        }  
+        function toSubmit(){
+    		var name = $("#name").val();
+    		var password = $("#password").val();
+    		if(name==""||password==""){
+    			$("#errorMsg").hide();
+    			$("#uspa").show();
+    			return;
+    		}
+    		if(!validate()){
+    			return;
+    		}
+    		document.forms[0].submit();
+    	}
+    	function toCline(){
+    		document.forms[0].reset();
+    	}
+        </script>  
+        <style type='text/css'>  
+        #code{  
+            font-family:Arial,宋体;  
+            font-style:italic;  
+            color:green;  
+            border:0;  
+            padding:2px 3px;  
+            letter-spacing:3px;  
+            font-weight:bolder;  
+        }  
+        </style> 
 <style type="text/css">
 <!--
 body {
@@ -33,9 +104,17 @@ body {
         <td height="84"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td width="381" height="84" background="/winner/backstage/images/login_06.gif" align="right">
+            <span id="yzmError" style="display:none">
+            	<font color="#CC3333" size="-2">验证码错误</font>
+            </span>
+            <span id="yzmNull" style="display:none">
+            	<font color="#CC3333" size="-2">验证码不能为空</font>
+            </span>
+            <span id="errorMsg">
+           	 	<font color="#CC3333" size="-2">${errorMsg }</font>
+            </span>
             <span id="uspa" style="display:none">
-            ${errorMsg }<br>
-            <font color="#CC3333" size="-2">账号或密码不能为空</font>
+            	<font color="#CC3333" size="-2">账号或密码不能为空</font>
             </span>&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td width="162" valign="middle" background="/winner/backstage/images/login_07.gif"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               
@@ -57,8 +136,8 @@ body {
 	              <tr>
 	                <td height="24" valign="bottom"><div align="right"><span class="STYLE3">验证码</span></div></td>
 	                <td width="10" valign="bottom">&nbsp;</td>
-	                <td width="52" height="24" valign="bottom"><input type="text" name="textfield3" id="textfield3" style="width:50px; height:17px; background-color:#87adbf; border:solid 1px #153966; font-size:12px; color:#283439; "></td>
-	                <td width="62" valign="bottom"><div align="left"><img src="/winner/backstage/images/yzm.gif" width="38" height="15"></div></td>
+	                <td width="52" height="24" valign="bottom"><input type="text" name="textfield3" id="input" style="width:53px; height:17px; background-color:#87adbf; border:solid 1px #153966; font-size:12px; color:#283439; "></td>
+	                <td width="62" valign="bottom"><div align="left"><input type="button" id="code" onclick="createCode()" style="width:50px;height:20px" title='点击更换验证码' /></div></td>
 	              </tr>
               </form>
              
@@ -86,19 +165,5 @@ body {
     <td bgcolor="#152753">&nbsp;</td>
   </tr>
 </table>
-<script type="text/javascript">
-	function toSubmit(){
-		var name = $("#name").val();
-		var password = $("#password").val();
-		if(name==""||password==""){
-			$("#uspa").show();
-			return;
-		}
-		document.forms[0].submit();
-	}
-	function toCline(){
-		document.forms[0].reset();
-	}
-</script>
 </body>
 </html>

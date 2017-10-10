@@ -30,25 +30,27 @@
 	   				<th>${list.withdrawAmount }</th>
 	   				<th>${list.memberID }</th>
 	   				<th>
-	   					<button id="tg" class="btn btn-success" click="javascript:getThrough(${list.processInstanceId },${list.bankCard },${list.withdrawAmount },${list.memberID })">通过申请</button>
-	   					<button id="bh" class="btn btn-link" click="javascript:reject(${list.processInstanceId })">驳回申请</button>
+	   					<button id="tg" class="btn btn-success" onclick="javascript:getThrough('${list.processInstanceId }','${list.bankCard }','${list.withdrawAmount }','${list.memberID }','${list.randomPayNumber }');">通过申请</button>
+	   					<button id="bh" class="btn btn-link" onclick="javascript:reject(${list.processInstanceId })">驳回申请</button>
 	   				</th>
 	   			</tr>
 	   		</c:forEach>
 	   </tbody>
 	</table>
 	<script type="text/javascript">
-		function getThrough(id,bankCard,withdrawAmount,memberID){
+		function getThrough(id,bankCard,withdrawAmount,memberID,randomPayNumber){
 			$.post("/winner/system/getThrough/",
 					{
 					'id':id,
 					'bankCard':bankCard,
 					'withdrawAmount':withdrawAmount,
-					'memberID':memberID
+					'memberID':memberID,
+					'randomPayNumber':randomPayNumber
 					},
 					function(falg){
 						if(falg){
 							alert("操作成功");
+							window.parent.document.getElementById("tk").click();
 						}else{
 							alert("额，出现了点小问题");
 						}
@@ -58,11 +60,13 @@
 			$.post("/winner/system/reject/"+id,function(falg){
 				if(falg){
 					alert("操作成功");
+					window.parent.document.getElementById("tk").click();
 				}else{
 					alert("额，出现了点小问题");
 				}
 			});
 		}
+		
 	</script>
 </body>
 </html>

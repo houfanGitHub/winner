@@ -21,15 +21,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.alipay.api.AlipayClient;
-import com.alipay.api.DefaultAlipayClient;
-import com.alipay.api.request.AlipayFundTransToaccountTransferRequest;
-import com.alipay.api.response.AlipayFundTransToaccountTransferResponse;
 import com.item.finance.avtivity.DeoploymentProcessDefinition;
+import com.item.finance.bean.Member;
+import com.item.finance.bean.MemberAccount;
+import com.item.finance.bean.MemberWithdrawRecord;
 import com.item.finance.bean.User;
 import com.item.finance.bean.UserRole;
 import com.item.finance.bean.UserRoleRelation;
 import com.item.finance.services.MemberAccountService;
+import com.item.finance.services.MemberBankcardService;
+import com.item.finance.services.MemberService;
+import com.item.finance.services.MemberWithdrawRecordService;
 import com.item.finance.services.RolePermissionRelationService;
 import com.item.finance.services.UserRoleRelationService;
 import com.item.finance.services.UserRoleService;
@@ -51,6 +53,12 @@ public class HoufanItemSystemController {
 	private DeoploymentProcessDefinition deoploymentProcessDefinition;
 	@Autowired
 	private MemberAccountService memberAccountService;
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private MemberWithdrawRecordService memberWithdrawRecordService;
+	@Autowired
+	private MemberBankcardService memberBankcardService;
 	
 	/**
 	 * 后台审核流程
@@ -75,7 +83,7 @@ public class HoufanItemSystemController {
 	
 	@RequestMapping("/getThrough")
 	@ResponseBody
-	public boolean getThrough(String id,String bankCard,String withdrawAmount,String memberID){
+	public boolean getThrough(String id,String bankCard,String withdrawAmount,String memberID,String randomPayNumber){
 		try {
 			ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 			//流程通过
@@ -113,32 +121,56 @@ public class HoufanItemSystemController {
 			          
 			        //完成任务的同时，设置流程变量，使用流程变量用来指定完成任务后，下一个连线，对应sequenceFlow.bpmn文件中${message=='不重要'}  
 			        Map<String, Object> variables = new HashMap<String, Object>();  
-			        variables.put("outcome", IsAgree);  
+			        variables.put("outcome", IsAgree); 
+			        variables.put("processState", "2");	//已完成
 			        processEngine.getTaskService()//与正在执行的任务管理相关的Service  
 			                    .complete(taskId,variables); 
-			        if(ename.equals("admin:system")){	//如果会超级管理员 流程结束	完成提款 添加提款记录
-			        	HoufanWebItemController houfanWebItemController = new HoufanWebItemController();
+			        if(ename.equals("admin:system")){	//如果是超级管理员 流程结束	完成提款 添加提款记录
+			        	/**
+			        	* 判断流程是否结束
+			        	*/
+//			        	ProcessInstance pi = processEngine.getRuntimeService().createProcessInstanceQuery()//
+//			        	.processInstanceId(id)//使用流程实例ID查询
+//			        	.singleResult();
+			        	//流程已结束	修改流程状态
+//			        	if(pi==null){
+//			        		TaskService taskService = processEngine.getTaskService();
+//			        		taskService.setVariable(id, "processState", '2');	//已完成
+//			        	}
 			        	
 			        	//alipay转账
-			        	AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipay.com/gateway.do","app_id","your private_key","json","GBK","alipay_public_key","RSA2");
-			        	AlipayFundTransToaccountTransferRequest request = new AlipayFundTransToaccountTransferRequest();
-			        	request.setBizContent("{" +
-			        	"\"out_biz_no\":\""+houfanWebItemController.getRandomPayName()+"\"," +
-			        	"\"payee_type\":\"ALIPAY_LOGONID\"," +
-			        	"\"payee_account\":\"cytjfy1234@sandbox.com\"," +
-			        	"\"amount\":\""+withdrawAmount+"\"," +
-			        	"\"payer_show_name\":\"赢+系统提现\"," +
-			        	"\"payee_real_name\":\""+memberID+"\"," +
-			        	"\"remark\":\"赢+系统,您的财富之友\"" +
-			        	"  }");
-			        	AlipayFundTransToaccountTransferResponse response = alipayClient.execute(request);
-			        	if(response.isSuccess()){
-			        	System.out.println("调用成功");
-			        	//添加提款记录
-//			        	memberAccountService.update(memberAccount);
-			        	} else {
-			        	System.out.println("调用失败");
-			        	}
+//			        	AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
+//			        	AlipayFundTransToaccountTransferRequest request = new AlipayFundTransToaccountTransferRequest();
+//			        	request.setBizContent("{" +
+//			        	"\"out_biz_no\":\""+houfanWebItemController.getRandomPayName()+"\"," +
+//			        	"\"payee_type\":\"ALIPAY_LOGONID\"," +
+//			        	"\"payee_account\":\"cytjfy1234@sandbox.com\"," +
+//			        	"\"amount\":\""+withdrawAmount+"\"," +
+//			        	"\"payer_show_name\":\"赢+系统提现\"," +
+//			        	"\"payee_real_name\":\""+memberID+"\"," +
+//			        	"\"remark\":\"赢+系统,您的财富之友\"" +
+//			        	"  }");
+//			        	System.out.println("alipay转账:"+request.getBizContent());
+//			        	AlipayFundTransToaccountTransferResponse response = alipayClient.execute(request);
+//			        	if(response.isSuccess()){
+//			        	System.out.println("调用成功");
+			        	//修改账户余额
+			        		//查询用户id
+			        		Member member = memberService.selectGetByName(memberID);
+			        		//查询用户余额
+			        		MemberAccount memberAccount = memberAccountService.selectGetByMemberId(member.getId());
+			        		//修改
+			        		memberAccount.setUseableBalance(Double.valueOf(memberAccount.getUseableBalance())-Double.valueOf(withdrawAmount));
+			        		memberAccountService.update(memberAccount);
+			        	//修改提款记录(修改为已完成)
+			        		//根据流水号查询正在审核的申请
+			        		MemberWithdrawRecord memberWithdrawRecord = memberWithdrawRecordService.selectGetByRandomPayNumber(randomPayNumber);
+			        		//修改
+			        		memberWithdrawRecord.setStatus((byte)1);
+			        		memberWithdrawRecordService.update(memberWithdrawRecord);
+//			        	} else {
+//			        	System.out.println("调用失败");
+//			        	}
 			        }
 			        
 			        System.out.println("完成任务：任务ID："+taskId); 

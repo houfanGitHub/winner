@@ -1,10 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<<<<<<< HEAD
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-=======
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
->>>>>>> branch 'master' of https://github.com/houfanGitHub/winner.git
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -20,7 +17,6 @@
 	<meta name="Keywords" content="股指体验交易，股指单手交易，股指多手交易">
 	<meta name="description" content="申请实盘交易账户，直接进行实盘交易。">
 	<title>提款-会员中心-盈+</title>
-	<link href="http://www.ying158.com/images/icon.ico" type="image/x-icon" rel="shortcut icon">
 	<link href="/winner/files/common.css" rel="stylesheet">
 	<link href="/winner/files/jw.css" rel="stylesheet">
     <link href="/winner/files/iconfont.css" rel="stylesheet">
@@ -141,7 +137,7 @@
 </script><table height="160" class="peopleInfo" width="970" border="0" cellspacing="0" cellpadding="0">
     <tbody><tr>
         <td align="left" valign="middle" class="info">
-            <a href="#">
+            <a href="/winner/itemweb/security">
                 <div class="img"><img src="/winner/files/userPic.jpg"></div>
                 <h2>${memberinfo.name }，<span>您好!</span></h2>
             </a>
@@ -154,27 +150,46 @@
             </ul>
         </td>
         <td align="right">
-            <a href="/winner/index.jsp" class="loginOut"><span class="iconfont"></span>安全退出</a>
+            <a href="/winner/itemweb/webMemberLogout"  class="loginOut"><span class="iconfont"></span>安全退出</a>
         </td>
     </tr>
 </tbody></table>
 <div class="countBox">
     <ul>
-        <li>
-        <h2>
+        <li><h2>
         <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
         <c:if test="${!empty memberinfo.memberAccounts }">
         <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.useableBalance}</c:forEach>
         </c:if>
         </h2>
         <p>账户可用余额(元)<a href="javascript:;" class="iconfont"><span>账户可用余额</span><i></i></a></p></li>
-        <li><h2>0</h2><p>账户总资产(元)<a href="javascript:;" class="iconfont"><span>可用余额+投资金额+累计收益</span><i></i></a></p></li>
-        <li><h2 style="color:#9d8440">0</h2><p>投资金额(元)<a href="javascript:;" class="iconfont"><span>投资中资金</span><i></i></a></p></li>
-        <li><h2 style="color:#9d8440">0</h2><p>累计收益(元)<a href="javascript:;" class="iconfont"><span>累计收益</span><i></i></a></p></li>
-        <li><h2 style="color:#9d8440">0</h2><p>冻结金额(元)<a href="javascript:;" class="iconfont"><span>提现冻结金额</span><i></i></a></p></li>
+         <li><h2>
+          <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.useableBalance+memberAccount.investAmount+memberAccount.totalProfit}</c:forEach>
+        </c:if>
+         </h2><p>账户总资产(元)<a href="javascript:;" class="iconfont"><span>可用余额+投资金额+累计收益</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">
+         <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.investAmount}</c:forEach>
+        </c:if>
+        </h2><p>投资金额(元)<a href="javascript:;" class="iconfont"><span>投资中资金</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">
+		 <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.totalProfit}</c:forEach>
+        </c:if>
+        </h2><p>累计收益(元)<a href="javascript:;" class="iconfont"><span>累计收益</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">
+        <c:if test="${empty memberinfo.memberAccounts }">0</c:if>
+        <c:if test="${!empty memberinfo.memberAccounts }">
+        <c:forEach items="${memberinfo.memberAccounts }" var="memberAccount">${memberAccount.imusealeBalance}</c:forEach>
+        </c:if>
+        </h2><p>冻结金额(元)<a href="javascript:;" class="iconfont"><span>提现冻结金额</span><i></i></a></p></li>
     </ul>
-    <a href="http://pro.ying158.com/account/deposit" class="cz">充值</a>
-    <a href="http://pro.ying158.com/account/withdraw" class="tk">提款</a>
+    <a href="/winner/itemweb/deposit" class="cz">充值</a>
+    <a href="/winner/itemweb/drawMoney" class="tk">提款</a>
 </div>	<div class="proMain clearfix">
 <div class="adminLeft">
     <h2>我的投资</h2>
@@ -186,7 +201,7 @@
         <li><a id="member_center_menu_deposit_record"
          href="/winner/itemweb/rechargeRecords"><em class="iconfont red"></em>充值记录</a></li>
         <li><a id="member_center_menu_withdraw_record" 
-        href="/winner/itemweb/withdraw" class="select"><em class="iconfont red"></em>提款记录</a></li>
+        href="/winner/itemweb/withdraw"><em class="iconfont red"></em>提款记录</a></li>
         <li><a id="member_center_menu_bbinInfo_record"
          href="/winner/itemweb/experienceGold"><em class="iconfont red"></em>体验金记录</a></li>
     </ul>
@@ -197,7 +212,7 @@
 				<li><a id="member_center_menu_security" 
 				href="/winner/itemweb/security"><em class="iconfont"></em>安全信息</a></li>
 				<li><a id="member_center_menu_withdraw" 
-				href="/winner/itemweb/drawMoney"><em class="iconfont"></em>我要提款</a></li>
+				href="/winner/itemweb/drawMoney"  class="select"><em class="iconfont"></em>我要提款</a></li>
 			</ul>
 </div>
 <script>
@@ -260,7 +275,7 @@
 	        <th width="10%">流程id</th>
 			<th width="25%">银行卡号</th>
 			<th width="10%">取款金额</th>
-			<th width="10%">申请人</th>
+			<th width="10%">申请账号</th>
 			<th width="10%">查看状态</th>
 	      </tr>
 	   </thead>
@@ -283,13 +298,23 @@
 // 			}
 			var str = "";  
 //              alert(msg);
-             for (i in msg) {  
-                 str += "<tr>" +  
-                 "<td>" + msg[i].processInstanceId + "</td>" +  
-                 "<td>" + msg[i].bankCard + "</td>" +  
-                 "<td>" + msg[i].withdrawAmount + "</td>" +  
-                 "<td>" + msg[i].memberID + "</td>" + 
-                 "<td><a target='_blank' href=/winner/itemweb/showImg/"+msg[i].processInstanceId+">查看流程图</a></td></tr>";  
+             for (i in msg) {
+            	 if(msg[i].processState=='1'){
+            		 str += "<tr>" +  
+                     "<td>" + msg[i].processInstanceId + "</td>" +  
+                     "<td>" + msg[i].bankCard + "</td>" +  
+                     "<td>" + msg[i].withdrawAmount + "</td>" +  
+                     "<td>" + msg[i].memberID + "</td>" + 
+                     "<td><a target='_blank' href=/winner/itemweb/showImg/"+msg[i].processInstanceId+">审核中</a></td></tr>"; 
+            	 }else if(msg[i].processState=='2'){
+            		 str += "<tr>" +  
+                     "<td>" + msg[i].processInstanceId + "</td>" +  
+                     "<td>" + msg[i].bankCard + "</td>" +  
+                     "<td>" + msg[i].withdrawAmount + "</td>" +  
+                     "<td>" + msg[i].memberID + "</td>" + 
+                     "<td>已完成</td></tr>"; 
+            	 }
+                  
              }  
              $("#tbody-result").append(str);
 		});
@@ -336,18 +361,19 @@
                     <div class="title" style=" padding-left:10px; font-weight:normal; font-size:20px; color:#ccc;">
                         主要合作机构
                     </div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.picc.com/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/1_on.png&#39;" onmouseout="this.src = &#39;/resources/web/images/hzhb/1.jpg&#39;" src="/winner/files/1.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.fuioupay.com/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/2_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/2.jpg&#39;" src="/winner/files/2.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.nanhua.net/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/3_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/3.jpg&#39;" src="/winner/files/3.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.zttrust.com.cn/stations/526623d20a/index.php/5268e6b50a"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/4_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/4.jpg&#39;" src="/winner/files/4.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://sc.hkex.com.hk/TuniS/www.hkex.com.hk/eng/index.htm/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/5_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/5.jpg&#39;" src="/winner/files/5.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.cmegroup.com/cn-s/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/6_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/6.jpg&#39;" src="/winner/files/6.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.sgx.com/wps/portal/sgxweb_ch/home/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOKNHB1NPAycDSz9wwzMDTxD_Z2Cg8PCDANdjYEKIoEKDHAARwNC-sP1o8BK8JhQkBthkO6oqAgAzDYPQQ!!/dl5/d5/L2dBISEvZ0FBIS9nQSEh/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/7_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/7.jpg&#39;" src="/winner/files/7.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.neeq.com.cn/index/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/8_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/8.jpg&#39;" src="/winner/files/8.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.cmbchina.com/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/9_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/9.jpg&#39;" src="/winner/files/9.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.bankcomm.com/BankCommSite/default.shtml"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/10_on.png&#39;" onmouseout="this.src = &#39;/resources/web/images/hzhb/10.jpg&#39;" src="/winner/files/10.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.ccb.com/cn/home/index.html"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/11_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/11.jpg&#39;" src="/winner/files/11.jpg"></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.icbc.com.cn/icbc/"><img onmouseover="this.src = &#39;/resources/web/images/hzhb/12_on.png&#39;" onmouseout="    this.src = &#39;/resources/web/images/hzhb/12.jpg&#39;" src="/winner/files/12.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.picc.com/"><img src="/winner/files/1.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.fuioupay.com/"><img src="/winner/files/2.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.nanhua.net/"><img src="/winner/files/3.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.zttrust.com.cn/stations/526623d20a/index.php/5268e6b50a"><img src="/winner/files/4.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://sc.hkex.com.hk/TuniS/www.hkex.com.hk/eng/index.htm/"><img src="/winner/files/5.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.cmegroup.com/cn-s/"><img src="/winner/files/6.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.sgx.com/wps/portal/sgxweb_ch/home/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOKNHB1NPAycDSz9wwzMDTxD_Z2Cg8PCDANdjYEKIoEKDHAARwNC-sP1o8BK8JhQkBthkO6oqAgAzDYPQQ!!/dl5/d5/L2dBISEvZ0FBIS9nQSEh/"><img src="/winner/files/7.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.neeq.com.cn/index/"><img src="/winner/files/8.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.cmbchina.com/"><img src="/winner/files/9.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.bankcomm.com/BankCommSite/default.shtml"><img src="/winner/files/10.jpg"></a></div>
+
+                    <div class="hzhb_item"><a target="_blank" href="http://www.ccb.com/cn/home/index.html"><img src="/winner/files/11.jpg"></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.icbc.com.cn/icbc/"><img src="/winner/files/12.jpg"></a></div>
                 </div>
 
                 <div class="ft_item ft_item_sns">
@@ -384,7 +410,7 @@
                           联系我们
                         </div>
                         <div class="contactInfo" style="padding-left:30px;">
-                            <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=508886246&amp;site=qq&amp;menu=yes"><img src="/winner/files/qqIcon.png" onmouseover="$(this).css(&#39;height&#39;, &#39;52px&#39;);" onmouseout="    $(this).css(&#39;height&#39;, &#39;48px&#39;);"></a>
+                            <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=508886246&amp;site=qq&amp;menu=yes"><img src="/winner/files/qqIcon.png"></a>
                             <span class="kefu">在线客服</span><span class="time">08:30 - 21:00</span>
                         </div>
                     </div>

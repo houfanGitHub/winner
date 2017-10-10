@@ -46,6 +46,12 @@ public class MemberBankcardService implements ItemServiceImpl<MemberBankcard> {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public MemberBankcard selectGetByMemberId(String id) {
+		// TODO Auto-generated method stub
+		MemberBankcard memberBankcard = memberBankcardDao.selectGetByMemberId(id);
+		return memberBankcard;
+	}
 	
 	
 }

@@ -7,7 +7,6 @@
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
 	<title>盈+理财-首页 - 盈+</title>
-	<link href="http://www.ying158.com/Content/images/jw/icon.ico" type="image/x-icon" rel="shortcut icon">
 	<script src="/winner/files/hm.js"></script><script src="/winner/files/hm(1).js"></script><script>
 
 		
