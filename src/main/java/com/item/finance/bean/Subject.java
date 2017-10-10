@@ -9,6 +9,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -38,9 +39,9 @@ public class Subject  {
 	private String borrowername; //借款人姓名
 	private BigInteger bought; //已购人数
 	private String comment; //产品速览
-	private Date createDate; //创建日期
+	private String createDate; //创建日期
 	private byte delflag; //是否删除
-	private Date endDate; //标的结束日期
+	private String endDate; //标的结束日期
 	private BigInteger experStatus;// 体验金是否可以购买（0：否，1：是）
 	private BigInteger firstId; //始标id
 	private BigDecimal floorAmount; //起投金额
@@ -56,18 +57,16 @@ public class Subject  {
 	private String safetyControl;//安全保障
 	private String serialNo;//合同号        
 	private String serialNumber; //流水号
-	private Date startDate; //标的开始日期
+	private String startDate; //标的开始日期
 	private byte status; //标的状态
 	private byte type; //标的类型
-	private Date updateDate; //更新日期
+	private String updateDate; //更新日期
 	private BigDecimal yearRate; //年化率
 	//private long yearEarnings;//年化收益
 	private SubjectFolder subjectFolder;//附件归属表
 	private Set<SubjectBbinPurchaseRecord> subjectBbinPurchaseRecords = new HashSet<>();//体验金购买标的表
 	private Set<SubjectFieldRecord> subjectFieldRecords = new HashSet<>();//主题记录表
 	private Set<SubjectOrderRecord> subjectOrderRecords = new HashSet<>();//标的订单表
-	
-	
 	public Subject() {
 	}
 	
@@ -79,10 +78,11 @@ public class Subject  {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	
 	/*public void setYearEarnings(long yearEarnings) {
 		this.yearEarnings = yearEarnings;
 	}
-
 	public long getYearEarnings() {
 		//收益=本金*年利率/365*天数
 				BigDecimal a=this.getFloorAmount();//本金
@@ -151,14 +151,14 @@ public class Subject  {
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_date", nullable=false)
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return this.createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
+	public void setCreateDate(String string) {
+		this.createDate = string;
 	}
 
 
@@ -171,13 +171,13 @@ public class Subject  {
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="end_date")
-	public Date getEndDate() {
+	public String getEndDate() {
 		return this.endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 
@@ -332,13 +332,13 @@ public class Subject  {
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="start_date")
-	public Date getStartDate() {
+	public String getStartDate() {
 		return this.startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
@@ -361,13 +361,13 @@ public class Subject  {
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="update_date", nullable=false)
-	public Date getUpdateDate() {
+	public String getUpdateDate() {
 		return this.updateDate;
 	}
 
-	public void setUpdateDate(Date updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 
@@ -446,11 +446,9 @@ public class Subject  {
 	public Set<SubjectOrderRecord> getSubjectOrderRecords() {
 		return this.subjectOrderRecords;
 	}
-
 	public void setSubjectOrderRecords(Set<SubjectOrderRecord> subjectOrderRecords) {
 		this.subjectOrderRecords = subjectOrderRecords;
 	}
-
 	public SubjectOrderRecord addSubjectOrderRecord(SubjectOrderRecord subjectOrderRecord) {
 		getSubjectOrderRecords().add(subjectOrderRecord);
 		subjectOrderRecord.setSubject(this);

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javassist.expr.NewArray;
 
@@ -67,14 +68,14 @@ public class Yx_FinanceProductFunds_Controller {
 	//私募股权类添加
 	@RequestMapping("/saveFinanceProductFunds")
 	public String saveFinanceProductFunds(FinanceProductFunds financeProductFunds,
-			Subject subject,@RequestParam("productManagerPic")
-	MultipartFile productManagerPic,HttpServletRequest request,HttpSession session) throws IOException{
-		
+			@RequestParam("file_name")
+	MultipartFile file_name,HttpServletRequest request,HttpSession session) throws IOException{
+		System.out.println("开始时间"+financeProductFunds.getCreateDate()+","+financeProductFunds.getEndDate());
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmssssss");
-    	this.yx_FinanceProductFunds_Service.saveFinanceProductFunds(financeProductFunds);
-    	System.out.println("文件名"+productManagerPic.getOriginalFilename());
-    	session.setAttribute("filename",productManagerPic.getOriginalFilename());
-    	String type=productManagerPic.getOriginalFilename().substring(productManagerPic.getOriginalFilename().indexOf("."));
+    	//this.yx_FinanceProductFunds_Service.saveFinanceProductFunds(financeProductFunds);
+    	System.out.println("文件名"+file_name.getOriginalFilename());
+    	session.setAttribute("filename",file_name.getOriginalFilename());
+    	String type=file_name.getOriginalFilename().substring(file_name.getOriginalFilename().indexOf("."));
 		Date date=new Date();
 		//System.out.println(sdf.format(date));
 		String filenameTime=sdf.format(date)+type;
@@ -83,9 +84,11 @@ public class Yx_FinanceProductFunds_Controller {
     	if(!newfile.exists()){
 			newfile.createNewFile();
 		}
-    	productManagerPic.transferTo(newfile);
+    	file_name.transferTo(newfile);
 		financeProductFunds.setProductManagerPic(path);
-		//System.out.println(subjectFile.getFileName()+","+subjectFile.getPath());
+		SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		financeProductFunds.setCreateDate(sdf2.format(new Date()));
+		financeProductFunds.setUpdateDate(sdf2.format(new Date()));
 		this.yx_FinanceProductFunds_Service.saveFinanceProductFunds(financeProductFunds);
 		return "redirect:/yx2/list2";
 	}
@@ -111,14 +114,91 @@ public class Yx_FinanceProductFunds_Controller {
 		yx_FinanceProductFunds_Service.updateqssb(fe2);
 		return "redirect:/yx2/listWqs/{id2}";
 	}
-	//签署
-	@RequestMapping("/selectsign/{id}")
-	public String selectsign(@PathVariable("id")int id,HttpSession session){
+	//签署查询
+	@RequestMapping("/selectsign/{id}/{period}")
+	public String selectsign(@PathVariable("id")int id,@PathVariable("period")int period,HttpSession session){
 		FinanceProductSubscribe fe3=this.yx_FinanceProductFunds_Service.selectqssb(id);
        Date date=new Date();
-       
+       date.setDate(date.getDate()+period);
+       SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+       session.setAttribute("endTime",sdf.format(date));
 		session.setAttribute("fe3",fe3);
 	    return "WEB-INF/yx_jsp/yx_FinanceProductSubscribe_sign";
 	}
+	
+	
+	
+	//签署合同
+	@RequestMapping("/upatesign/{id2}")
+	public String upatesign(@PathVariable("id2")int id2,@RequestParam("file_name")
+	MultipartFile[] files,FinanceProductSubscribe financeProductSubscribe
+	,HttpSession session,HttpServletRequest request) throws IOException{
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmssssss");
+    	//System.out.println("文件名"+files.getOriginalFilename());
+    	for(int i=0;i<files.length;i++){
+    		String filename=files[i].getOriginalFilename();//获取文件名称
+    		String path=request.getRealPath("/upload/");
+    		File newfile=new File(path, filename);
+    		if(!newfile.exists()){
+    			newfile.createNewFile();
+    		}
+    //	String type=files[i].getOriginalFilename().substring(files[i].getOriginalFilename().indexOf("."));
+		//Date date=new Date();
+		//System.out.println(sdf.format(date));
+		//String filenameTime=sdf.format(date)+type;
+    	files[i].transferTo(newfile);
+    	SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    	financeProductSubscribe.setComment("upload/"+files[0].getOriginalFilename());
+    	financeProductSubscribe.setRiskReveal("upload/"+files[1].getOriginalFilename());
+    	financeProductSubscribe.setStatus("1");
+		financeProductSubscribe.setCreateDate(sdf2.format(new Date()));
+		financeProductSubscribe.setEndDate(sdf2.format(new Date()));
+		financeProductSubscribe.setStartDate(sdf2.format(new Date()));
+		financeProductSubscribe.setUpdateDate(sdf2.format(new Date()));
+	     FinanceProductFunds financeProductFunds=this.yx_FinanceProductFunds_Service.listEdit(id2);
+	   financeProductSubscribe.setFinanceProductFunds(financeProductFunds);
+		this.yx_FinanceProductFunds_Service.updatesign(financeProductSubscribe);
+    	}
+		return "redirect:/yx2/listWqs/{id2}";
+	}
+	
+	/*@RequestMapping("/updateFinanceProductFunds")
+	public String updateFinanceProductFunds(){
+		return "redirect:/yx2/list2";
+	}*/
+	
+	
+	//修改
+	@RequestMapping("/updateFinanceProductFunds")
+	public String updateFinanceProductFunds(FinanceProductFunds financeProductFunds,
+	@RequestParam("file_name")
+	MultipartFile productManagerPic,
+	HttpServletRequest request,HttpSession session) throws IOException{
+		SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		financeProductFunds.setCreateDate(sdf2.format(new Date()));
+		financeProductFunds.setUpdateDate(sdf2.format(new Date()));
+		//financeProductFunds.setStartDate(sdf2.format(new Date()));
+		//financeProductFunds.setEndDate(sdf2.format(new Date()));
+		//System.out.println("开始时间"+financeProductFunds.getCreateDate()+","+financeProductFunds.getEndDate());
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmssssss");
+    	//this.yx_FinanceProductFunds_Service.saveFinanceProductFunds(financeProductFunds);
+    	System.out.println("文件名"+productManagerPic.getOriginalFilename());
+    	session.setAttribute("filename",productManagerPic.getOriginalFilename());
+    	String type=productManagerPic.getOriginalFilename().substring(productManagerPic.getOriginalFilename().indexOf("."));
+		Date date=new Date();
+		//System.out.println(sdf.format(date));
+		String filenameTime=sdf.format(date)+type;
+    	String path=request.getRealPath("/upload/");//String path=request.getSession().getServletContext().getRealPath("/upload/");
+    	File newfile=new File(path,filenameTime);
+    	if(!newfile.exists()){
+			newfile.createNewFile();
+		}
+    	productManagerPic.transferTo(newfile);
+		financeProductFunds.setProductManagerPic(path);
+	
+		this.yx_FinanceProductFunds_Service.updateFinanceProductFunds(financeProductFunds);
+		return "redirect:/yx2/list2";
+	}
+	
 	
 }

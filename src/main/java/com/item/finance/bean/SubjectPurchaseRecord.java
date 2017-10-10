@@ -31,7 +31,7 @@ public class SubjectPurchaseRecord  {//标的购买表
 	private String serialNumber;  //流水号
 	private Subject subject;  //主题表
 	private Date updateDate;  //修改时间
-
+    
     @Id
     @GeneratedValue
 	public int getId() {

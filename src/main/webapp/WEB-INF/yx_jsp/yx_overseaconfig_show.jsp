@@ -57,7 +57,7 @@ $(function(){
 还款完成</c:if>
 </td>
 <td>${t.sortColum}</td>
-<td>${t.overseaIcon }</td>
+<td><img src="/winner/upload/${t.overseaIcon}" width="75px;" height="75px;"></td>
 <td>${t.addTime }</td>
 <td><input type="button" id="ck" value="查看预约"  class="btn btn-primary">
 &nbsp;<input type="button" value="编辑/查看" onclick="editShow(${t.id})" class="btn btn-primary"></td>

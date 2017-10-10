@@ -83,5 +83,19 @@ public class Yx_FinanceProductFunds_Dao {
 		Session session=getSession();
 		session.update(fe);
 	}
+	//修改
+	public void	updateFinanceProductFunds(FinanceProductFunds financeProductFunds){
+		Session session=getSession();
+		session.update(financeProductFunds);
+	}
+	//签署合同
+	public void	 updatesign(FinanceProductSubscribe financeProductSubscribe){
+		Session session=getSession();
+		session.update(financeProductSubscribe);
+	}
+	public void	 updatesign2(FinanceProductFunds financeProductFunds){
+		Session session=getSession();
+		session.update(financeProductFunds);
+	}
 
 }
