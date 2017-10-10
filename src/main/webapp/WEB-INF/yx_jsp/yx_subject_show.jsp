@@ -47,7 +47,7 @@ function editshow(id){
 <form action="">
 <table border="0" class="table table-condensed table-hover">
 <tr>
-<td colspan="2" align="center"><label>名称</label></td><td colspan="2"><input type="text" id="qname" name="qname" value="${qname}" class="form-control" placeholder="名称"></td>
+<td colspan="2" align="center"><label>名称</label></td><td width="200px;"><input type="text" id="qname" name="qname" value="${qname}" class="form-control" placeholder="名称"></td><td></td>
 <td align="center"><label>状态</label></td>
 <td colspan="2">
 <select class="form-control" name="qstatus" id="qstatus"><option value="">全部</option>
@@ -121,8 +121,6 @@ P2P房贷
 </tr>
 </c:forEach>
 </table>
-
-
 
 </body>
 </html>
