@@ -68,10 +68,15 @@ function editshow(id){
 </td>
 <td></td>  
 <td align="center">
-<!-- <input type="button" id="cx" class="btn btn-primary"  value="查询"></td><td align="center"><input type="button" class="btn btn-primary" id="cz"  value="重置"/></td>
-<td><input type="button" class="btn btn-primary" id="btn1" value="新增"/>   -->
-<a href="#" class="btn btn-primary" type="button"  id="cx">查询</a>&nbsp;&nbsp;
-<a href="#" class="btn btn-primary" type="reset" id="cz">重置</a>&nbsp;&nbsp;
+ <input type="button" id="cx" class="btn btn-primary"  value="查询"></td><td align="center"><input type="button" class="btn btn-primary" id="cz"  value="重置"/></td>
+<td>
+<!-- <a href="#" class="btn btn-primary" type="button"  id="cx">查询</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#" class="btn btn-primary" type="reset" id="cz">重置</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+
+<input type="button" class="btn btn-primary" id="btn1" value="新增"/>  
 </td>
 </tr>
 </table>
