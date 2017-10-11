@@ -98,7 +98,7 @@ body {
   <tr>
     <td height="608" background="/winner/backstage/images/login_03.gif"><table width="847" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
-        <td height="318" background="/winner/backstage/images/login_04.gif">&nbsp;</td>
+        <td height="318" background="/winner/backstage/images/login_02.gif">&nbsp;</td>
       </tr>
       <tr>
         <td height="84"><table width="100%" border="0" cellspacing="0" cellpadding="0">

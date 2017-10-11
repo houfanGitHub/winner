@@ -152,7 +152,7 @@
         href="/winner/itemweb/invests"><em class="iconfont red"></em>投资记录</a></li>
         <li><a id="member_center_menu_profit_record" 
         href="/winner/itemweb/myself"><em class="iconfont red"></em>收益记录</a></li>
-        <li><a id="member_center_menu_deposit_record"
+        <li><a 
          href="/winner/itemweb/rechargeRecords"><em class="iconfont red"></em>充值记录</a></li>
         <li><a id="member_center_menu_withdraw_record"
          href="/winner/itemweb/withdraw"><em class="iconfont red"></em>提款记录</a></li>
@@ -353,8 +353,8 @@
 	<div class="foot3">
 		<div class="container">
 			<div class="row">
-				Copyright © 2010 - 2015 www.ying158.com All Rights Reserverd 杭州吉威投资管理有限公司 版权所有<br>
-				浙ICP备14030807号-3 杭州市江干区钱江新城迪凯银座19F 4000-999-158
+				Copyright © 2010 - 2015 www..com All Rights Reserverd 襄阳市赢+理财股份有限公司 版权所有<br>
+				鄂ICP备14030807号-3 襄阳市江干区钱江新城迪凯银座19F 4000-999-158
 			</div>
 		</div>
 	</div>

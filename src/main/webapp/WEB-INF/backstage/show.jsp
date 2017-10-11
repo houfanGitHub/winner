@@ -210,7 +210,7 @@
 					<li class="light-blue"><a data-toggle="dropdown"
 						class="dropdown-toggle"> <span
 							class="time"><em id="time">2017年9月11日9时27分39秒</em></span><span
-							class="user-info"><small>欢迎光临,</small>超级管理员</span> <i
+							class="user-info"><small>欢迎光临,</small>管理员</span> <i
 							class="icon-caret-down"></i>
 					</a>
 						<ul
@@ -346,8 +346,7 @@
 									class="iframeurl"><i class="icon-double-angle-right"></i>公告管理</a></li>
 								<li class="home" style="height: 36px;"><a
 									href="javascript:void(0)" name="/winner/listFeedback" title="意见反馈"
-									class="iframeurl"><i class="icon-double-angle-right"></i>意见反馈<span
-										class="badge badge-danger">5</span></a></li>
+									class="iframeurl"><i class="icon-double-angle-right"></i>意见反馈</a></li>
 							</ul></li>
 						<li><a class="dropdown-toggle"><i class="icon-comments-alt"></i><span
 								class="menu-text"> 系统设置 </span><b class="arrow icon-angle-down"></b></a>
@@ -500,7 +499,7 @@
 			}
 		</script>
 		<p class="l_f">版权所有：赢+ 豫ICP备14018001号-1</p>
-		<p class="r_f">地址：上海松江区泽悦路211弄17号1104室 邮编：210011 技术支持：XXXX</p>
+		<p class="r_f">地址：湖北襄阳市泽悦路211弄17号1104室 邮编：210011 技术支持：XXXX</p>
 	</div>
 
 </body>

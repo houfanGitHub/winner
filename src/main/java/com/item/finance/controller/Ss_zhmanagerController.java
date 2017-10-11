@@ -169,60 +169,69 @@ public class Ss_zhmanagerController {
 		return "WEB-INF/ssjsp/details";   //跳转页面
 	}
 	
-	@RequestMapping("/asd")
-	public String getmemberId(HttpSession session){
-		//String  id=((Member)session.getAttribute("memberinfo")).getId();
-		if (session.getAttribute("memberinfo") == null) {
-			return "redirect:/itemweb/toLogin";  
-			
+	//判断session里的值是否为空
+	public boolean testSession(HttpSession session){
+		if(session.getAttribute("memberinfo")!=null){
+			return true;
 		}else {
-			return "redirect:/sushuang1/getmemberprofit1"; 
+			return false;
 		}
 	}
+	
 	//前台个人 收益记录    成员利润
 	@RequestMapping("/getmemberprofit1")  //memberinfo信息  是存在session里的
 	public String getMemberprofit(Model model,HttpSession session){
-		String id = ((Member)session.getAttribute("memberinfo")).getId();  //得到 id  在下面可以用
-		String name=((Member)session.getAttribute("memberinfo")).getName();
-		System.out.println("id="+id);
-		System.out.println("name="+name);
-		List<MemberProfitRecord>listprofit=ss_zhmanagerService.getmeberpro(id);//收益  成员利润表
-		for (MemberProfitRecord m : listprofit) {
-			System.out.println("订单号："+m.getSerialNumber()+",金额："+m.getAmount());
-			
+		
+		if (!testSession(session)) {
+			return "redirect:/itemweb/toLogin";  
+		}else {
+			String id = ((Member)session.getAttribute("memberinfo")).getId();  //得到 id  在下面可以用
+			String name=((Member)session.getAttribute("memberinfo")).getName();
+			System.out.println("id="+id);
+			System.out.println("name="+name);
+			List<MemberProfitRecord>listprofit=ss_zhmanagerService.getmeberpro(id);//收益  成员利润表
+			for (MemberProfitRecord m : listprofit) {
+				System.out.println("订单号："+m.getSerialNumber()+",金额："+m.getAmount());
+				
+			}
+			List<MemberAccount>memberAccount=this.ss_zhmanagerService.getmemberaccountid(id);//资金信息表
+			model.addAttribute("memberAccount", memberAccount);
+			model.addAttribute("listprofit", listprofit);
+			return "WEB-INF/myself/myself";  //页面跳转  
 		}
-		List<MemberAccount>memberAccount=this.ss_zhmanagerService.getmemberaccountid(id);//资金信息表
-		model.addAttribute("memberAccount", memberAccount);
-		model.addAttribute("listprofit", listprofit);
-		return "WEB-INF/myself/myself";  //页面跳转  
+		
 		
 	}
 
 	//前台个人充值记录    直接从service里面拿过来
 	@RequestMapping("/getmemberdepo1")       //memberinfo信息  是存在session里的
 	public String getmemberdepo(Model model,HttpSession session){
+		if (!testSession(session)) {
+			return "redirect:/itemweb/toLogin";  
+		}else {
 		String id=((Member)session.getAttribute("memberinfo")).getId(); //得到 id  在下面可以用
 		String name=((Member)session.getAttribute("memberinfo")).getName();
 		System.out.println("id="+id);
 		System.out.println("name="+name);
-		System.out.println("333333333333");
 		List<MemberDepositRecord> listmemberdepo=ss_zhmanagerService.getbyIddeposit(id);//充值记录表
 		System.out.println("bbbbbbbbb="+listmemberdepo.size());
 		for (MemberDepositRecord me : listmemberdepo) {
 			System.out.println("订单号："+me.getSerialNumber()+",金额："+me.getAmount());
 		}
-		System.out.println("44444444444444");
 		List<MemberAccount>memberAccount=this.ss_zhmanagerService.getmemberaccountid(id);//资金信息表
 		model.addAttribute("memberAccount", memberAccount);
 		model.addAttribute("listmemberdepo", listmemberdepo);
 		return "WEB-INF/myself/rechargeRecords";//页面跳转
+		}
 		
 	}
 	
 	//前台 个人 提款记录   直接从 service里面 拿出来
 	@RequestMapping("/getmemberwith1")
 	public String getmemberwith(Model model,HttpSession session){
-	//	System.out.println("555555555555555");
+		if (!testSession(session)) {
+			return "redirect:/itemweb/toLogin";  
+		}else {
 		String id=((Member)session.getAttribute("memberinfo")).getId();//得到 id 在下面可以带到list集合方法里
 		String name=((Member)session.getAttribute("memberinfo")).getName();
 		System.out.println("id="+id);
@@ -238,13 +247,16 @@ public class Ss_zhmanagerController {
 		model.addAttribute("listmemberwith", listmemberwith);
 	//	System.out.println("6666666666666666");
 		return "WEB-INF/myself/withdrawals"; //页面跳转
+		}
 		
 	}
 	
 	//前台 个人投资记录  直接从service里面拿出来
 	@RequestMapping("/getsubjectpur")
 	public String getsubjectpur(HttpSession session,Model model){
-	//	System.out.println("77777777777777");
+		if (!testSession(session)) {
+			return "redirect:/itemweb/toLogin";  
+		}else {
 		String id=((Member)session.getAttribute("memberinfo")).getId();//得到 id 在下面可以带到list集合方法里
 		String name=((Member)session.getAttribute("memberinfo")).getName();
 		System.out.println("id="+id);
@@ -275,12 +287,15 @@ public class Ss_zhmanagerController {
 		model.addAttribute("listorder", listorder);  //预约几笔数据
 	//   System.out.println("888888888888888888888");
 		return "WEB-INF/myself/invests"; //页面跳转
+		}
 	
 	}
 	//体验金记录信息
 	@RequestMapping("/getbbin")
 	public String getbbin(HttpSession session,Model model){
-		System.out.println("9999999");
+		if (!testSession(session)) {
+			return "redirect:/itemweb/toLogin";  
+		}else {
 		String id=((Member)session.getAttribute("memberinfo")).getId();//得到 id 在下面可以带到list集合方法里
 		String name=((Member)session.getAttribute("memberinfo")).getName();
 		System.out.println("id="+id);
@@ -299,7 +314,7 @@ public class Ss_zhmanagerController {
 		model.addAttribute("listbb", listbb); //体验金
 		model.addAttribute("listjectbbr", listjectbbr);//体验金购买标 的表
 		return "WEB-INF/myself/goldexperience"; //页面跳转 
-	
+		}
 	}
 	
 	

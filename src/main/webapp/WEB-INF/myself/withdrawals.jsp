@@ -326,8 +326,8 @@
 	<div class="foot3">
 		<div class="container">
 			<div class="row">
-				Copyright © 2010 - 2015 www.ying158.com All Rights Reserverd 杭州吉威投资管理有限公司 版权所有<br>
-				浙ICP备14030807号-3 杭州市江干区钱江新城迪凯银座19F 4000-999-158
+				Copyright © 2010 - 2015 www..com All Rights Reserverd 襄阳市赢+理财股份有限公司 版权所有<br>
+				鄂ICP备14030807号-3 襄阳市江干区钱江新城迪凯银座19F 4000-999-158
 			</div>
 		</div>
 	</div>

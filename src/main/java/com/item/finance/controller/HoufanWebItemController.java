@@ -105,30 +105,33 @@ public class HoufanWebItemController {
 	@Autowired
 	private SubjectPurchaseRecordService subjectPurchaseRecordService;
 
-	//充值
+	// 充值
 	@RequestMapping("/accountRecharge")
-	public String accountRecharge(@RequestParam(value="fee")String fee,Map<String, Object> map,HttpServletRequest request) {
-		//生成订单号
+	public String accountRecharge(@RequestParam(value = "fee") String fee,
+			Map<String, Object> map, HttpServletRequest request) {
+		// 生成订单号
 		String randomPayName = getRandomPayName();
 
 		request.setAttribute("serialNumber", randomPayName);
-		//付款金额，必填
+		// 付款金额，必填
 		request.setAttribute("amountDecimal", fee);
-		//订单名称，必填
+		// 订单名称，必填
 		request.setAttribute("payName", "富友账户充值");
-		//商品描述，可空
+		// 商品描述，可空
 		request.setAttribute("payinfo", "");
-		
+
 		return "/WEB-INF/myself/accountRecharge";
 	}
-	
-//	功能：支付宝服务器同步通知页面
+
+	// 功能：支付宝服务器同步通知页面
 	@RequestMapping("/returnUrl")
-	public String returnUrl(HttpServletRequest request,HttpSession session) throws UnsupportedEncodingException, AlipayApiException{
-		//获取支付宝GET过来反馈信息
-		Map<String,String> params = new HashMap<String,String>();
-		Map<String,String[]> requestParams = request.getParameterMap();
-		for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
+	public String returnUrl(HttpServletRequest request, HttpSession session)
+			throws UnsupportedEncodingException, AlipayApiException {
+		// 获取支付宝GET过来反馈信息
+		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String[]> requestParams = request.getParameterMap();
+		for (Iterator<String> iter = requestParams.keySet().iterator(); iter
+				.hasNext();) {
 			String name = (String) iter.next();
 			String[] values = (String[]) requestParams.get(name);
 			String valueStr = "";
@@ -136,42 +139,59 @@ public class HoufanWebItemController {
 				valueStr = (i == values.length - 1) ? valueStr + values[i]
 						: valueStr + values[i] + ",";
 			}
-			//乱码解决，这段代码在出现乱码时使用
-//			valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
+			// 乱码解决，这段代码在出现乱码时使用
+			// valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
 			params.put(name, valueStr);
 		}
-		
-		boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type); //调用SDK验证签名
 
-		//——请在这里编写您的程序（以下代码仅作参考）——
-		if(signVerified) {
-			//商户订单号
-			String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("UTF-8"),"UTF-8");
-			System.out.println("商户订单号:"+out_trade_no);
-			//支付宝交易号
-			String trade_no = new String(request.getParameter("trade_no").getBytes("UTF-8"),"UTF-8");
-			System.out.println("支付宝交易号:"+out_trade_no);
-			//付款金额
-			String total_amount = new String(request.getParameter("total_amount").getBytes("UTF-8"),"UTF-8");
-			System.out.println("付款金额:"+total_amount);
-			//账户充值
-			Member member =(Member)session.getAttribute("memberinfo");
-			//根据memberId查询该用户的账户信息
+		boolean signVerified = AlipaySignature.rsaCheckV1(params,
+				AlipayConfig.alipay_public_key, AlipayConfig.charset,
+				AlipayConfig.sign_type); // 调用SDK验证签名
+
+		// ——请在这里编写您的程序（以下代码仅作参考）——
+		if (signVerified) {
+			// 商户订单号
+			String out_trade_no = new String(request.getParameter(
+					"out_trade_no").getBytes("UTF-8"), "UTF-8");
+			System.out.println("商户订单号:" + out_trade_no);
+			// 支付宝交易号
+			String trade_no = new String(request.getParameter("trade_no")
+					.getBytes("UTF-8"), "UTF-8");
+			System.out.println("支付宝交易号:" + out_trade_no);
+			// 付款金额
+			String total_amount = new String(request.getParameter(
+					"total_amount").getBytes("UTF-8"), "UTF-8");
+			System.out.println("付款金额:" + total_amount);
+			// 账户充值
+			Member member = (Member) session.getAttribute("memberinfo");
+			// 根据memberId查询该用户的账户信息
 			try {
-				System.out.println("账户id:"+((Member)session.getAttribute("memberinfo")).getId());
-				MemberAccount memberAccount = memberAccountService.selectGetByMemberId(member.getId());
-				//如果没有查询到该用户的账户信息则进行添加
-				if(memberAccount == null){
-					memberAccount = new MemberAccount(Double.valueOf(0), Double.valueOf(0), new Date(), (byte)0, Double.valueOf(0), Double.valueOf(0), Double.valueOf(0), new Date(), Double.valueOf(total_amount), member);
+				System.out
+						.println("账户id:"
+								+ ((Member) session.getAttribute("memberinfo"))
+										.getId());
+				MemberAccount memberAccount = memberAccountService
+						.selectGetByMemberId(member.getId());
+				// 如果没有查询到该用户的账户信息则进行添加
+				if (memberAccount == null) {
+					memberAccount = new MemberAccount(Double.valueOf(0),
+							Double.valueOf(0), new Date(), (byte) 0,
+							Double.valueOf(0), Double.valueOf(0),
+							Double.valueOf(0), new Date(),
+							Double.valueOf(total_amount), member);
 					memberAccountService.save(memberAccount);
 					System.out.println("账户充值成功(添加)");
-					//重新查询member
-					Member member2 = memberService.selectGetByName(member.getName());
+					// 重新查询member
+					Member member2 = memberService.selectGetByName(member
+							.getName());
 					session.setAttribute("memberinfo", member2);
-					System.out.println("重新查询member"+member2.toString());
-				}else{
-					//修改账户余额
-					memberAccount.setUseableBalance(memberAccount.getUseableBalance()+Double.valueOf(total_amount));
+					System.out.println("重新查询member" + member2.toString());
+				} else {
+					// 修改账户余额
+					memberAccount
+							.setUseableBalance(memberAccount
+									.getUseableBalance()
+									+ Double.valueOf(total_amount));
 					memberAccount.setUpdateDate(new Date());
 					memberAccountService.update(memberAccount);
 					System.out.println("账户充值成功(修改)");
@@ -180,34 +200,40 @@ public class HoufanWebItemController {
 				e.printStackTrace();
 				System.out.println("账户充值失败");
 			}
-			//添加充值记录
+			// 添加充值记录
 			try {
-				MemberDepositRecord memberDepositRecord = 
-						new MemberDepositRecord(Double.valueOf(total_amount), new Date(), (byte)0, "FUIOU", getRandomPayName(), trade_no, (byte)1, new Date(), (Member)session.getAttribute("memberinfo"));
+				MemberDepositRecord memberDepositRecord = new MemberDepositRecord(
+						Double.valueOf(total_amount), new Date(), (byte) 0,
+						"FUIOU", getRandomPayName(), trade_no, (byte) 1,
+						new Date(), (Member) session.getAttribute("memberinfo"));
 				memberDepositRecordService.save(memberDepositRecord);
 				System.out.println("充值记录信息添加成功");
-				//重新查询member
-				Member member2 = memberService.selectGetByName(member.getName());
+				// 重新查询member
+				Member member2 = memberService
+						.selectGetByName(member.getName());
 				session.setAttribute("memberinfo", member2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("充值记录信息添加失败");
 			}
-			System.out.println("trade_no:"+trade_no+"\n"+"out_trade_no:"+out_trade_no+"\n"+"total_amount:"+total_amount);
-		}else {
+			System.out.println("trade_no:" + trade_no + "\n" + "out_trade_no:"
+					+ out_trade_no + "\n" + "total_amount:" + total_amount);
+		} else {
 			System.out.println("验签失败");
 		}
 		return "redirect:/itemweb/rechargeRecords";
 	}
-	
-//	功能：支付宝服务器异步通知页面
+
+	// 功能：支付宝服务器异步通知页面
 	@RequestMapping("/notifyUrl")
 	@ResponseBody
-	public void notifyUrl(HttpServletRequest request) throws UnsupportedEncodingException, AlipayApiException{
-		//获取支付宝POST过来反馈信息
-		Map<String,String> params = new HashMap<String,String>();
-		Map<String,String[]> requestParams = request.getParameterMap();
-		for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
+	public void notifyUrl(HttpServletRequest request)
+			throws UnsupportedEncodingException, AlipayApiException {
+		// 获取支付宝POST过来反馈信息
+		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String[]> requestParams = request.getParameterMap();
+		for (Iterator<String> iter = requestParams.keySet().iterator(); iter
+				.hasNext();) {
 			String name = (String) iter.next();
 			String[] values = (String[]) requestParams.get(name);
 			String valueStr = "";
@@ -215,89 +241,98 @@ public class HoufanWebItemController {
 				valueStr = (i == values.length - 1) ? valueStr + values[i]
 						: valueStr + values[i] + ",";
 			}
-			//乱码解决，这段代码在出现乱码时使用
+			// 乱码解决，这段代码在出现乱码时使用
 			valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
 			params.put(name, valueStr);
 		}
-		
-		boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type); //调用SDK验证签名
 
-		//——请在这里编写您的程序（以下代码仅作参考）——
-		
-		/* 实际验证过程建议商户务必添加以下校验：
-		1、需要验证该通知数据中的out_trade_no是否为商户系统中创建的订单号，
-		2、判断total_amount是否确实为该订单的实际金额（即商户订单创建时的金额），
-		3、校验通知中的seller_id（或者seller_email) 是否为out_trade_no这笔单据的对应的操作方（有的时候，一个商户可能有多个seller_id/seller_email）
-		4、验证app_id是否为该商户本身。
-		*/
-		if(signVerified) {//验证成功
-			//商户订单号
-//			String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
-		
-			//支付宝交易号
-//			String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
-		
-			//交易状态
-			String trade_status = new String(request.getParameter("trade_status").getBytes("UTF-8"),"UTF-8");
-			
-			if(trade_status.equals("TRADE_FINISHED")){
-				//判断该笔订单是否在商户网站中已经做过处理
-				//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
-				//如果有做过处理，不执行商户的业务程序
-					
-				//注意：
-				//退款日期超过可退款期限后（如三个月可退款），支付宝系统发送该交易状态通知
-			}else if (trade_status.equals("TRADE_SUCCESS")){
-				//判断该笔订单是否在商户网站中已经做过处理
-				//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
-				//如果有做过处理，不执行商户的业务程序
-				
-				//注意：
-				//付款完成后，支付宝系统发送该交易状态通知
+		boolean signVerified = AlipaySignature.rsaCheckV1(params,
+				AlipayConfig.alipay_public_key, AlipayConfig.charset,
+				AlipayConfig.sign_type); // 调用SDK验证签名
+
+		// ——请在这里编写您的程序（以下代码仅作参考）——
+
+		/*
+		 * 实际验证过程建议商户务必添加以下校验： 1、需要验证该通知数据中的out_trade_no是否为商户系统中创建的订单号，
+		 * 2、判断total_amount是否确实为该订单的实际金额（即商户订单创建时的金额），
+		 * 3、校验通知中的seller_id（或者seller_email)
+		 * 是否为out_trade_no这笔单据的对应的操作方（有的时候，一个商户可能有多个seller_id/seller_email）
+		 * 4、验证app_id是否为该商户本身。
+		 */
+		if (signVerified) {// 验证成功
+			// 商户订单号
+			// String out_trade_no = new
+			// String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
+
+			// 支付宝交易号
+			// String trade_no = new
+			// String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
+
+			// 交易状态
+			String trade_status = new String(request.getParameter(
+					"trade_status").getBytes("UTF-8"), "UTF-8");
+
+			if (trade_status.equals("TRADE_FINISHED")) {
+				// 判断该笔订单是否在商户网站中已经做过处理
+				// 如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
+				// 如果有做过处理，不执行商户的业务程序
+
+				// 注意：
+				// 退款日期超过可退款期限后（如三个月可退款），支付宝系统发送该交易状态通知
+			} else if (trade_status.equals("TRADE_SUCCESS")) {
+				// 判断该笔订单是否在商户网站中已经做过处理
+				// 如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
+				// 如果有做过处理，不执行商户的业务程序
+
+				// 注意：
+				// 付款完成后，支付宝系统发送该交易状态通知
 			}
-			
+
 			System.out.println("success");
-			
-		}else {//验证失败
+
+		} else {// 验证失败
 			System.out.println("fail");
-		
-			//调试用，写文本函数记录程序运行情况是否正常
-			//String sWord = AlipaySignature.getSignCheckContentV1(params);
-			//AlipayConfig.logResult(sWord);
+
+			// 调试用，写文本函数记录程序运行情况是否正常
+			// String sWord = AlipaySignature.getSignCheckContentV1(params);
+			// AlipayConfig.logResult(sWord);
 		}
 	}
-	
-	//生成订单号
+
+	// 生成订单号
 	public String getRandomPayName() {
 
-		  SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
-		  Date date = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+		Date date = new Date();
 
-		  String str = simpleDateFormat.format(date);
-		  Random random = new Random();
-		  int rannum = (int) (random.nextDouble() * (99999 - 10000 + 1)) + 10000;// 获取5位随机数
-		  return  str + rannum;// 当前时间  
+		String str = simpleDateFormat.format(date);
+		Random random = new Random();
+		int rannum = (int) (random.nextDouble() * (99999 - 10000 + 1)) + 10000;// 获取5位随机数
+		return str + rannum;// 当前时间
 	}
-	//绑卡
+
+	// 绑卡
 	@RequestMapping("/TiedCard")
 	@ResponseBody
-	public boolean TiedCard(String cardNo,String cardaddress,String type,HttpSession session){
-		
-		System.out.println("填写的绑卡信息:cardNo="+cardNo+",cardaddress="+cardaddress+",type="+type);
+	public boolean TiedCard(String cardNo, String cardaddress, String type,
+			HttpSession session) {
+
+		System.out.println("填写的绑卡信息:cardNo=" + cardNo + ",cardaddress="
+				+ cardaddress + ",type=" + type);
 		try {
 			MemberBankcard memberBankcard = new MemberBankcard();
 			memberBankcard.setCardNo(cardNo);
 			memberBankcard.setCardaddress(cardaddress);
 			memberBankcard.setType(type);
 			memberBankcard.setCreateDate(new Date());
-			memberBankcard.setDelflag((byte)0);
-			//获取当前用户信息
+			memberBankcard.setDelflag((byte) 0);
+			// 获取当前用户信息
 			Member member = (Member) session.getAttribute("memberinfo");
 			memberBankcard.setMember(member);
-			
-			//添加信息
+
+			// 添加信息
 			memberBankcardService.save(memberBankcard);
-			//重新查询member信息
+			// 重新查询member信息
 			Member newmember = memberService.selectGetByName(member.getName());
 			System.out.println(newmember.toString());
 			return true;
@@ -305,170 +340,201 @@ public class HoufanWebItemController {
 			e.printStackTrace();
 		}
 		return false;
-	}	
-	//提款记录
-	@RequestMapping("/withdraw")
-	public String withdraw(){
-		return "redirect:/sushuang1/getmemberwith1";//跳转到controller
 	}
-	
-	//设置提款密码
+
+	// 提款记录
+	@RequestMapping("/withdraw")
+	public String withdraw() {
+		return "redirect:/sushuang1/getmemberwith1";// 跳转到controller
+	}
+
+	// 设置提款密码
 	@RequestMapping("/insertDrawMoney")
 	@ResponseBody
-	public boolean insertDrawMoney(String password,HttpSession session){
-		//获取当前用户信息
-		Member member = (Member)session.getAttribute("memberinfo");
-		//添加提款密码
+	public boolean insertDrawMoney(String password, HttpSession session) {
+		// 获取当前用户信息
+		Member member = (Member) session.getAttribute("memberinfo");
+		// 添加提款密码
 		member.setWithdrawPassword(password);
-		//修改当前用用户信息
+		// 修改当前用用户信息
 		try {
 			memberService.update(member);
 			System.out.println("添加用户提款密码成功");
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			//添加用户提款密码失败
+			// 添加用户提款密码失败
 			System.out.println("添加用户提款密码失败");
 		}
 		return false;
 	}
-	
-	//提款申请
+
+	// 提款申请
 	@RequestMapping("/drawMoneyApplyFor")
 	@ResponseBody
-	public String drawMoneyApplyFor(String withdrawAmount,String withdrawPW,String bankCard,HttpSession session){
-		System.out.println("提款申请>>>withdrawAmount:"+withdrawAmount+",withdrawPW:"+withdrawPW+",bankCard:"+bankCard);
-		//查询提款密码是否正确
+	public String drawMoneyApplyFor(String withdrawAmount, String withdrawPW,
+			String bankCard, HttpSession session) {
+		System.out.println("提款申请>>>withdrawAmount:" + withdrawAmount
+				+ ",withdrawPW:" + withdrawPW + ",bankCard:" + bankCard);
+		// 查询提款密码是否正确
 		Member member = (Member) session.getAttribute("memberinfo");
-		if(withdrawPW.equals(member.getWithdrawPassword())){
+		if (withdrawPW.equals(member.getWithdrawPassword())) {
 			try {
-				//----------------activiti工作流
-				//部署流程定义
-				ProcessEngine processEngine = ProcessEngineConfiguration.createProcessEngineConfigurationFromResource("activiti.cfg.xml").buildProcessEngine();
-//			    ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
-			    System.out.println("部署流程定义:processEngine = "+ processEngine);
-			    deoploymentProcessDefinition.getDeployment(processEngine);
-			    //启动流程实例
-			    ProcessInstance pi = deoploymentProcessDefinition.startProcessInstance(processEngine,member.getName());
-			    //查询任务通过流程实例id 
-			   String id = deoploymentProcessDefinition.findHistoryTask(processEngine, pi.getId());
-			  //添加提款记录
-        		//查询个人账户信息
-        		MemberBankcard  memberBankcard = memberBankcardService.selectGetByMemberId(member.getId());
-        		//流水号
-        		String randomPayNumber = getRandomPayName();
-        		MemberWithdrawRecord memberWithdrawRecord = 
-        				//提现金额 银行卡号 银行名称 开户银行所在地 打款通道 创建时间 是否删除 流水号 提现状态 修改时间 用户信息
-        				new MemberWithdrawRecord(withdrawAmount, bankCard, memberBankcard.getType(), memberBankcard.getCardaddress(), "FUIOU", new Date(), (byte)0, randomPayNumber, (byte)0, new Date(), member);
-			    memberWithdrawRecordService.save(memberWithdrawRecord);
-			  //设置流程变量
-			    if(id!=null){
-			    	deoploymentProcessDefinition.setProcessVariables(processEngine,id, member.getName(), withdrawAmount, bankCard,randomPayNumber);
-			    }
-        		return "yes";
+				// ----------------activiti工作流
+				// 部署流程定义
+				ProcessEngine processEngine = ProcessEngineConfiguration
+						.createProcessEngineConfigurationFromResource(
+								"activiti.cfg.xml").buildProcessEngine();
+				// ProcessEngine processEngine =
+				// ProcessEngines.getDefaultProcessEngine();
+				System.out.println("部署流程定义:processEngine = " + processEngine);
+				deoploymentProcessDefinition.getDeployment(processEngine);
+				// 启动流程实例
+				ProcessInstance pi = deoploymentProcessDefinition
+						.startProcessInstance(processEngine, member.getName());
+				// 查询任务通过流程实例id
+				String id = deoploymentProcessDefinition.findHistoryTask(
+						processEngine, pi.getId());
+				// 添加提款记录
+				// 查询个人账户信息
+				MemberBankcard memberBankcard = memberBankcardService
+						.selectGetByMemberId(member.getId());
+				// 流水号
+				String randomPayNumber = getRandomPayName();
+				MemberWithdrawRecord memberWithdrawRecord =
+				// 提现金额 银行卡号 银行名称 开户银行所在地 打款通道 创建时间 是否删除 流水号 提现状态 修改时间 用户信息
+				new MemberWithdrawRecord(withdrawAmount, bankCard,
+						memberBankcard.getType(),
+						memberBankcard.getCardaddress(), "FUIOU", new Date(),
+						(byte) 0, randomPayNumber, (byte) 0, new Date(), member);
+				memberWithdrawRecordService.save(memberWithdrawRecord);
+				// 设置流程变量
+				if (id != null) {
+					deoploymentProcessDefinition.setProcessVariables(
+							processEngine, id, member.getName(),
+							withdrawAmount, bankCard, randomPayNumber);
+				}
+				return "yes";
 			} catch (Exception e) {
 				e.printStackTrace();
 				return "提款申请失败";
 			}
-		}else{
+		} else {
 			System.out.println("提款密码错误");
 			return "提款密码错误";
 		}
 	}
-	
-	//查看历史任务
+
+	// 查看历史任务
 	@RequestMapping("/selectFlowState")
 	@ResponseBody
-	public List<Map<String,String>> selectFlowState(HttpSession session){
+	public List<Map<String, String>> selectFlowState(HttpSession session) {
 		Member member = (Member) session.getAttribute("memberinfo");
 		ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
-		//查询已完成的历史任务
-		List<String> list = deoploymentProcessDefinition.historyTaskList(processEngine, member.getName());
-		//通过id 查询流程变量
-		List<Map<String,String>> listMaps = deoploymentProcessDefinition.getProcessVariables(processEngine, list);
+		// 查询已完成的历史任务
+		List<String> list = deoploymentProcessDefinition.historyTaskList(
+				processEngine, member.getName());
+		// 通过id 查询流程变量
+		List<Map<String, String>> listMaps = deoploymentProcessDefinition
+				.getProcessVariables(processEngine, list);
 		return listMaps;
 	}
-	
+
 	/**
 	 * 查看流程图
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@RequestMapping("/viewImage")
-	public String viewImage(String deploymentId,String imageName,HttpServletResponse response) throws Exception{
-		System.out.println("viewImage : deploymentId = "+deploymentId+",imageName = "+imageName);
+	public String viewImage(String deploymentId, String imageName,
+			HttpServletResponse response) throws Exception {
+		System.out.println("viewImage : deploymentId = " + deploymentId
+				+ ",imageName = " + imageName);
 		ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
-		InputStream  in = processEngine.getRepositoryService().getResourceAsStream(deploymentId,imageName);
-        try {
-            OutputStream out = response.getOutputStream();
-            // 把图片的输入流程写入resp的输出流中
-            byte[] b = new byte[1024];
-            for (int len = -1; (len= in.read(b))!=-1; ) {
-                out.write(b, 0, len);
-            }
-            // 关闭流
-            out.close();
-            in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+		InputStream in = processEngine.getRepositoryService()
+				.getResourceAsStream(deploymentId, imageName);
+		try {
+			OutputStream out = response.getOutputStream();
+			// 把图片的输入流程写入resp的输出流中
+			byte[] b = new byte[1024];
+			for (int len = -1; (len = in.read(b)) != -1;) {
+				out.write(b, 0, len);
+			}
+			// 关闭流
+			out.close();
+			in.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
-	
+
 	/**
 	 * 查看当前流程图（查看当前活动节点，并使用红色的框标注）
 	 */
 	@RequestMapping("/showImg/{id}")
-	public String showImg(@PathVariable(value="id")String id,HttpServletResponse resp,Map<String,Object> map) throws IOException{
+	public String showImg(@PathVariable(value = "id") String id,
+			HttpServletResponse resp, Map<String, Object> map)
+			throws IOException {
 		ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
-		//根据流程id查询流程图
-		ProcessDefinition processDefinition = deoploymentProcessDefinition.viewPic(processEngine, id);
+		// 根据流程id查询流程图
+		ProcessDefinition processDefinition = deoploymentProcessDefinition
+				.viewPic(processEngine, id);
 		map.put("deploymentId", processDefinition.getDeploymentId());
 		map.put("resourceName", processDefinition.getDiagramResourceName());
-		
-//		System.out.println("deploymentId = "+processDefinition.getDeploymentId());
-//		System.out.println("resourceName = "+processDefinition.getResourceName());
-//		System.out.println("DiagramResourceName = "+processDefinition.getDiagramResourceName());
-//		System.out.println("name = "+processDefinition.getName());
-//		System.out.println("Key = "+processDefinition.getKey());
-		
-		/**二：查看当前活动，获取当期活动对应的坐标x,y,width,height，将4个值存放到Map<String,Object>中*/
-		Map<String, Object> maps = deoploymentProcessDefinition.findCoordingByTask(processEngine,id);
+
+		// System.out.println("deploymentId = "+processDefinition.getDeploymentId());
+		// System.out.println("resourceName = "+processDefinition.getResourceName());
+		// System.out.println("DiagramResourceName = "+processDefinition.getDiagramResourceName());
+		// System.out.println("name = "+processDefinition.getName());
+		// System.out.println("Key = "+processDefinition.getKey());
+
+		/** 二：查看当前活动，获取当期活动对应的坐标x,y,width,height，将4个值存放到Map<String,Object>中 */
+		Map<String, Object> maps = deoploymentProcessDefinition
+				.findCoordingByTask(processEngine, id);
 		map.put("acs", maps);
-		System.out.println("acs>>Maps>> = "+maps.toString());
+		System.out.println("acs>>Maps>> = " + maps.toString());
 		return "WEB-INF/myself/image";
 	}
-	
-	//账户充值
-		@RequestMapping("/deposit")
-		public String experienceGold(){
+
+	// 账户充值
+	@RequestMapping("/deposit")
+	public String experienceGold(HttpSession session) {
+		if (session.getAttribute("memberinfo") == null) {
+			return "redirect:/itemweb/toLogin";
+		} else {
 			return "WEB-INF/myself/recharge";
 		}
-		
-//充值记录
-		@RequestMapping("/rechargeRecords")
-		public String rechargeRecords(){
-			return "redirect:/sushuang1/getmemberdepo1";//跳转到controller
-			
+	}
+
+	// 充值记录
+	@RequestMapping("/rechargeRecords")
+	public String rechargeRecords() {
+		return "redirect:/sushuang1/getmemberdepo1";// 跳转到controller
+
+	}
+
+	// 安全信息
+	@RequestMapping("/security")
+	public String security() {
+		return "WEB-INF/myself/security";
+	}
+
+	// 我要提款
+	@RequestMapping("/drawMoney")
+	public String drawMoney(HttpSession session) {
+		if (session.getAttribute("memberinfo") == null) {
+			return "redirect:/itemweb/toLogin";
+		} else {
+			return "WEB-INF/myself/drawMoney";
 		}
-		
-		//安全信息
-		@RequestMapping("/security")
-		public String security(){
-			return "WEB-INF/myself/security";
-		}
-				
-				//我要提款
-				@RequestMapping("/drawMoney")
-				public String drawMoney(){
-					return "WEB-INF/myself/drawMoney";
-																	//我没有写参数  
-				//return "redirect:/sushuang1/getmemberwithdraw1";//跳转到 Ss_zhmanagecontroller 方法里
-				}
-				//我是理财师
-				@RequestMapping("/financialPlanner")
-				public String financialPlanner(){
-					return "WEB-INF/myself/financialPlanner";
-				}
+	}
+
+	// 我是理财师
+	@RequestMapping("/financialPlanner")
+	public String financialPlanner() {
+		return "WEB-INF/myself/financialPlanner";
+	}
 
 	// 进入用户登录界面
 	@RequestMapping("/toLogin")
@@ -491,9 +557,11 @@ public class HoufanWebItemController {
 	 * @return
 	 */
 	@RequestMapping("/memberLogin")
-	public String userLogin(Member member,Map<String,Object> map,HttpSession session) {
-		System.out.println("登录用户填写信息:name="+member.getName()+",password="+member.getPassword());
-		//从数据库中根据用户名查询
+	public String userLogin(Member member, Map<String, Object> map,
+			HttpSession session) {
+		System.out.println("登录用户填写信息:name=" + member.getName() + ",password="
+				+ member.getPassword());
+		// 从数据库中根据用户名查询
 		try {
 			Member member2 = memberService.selectGetByName(member.getName());
 
@@ -505,18 +573,18 @@ public class HoufanWebItemController {
 			Object result = new SimpleHash(hashAlgorithmName, credentials, obj,
 					hashIterations);
 			member.setPassword(result.toString());
-			System.out.println("加密之后密码比对:登录用户的密码="+member.getPassword());
-			System.out.println("加密之后密码比对:数据库中的密码="+member2.getPassword());
-			if(member.getPassword().equals(member2.getPassword())){
+			System.out.println("加密之后密码比对:登录用户的密码=" + member.getPassword());
+			System.out.println("加密之后密码比对:数据库中的密码=" + member2.getPassword());
+			if (member.getPassword().equals(member2.getPassword())) {
 				System.out.println("登陆成功!");
-				System.out.println("Member的信息:"+member2.toString());
+				System.out.println("Member的信息:" + member2.toString());
 				session.setAttribute("memberinfo", member2);
 				return "redirect:/itemweb/index";
-			}else{
+			} else {
 				System.out.println("密码错误");
 				map.put("errorinfo", "密码错误");
 			}
-		}catch (IndexOutOfBoundsException e1) {
+		} catch (IndexOutOfBoundsException e1) {
 			System.out.println("用户不存在");
 			map.put("errorinfo", "用户不存在");
 		} catch (Exception e) {
@@ -536,27 +604,30 @@ public class HoufanWebItemController {
 		allUserLogout();
 		return "redirect:/itemweb/backstageLogin";
 	}
-	
-	public void allUserLogout(){
+
+	public void allUserLogout() {
 		SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());
 	}
+
 	/**
-	 * 前台用户退出	返回index
+	 * 前台用户退出 返回index
+	 * 
 	 * @param name
 	 * @param password
 	 * @param attributes
 	 * @return
 	 */
 	@RequestMapping("/webMemberLogout")
-	public String webUserLogout(HttpSession session){
-		//清除session
+	public String webUserLogout(HttpSession session) {
+		// 清除session
 		session.removeAttribute("memberinfo");
-//		session.invalidate();
+		// session.invalidate();
 		return "redirect:/itemweb/toLogin";
-	} 
+	}
 
 	/**
 	 * 后台用户登录
+	 * 
 	 * @param name
 	 * @param password
 	 * @param attributes
@@ -564,99 +635,101 @@ public class HoufanWebItemController {
 	 */
 	@RequestMapping("/backstageUserLogin")
 	public String backstageUserLogin(@RequestParam("name") String name,
-			@RequestParam("password") String password,Map<String,Object> map) {
-		//退出当前的用户
-				allUserLogout();
-				Subject subject = SecurityUtils.getSubject();
-				UsernamePasswordToken token = new UsernamePasswordToken(name, password);
-				try {
-					subject.login(token);		
-					Session session = subject.getSession();
-//					System.out.println("sessionId:"+session.getId());
-//					System.out.println("sessionHost:"+session.getHost());
-//					System.out.println("sessionTimeout:"+session.getTimeout());
-					session.setAttribute("userinfo", userService.getUserByUserName(name));
-				}catch(UnknownAccountException uae){
-		            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,未知账户");  
-		            map.put("errorMsg", "未知账户！"); 
-		            return "WEB-INF/backstage/login";
-		        }catch(IncorrectCredentialsException ice){  
-		            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,错误的凭证");  
-		            map.put("errorMsg", "密码不正确");  
-		            return "WEB-INF/backstage/login";
-		        }catch(LockedAccountException lae){  
-		            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,账户已锁定");  
-		            map.put("errorMsg", "账户已锁定");  
-		            return "WEB-INF/backstage/login";
-		        }catch(ExcessiveAttemptsException eae){  
-		            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,错误次数过多");  
-		            map.put("errorsMsg", "用户名或密码错误次数过多");  
-		            return "WEB-INF/backstage/login";
-		        }catch(AuthenticationException ae){  
-		            //通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景  
-		            System.out.println("对用户[" + name + "]进行登录验证..验证未通过,堆栈轨迹如下");  
-		            ae.printStackTrace();  
-		            map.put("errorMsg", "用户名或密码不正确");  
-		            return "WEB-INF/backstage/login";
-		        }  catch (Exception e) {
-					e.printStackTrace();
-				} finally{
-					map.put("name", name);
-					map.put("password", password);
-				}
+			@RequestParam("password") String password, Map<String, Object> map) {
+		// 退出当前的用户
+		allUserLogout();
+		Subject subject = SecurityUtils.getSubject();
+		UsernamePasswordToken token = new UsernamePasswordToken(name, password);
+		try {
+			subject.login(token);
+			Session session = subject.getSession();
+			// System.out.println("sessionId:"+session.getId());
+			// System.out.println("sessionHost:"+session.getHost());
+			// System.out.println("sessionTimeout:"+session.getTimeout());
+			session.setAttribute("userinfo",
+					userService.getUserByUserName(name));
+		} catch (UnknownAccountException uae) {
+			System.out.println("对用户[" + name + "]进行登录验证..验证未通过,未知账户");
+			map.put("errorMsg", "未知账户！");
+			return "WEB-INF/backstage/login";
+		} catch (IncorrectCredentialsException ice) {
+			System.out.println("对用户[" + name + "]进行登录验证..验证未通过,错误的凭证");
+			map.put("errorMsg", "密码不正确");
+			return "WEB-INF/backstage/login";
+		} catch (LockedAccountException lae) {
+			System.out.println("对用户[" + name + "]进行登录验证..验证未通过,账户已锁定");
+			map.put("errorMsg", "账户已锁定");
+			return "WEB-INF/backstage/login";
+		} catch (ExcessiveAttemptsException eae) {
+			System.out.println("对用户[" + name + "]进行登录验证..验证未通过,错误次数过多");
+			map.put("errorsMsg", "用户名或密码错误次数过多");
+			return "WEB-INF/backstage/login";
+		} catch (AuthenticationException ae) {
+			// 通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景
+			System.out.println("对用户[" + name + "]进行登录验证..验证未通过,堆栈轨迹如下");
+			ae.printStackTrace();
+			map.put("errorMsg", "用户名或密码不正确");
+			return "WEB-INF/backstage/login";
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			map.put("name", name);
+			map.put("password", password);
+		}
 		return "WEB-INF/backstage/show";
 	}
-	
-	//随机生成邀请码
-    //生成随机数字和字母,  
-    public String getStringRandom(int length) {  
-          
-        String val = "";  
-        Random random = new Random();  
-          
-        //参数length，表示生成几位随机数  
-        for(int i = 0; i < length; i++) {  
-              
-            String charOrNum = random.nextInt(2) % 2 == 0 ? "char" : "num";  
-            //输出字母还是数字  
-            if( "char".equalsIgnoreCase(charOrNum) ) {  
-                //输出是大写字母还是小写字母  
-                int temp = random.nextInt(2) % 2 == 0 ? 65 : 97;  
-                val += (char)(random.nextInt(26) + temp);  
-            } else if( "num".equalsIgnoreCase(charOrNum) ) {  
-                val += String.valueOf(random.nextInt(10));  
-            }  
-        }  
-        return val;  
-    }
+
+	// 随机生成邀请码
+	// 生成随机数字和字母,
+	public String getStringRandom(int length) {
+
+		String val = "";
+		Random random = new Random();
+
+		// 参数length，表示生成几位随机数
+		for (int i = 0; i < length; i++) {
+
+			String charOrNum = random.nextInt(2) % 2 == 0 ? "char" : "num";
+			// 输出字母还是数字
+			if ("char".equalsIgnoreCase(charOrNum)) {
+				// 输出是大写字母还是小写字母
+				int temp = random.nextInt(2) % 2 == 0 ? 65 : 97;
+				val += (char) (random.nextInt(26) + temp);
+			} else if ("num".equalsIgnoreCase(charOrNum)) {
+				val += String.valueOf(random.nextInt(10));
+			}
+		}
+		return val;
+	}
 
 	// 用户注册
 	@RequestMapping("/userRegistration")
 	public String userRegistration(Member member,
 			@RequestParam(required = false) String invitedCode) {
 		System.out.println("invitedCode = " + invitedCode);
-		System.out.println("用户注册信息:用户名="+member.getName()+",password="+member.getPassword());
-//		private Date createDate;  //创建时间
+		System.out.println("用户注册信息:用户名=" + member.getName() + ",password="
+				+ member.getPassword());
+		// private Date createDate; //创建时间
 		member.setCreateDate(new Date());
-//		private byte delFlag;  //删除标志
-		member.setDelFlag((byte)0);
-//		private BigInteger headid; // 头像图片id
+		// private byte delFlag; //删除标志
+		member.setDelFlag((byte) 0);
+		// private BigInteger headid; // 头像图片id
 		member.setHeadid(null);
-//		private String identity;//身份证
+		// private String identity;//身份证
 		member.setIdentity(null);
-//		private String invitationCode;  //邀请码
-		//随即生成6位数字和字母的组合
+		// private String invitationCode; //邀请码
+		// 随即生成6位数字和字母的组合
 		member.setInvitationCode(getStringRandom(6));
-//		private String invitedCode;  //被邀请码
+		// private String invitedCode; //被邀请码
 		member.setInvitedCode(invitedCode);
-//		private String memberName;  //真实姓名
+		// private String memberName; //真实姓名
 		member.setMemberName(member.getMemberName());
-//		private String mobile_Phone;  //手机号
+		// private String mobile_Phone; //手机号
 		member.setMobile_Phone(member.getMobile_Phone());
-//		private String name;   //用户名
-//		private String salt;  //密码盐
+		// private String name; //用户名
+		// private String salt; //密码盐
 		member.setSalt(member.getName());
-//		private String password;  //密码
+		// private String password; //密码
 		// 盐值加密
 		String hashAlgorithmName = "MD5";
 		Object credentials = member.getPassword();
@@ -667,15 +740,15 @@ public class HoufanWebItemController {
 		System.out.println("password = " + member.getPassword() + ",盐值加密之后 = "
 				+ result);
 		member.setPassword(result.toString());
-//		private String qqAccount;  //QQ账号关联	null
-//		private String qqNumber;  //QQ号码	null
-//		private byte status; //账号状态（正常，锁定，删除）
-		member.setStatus((byte)0);
-//		private Date updateDate; //修改时间
+		// private String qqAccount; //QQ账号关联 null
+		// private String qqNumber; //QQ号码 null
+		// private byte status; //账号状态（正常，锁定，删除）
+		member.setStatus((byte) 0);
+		// private Date updateDate; //修改时间
 		member.setUpdateDate(new Date());
-//		private String weiBoAccount; //微博账号关联	null
-//		private String weixinAccount;  //微信账号关联	null
-//		private String withdrawPassword;  //提款密码	null
+		// private String weiBoAccount; //微博账号关联 null
+		// private String weixinAccount; //微信账号关联 null
+		// private String withdrawPassword; //提款密码 null
 		// 输出用户信息
 		System.out.println(member.toString());
 		// 添加用户信息
@@ -702,7 +775,7 @@ public class HoufanWebItemController {
 
 	// 后台登陆页面
 	@RequestMapping("/backstageLogin")
-	public String backstageLogin(Map<String,Object> map) {
+	public String backstageLogin(Map<String, Object> map) {
 		map.put("name", "");
 		map.put("password", "");
 		return "WEB-INF/backstage/login";
@@ -722,127 +795,132 @@ public class HoufanWebItemController {
 
 	// 产品中心
 	@RequestMapping("/products")
-	public String products(Model model,HttpServletRequest request) {
-		Map<String,String> map=new HashMap<>();
+	public String products(Model model, HttpServletRequest request) {
+		Map<String, String> map = new HashMap<>();
 		map = initMap(request, map);
-		List<com.item.finance.bean.Subject> subject = subjectService.subject(map);
+		List<com.item.finance.bean.Subject> subject = subjectService
+				.subject(map);
 		model.addAttribute("subject", subject);
 		return "WEB-INF/products/products";
 	}
-	
-	public Map<String,String> initMap(HttpServletRequest request,Map<String,String> map){
-		String type=request.getParameter("type");
-		String yearRate=request.getParameter("yearRate");
-		String status=request.getParameter("status");
-		String period_start=request.getParameter("period_start");
-		String period_end=request.getParameter("period_end");
-		String flag=request.getParameter("flag");
-		System.out.println("yearRate="+yearRate);
-		map.put("type",type);
+
+	public Map<String, String> initMap(HttpServletRequest request,
+			Map<String, String> map) {
+		String type = request.getParameter("type");
+		String yearRate = request.getParameter("yearRate");
+		String status = request.getParameter("status");
+		String period_start = request.getParameter("period_start");
+		String period_end = request.getParameter("period_end");
+		String flag = request.getParameter("flag");
+		System.out.println("yearRate=" + yearRate);
+		map.put("type", type);
 		map.put("yearRate", yearRate);
 		map.put("status", status);
-		map.put("period_start",period_start);
-		map.put("period_end",period_end);
+		map.put("period_start", period_start);
+		map.put("period_end", period_end);
 		map.put("flag", flag);
-		if(type!=null){
+		if (type != null) {
 			request.setAttribute("type", type);
 		}
-		if(yearRate!=null){
+		if (yearRate != null) {
 			request.setAttribute("yearRate", yearRate);
 		}
-		if(status!=null){
+		if (status != null) {
 			request.setAttribute("status", status);
 		}
-		if(period_start!=null){
-			request.setAttribute("period_start",period_start);
+		if (period_start != null) {
+			request.setAttribute("period_start", period_start);
 		}
-		if(period_end!=null){
-			request.setAttribute("period_end",period_end);
+		if (period_end != null) {
+			request.setAttribute("period_end", period_end);
 		}
-		if(flag!=null){
-			request.setAttribute("flag",flag);
+		if (flag != null) {
+			request.setAttribute("flag", flag);
 		}
-		return map; 
+		return map;
 	}
-	
+
 	@RequestMapping("/queryType")
-    public String queryType(@RequestParam(required=false,value="type")
-    String type,@RequestParam(required=false,value="yearRate")
-    String yearRate,@RequestParam(required=false,value="status")String status,
-    @RequestParam(required=false,value="days")String days,Model model,HttpSession re){
+	public String queryType(
+			@RequestParam(required = false, value = "type") String type,
+			@RequestParam(required = false, value = "yearRate") String yearRate,
+			@RequestParam(required = false, value = "status") String status,
+			@RequestParam(required = false, value = "days") String days,
+			Model model, HttpSession re) {
 		System.out.println(status);
-    	if("-1".equals(type)){
-    		re.setAttribute("type", null);
-    		type=null;
-    	}
-    	if("-1".equals(status)){
-    		re.setAttribute("status", null);
-    		status=null;
-    	}
-    	if("-1".equals(yearRate)){
-    		re.setAttribute("yearRate", null);
-    		yearRate=null;
-    	}
-    	if("-1".equals(days)){
-    		re.setAttribute("days", null);
-    		days=null;
-    	}
-    	if(re.getAttribute("type")!=null&&type==null){
-    		type=(String) re.getAttribute("type");
-    	}
-    	if(re.getAttribute("yearRate")!=null&&yearRate==null){
-    		yearRate=(String) re.getAttribute("yearRate");
-    	}
-    	if(re.getAttribute("status")!=null&&status==null){
-    		status=(String) re.getAttribute("status");
-    	}
-    	if(re.getAttribute("days")!=null&&days==null){
-    		days=(String) re.getAttribute("days");
-    	}
-    	String hql="from Subject where 0=0";
-    	if(type!=null){
-    		hql+= " and type like'%"+type+"%'";
-    		re.setAttribute("type", type);
-    	}
-    	if(yearRate!=null){
-    		hql+= " and yearRate >="+yearRate;
-    		re.setAttribute("yearRate", yearRate);
-    	}
-    	if(status!=null){
-    		hql+= " and status like'%"+status+"%'";
-    		re.setAttribute("status", status);
-    	}
-    	if(days!=null){
-    		String xday="";
-    		if(days.equals("1")){
-    			xday=" and period<=15";
-   	    	}else if(days.equals("2")){
-   	    		xday=" and 30>period and period>=15";	
-   	    	}else if(days.equals("3")){
-   	    		xday=" and 180>period and period>=30";	
-   		    }else if(days.equals("4")){
-   		    	xday=" and 365>period and period>=180";	
-   		    }else if(days.equals("5")){
-   		    	xday=" and period>=365";	
-   		    	}
-    		hql+=xday;
-    		re.setAttribute("days", days); 
-    	}
-    	System.out.println("hql:"+hql);
-   	 List<com.item.finance.bean.Subject> list=subjectService.query(hql);
-   	model.addAttribute("subject", list);
-    	return "WEB-INF/products/products";
-    }
+		if ("-1".equals(type)) {
+			re.setAttribute("type", null);
+			type = null;
+		}
+		if ("-1".equals(status)) {
+			re.setAttribute("status", null);
+			status = null;
+		}
+		if ("-1".equals(yearRate)) {
+			re.setAttribute("yearRate", null);
+			yearRate = null;
+		}
+		if ("-1".equals(days)) {
+			re.setAttribute("days", null);
+			days = null;
+		}
+		if (re.getAttribute("type") != null && type == null) {
+			type = (String) re.getAttribute("type");
+		}
+		if (re.getAttribute("yearRate") != null && yearRate == null) {
+			yearRate = (String) re.getAttribute("yearRate");
+		}
+		if (re.getAttribute("status") != null && status == null) {
+			status = (String) re.getAttribute("status");
+		}
+		if (re.getAttribute("days") != null && days == null) {
+			days = (String) re.getAttribute("days");
+		}
+		String hql = "from Subject where 0=0";
+		if (type != null) {
+			hql += " and type like'%" + type + "%'";
+			re.setAttribute("type", type);
+		}
+		if (yearRate != null) {
+			hql += " and yearRate >=" + yearRate;
+			re.setAttribute("yearRate", yearRate);
+		}
+		if (status != null) {
+			hql += " and status like'%" + status + "%'";
+			re.setAttribute("status", status);
+		}
+		if (days != null) {
+			String xday = "";
+			if (days.equals("1")) {
+				xday = " and period<=15";
+			} else if (days.equals("2")) {
+				xday = " and 30>period and period>=15";
+			} else if (days.equals("3")) {
+				xday = " and 180>period and period>=30";
+			} else if (days.equals("4")) {
+				xday = " and 365>period and period>=180";
+			} else if (days.equals("5")) {
+				xday = " and period>=365";
+			}
+			hql += xday;
+			re.setAttribute("days", days);
+		}
+		System.out.println("hql:" + hql);
+		List<com.item.finance.bean.Subject> list = subjectService.query(hql);
+		model.addAttribute("subject", list);
+		return "WEB-INF/products/products";
+	}
 
 	// 新闻中心
 	@RequestMapping("/news")
-	public String news(Map<String,Object> map) {
-		//查询公告
-		List<PushNotice> PushNoticelist = this.PushNoticeService.listPushNotice(map);
+	public String news(Map<String, Object> map) {
+		// 查询公告
+		List<PushNotice> PushNoticelist = this.PushNoticeService
+				.listPushNotice(map);
 		map.put("PushNoticelist", PushNoticelist);
-		//查询新闻
-	    List<News> newslist= this.newsService.listNews(map);
-	    map.put("newslist", newslist);
+		// 查询新闻
+		List<News> newslist = this.newsService.listNews(map);
+		map.put("newslist", newslist);
 		return "WEB-INF/news/news";
 	}
 
@@ -864,200 +942,222 @@ public class HoufanWebItemController {
 		return "WEB-INF/research/research";
 	}
 
-	// 我的加法库    收益记录
+	// 我的加法库 收益记录
 	@RequestMapping("/myself")
 	public String myself() {
-		return "redirect:/sushuang1/asd"; //跳转到 controller
+		return "redirect:/sushuang1/getmemberprofit1"; // 跳转到 controller
 	}
-	
-	//忘记密码
+
+	// 忘记密码
 	@RequestMapping("/forgetPassword")
-	public String forgetPassword(){
+	public String forgetPassword() {
 		return "WEB-INF/forgetPassword/forgetPassword";
 	}
-	
-	//跳到购买固收页面
-			@RequestMapping("/buyproduct")
-			public String  buyproduct(int id,Model model,HttpSession session) {
-				System.out.println("标的id="+id);
-				Object obj=session.getAttribute("memberinfo");
-				if(obj!=null){
-				//然后要查询数据到前台显示
-				List<com.item.finance.bean.Subject> subject=subjectService.subject(id);
-				com.item.finance.bean.Subject sub=subjectService.getById(id);
-				model.addAttribute("subject", subject);
-				model.addAttribute("sub", sub);
-				//显示出账户余额
-				//先取出登录时的会员id
-				if(obj!=null){
-					Member member=(Member)obj;
-					String member_id=member.getId();
-					System.out.println("member_id="+member_id);
-					MemberAccount memberaccount=frontService.memberAccount(member_id);
-					System.out.println("可用account="+memberaccount.getUseableBalance());
-					model.addAttribute("memberaccount", memberaccount);
-					// 判断有没有绑卡
-					//member_bankcards(成员银联表)和member通过memberId 关联
-					MemberBankcard memberbankcards=frontService.getBankcardsById(member_id);
-					model.addAttribute("memberbankcards", memberbankcards);
-					//跳转到购买页面
-					return "WEB-INF/products/buyProducts";
-					}
-				}
-				//跳转到前台登录
-				return "redirect:/itemweb/toLogin";
+
+	// 跳到购买固收页面
+	@RequestMapping("/buyproduct")
+	public String buyproduct(int id, Model model, HttpSession session) {
+		System.out.println("标的id=" + id);
+		Object obj = session.getAttribute("memberinfo");
+		if (obj != null) {
+			// 然后要查询数据到前台显示
+			List<com.item.finance.bean.Subject> subject = subjectService
+					.subject(id);
+			com.item.finance.bean.Subject sub = subjectService.getById(id);
+			model.addAttribute("subject", subject);
+			model.addAttribute("sub", sub);
+			// 显示出账户余额
+			// 先取出登录时的会员id
+			if (obj != null) {
+				Member member = (Member) obj;
+				String member_id = member.getId();
+				System.out.println("member_id=" + member_id);
+				MemberAccount memberaccount = frontService
+						.memberAccount(member_id);
+				System.out.println("可用account="
+						+ memberaccount.getUseableBalance());
+				model.addAttribute("memberaccount", memberaccount);
+				// 判断有没有绑卡
+				// member_bankcards(成员银联表)和member通过memberId 关联
+				MemberBankcard memberbankcards = frontService
+						.getBankcardsById(member_id);
+				model.addAttribute("memberbankcards", memberbankcards);
+				// 跳转到购买页面
+				return "WEB-INF/products/buyProducts";
 			}
-			
-			//购买
-			@RequestMapping("/buy")
-			public String buy(String subject_id,String mytext,HttpSession session){
-				System.out.println("购买产品id : subject_id = "+subject_id);
-				System.out.println("购买金额 : mytext = "+mytext);
-				//从session中获取member信息
-				Member member = (Member) session.getAttribute("memberinfo");
-					String member_id=member.getId();
-					//我的余额
-					double balance = member.getMemberAccounts().iterator().next().getUseableBalance();
-					System.out.println("我的余额 : "+balance);
-					String sysDate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-					String sysDateAndRandom=new SimpleDateFormat("yyyMMddHHmmss").format(new Date())+(int)(Math.random()*9)+(int)(Math.random()*9);  
-					Calendar now=Calendar.getInstance();
-					
-					//subject表
-					System.out.println("subject_id="+subject_id);
-					com.item.finance.bean.Subject subject=this.frontService.getSubjectById(Integer.parseInt(subject_id));
-					System.out.println(subject_id+"  newid");
-					subject.setBought(subject.getBought()+1);//购买人数+1
-					subject.setAmount(subject.getAmount()+Integer.parseInt(mytext));
-					System.out.println("mytext="+mytext);
-					System.out.println("amount="+subject.getAmount());
-					this.frontService.updatesubject(subject);
-					subject=this.frontService.getSubjectById(Integer.valueOf(subject_id));
-					//结算利息
-					double interest=((((Integer.parseInt(mytext)*(subject.getYearRate()+1))/100)/365)*(subject.getPeriod()));
-					
-					//标的购买表
-					SubjectPurchaseRecord subjectPurchaseRecord = new SubjectPurchaseRecord();
-					subjectPurchaseRecord.setSubject(subject);
-					subjectPurchaseRecord.setMember(member);
-					subjectPurchaseRecord.setSerialNumber(sysDate);
-					
-					subjectPurchaseRecord.setAmount((double) Integer.parseInt(mytext));
-					subjectPurchaseRecord.setDealIp("127.0.0.1");
-					subjectPurchaseRecord.setDelflag((byte) 0);
-					try {
-						subjectPurchaseRecord.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					try {
-						subjectPurchaseRecord.setUpdateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					subjectPurchaseRecord.setInterest(interest);
-					subjectPurchaseRecord.setIspayment((byte) 1);
-					subjectPurchaseRecord.setPayInterestTimes(1);
-					subjectPurchaseRecord.setLastProfitDay(Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(new Date())));
-					subjectPurchaseRecord.setBonusInfo("无");
-					this.frontService.savepurchaserecord(subjectPurchaseRecord);
-					//成员账户表
-					MemberAccount member_account=this.frontService.memberAccount(member_id);
-					member_account.setUseableBalance(balance-Double.parseDouble(mytext));
-					System.out.println("可用余额:"+member_account.getUseableBalance());
-					try {
-						member_account.setUpdateDate(new SimpleDateFormat("yyyy-MM-dd HH:ss:mm").parse(sysDate));
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					member_account.setBbinAmount(Double.parseDouble(mytext)+member_account.getBbinAmount());
-					member_account.setMember(member);
-					this.frontService.updateaccount(member_account);
-					
-					
-					//成员利润表
-					MemberProfitRecord memberProfitRecord = new MemberProfitRecord();
-					memberProfitRecord.setMember(member);
-//					memberProfitRecord.setSubject(subject);
-					memberProfitRecord.setSerialNumber(sysDateAndRandom);
-					memberProfitRecord.setType((byte) 0);
-					memberProfitRecord.setAmount(interest);
-					memberProfitRecord.setDelflag((byte) 0);
-					try {
-						memberProfitRecord.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:ss:mm").parse(sysDate));
-						
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					try {
-						memberProfitRecord.setUpdateDate(new SimpleDateFormat("yyyy-MM-dd HH:ss:mm").parse(sysDate));
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					memberProfitRecord.setComment(subject.getName());
-					memberProfitRecord.setProfitYear((short) now.get(Calendar.YEAR));
-					memberProfitRecord.setProfitMonth((byte) now.get(Calendar.MONTH+1));
-					memberProfitRecord.setProfitDay((byte) now.get(Calendar.DAY_OF_MONTH));
-					memberProfitRecord.setSubjectPurchaseRecord(subjectPurchaseRecord);
-					this.frontService.saveprofit(memberProfitRecord);
-					
-					//交易记录表
-					MemberTradeRecord memTradeRecord = new MemberTradeRecord();
-					memTradeRecord.setMember(member);
-					memTradeRecord.setTradeNo(sysDateAndRandom);
-					memTradeRecord.setTradeName("购买:"+subject.getName());
-					memTradeRecord.setCounterpart("孔明理财公司");
-					memTradeRecord.setAmount(Integer.parseInt(mytext));
-					memTradeRecord.setTradeType(subject.getName());
-					memTradeRecord.setFundFlow((byte) 0);
-					memTradeRecord.setTradeStatus((byte) 0);
-					try {
-						memTradeRecord.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					try {
-						memTradeRecord.setUpdateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					memTradeRecord.setExtField1("扩展一");
-					memTradeRecord.setExtField2("扩展一");
-					memTradeRecord.setExtField3("扩展一");
-					this.frontService.savetraderecord(memTradeRecord);
-					
-					
-					//记账表
-					MemberTally memberTally = new MemberTally();
-					memberTally.setMember(member);
-					memberTally.setTypeId(1);
-					memberTally.setTypeName("A标");
-					memberTally.setAmount(Integer.parseInt(mytext));
-					try {
-						memberTally.setPayDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-					try {
-						memberTally.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sysDate));
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-					this.frontService.savetally(memberTally);
-//					List<SubjectPurchaseRecord> list = this.frontService.listpurchase(Integer.valueOf(subject_id));
-					return "redirect:/sushuang1/getsubjectpur";//成功后跳到个人中心查看
-			}
-	//投资记录
+		}
+		// 跳转到前台登录
+		return "redirect:/itemweb/toLogin";
+	}
+
+	// 购买
+	@RequestMapping("/buy")
+	public String buy(String subject_id, String mytext, HttpSession session) {
+		System.out.println("购买产品id : subject_id = " + subject_id);
+		System.out.println("购买金额 : mytext = " + mytext);
+		// 从session中获取member信息
+		Member member = (Member) session.getAttribute("memberinfo");
+		String member_id = member.getId();
+		// 我的余额
+		double balance = member.getMemberAccounts().iterator().next()
+				.getUseableBalance();
+		System.out.println("我的余额 : " + balance);
+		String sysDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+				.format(new Date());
+		String sysDateAndRandom = new SimpleDateFormat("yyyMMddHHmmss")
+				.format(new Date())
+				+ (int) (Math.random() * 9)
+				+ (int) (Math.random() * 9);
+		Calendar now = Calendar.getInstance();
+
+		// subject表
+		System.out.println("subject_id=" + subject_id);
+		com.item.finance.bean.Subject subject = this.frontService
+				.getSubjectById(Integer.parseInt(subject_id));
+		System.out.println(subject_id + "  newid");
+		subject.setBought(subject.getBought() + 1);// 购买人数+1
+		subject.setAmount(subject.getAmount() + Integer.parseInt(mytext));
+		System.out.println("mytext=" + mytext);
+		System.out.println("amount=" + subject.getAmount());
+		this.frontService.updatesubject(subject);
+		subject = this.frontService.getSubjectById(Integer.valueOf(subject_id));
+		// 结算利息
+		double interest = ((((Integer.parseInt(mytext) * (subject.getYearRate() + 1)) / 100) / 365) * (subject
+				.getPeriod()));
+
+		// 标的购买表
+		SubjectPurchaseRecord subjectPurchaseRecord = new SubjectPurchaseRecord();
+		subjectPurchaseRecord.setSubject(subject);
+		subjectPurchaseRecord.setMember(member);
+		subjectPurchaseRecord.setSerialNumber(getRandomPayName());
+
+		subjectPurchaseRecord.setAmount((double) Integer.parseInt(mytext));
+		subjectPurchaseRecord.setDealIp("127.0.0.1");
+		subjectPurchaseRecord.setDelflag((byte) 0);
+		try {
+			subjectPurchaseRecord.setCreateDate(new SimpleDateFormat(
+					"yyyy-MM-dd HH:mm:ss").parse(sysDate));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			subjectPurchaseRecord.setUpdateDate(new SimpleDateFormat(
+					"yyyy-MM-dd HH:mm:ss").parse(sysDate));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		subjectPurchaseRecord.setInterest(interest);
+		subjectPurchaseRecord.setIspayment((byte) 1);
+		subjectPurchaseRecord.setPayInterestTimes(1);
+		subjectPurchaseRecord.setLastProfitDay(Integer
+				.parseInt(new SimpleDateFormat("yyyyMMdd").format(new Date())));
+		subjectPurchaseRecord.setBonusInfo("无");
+		this.frontService.savepurchaserecord(subjectPurchaseRecord);
+		// 成员账户表
+		MemberAccount member_account = this.frontService
+				.memberAccount(member_id);
+		member_account.setUseableBalance(balance - Double.parseDouble(mytext));
+		System.out.println("可用余额:" + member_account.getUseableBalance());
+		try {
+			member_account.setUpdateDate(new SimpleDateFormat(
+					"yyyy-MM-dd HH:ss:mm").parse(sysDate));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		member_account.setBbinAmount(Double.parseDouble(mytext)
+				+ member_account.getBbinAmount());
+		member_account.setMember(member);
+		this.frontService.updateaccount(member_account);
+
+		// 成员利润表
+		MemberProfitRecord memberProfitRecord = new MemberProfitRecord();
+		memberProfitRecord.setMember(member);
+		// memberProfitRecord.setSubject(subject);
+		memberProfitRecord.setSerialNumber(sysDateAndRandom);
+		memberProfitRecord.setType((byte) 0);
+		memberProfitRecord.setAmount(interest);
+		memberProfitRecord.setDelflag((byte) 0);
+		try {
+			memberProfitRecord.setCreateDate(new SimpleDateFormat(
+					"yyyy-MM-dd HH:ss:mm").parse(sysDate));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			memberProfitRecord.setUpdateDate(new SimpleDateFormat(
+					"yyyy-MM-dd HH:ss:mm").parse(sysDate));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		memberProfitRecord.setComment(subject.getName());
+		memberProfitRecord.setProfitYear((short) now.get(Calendar.YEAR));
+		memberProfitRecord.setProfitMonth((byte) now.get(Calendar.MONTH + 1));
+		memberProfitRecord.setProfitDay((byte) now.get(Calendar.DAY_OF_MONTH));
+		memberProfitRecord.setSubjectPurchaseRecord(subjectPurchaseRecord);
+		this.frontService.saveprofit(memberProfitRecord);
+
+		// 交易记录表
+		MemberTradeRecord memTradeRecord = new MemberTradeRecord();
+		memTradeRecord.setMember(member);
+		memTradeRecord.setTradeNo(sysDateAndRandom);
+		memTradeRecord.setTradeName("购买:" + subject.getName());
+		memTradeRecord.setCounterpart("孔明理财公司");
+		memTradeRecord.setAmount(Integer.parseInt(mytext));
+		memTradeRecord.setTradeType(subject.getName());
+		memTradeRecord.setFundFlow((byte) 0);
+		memTradeRecord.setTradeStatus((byte) 0);
+		try {
+			memTradeRecord.setCreateDate(new SimpleDateFormat(
+					"yyyy-MM-dd HH:mm:ss").parse(sysDate));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			memTradeRecord.setUpdateDate(new SimpleDateFormat(
+					"yyyy-MM-dd HH:mm:ss").parse(sysDate));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		memTradeRecord.setExtField1("扩展一");
+		memTradeRecord.setExtField2("扩展一");
+		memTradeRecord.setExtField3("扩展一");
+		this.frontService.savetraderecord(memTradeRecord);
+
+		// 记账表
+		MemberTally memberTally = new MemberTally();
+		memberTally.setMember(member);
+		memberTally.setTypeId(1);
+		memberTally.setTypeName("A标");
+		memberTally.setAmount(Integer.parseInt(mytext));
+		try {
+			memberTally.setPayDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+					.parse(sysDate));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		try {
+			memberTally.setCreateDate(new SimpleDateFormat(
+					"yyyy-MM-dd HH:mm:ss").parse(sysDate));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		this.frontService.savetally(memberTally);
+		// List<SubjectPurchaseRecord> list =
+		// this.frontService.listpurchase(Integer.valueOf(subject_id));
+		return "redirect:/sushuang1/getsubjectpur";// 成功后跳到个人中心查看
+	}
+
+	// 投资记录
 	@RequestMapping("/invests")
-	public String invests(){
-		return "redirect:/sushuang1/getsubjectpur"; //跳转到 controller
+	public String invests() {
+		return "redirect:/sushuang1/getsubjectpur"; // 跳转到 controller
 	}
-	
-		
-	 //体验金记录
+
+	// 体验金记录
 	@RequestMapping("/experienceGold")
-	public String goldexperience(){
-		return "redirect:/sushuang1/getbbin";  //跳转到controller
+	public String goldexperience() {
+		return "redirect:/sushuang1/getbbin"; // 跳转到controller
 	}
-	
+
 }
