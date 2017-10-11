@@ -41,7 +41,7 @@
 <form action="" method="post">
 手机号：<input type="text" name="mobile1" value="${mobile1 }">&nbsp;&nbsp;
 绑卡姓名：<input type="text" name="name1" value="${name1 }">&nbsp;&nbsp;
-绑卡卡号：<input type="text" name="card1 " value="${card1}"><br><br>
+绑卡卡号：<input type="text" name="card1" value="${card1}"><br><br>
 注册时间：<input type="date" name="qdate1" value="${qdate1}">&nbsp;&nbsp;
 <input type="date" name="qdate2" align="left" value="${qdate2 }">&nbsp;&nbsp;
 <a href="#" class="btn btn-primary" type="button"  id="btn2">查询</a>&nbsp;&nbsp;
@@ -69,8 +69,8 @@
 <td>${listbank.member.mobile_Phone }</td>
 <td>${listbank.member.memberName}</td>
 <td>${listbank.member.identity}</td>
-<td>${listbank.type }</td>
-<td>${listbank.cardNo }</td>
+<td>${listbank.type}</td>
+<td>${listbank.cardNo}</td>
 <td>${listbank.cardaddress }</td>
 
 <td><c:if test="${listbank.delflag == '0' }"><font color="green">正常使用</font></c:if>

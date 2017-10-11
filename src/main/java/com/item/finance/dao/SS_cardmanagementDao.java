@@ -60,7 +60,7 @@ public class SS_cardmanagementDao {
 			hql=hql+" and  membank.member.memberName like '%"+name1+"%'";
 		}
 		if(card1!=null && !"".equals(card1)){ //绑卡卡号
-			hql=hql+" and cardNo like '%"+card1+"%'";
+			hql=hql+" and cardNo= '"+card1+"'";
 		}
 		
 		if(qdate1!=null && !"".equals(qdate1)){  //注册时间1 开始时间
