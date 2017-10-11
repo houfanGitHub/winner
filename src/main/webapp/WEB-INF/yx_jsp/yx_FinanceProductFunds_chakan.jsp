@@ -9,8 +9,8 @@
 </head>
 <body>
 <c:if test="${empty fe.signedPhotos}">
-<img src="${fe.signedPhotos}" width="400px" height="400px">
+<img src="/winner/${fe.signedPhotos}" width="400px" height="400px">
 </c:if>
-<img src="${fe.comment}"width="400px" height="400px">
+<img src="/winner/${fe.comment}"width="400px" height="400px">
 </body>
 </html>

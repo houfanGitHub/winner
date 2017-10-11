@@ -103,6 +103,7 @@ public class Yx_FinanceProductFunds_Controller {
 	@RequestMapping("/listchakan/{id}")
 	public String listchakan(HttpSession session,@PathVariable("id")int id){
 	FinanceProductSubscribe fe=this.yx_FinanceProductFunds_Service.listChakan(id);
+	//System.out.println("拍照图"+fe.getSignedPhotos());
 		session.setAttribute("fe", fe);
 		return "WEB-INF/yx_jsp/yx_FinanceProductFunds_chakan";
 	}

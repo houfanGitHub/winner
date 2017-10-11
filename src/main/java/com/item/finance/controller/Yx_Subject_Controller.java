@@ -122,41 +122,18 @@ MultipartFile file_name,HttpServletRequest request,HttpSession session,SubjectFi
     //修改
     @RequestMapping("/updateSubject/{id}")
     public String updateSubject(
-    		//@PathVariable("id")int id,
     @RequestParam("file_name")MultipartFile file_name,
     SubjectFile subjectFile,
     HttpServletRequest request,HttpSession session,Subject subject) throws IOException{
-
 		SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		subject.setCreateDate(sdf2.format(new Date()));
 		subject.setUpdateDate(sdf2.format(new Date()));
-    	/*Subject subject2=this.yx_Subject_Service.selectGetById(id);
-    	System.out.println("id:"+id+",产品速览"+subject2.getComment()+",项目详情"+subject2.getProjectDetails()+",安全保障"+subject2.getSafetyControl()+"名字:"+subject2.getName());*/
     	yx_Subject_Service.updateSubject(subject);//subject2
-    	//session.setAttribute("filename",file_name.getOriginalFilename());
-    //	String type=file_name.getOriginalFilename().substring(file_name.getOriginalFilename().indexOf("."));
-		
-		//System.out.println(sdf.format(date));
-		//String filenameTime=sdf.format(date)+type;
-    	//String path=request.getRealPath("/upload/");//String path=request.getSession().getServletContext().getRealPath("/upload/");
-    	//File newfile=new File(path,filenameTime);
-    	/*if(!newfile.exists()){
-			newfile.createNewFile();
-		}
-		file_name.transferTo(newfile);
-		subjectFile.setPath(path+sdf2.format(date));
-		subjectFile.setFileName(filenameTime);*/
-    	
-    	//System.out.println("文件名"+file_name.getOriginalFilename());
-    	//yx_Subject_Service.updateSubjectFile(subjectFile);
-    	
-    	
     	String type=file_name.getOriginalFilename().substring(file_name.getOriginalFilename().indexOf("."));
 		Date date=new Date();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmssssss");
-		//System.out.println(sdf.format(date));
 		String filenameTime=sdf.format(date)+type;
-    	String path=request.getRealPath("/upload/");//String path=request.getSession().getServletContext().getRealPath("/upload/");
+    	String path=request.getRealPath("/upload/");
     	File newfile=new File(path,filenameTime);
     	if(!newfile.exists()){
 			newfile.createNewFile();
